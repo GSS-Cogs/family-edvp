@@ -1,0 +1,22 @@
+{
+    "family": "EDVP",
+    "github": "https://github.com/GSS-Cogs/family-edvp",
+    "project": "https://github.com/orgs/GSS-Cogs/projects/15",
+    "githubcogs": "https://gss-cogs.github.io/family-edvp",
+    "jenkins": {
+        "base": "https://ci.floop.org.uk",
+        "path": [
+            "GSS_data",
+            "EDVP"
+        ]
+    },
+    "sparql": "https://staging.gss-data.org.uk/sparql",
+    "pmd": "http://staging.gss-data.org.uk",
+    "pipelines": [
+        "BEIS-Fuel-poverty-detailed-tables-2020",
+        "BEIS-Fuel-poverty-supplementary-tables-2020",
+        "Ofgem-Cheapest-tariffs-by-payment-method-Typical-domestic-dual-fuel-customer-GB",
+        "Ofgem-Retail-price-comparison-by-company-and-tariff-type-Domestic-GB",
+        "Ofgem-Warm-Home-Discount-scheme"
+    ]
+}
