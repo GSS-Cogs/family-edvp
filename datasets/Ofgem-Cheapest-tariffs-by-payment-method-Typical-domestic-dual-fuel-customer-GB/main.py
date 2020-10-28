@@ -4,6 +4,7 @@ import requests
 from gssutils import * 
 
 scraper = Scraper(seed="info.json")
+cubes = Cubes("info.json")
 title = "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)"
 scraper.distributions[0].title = title
 scraper
@@ -22,8 +23,9 @@ df = scraper.distributions[0].as_pandas()#(sheet_name=title)
 cols = list(df.columns)
 df.columns = cols
 df_new_shape = pd.melt(df, id_vars=["Date"])
-df1 = df1.rename(columns={"Date": "Period", "variable": "DimentionName"})
-df1["Period"] = df1["Period"].apply(gregorian_day)
-df1
+df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "DimentionName"})
+df_final["Period"] = df_final["Period"].apply(gregorian_day)
+cubes.add_cube(scraper, df_final, title)
+cubes.output_all()
 
 

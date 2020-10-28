@@ -1,0 +1,124 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "tables": [
+    {
+      "url": "cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb.csv",
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "period",
+            "titles": "Period",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/period",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#concept/period/{period}"
+          },
+          {
+            "name": "dimentionname",
+            "titles": "DimentionName",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/dimentionname",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#concept/dimentionname/{dimentionname}"
+          },
+          {
+            "name": "value",
+            "titles": "value",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/value",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#concept/value/{value}"
+          },
+          {
+            "name": "virt_dataset",
+            "virtual": true,
+            "propertyUrl": "qb:dataSet",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dataset"
+          },
+          {
+            "name": "virt_type",
+            "virtual": true,
+            "propertyUrl": "rdf:type",
+            "valueUrl": "qb:Observation"
+          }
+        ],
+        "primaryKey": [
+          "period",
+          "dimentionname",
+          "value"
+        ],
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/{period}/{dimentionname}/{value}"
+      }
+    }
+  ],
+  "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#tables",
+  "prov:hadDerivation": {
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dataset",
+    "@type": [
+      "qb:DataSet",
+      "dcat:Dataset"
+    ],
+    "qb:structure": {
+      "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#structure",
+      "@type": "qb:DataStructureDefinition",
+      "qb:component": [
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#component/period",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/period",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/period"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#class/Period"
+            },
+            "rdfs:label": "Period"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/period"
+          }
+        },
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#component/dimentionname",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/dimentionname",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/dimentionname"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#class/Dimentionname"
+            },
+            "rdfs:label": "DimentionName"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/dimentionname"
+          }
+        },
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#component/value",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/value",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/value"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#class/Value"
+            },
+            "rdfs:label": "value"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#dimension/value"
+          }
+        }
+      ]
+    }
+  }
+}
