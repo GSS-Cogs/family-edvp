@@ -1,0 +1,75 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix cogsgit: <https://github.com/GSS-Cogs/> .
+@prefix cogs: <http://gss-cogs.uk/def/arch/> .
+
+<http://gss-cogs.uk/def/arch> a owl:Ontology;
+  rdfs:label "COGS COVID-19 Transform Mapping" ;
+.
+
+cogs:SoftwarePackage a owl:Class ;
+  rdfs:label "Software package" ;
+.
+cogs:SoftwarePackage a owl:Class ;
+  rdfs:label2 "Label2" ;
+.
+cogs:LandingPage a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Landing Page" ;
+.
+cogs:Datasets a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Output Dataset" ;
+.
+cogs:Sheets a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Sheet Name";
+.
+cogs:Columns a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Table" ;
+.
+cogs:PMD a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "PMD" ;
+.
+cogs:Rename a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Rename & Add" ;
+.
+###########################################################################################################
+
+cogsgit:top-level a cogs:LandingPage ;
+  rdfs:label "Landing Page" ;
+  rdfs:label2 "<b>Detailed Fuel poverty statistics report for 2020 (2018 data)</b>" ;
+  rdfs:comment <https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2020>;
+  cogs:scrape cogsgit:sheet1, cogsgit:sheet2, cogsgit:sheet3, cogsgit:sheet4, cogsgit:sheet5, cogsgit:sheet6 ;
+.
+
+cogsgit:sheet1 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 2" ; cogs:transforms cogsgit:dataset1 ; .
+cogsgit:sheet2 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17" ; cogs:transforms cogsgit:dataset2 ; .
+cogsgit:sheet3 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 1, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28" ; cogs:transforms cogsgit:dataset3 ; .
+cogsgit:sheet4 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 29, 30" ; cogs:transforms cogsgit:dataset4 ; .
+cogsgit:sheet5 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 31, 32" ; cogs:transforms cogsgit:dataset5 ; .
+cogsgit:sheet6 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 33, 34, 35, 36" ; cogs:transforms cogsgit:dataset6 ; .
+
+cogsgit:dataset1 a cogs:Datasets ; rdfs:label "Dataset 1" ;  rdfs:comment "Low Income High costs Matrix" ;  cogs:outputs cogsgit:columns1 ; .
+cogsgit:dataset2 a cogs:Datasets ; rdfs:label "Dataset 2" ;  rdfs:comment "Energy Efficiency and Dwelling Characteristics" ;  cogs:outputs cogsgit:columns2 ; .
+cogsgit:dataset3 a cogs:Datasets ; rdfs:label "Dataset 3" ;  rdfs:comment "Household characteristics" ;  cogs:outputs cogsgit:columns3 ; .
+cogsgit:dataset4 a cogs:Datasets ; rdfs:label "Dataset 4" ;  rdfs:comment "Household Income" ;  cogs:outputs cogsgit:columns4 ; .
+cogsgit:dataset5 a cogs:Datasets ; rdfs:label "Dataset 5" ;  rdfs:comment "Fuel Payment Type" ;  cogs:outputs cogsgit:columns5 ; .
+cogsgit:dataset6 a cogs:Datasets ; rdfs:label "Dataset 6" ;  rdfs:comment "Eligibility" ;  cogs:outputs cogsgit:columns6 ; . 
+
+cogsgit:columns1 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, Low Income High costs Matrix, Number of Households, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+cogsgit:columns2 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, SAP Band, Rurality, Region, Dwelling Type, Dwelling Age, Floor Area, Gas Grid Connection, Central Heating, Main Fuel Type, Boiler Type, Wall Insulation, Wall Type, Loft Insulation, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+cogsgit:columns3 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, Tenure, Housing Composition, Age of Youngest Person, Age of Oldest Person, People in Household, Ethnicity, Illness or Disability, Under-Occupancy, Vulnerability, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+cogsgit:columns4 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, Employment Status, Income Decile Group, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+cogsgit:columns5 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, File Type, Payment Method, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+cogsgit:columns6 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, Eligibility Type, Eligible, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
+
+cogsgit:pmd1 a cogs:PMD ;
+  rdfs:label "PMD" ;
+  rdfs:comment <https://staging.gss-data.org.uk/datasets?columns=http%3A%2F%2Fpurl.org%2Fdc%2Fterms%2Fpublisher> ;
+.
+###################################################################################################
