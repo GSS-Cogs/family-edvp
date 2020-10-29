@@ -20,12 +20,11 @@ def gregorian_day(date):
 
 
 df = scraper.distributions[0].as_pandas()#(sheet_name=title)
-cols = list(df.columns)
-df.columns = cols
 df_new_shape = pd.melt(df, id_vars=["Date"])
-df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "DimentionName"})
+df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "DimensionName"})
 df_final["Period"] = df_final["Period"].apply(gregorian_day)
 cubes.add_cube(scraper, df_final, title)
 cubes.output_all()
+df_final
 
 
