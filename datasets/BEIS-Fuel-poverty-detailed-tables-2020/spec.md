@@ -36,8 +36,10 @@
 		Year, Low Income High costs Matrix, Number of Households, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/matrix
-		Title: Fuel poverty detailed tables - Low Income High costs Matrix
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/matrixincome
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/matrixcosts
+		Title1: Fuel poverty detailed tables - Low Income High costs Matrix - Median Equivalised Income
+		Title1: Fuel poverty detailed tables - Low Income High costs Matrix - Median Equivalised fuel costs
 		Comment: Fuel poverty statistics report for the Low Income high Costs Matrix (LIHC) Indicator
 		Description:
 			Fuel poverty statistics report for the Low Income high Costs Matrix (LIHC) Indicator 
@@ -98,8 +100,10 @@
 		Year, FPEER, SAP Band, Rurality, Region, Dwelling Type, Dwelling Age, Floor Area, Gas Grid Connection, Central Heating, Main Fuel Type, Boiler Type, Wall Insulation, Wall Type, Loft Insulation, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/energy
-		Title: Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/energyagg
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/energyavg
+		Title 1: Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Aggregate Gap
+		Title 2: Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Average Gap
 		Comment: Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics		
 		Description: 
 		Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics
@@ -148,8 +152,10 @@
 		Year, FPEER, Tenure, Housing Composition, Age of Youngest Person, Age of Oldest Person, People in Household, Ethnicity, Illness or Disability, Under-Occupancy, Vulnerability, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/characteristics
-		Title: Fuel poverty detailed tables - Household Characteristics
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/characteristicsagg
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/characteristicsavg
+		Title 1: Fuel poverty detailed tables - Household Characteristics - Aggregate Gap
+		Title 2: Fuel poverty detailed tables - Household Characteristics - Average Gap
 		Comment: Fuel poverty statistics report detailing Household characteristic
 		Description:
 		Fuel poverty statistics report detailing Household characteristic
@@ -188,8 +194,10 @@
 		Year, FPEER, Employment Status, Income Decile Group, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/income
-		Title: Fuel poverty detailed tables - Household Income
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/incomeagg
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/incomeavg
+		Title 1: Fuel poverty detailed tables - Household Income - Aggregate Gap
+		Title 2: Fuel poverty detailed tables - Household Income - Average Gap
 		Comment: Fuel poverty statistics report detailing Household Income
 		Description:
 		Fuel poverty statistics report detailing Household Income
@@ -227,8 +235,10 @@
 		Year, Fuel Type, Payment Method, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/payment
-		Title: Fuel poverty detailed tables - Fuel Payment Type
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/paymentagg
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/paymentavg
+		Title 1: Fuel poverty detailed tables - Fuel Payment Type - Aggregate Gap
+		Title 2: Fuel poverty detailed tables - Fuel Payment Type - Average Gap
 		Comment: Fuel poverty statistics report detailing Fuel Payment Type
 		Description:
 		Fuel poverty statistics report detailing Fuel Payment Type
@@ -266,8 +276,10 @@
 		Year, Eligibility Type, Eligible, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
-		Dataset-title: beis-fuel-poverty-detailed-tables-2020/eligibility
-		Title: Fuel poverty detailed tables - Eligibility
+		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/eligibilityagg
+		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/eligibilityavg
+		Title 1: Fuel poverty detailed tables - Eligibility - Aggregate Gap
+		Title 2: Fuel poverty detailed tables - Eligibility = Average Gap
 		Comment: Fuel poverty statistics report detailing Eligibility
 		Description:
 		Fuel poverty statistics report detailing Eligibility		
@@ -281,5 +293,10 @@
 
 ##### DM Notes
 
-		notes
+		All datasets need to be split into 2 as we can't currently manage multiple measure cubes. 
+		Split into:
+			Aggregate fuel poverty Gap
+			Average fuel poverty Gap
+		You using the CSVMapping class you need to pull in the info.json file into a dict change the Measure Type and unit and pass the dict to the Mapping class.
+
 
