@@ -1,0 +1,47 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix gdp: <http://gss-data.org.uk/def/gdp#> .
+@prefix gov: <https://www.gov.uk/government/organisations/> .
+@prefix ns1: <http://gss-data.org.uk/graph/www/ofgem/gov/uk/node/95439/revisions/365111/> .
+@prefix ns2: <http://xmlns.com/foaf/0.1/> .
+@prefix ns3: <urn:x-rdflib:> .
+@prefix ns4: <http://gss-data.org.uk/graph/gss_data/edvp/> .
+@prefix pmd: <http://publishmydata.com/def/dataset#> .
+@prefix pmdcat: <http://publishmydata.com/pmdcat#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix theme: <http://gss-data.org.uk/def/concept/statistics-authority-themes/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:csv-metadata {
+    <http://gss-data.org.uk/catalog/datasets> a dcat:Catalog ;
+        dcat:record <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv-catalog-record> .
+
+    <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv#dataset> a pmdcat:DataCube .
+
+    <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv-catalog-entry> a pmdcat:Dataset ;
+        rdfs:label "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)"@en ;
+        gdp:family gdp:edvp ;
+        pmdcat:datasetContents <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv#dataset> ;
+        pmdcat:graph ns1:csv ;
+        dct:creator gov:the-office-of-gas-and-electricity-markets ;
+        dct:description "Interactive chart - This data compares the cheapest available tariffs offered by the six large suppliers with the cheapest tariff available in the market by payment method (direct debit, standard credit and prepayment). Figures are based on a typical domestic dual fuel customer paying by direct debit."@en ;
+        dct:issued "2020-09-28"^^xsd:date ;
+        dct:modified "2020-10-28T18:39:17.653119+00:00"^^xsd:dateTime ;
+        dct:publisher gov:the-office-of-gas-and-electricity-markets ;
+        dct:title "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)"@en ;
+        void:sparqlEndpoint <http://gss-data.org.uk/sparql> ;
+        dcat:landingPage <https://www.ofgem.gov.uk/node/95439/revisions/365111/csv?fake=.csv> .
+
+    <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv-catalog-record> a dcat:CatalogRecord ;
+        rdfs:label "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB) Catalog Record"@en ;
+        pmdcat:metadataGraph ns1:csv-metadata ;
+        dct:issued "2020-09-28"^^xsd:date ;
+        dct:modified "2020-10-28T18:39:17.653119+00:00"^^xsd:dateTime ;
+        ns2:primaryTopic <http://gss-data.org.uk/data/www/ofgem/gov/uk/node/95439/revisions/365111/csv-catalog-entry> .
+}
+
