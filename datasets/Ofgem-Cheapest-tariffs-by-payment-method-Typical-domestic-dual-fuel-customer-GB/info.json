@@ -17,7 +17,62 @@
     },
     "transform": {
         "airtable": "recBV0YIZppI36heJ",
-        "main_issue": 2
+        "main_issue": 2,
+        "transformStage": [
+            {
+                "source_name": "The Office of Gas and Electricity Markets",
+                "identifier": "The Office of Gas and Electricity Markets||Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)||https://www.ofgem.gov.uk/node/95439/revisions/368229/csv",
+                "source": [
+                    {
+                        "https://www.ofgem.gov.uk/node/95439/revisions/368229/csv": ""
+                    }
+                ],
+                "title": "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)",
+                "preview": null,
+                "observation_selection": null,
+                "columns": [
+                    {
+                        "Dimension 1": [
+                            "Six largest suppliers (direct debit)",
+                            "Six largest suppliers (standard credit)",
+                            "Six largest suppliers (prepayment)",
+                            "Market (direct debit)",
+                            "Market (standard credit)",
+                            "Market (prepayment)"
+                        ]
+                    },
+                    {
+                        "Value": [
+                            "Six largest suppliers (direct debit)",
+                            "Six largest suppliers (standard credit)",
+                            "Six largest suppliers (prepayment)",
+                            "Market (direct debit)",
+                            "Market (standard credit)",
+                            "Market (prepayment)"
+                        ]
+                    }
+                ],
+                "postTransformNotes": [
+                    {
+                        "Period": [
+                            "Values taken from 'Date' column",
+                            "Formatted time to 'gregorian-day/dd/mm/yyyy'"
+                        ]
+                    },
+                    {
+                        "Dimension_1": [
+                            "Values one of ['Six largest suppliers (direct debit)', 'Six largest suppliers (standard credit)', 'Six largest suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)']"
+                        ]
+                    },
+                    {
+                        "Value": [
+                            "Values taken from ['Six largest suppliers (direct debit)', 'Six largest suppliers (standard credit)', 'Six largest suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)'] columns",
+                            "Removed commas and whitespaces from Values"
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "sizingNotes": "",
     "notes": "Interactive chart with CSV download option."
