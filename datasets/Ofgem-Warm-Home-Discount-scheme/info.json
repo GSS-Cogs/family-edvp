@@ -16,8 +16,36 @@
     },
     "transform": {
         "airtable": "recfgcw9GDqKQlOs2",
-        "main_issue": 4
+        "main_issue": 4,
+        "transformStage": [
+            {
+                "source_name": "The Office of Gas and Electricity Markets",
+                "identifier": "The Office of Gas and Electricity Markets||warm home discount percentage spend nation scheme year 8 2018 19||https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv",
+                "source": [
+                    {
+                        "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv": ""
+                    }
+                ],
+                "title": "warm home discount percentage spend nation scheme year 8 2018 19",
+                "preview": null,
+                "observation_selection": null,
+                "columns": [],
+                "postTransformNotes": [
+                    {
+                        "Nation": [
+                            "Values taken from 'Nation' column"
+                        ]
+                    },
+                    {
+                        "Total_spend": [
+                            "Values taken from Total spend column"
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "sizingNotes": "",
-    "notes": "Interactive chart with CSV download option."
+    "notes": "Interactive chart with CSV download option.",
+    "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv"
 }

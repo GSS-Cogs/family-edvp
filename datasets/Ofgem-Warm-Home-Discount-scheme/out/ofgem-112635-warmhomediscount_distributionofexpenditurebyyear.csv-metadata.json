@@ -1,0 +1,124 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+  ],
+  "tables": [
+    {
+      "url": "ofgem-112635-warmhomediscount_distributionofexpenditurebyyear.csv",
+      "tableSchema": {
+        "columns": [
+          {
+            "name": "spending_proportion",
+            "titles": "Spending proportion",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/spending-proportion",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#concept/spending-proportion/{spending_proportion}"
+          },
+          {
+            "name": "dimension_1",
+            "titles": "Dimension_1",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/dimension_1",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#concept/dimension_1/{dimension_1}"
+          },
+          {
+            "name": "value",
+            "titles": "Value",
+            "datatype": "string",
+            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/value",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#concept/value/{value}"
+          },
+          {
+            "name": "virt_dataset",
+            "virtual": true,
+            "propertyUrl": "qb:dataSet",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dataset"
+          },
+          {
+            "name": "virt_type",
+            "virtual": true,
+            "propertyUrl": "rdf:type",
+            "valueUrl": "qb:Observation"
+          }
+        ],
+        "primaryKey": [
+          "spending_proportion",
+          "dimension_1",
+          "value"
+        ],
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear/{spending_proportion}/{dimension_1}/{value}"
+      }
+    }
+  ],
+  "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#tables",
+  "prov:hadDerivation": {
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dataset",
+    "@type": [
+      "qb:DataSet",
+      "dcat:Dataset"
+    ],
+    "qb:structure": {
+      "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#structure",
+      "@type": "qb:DataStructureDefinition",
+      "qb:component": [
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#component/spending-proportion",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/spending-proportion",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#scheme/spending-proportion"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#class/SpendingProportion"
+            },
+            "rdfs:label": "Spending proportion"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/spending-proportion"
+          }
+        },
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#component/dimension_1",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/dimension_1",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#scheme/dimension_1"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#class/Dimension_1"
+            },
+            "rdfs:label": "Dimension_1"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/dimension_1"
+          }
+        },
+        {
+          "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#component/value",
+          "qb:dimension": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/value",
+            "@type": "qb:DimensionProperty",
+            "qb:codeList": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#scheme/value"
+            },
+            "rdfs:range": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#class/Value"
+            },
+            "rdfs:label": "Value"
+          },
+          "@type": "qb:ComponentSpecification",
+          "qb:componentProperty": {
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-112635-warmhomediscount_distributionofexpenditurebyyear#dimension/value"
+          }
+        }
+      ]
+    }
+  }
+}
