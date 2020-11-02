@@ -16,45 +16,7 @@
 
 	Tables: 2
 
-	Dimensions:
-		Year: 2018
-		Low Income High costs Matrix (codelist/pathify):
-			Low Income High Costs
-			Low Income Low Costs
-			High Income High Costs
-			High Income Low Costs
-			All households = All
-	Attributes:
-		Number of Households
-	Measures:
-		Measure Type:  
-			Median Income after housing costs (AHC), equivalised income
-			Median Equivalised fuel costs
-		Unit: gbp & rating
-		
-	Table Structure
-		Year, Low Income High costs Matrix, Number of Households, Measure Type, Unit, Marker, Value
-
-	Scraper
-		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/matrixincome
-		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/matrixcosts
-		Title1: Fuel poverty detailed tables - Low Income High costs Matrix - Median Equivalised Income
-		Title1: Fuel poverty detailed tables - Low Income High costs Matrix - Median Equivalised fuel costs
-		Comment: Fuel poverty statistics report for the Low Income high Costs Matrix (LIHC) Indicator
-		Description:
-			Fuel poverty statistics report for the Low Income high Costs Matrix (LIHC) Indicator 
-			Households are considered to be fuel poor if:
-			• they have required fuel costs that are above average (the national median level); and
-			• were they to spend that amount, they would be left with a residual income below the official poverty line.
-			The depth of fuel poverty is defined as the amount by which the assessed energy requirements of fuel poor households exceed the threshold for reasonable costs. This is referred to as the fuel poverty gap.
-			
-			Fuel Poverty methodology handbook:
-			https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882233/fuel-poverty-methodology-handbook-2020.pdf
-			
-			The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
-		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
-		Family: edv
-			
+	IGNORE, COVERED IN SUPPLEMENTARY TABLES			
 
 #### Energy Efficiency and Dwelling Characteristics
 
@@ -71,6 +33,12 @@
 	Dimensions:
 		Year: 2018
 		FPEER (codelist): A/B/C, D, E, F, G, All
+		Low Income High costs Matrix (codelist/pathify):
+			Low Income High Costs
+			Low Income Low Costs
+			High Income High Costs
+			High Income Low Costs
+			All households = All
 		SAP BAND (codelist): A/B/C, D, E, F, G, All
 		Rurality (codelist/pathify): Urban, Semi-rural, Rural, All
 		Region (codelist): replace regions with ONS geography codes (All households will be code for England)
@@ -97,16 +65,16 @@
 		* numbers hidden due to very low sample count (less than 10) within this category. = low-sample-count		
 		
 	Table Structure
-		Year, FPEER, SAP Band, Rurality, Region, Dwelling Type, Dwelling Age, Floor Area, Gas Grid Connection, Central Heating, Main Fuel Type, Boiler Type, Wall Insulation, Wall Type, Loft Insulation, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
+		Year, FPEER, Low Income High costs Matrix, SAP Band, Rurality, Region, Dwelling Type, Dwelling Age, Floor Area, Gas Grid Connection, Central Heating, Main Fuel Type, Boiler Type, Wall Insulation, Wall Type, Loft Insulation, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value
 
 	Scraper
 		Dataset-title 1: beis-fuel-poverty-detailed-tables-2020/energyagg
 		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/energyavg
 		Title 1: Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Aggregate Gap
 		Title 2: Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Average Gap
-		Comment: Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics		
+		Comment: Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics by Aggregate and Average Fuel Poverty Gap
 		Description: 
-		Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics
+		Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
 		Family: edv
@@ -156,9 +124,9 @@
 		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/characteristicsavg
 		Title 1: Fuel poverty detailed tables - Household Characteristics - Aggregate Gap
 		Title 2: Fuel poverty detailed tables - Household Characteristics - Average Gap
-		Comment: Fuel poverty statistics report detailing Household characteristic
+		Comment: Fuel poverty statistics report detailing Household characteristics by Aggregate and Average Fuel Poverty Gap
 		Description:
-		Fuel poverty statistics report detailing Household characteristic
+		Fuel poverty statistics report detailing Household characteristic by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
 		Family: edv
@@ -198,9 +166,9 @@
 		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/incomeavg
 		Title 1: Fuel poverty detailed tables - Household Income - Aggregate Gap
 		Title 2: Fuel poverty detailed tables - Household Income - Average Gap
-		Comment: Fuel poverty statistics report detailing Household Income
+		Comment: Fuel poverty statistics report detailing Household Income by Aggregate and Average Fuel Poverty Gap
 		Description:
-		Fuel poverty statistics report detailing Household Income
+		Fuel poverty statistics report detailing Household Income by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
 		Family: edv
@@ -239,9 +207,9 @@
 		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/paymentavg
 		Title 1: Fuel poverty detailed tables - Fuel Payment Type - Aggregate Gap
 		Title 2: Fuel poverty detailed tables - Fuel Payment Type - Average Gap
-		Comment: Fuel poverty statistics report detailing Fuel Payment Type
+		Comment: Fuel poverty statistics report detailing Fuel Payment Type by Aggregate and Average Fuel Poverty Gap
 		Description:
-		Fuel poverty statistics report detailing Fuel Payment Type
+		Fuel poverty statistics report detailing Fuel Payment Type by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
 		Family: edv
@@ -269,7 +237,7 @@
 			Average fuel poverty Gap
 		Unit: million-gbp, gbp
 	Marker:
-		^ number based on low sample count (between 10 and less than 30), inferences should not be made based on this figure. = low-sample-count
+		^ number based on low sample count (between 10 and less than 30), inferences should not be made based on this figure = low-sample-count
 		* numbers hidden due to very low sample count (less than 10) within this category. = low-sample-count		
 		
 	Table Structure
@@ -280,9 +248,9 @@
 		Dataset-title 2: beis-fuel-poverty-detailed-tables-2020/eligibilityavg
 		Title 1: Fuel poverty detailed tables - Eligibility - Aggregate Gap
 		Title 2: Fuel poverty detailed tables - Eligibility = Average Gap
-		Comment: Fuel poverty statistics report detailing Eligibility
+		Comment: Fuel poverty statistics report detailing Eligibility by Aggregate and Average Fuel Poverty Gap
 		Description:
-		Fuel poverty statistics report detailing Eligibility		
+		Fuel poverty statistics report detailing Eligibility by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
 		Family: edv
@@ -298,5 +266,7 @@
 			Aggregate fuel poverty Gap
 			Average fuel poverty Gap
 		You using the CSVMapping class you need to pull in the info.json file into a dict change the Measure Type and unit and pass the dict to the Mapping class.
+
+		Will probably have to be joined up with the supplementary table data once we get multi measures working
 
 

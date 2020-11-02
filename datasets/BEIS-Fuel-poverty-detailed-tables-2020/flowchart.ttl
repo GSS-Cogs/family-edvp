@@ -54,14 +54,13 @@ cogsgit:sheet4 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 29, 3
 cogsgit:sheet5 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 31, 32" ; cogs:transforms cogsgit:dataset5 ; .
 cogsgit:sheet6 a cogs:Sheets ; rdfs:label "Sheets" ; rdfs:comment "Tables: 33, 34, 35, 36" ; cogs:transforms cogsgit:dataset6 ; .
 
-cogsgit:dataset1 a cogs:Datasets ; rdfs:label "Dataset 1" ;  rdfs:comment "Low Income High costs Matrix" ;  cogs:outputs cogsgit:columns1 ; .
+cogsgit:dataset1 a cogs:Datasets ; rdfs:label "Ignore" ;  rdfs:comment "Covered in Supplementary tables" ; .
 cogsgit:dataset2 a cogs:Datasets ; rdfs:label "Dataset 2" ;  rdfs:comment "Energy Efficiency and Dwelling Characteristics" ;  cogs:outputs cogsgit:columns2 ; .
 cogsgit:dataset3 a cogs:Datasets ; rdfs:label "Dataset 3" ;  rdfs:comment "Household characteristics" ;  cogs:outputs cogsgit:columns3 ; .
 cogsgit:dataset4 a cogs:Datasets ; rdfs:label "Dataset 4" ;  rdfs:comment "Household Income" ;  cogs:outputs cogsgit:columns4 ; .
 cogsgit:dataset5 a cogs:Datasets ; rdfs:label "Dataset 5" ;  rdfs:comment "Fuel Payment Type" ;  cogs:outputs cogsgit:columns5 ; .
 cogsgit:dataset6 a cogs:Datasets ; rdfs:label "Dataset 6" ;  rdfs:comment "Eligibility" ;  cogs:outputs cogsgit:columns6 ; . 
 
-cogsgit:columns1 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, Low Income High costs Matrix, Number of Households, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
 cogsgit:columns2 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, SAP Band, Rurality, Region, Dwelling Type, Dwelling Age, Floor Area, Gas Grid Connection, Central Heating, Main Fuel Type, Boiler Type, Wall Insulation, Wall Type, Loft Insulation, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
 cogsgit:columns3 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, Tenure, Housing Composition, Age of Youngest Person, Age of Oldest Person, People in Household, Ethnicity, Illness or Disability, Under-Occupancy, Vulnerability, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
 cogsgit:columns4 a cogs:Columns ; rdfs:label "Output Table" ; rdfs:comment "Year, FPEER, Employment Status, Income Decile Group, Households in Fuel Poverty, Households not in Fuel Poverty, Measure Type, Unit, Marker, Value" ; cogs:uploads cogsgit:pmd1 ; .
