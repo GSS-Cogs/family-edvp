@@ -54,7 +54,8 @@
     width: 18rem;
 }
 .card-header.LandingPage {
-    background-color: #359eee;
+    background-color: #E3310B;
+    color: white
 }
 .card-header.Datasets {
     background-color: #3673a5;
@@ -62,6 +63,7 @@
 }
 .card-header.Sheets {
     background-color: #63b132;
+    color: white
 }
 .card-header.Columns {
     background-color: #335061;
@@ -69,6 +71,11 @@
 }
 .card-header.PMD {
     background-color: #f7c2ae;
+
+}
+.card-header.Rename {
+    background-color: #FF0000;
+    color: white;
 }
 
     </style></svg>
@@ -80,7 +87,7 @@
       const store = $rdf.graph();
       const fetcher = new $rdf.Fetcher(store, 5000);
       //const components_url = new URL("familymappings.ttl", window.location);
-      const process = (window.location.search != '' ? window.location.search.substring(1) : 'familymappings.ttl')
+      const process = (window.location.search != '' ? window.location.search.substring(1) : 'flowchart.ttl')
       const info_url = new URL(process, window.location);
       const COGS = $rdf.Namespace("http://gss-cogs.uk/def/arch/");
       const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
@@ -103,12 +110,16 @@
           const outputs = store.statementsMatching(undefined, COGS('outputs'), undefined);
           const uploads = store.statementsMatching(undefined, COGS('uploads'), undefined);
           const joins = store.statementsMatching(undefined, COGS('joins'), undefined);
+          const scrape = store.statementsMatching(undefined, COGS('scrape'), undefined);
+          const harmonise = store.statementsMatching(undefined, COGS('harmonise'), undefined);
           console.log(requires);
           console.log(splits);
           console.log(transforms);
           console.log(outputs)
           console.log(uploads)
           console.log(joins)
+          console.log(scrape)
+          console.log(harmonise)
           const nodes = new Set();
           requires.forEach(s => {
             nodes.add(s.subject);
@@ -134,42 +145,54 @@
             nodes.add(s.subject);
             nodes.add(s.object);
           });
+          scrape.forEach(s => {
+            nodes.add(s.subject);
+            nodes.add(s.object);
+          });
+          harmonise.forEach(s => {
+            nodes.add(s.subject);
+            nodes.add(s.object);
+          });
           packages.forEach(p => {
             nodes.add(p);
           });
           const g = new dagreD3.graphlib.Graph().setGraph({rankDir: 'LR'});
           nodes.forEach(n => {
             const l = store.any(n, RDFS('label'));
+            const l2 = store.any(n, RDFS('label2'));
             const c = store.any(n, RDFS('comment'));
             const t = store.any(n, RDF('type'))
             const tl = store.any(t, RDFS('label'));
             let html = '<div class="card card-node">';
             if (t !== undefined && t.value.startsWith(COGS().value)) {
-              html += '<div class="card-header ' + t.value.substring(COGS().value.length) + '">';
+                html += '<div class="card-header ' + t.value.substring(COGS().value.length) + '">';
             } else {
               html += '<div class="card-header">';
             }
-            if (tl !== undefined) {
+            if (l !== undefined) {
+              html += l;
+            } else if (tl !== undefined) {
               html += tl;
             } else {
-              html += 'Software Package';
+              html += '---------';
             }
             html += '</div><div class="card-body"><h4 class="card-title text-wrap">';
-            if (l !== undefined) {
-              html += l.value;
-            } else {
-              html += 'Unknown';
-            }
             html += '</h3><p class="card-text text-wrap">';
+            if (l2 !== undefined) {
+              html += "<b>" + l2 + "</b><br><br>"
+            }
             if (c !== undefined) {
-              html += c.value;
+              if (t.value.substring(COGS().value.length) == 'LandingPage'){
+                html += "<a href='" + c.value + "'>Source Link</a>";
+              }
+              else if (t.value.substring(COGS().value.length) == 'PMD'){
+                html += "<a href='" + c.value + "'>Link</a>";
+              }
+              else {
+                html += c.value;
+              }
             }
             html += '</p>';
-            if (n.value.startsWith('https://github.com/')) {
-              html += '<a href="' + n.value + '"><i class="pull-right fa fa-github"></i></a>';
-            } else {
-              html += '<a href="' + n.value + '"><i class="pull-right fa fa-external-link"></i></a>';
-            }
             html += '</div></div>';
             g.setNode(n.value, {
               labelType: 'html',
@@ -194,6 +217,12 @@
           });
           joins.forEach(s => {
             g.setEdge(s.subject.value, s.object.value, {label: 'joins', curve: d3.curveBasis });
+          });
+          scrape.forEach(s => {
+            g.setEdge(s.subject.value, s.object.value, {label: 'scrape', curve: d3.curveBasis });
+          });
+          harmonise.forEach(s => {
+            g.setEdge(s.subject.value, s.object.value, {label: 'harmonise', curve: d3.curveBasis });
           });
           const render = new dagreD3.render();
           const svg = d3.select("svg"),

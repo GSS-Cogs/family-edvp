@@ -43,7 +43,7 @@ cogs:Rename a owl:Class ;
 cogsgit:top-level a cogs:LandingPage ;
   rdfs:label "Landing Page" ;
   rdfs:label2 "<b>Detailed Fuel poverty statistics report for 2020 (2018 data)</b>" ;
-  rdfs:comment <https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2020>;
+  rdfs:comment <https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2020> ;
   cogs:scrape cogsgit:sheet1, cogsgit:sheet2, cogsgit:sheet3, cogsgit:sheet4, cogsgit:sheet5, cogsgit:sheet6 ;
 .
 
