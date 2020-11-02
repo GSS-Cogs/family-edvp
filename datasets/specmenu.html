@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="favicon.png">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>COGS Specifications</title>
+    <script src="https://cdn.jsdelivr.net/npm/rdflib@1.0.4/dist/rdflib.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dagre-d3@0.6.3/dist/dagre-d3.min.js"></script>
+  </head>
+  <body style="padding-top: 4.5rem;">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #aaf;">
+      <a class="navbar-brand" href="https://github.com/GSS-Cogs/gss-data-docs/wiki">
+        <img src="cogs.svg" alt="COGS" width="72"/>
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="https://gss-cogs.github.io/gss-data-docs/architecture/">Architecture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://gss-cogs.github.io/gss-data-docs/architecture/components.html">Components</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Transformation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://gss-cogs.github.io/gss-data-docs/architecture/transformation.html?transform_v3.ttl">PMDv3 / table2qb</a>
+              <a class="dropdown-item" href="https://gss-cogs.github.io/gss-data-docs/architecture/transformation.html?transform_v4.ttl">PMDv4 / CSVW</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Specifications
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://gss-cogs.github.io/family-homelessness/datasets/specmenu.html?">Homelessness</a>
+              <a class="dropdown-item" href="https://gss-cogs.github.io/family-covid-19/datasets/specmenu.html">Covid 19</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <h1>COGS Specifications</h1>
+      <h2>Homelessness Transformations</h2>
+      </br>
+        <p><b><a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html">Family Transform Status</a></b></p>
+      </br>
+        <p><b>MHCLG</b></p>
+      <ul>
+        <li><p>MHCLG Rough Sleeping in England:
+        <a href="specflowcharts.html?MHCLG-Rough-sleeping/flowchart.ttl">Flowchart</a> -
+        <a href="MHCLG-Rough-sleeping/spec.html">Spec</a> -
+        <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?MHCLG-Rough-sleeping">Status</a>
+        </p></li>
+        <li><p>MHCLG Statutory Homelessness detailed Local Authority-Level <b style="color:red">(join)</b>:
+          <a href="specflowcharts.html?MHCLG-Statutory-homelessness-Detailed-local-authority-level/flowchart.ttl">Flowchart</a> -
+          <a href="MHCLG-Statutory-homelessness-Detailed-local-authority-level/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?MHCLG-Statutory-homelessness-Detailed-local-authority-level">Status</a>
+        </p></li>
+        <li><p>MHCLG Statutory Homelessness in England <b style="color:red">(join)</b>:
+          <a href="specflowcharts.html?MHCLG-Statutory-homelessness-in-England/flowchart.ttl">Flowchart</a> -
+          <a href="MHCLG-Statutory-homelessness-in-England/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?MHCLG-Statutory-homelessness-in-England">Status</a>
+        </p></li>
+      </ul>
+      </br>
+      <p><b>Northern Ireland Housing Executive</b></p>
+      <ul>
+        <li><p>NI Homelessness bulletin</a> <b style="color:red">(join)</b>:
+          <a href="specflowcharts.html?NIHE-Northern-Ireland-homelessness-bulletin/flowchart.ttl">Flowchart</a> -
+          <a href="NIHE-Northern-Ireland-homelessness-bulletin/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?NIHE-Northern-Ireland-homelessness-bulletin">Status</a>
+        </p></li>
+        <li><p>Housing Statistics</a> <b style="color:red">(join)</b>:
+          <a href="specflowcharts.html?NIHE-Northern-Ireland-homelessness-bulletin/flowchart.ttl">Flowchart</b></a> -
+          <a href="NIHE-Northern-Ireland-homelessness-bulletin/spec.html">Spec</b></a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?NIHE-Northern-Ireland-homelessness-bulletin">Status</a>
+        </p></li>
+        <li><p>NI Housing Bulletin:
+          <a href="specflowcharts.html?NIHE-Northern-Ireland-housing-bulletin/flowchart.ttl">Flowchart</a> -
+          <a href="NIHE-Northern-Ireland-housing-bulletin/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?NIHE-Northern-Ireland-housing-bulletin">Status</a>
+        </p></li>
+      </ul>
+      </br>
+      <p><b>Scottish Government</b></p>
+      <ul>
+        <li><p>SG Homelessness in Scotland: Annual Publication:
+          <a href="specflowcharts.html?SG-Homelessness-in-Scotland-Annual-Publication/flowchart.ttl">Flowchart</a> -
+          <a href="SG-Homelessness-in-Scotland-Annual-Publication/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?SG-Homelessness-in-Scotland-Annual-Publication">Status</a>
+        </p></li>
+        <li><p>SG Homelessness in Scotland: Equalities Breakdown:
+          <a href="specflowcharts.html?SG-Homelessness-in-Scotland-Equalities-Breakdown/flowchart.ttl">Flowchart</a> -
+          <a href="SG-Homelessness-in-Scotland-Equalities-Breakdown/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/ndex.html?SG-Homelessness-in-Scotland-Equalities-Breakdown">Status</a>
+        </p></li>
+        <li><p>SG Homelessness in Scotland: Update:
+          <a href="specflowcharts.html?SG-Homelessness-in-Scotland-Update-date/flowchart.ttl">Flowchart</a> -
+          <a href="SG-Homelessness-in-Scotland-Update-date/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/https://gss-cogs.github.io/family-homelessness/datasets/index.html?SG-Homelessness-in-Scotland-Update-date">Status</a>
+        </p></li>
+        <li><p>SG Housing Options (PREVENT1) Statistics:
+          <a href="specflowcharts.html?SG-Housing-Options-PREVENT1-Statistics-in-Scotland/flowchart.ttl">Flowchart</a> -
+          <a href="SG-Housing-Options-PREVENT1-Statistics-in-Scotland/spec.html">Spec</a> -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?SG-Housing-Options-PREVENT1-Statistics-in-Scotland">Status</a>
+        </p></li>
+    </ul>
+      </br>
+      <p><b>Welsh Government</b></p>
+      <ul>
+        <li><p>WG Homelessness Statistics: (Power BI, No Spec or Flowchart) -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?WG-Homelessness-statistics">Status</a>
+        </p></li>
+        <li><p>WG Rough Sleeper Count: (Power BI, No Spec or Flowchart) -
+          <a href="https://gss-cogs.github.io/family-homelessness/datasets/index.html?WG-Rough-Sleeper-Count">Status</a>
+        </p></li>
+      </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
