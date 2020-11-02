@@ -1,14 +1,14 @@
 # COGS Dataset Specification
 
-[Family Home](https://gss-cogs.github.io/family-EDVP/datasets/specmenu.html)
+[Family Home](https://gss-cogs.github.io/family-edvp/datasets/specmenu.html)
 
-[Family Transform Status](https://gss-cogs.github.io/family-EDVP/datasets/index.html)
+[Family Transform Status](https://gss-cogs.github.io/family-edvp/datasets/index.html)
 
 ## BEIS Fuel poverty detailed tables 2020 
 
 [Landing Page](https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2020)
 
-[Transform Flowchart](https://gss-cogs.github.io/family-EDVP/datasets/specflowcharts.html?BEIS-Fuel-poverty-detailed-tables-2020/flowchart.ttl)
+[Transform Flowchart](https://gss-cogs.github.io/family-edvp/datasets/specflowcharts.html?BEIS-Fuel-poverty-detailed-tables-2020/flowchart.ttl)
 
 #### Datasets
 
