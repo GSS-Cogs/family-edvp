@@ -3,6 +3,8 @@
 from gssutils import * 
 import json
 
+from template import generate_codelist_from_template
+
 cubes = Cubes("info.json")
 # -
 
@@ -51,10 +53,12 @@ def process_little_table(anchor, task, trace):
     cs = ConversionSegment(obs, dimensions)
     df = cs.topandas()
     
-    # Pathify the differentiating dimension, switch all-hosueholds to all
-    df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]].apply(pathify)
+    # NOTE - moving pathify to after the joins, so we can generate accurate codelists
+    # Pathify the differentiating dimension, switch all-households to all
+    #df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]].apply(pathify)
+    
     df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]] \
-            .map(lambda x: x.replace("all-households", "all"))
+            .map(lambda x: x.replace("All Households", "all"))
 
     # Measure and Unit
     trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
@@ -88,14 +92,51 @@ def process_big_table(anchor, task, trace):
     fuel = clean_lower_tables(fuel)
     assert len(fuel) == 2, 'We should only be selecting two references to "fuel" per sub table'
     
+def generate_codelist(title, df, col):
+    """
+    Given a dataframe and a specific column, generate a codelist csv and csvw
+    """
     
+    # TODO - use makedir and path!
+    destination = './codelists/{}-{}.csv'.format(pathify(title), pathify(col))
+    
+    # TODO - does it already exist? Are there any unaccounted for
+    # values in this version of that codelist?
+    
+    # TODO - do this as two series then zip? worth it?
+    codelist = {
+        "Label": [],
+        "Notation": [],
+        "Parent Notation": [],
+        "Sort Priority": []
+        }
+    
+    for val in list(df[col].unique()):
+        codelist["Label"].append(val)
+        codelist["Notation"].append(pathify(val))
+        codelist["Parent Notation"].append("")
+        codelist["Sort Priority"].append("")
+        
+    # Output the codelist csv
+    df = pd.DataFrame.from_dict(codelist)
+    df.to_csv(destination, index=False)
+    
+    # Output the codelist csvw
+    url = "{}-{}.csv".format(pathify(title), pathify(col))
+    path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
+    codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
+        
+    with open('./codelists/{}-{}.csv-schema.json'.format(pathify(title), pathify(col)), 'w') as f:
+        f.write(codelist_csvw)
+    
+
 def clean_lower_tables(bag):
     """
     Cut everything below the relevant "All households" line
     """
     return bag -bag.expand(DOWN).expand(LEFT).filter("All households").by_index(1).fill(DOWN).expand(RIGHT)
 
-# TODO - there's gotta be a baked in pandas method for this im not remembering, look it up, kiss etc
+# TODO - there's gotta be a baked in pandas method for this im not remembering, look it up, this feels dumb
 class LookupFromDict:
     """
     Pandas apply function that takes a dictionary argument.
@@ -116,8 +157,6 @@ class LookupFromDict:
                     return self.map[k]
         except Exception as err:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
-
-
 
 # -
 
@@ -491,17 +530,18 @@ table_joins = {
     } 
 } 
 
-# TEMP - just one to get it working
-#keys = list(table_joins.keys())
-#for key in keys:
-#    if key != "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs":
-#        del table_joins[key]
+# Given there are standard column to all datacubes it's easier
+# to define the columns we're NOT going to pathify
+COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
+
+# Switch for generating codelists (should usually be False)
+GENERATE_CODELISTS = False
     
 for title, info in table_joins.items():
     
     df = trace.combine_and_trace(title, info["tables"])
     
-    # slicve jsut teh bit we want using category, then drop it
+    # slice just the bit we want using category, then drop it
     df = df[df["Category"] == info["category"]]
     df = df.drop("Category", axis=1)
     trace.Measure_Type('Drop all rows not related to: "{}".'.format(info["category"]))
@@ -519,6 +559,25 @@ for title, info in table_joins.items():
         scraper.dataset.description = info["description"]
     
     df = df.drop_duplicates()
+    
+    # Pathify (sometimes generate codelists from) appropriate columns
+    for col in df.columns.values.tolist():
+        
+        if col in COLUMNS_TO_NOT_PATHIFY:
+            continue
+            
+        try:
+            df[col] = df[col].apply(pathify)
+        except Exception as err:
+            raise Exception('Failed to pathify column "{}".'.format(col)) from err
+            
+        if GENERATE_CODELISTS:
+
+            url = "{}.csv".format(pathify(col))
+            path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
+
+            generate_codelist(title, df, col)
+    
     cubes.add_cube(scraper, df, title)
 
 # -
