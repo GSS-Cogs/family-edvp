@@ -572,8 +572,6 @@ for title, info in table_joins.items():
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
             
         if GENERATE_CODELISTS:
-
-            url = "{}.csv".format(pathify(col))
             path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
 
             generate_codelist(title, df, col)
