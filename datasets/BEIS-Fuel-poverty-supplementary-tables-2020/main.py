@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+# +
 from gssutils import * 
 import json
+
+cubes = Cubes("info.json")
+# -
 
 # # Helpers
 #
@@ -14,7 +18,9 @@ def process_little_table(anchor, task, trace):
     """
     Given a single anchoring cell, process the smaller style of the tables
     """
+    
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1]
+    trace.Year('Get year from cell A1 and add "/year" prefix, gets us:"{}"'.format(year))
     
     # Get the obs, we don't want columns f + G
     # TODO - safety to make sure F & G actually are the columns we don't want for a given table 
@@ -22,8 +28,15 @@ def process_little_table(anchor, task, trace):
     obs = obs - tab.excel_ref('F:G')
     obs = clean_lower_tables(obs)
 
+    trace.add_column("Category")
+    trace.Category('Extract colum headers as a temporary "Category" column.')
     horizontal_dimension = anchor.expand(RIGHT).is_not_blank()
 
+    # Use an alias to trace the differentiating dimension, as the name may or may not
+    # support being set as an attribute
+    trace.add_column({task["tables"][tab.name]["differentiating_dimension"]:"Diffdim"})
+    trace.Diffdim('Take the left hand column as: "{}".'.format(task["tables"][tab.name]["differentiating_dimension"]))
+    
     left_column = anchor.shift(LEFT).fill(DOWN).is_not_blank()
     left_column = clean_lower_tables(left_column)
 
@@ -44,12 +57,17 @@ def process_little_table(anchor, task, trace):
             .map(lambda x: x.replace("all-households", "all"))
 
     # Measure and Unit
+    trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
     df["Unit"] = df["Category"].apply(LookupFromDict("unit", task["units_map"]))
+    
+    trace.Measure_Type('Set measure type from mapping: "{}".'.format(json.dumps(task["measures_map"])))
     df["Measure Type"] = df["Category"].apply(LookupFromDict("measure", task["measures_map"]))
 
     # Add the constant column
     if "constant_columns" in task["tables"][tab.name].keys():
         for k,v in task["tables"][tab.name]["constant_columns"].items():
+            trace.add_column(k)
+            trace.multi([k.replace(" ", "_")], 'Set as value: "{}".'.format(v))
             df[k] = v
     
     # Tidy up
@@ -121,6 +139,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # If you need yo tweak anything you should be able to do it here.
 energy_efficiency_task = {
     "name": "Energy Efficiency",
+    "store_as": "1through17",
     "tables":{
         "Table 1": {
             "sub_table_count": 1,
@@ -193,6 +212,7 @@ energy_efficiency_task = {
 # If you need yo tweak anything you should be able to do it here.
 household_characteristics_task = {
     "name": "Household characteristics",
+    "store_as": "12through16",
     "tables":{
         "Table 12": {
             "sub_table_count": 1,
@@ -240,6 +260,7 @@ household_characteristics_task = {
 # If you need yo tweak anything you should be able to do it here.
 household_income_task = {
     "name": "Household income",
+    "store_as": "17through18",
     "tables": {
         "Table 17": {
             "sub_table_count": 1,
@@ -275,6 +296,7 @@ household_income_task = {
 # If you need yo tweak anything you should be able to do it here.
 fuel_payment_type_task = {
     "name": "Fuel payment type",
+    "store_as": "19through20",
     "tables":
         {
         "Table 19": {
@@ -324,7 +346,9 @@ for category, dataset_task in {
         subset_of_tabs = [x for x in tabs if x.name.strip() in dataset_task["tables"].keys()]
         for tab in subset_of_tabs:
             
-            trace.start(tab.name, tab.name, [], distro.downloadURL)
+            # Just specifiy the common dimensions for now
+            columns = ["Year", "Measure Type", "Unit"]
+            trace.start(category, tab.name, columns, distro.downloadURL)
 
             # there can only be one style of anchor per sheet
             is_little_table = False
@@ -342,115 +366,165 @@ for category, dataset_task in {
                 else:
                     df, trace = process_big_table(anchor, dataset_task, trace)
                 
-                
-                table_dict[tab.name] = df
-
+            # Store however many tabs we've extracted against the specified identifier
+            trace.store(dataset_task["store_as"], df)
+        
+        print()
+        
     except Exception as err:
         raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]), 
                                                                                          dataset_task["name"])) from err
 # -
-# # Joins
+# # Metadata & Joins
 
 # +
+# description we'll add to most joined tables
+
+comment = "Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics	 based on Median Fuel Costs, Income, FPEER Rating and Floor Area"
+description = """Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics based on Median Fuel Costs, Income, FPEER Rating and Floor Area,
+The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
+https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
+"""
+
+
+
 # dictionary of what needs joining to what
 #
 # <output name> : {
 #    "category": <what ever measure we're joining on",    # column name from where the data came from, we'll drop this after the joins
 #    "tables": "whichever tables we're gettign the measure from"
 # }
-
 table_joins = {
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
-        "tables": ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6",
-                  "Table 7", "Table 8", "Table 9", "Table 10", "Table 11"]
+        "tables": "1through17",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
-        "tables": ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6",
-                  "Table 7", "Table 8", "Table 9", "Table 10", "Table 11"]
+        "tables": "1through17",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
-        "tables": ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6",
-                  "Table 7", "Table 8", "Table 9", "Table 10", "Table 11"]
+        "tables": "1through17",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median floor area": {
         "category": "Median floor area (m2)",
-        "tables": ["Table 1", "Table 2", "Table 3", "Table 4", "Table 5", "Table 6",
-                  "Table 7", "Table 8", "Table 9", "Table 10", "Table 11"]
+        "tables": "1through17",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
-        "tables": ["Table 12", "Table 13", "Table 14", "Table 15", "Table 16"]
+        "tables": "12through16",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
-        "tables": ["Table 12", "Table 13", "Table 14", "Table 15", "Table 16"]
+        "tables": "12through16",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
-        "tables": ["Table 12", "Table 13", "Table 14", "Table 15", "Table 16"]
+        "tables": "12through16",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median floor area": {
         "category": "Median floor area (m2)",
-        "tables": ["Table 12", "Table 13", "Table 14", "Table 15", "Table 16"]
+        "tables": "12through16",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Income - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
-        "tables": ["Table 17", "Table 18"]
+        "tables": "17through18",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Income - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
-        "tables": ["Table 17", "Table 18"]
+        "tables": "17through18",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Income - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
-        "tables": ["Table 17", "Table 18"]
+        "tables": "17through18",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Housing Income - Median floor area": {
         "category": "Median floor area (m2)",
-        "tables": ["Table 17", "Table 18"]
+        "tables": "17through18",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
-        "tables": ["Table 19", "Table 20"]
+        "tables": "19through20",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
-        "tables": ["Table 19", "Table 20"]
+        "tables": "19through20",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
-        "tables": ["Table 19", "Table 20"]
+        "tables": "19through20",
+        "comment": comment,
+        "description": description
     },
     "Fuel poverty supplementary tables - HFuel Payment Type - Median floor area": {
         "category": "Median floor area (m2)",
-        "tables": ["Table 19", "Table 20"]
+        "tables": "19through20",
+        "comment": comment,
+        "description": description
     } 
 } 
 
+# TEMP - just one to get it working
+#keys = list(table_joins.keys())
+#for key in keys:
+#    if key != "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs":
+#        del table_joins[key]
+    
 for title, info in table_joins.items():
     
-    dfs_to_join = []
-    for table_wanted in info["tables"]:
-        df = table_dict[table_wanted]
-        df.to_csv("temp.csv", index=False)
-        df = df[df["Category"] == info["category"]]
-        
-        # Drop the no longer needed category column
-        df = df.drop("Category", axis=1)
-        dfs_to_join.append(df)
+    df = trace.combine_and_trace(title, info["tables"])
     
-    df = pd.concat(dfs_to_join)
+    # slicve jsut teh bit we want using category, then drop it
+    df = df[df["Category"] == info["category"]]
+    df = df.drop("Category", axis=1)
+    trace.Measure_Type('Drop all rows not related to: "{}".'.format(info["category"]))
     
     # Fill up the sparsity with alls
     df = df.fillna("all")
     for col in df.columns.values:
         df[df[col] == ""] = "all"
         
-    df.drop_duplicates().to_csv('./out/{}.csv'.format(title), index=False)
+    # Metadata etc
+    if "comment" in info.keys():
+        scraper.dataset.comment = info["comment"]
+        
+    if "description" in info.keys():
+        scraper.dataset.description = info["description"]
+    
+    cubes.add_cube(scraper, df, title)
 
 # -
+cubes.output_all()
 trace.render("spec_v1.html")
+
+
 
