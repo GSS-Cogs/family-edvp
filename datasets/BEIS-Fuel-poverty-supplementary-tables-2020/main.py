@@ -367,7 +367,6 @@ for category, dataset_task in {
                     df, trace = process_big_table(anchor, dataset_task, trace)
                 
             # Store however many tabs we've extracted against the specified identifier
-            df = df.drop_duplicates()
             trace.store(dataset_task["store_as"], df)
         
     except Exception as err:
@@ -519,6 +518,7 @@ for title, info in table_joins.items():
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
     
+    df = df.drop_duplicates()
     cubes.add_cube(scraper, df, title)
 
 # -
