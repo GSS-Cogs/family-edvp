@@ -367,7 +367,7 @@ for category, dataset_task in {
                     df, trace = process_big_table(anchor, dataset_task, trace)
                 
             # Store however many tabs we've extracted against the specified identifier
-            trace.store(dataset_task["store_as"], df)
+            trace.store(dataset_task["store_as"], df.drop_duplicates())
         
         print()
         
