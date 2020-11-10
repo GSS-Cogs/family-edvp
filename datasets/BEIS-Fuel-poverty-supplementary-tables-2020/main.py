@@ -537,6 +537,8 @@ COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False
     
+count = 0
+
 for title, info in table_joins.items():
     
     df = trace.combine_and_trace(title, info["tables"])
@@ -576,7 +578,9 @@ for title, info in table_joins.items():
 
             generate_codelist(title, df, col)
     
-    cubes.add_cube(scraper, df, title)
+    if count == 0:
+        cubes.add_cube(scraper, df, title)
+        count += 1
 
 # -
 cubes.output_all()
