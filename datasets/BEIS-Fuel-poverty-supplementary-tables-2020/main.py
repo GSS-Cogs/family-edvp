@@ -21,7 +21,7 @@ def process_little_table(anchor, task, trace):
     Given a single anchoring cell, process the smaller style of the tables
     """
     
-    year = "year/"+tab.excel_ref('A1').value.split(",")[-1]
+    year = "year/"+tab.excel_ref('A1').value.split(",")[-1].strip()
     trace.Year('Get year from cell A1 and add "/year" prefix, gets us:"{}"'.format(year))
     
     # Get the obs, we don't want columns f + G
