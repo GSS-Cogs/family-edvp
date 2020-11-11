@@ -412,6 +412,49 @@ for category, dataset_task in {
         raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]), 
                                                                                          dataset_task["name"])) from err
 # -
+# # CSVW Mapping
+#
+# We're gonna need quite a lof of mapping for all these datasets, so we'll do it here and pass it around dynamically.
+#
+# I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
+
+# +
+
+# csvw mapping for dimensions common to all datasets
+csvw_common_map = {
+    "Year": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+year}"
+            }
+}
+
+# csvw mapping for representing the different measures and units in the dataset(s)
+# depending on the measure type used.
+csvw_value_map = {
+    "Median costs": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+                "measure": "http://gss-data.org.uk/def/measure/median-costs",
+                "datatype": "double"
+            },
+    "Median income": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+                "measure": "http://gss-data.org.uk/def/measure/median-income",
+                "datatype": "double"
+            },
+    "Median rating": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/rating",
+                "measure": "http://gss-data.org.uk/def/measure/median-rating",
+                "datatype": "double"
+            },
+    "Median floor area": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/m2",
+                "measure": "http://gss-data.org.uk/def/measure/median-floor-area",
+                "datatype": "double"
+            }
+}
+
+# -
+
 # # Metadata & Joins
 
 # +
@@ -424,13 +467,6 @@ https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-h
 """
 
 
-
-# dictionary of what needs joining to what
-#
-# <output name> : {
-#    "category": <what ever measure we're joining on",    # column name from where the data came from, we'll drop this after the joins
-#    "tables": "whichever tables we're gettign the measure from"
-# }
 table_joins = {
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
@@ -536,6 +572,9 @@ COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False
+
+# Print the mapping where you need to debug stuff
+SHOW_MAPPING = True
     
 count = 0
 
@@ -543,7 +582,7 @@ for title, info in table_joins.items():
     
     df = trace.combine_and_trace(title, info["tables"])
     
-    # slice just the bit we want using category, then drop it
+    # slice just the bit we want using category, then drop the column
     df = df[df["Category"] == info["category"]]
     df = df.drop("Category", axis=1)
     trace.Measure_Type('Drop all rows not related to: "{}".'.format(info["category"]))
@@ -575,9 +614,52 @@ for title, info in table_joins.items():
             
         if GENERATE_CODELISTS:
             path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
-
             generate_codelist(title, df, col)
     
+    # CSVW Mapping
+    # We're gonna change the column mapping on the fly to deal with the large number and
+    # variation of datasets
+    mapping = {}
+    with open("info.json") as f:
+        info_json = json.load(f)
+        
+    # "Common" column mappings for this dataset
+    for k, v in csvw_common_map.items():
+        mapping[k] = v
+        
+    # "Value" entry for this dataset
+    measures_list = list(df["Measure Type"].unique())
+    assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
+    mapping["Value"] = csvw_value_map[measures_list[0]]
+    
+    # If it's neither common nor value, it's a locally declared dimension
+    cols_we_have_a_map_for = list(csvw_common_map.keys())
+    cols_we_have_a_map_for.append("Value")
+    for col in df.columns.values.tolist():
+        if col not in cols_we_have_a_map_for:
+            mapping[col] = {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}".format(title=pathify(title), col=pathify(col)),
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                "description": ""
+            }
+            
+    # "Deprivation Indicator": {
+    #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
+    #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
+    #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
+    # },
+    
+    # Read the map back into the cubes class
+    info_json["transform"]["columns"] = mapping
+    cubes.info = info_json
+    
+    if SHOW_MAPPING:
+        print("Mapping for: ", title)
+        print(json.dumps(mapping, indent=2))
+        print("\n")
+    
+    # TODO !!!!!!!!!!!!
+    # remove the counter, for now just get one working
     if count == 0:
         cubes.add_cube(scraper, df, title)
         count += 1
@@ -586,5 +668,5 @@ for title, info in table_joins.items():
 cubes.output_all()
 trace.render("spec_v1.html")
 
-
+#
 
