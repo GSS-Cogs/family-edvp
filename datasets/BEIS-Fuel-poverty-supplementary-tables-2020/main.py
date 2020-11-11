@@ -593,6 +593,7 @@ for title, info in table_joins.items():
         df[df[col] == ""] = "all"
         
     # Metadata etc
+    scraper.dataset.title = title
     if "comment" in info.keys():
         scraper.dataset.comment = info["comment"]
         
