@@ -45,7 +45,7 @@ def process_little_table(anchor, task, trace):
     measure_type = anchor.fill(RIGHT)
 
     dimensions = [
-        HDimConst("Period", year),
+        HDimConst("Year", year),
         HDim(horizontal_dimension, "Category", DIRECTLY, ABOVE),
         HDim(left_column, task["tables"][tab.name]["differentiating_dimension"], DIRECTLY, LEFT)
     ]
