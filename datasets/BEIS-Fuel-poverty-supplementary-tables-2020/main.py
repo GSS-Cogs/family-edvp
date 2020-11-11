@@ -661,7 +661,7 @@ for title, info in table_joins.items():
     
     # TODO !!!!!!!!!!!!
     # remove the counter, for now just get one working
-    if count == 0:
+    if count < 2:
         cubes.add_cube(scraper, df, title)
         count += 1
 
