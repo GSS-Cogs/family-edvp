@@ -98,7 +98,7 @@ def generate_codelist(title, df, col):
     """
     
     # TODO - use makedir and path!
-    destination = './codelists/{}-{}.csv'.format(pathify(title), pathify(col))
+    destination = './codelists/{}.csv'.format(pathify(col))
     
     # TODO - does it already exist? Are there any unaccounted for
     # values in this version of that codelist?
@@ -126,7 +126,7 @@ def generate_codelist(title, df, col):
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title))
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
         
-    with open('./codelists/{}-{}.csv-metadata.json'.format(pathify(title), pathify(col)), 'w') as f:
+    with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
     
 
@@ -404,6 +404,14 @@ for category, dataset_task in {
                     df, trace = process_little_table(anchor, dataset_task, trace)
                 else:
                     df, trace = process_big_table(anchor, dataset_task, trace)
+
+            # Strip any subscript
+            # TODO - better
+            for col in df.columns.values.tolist():
+                new_col = col
+                for i in range(0, 10):
+                    new_col = new_col.rstrip(str(i))
+                df = df.rename(columns={col: new_col})
                 
             # Store however many tabs we've extracted against the specified identifier
             trace.store(dataset_task["store_as"], df)
@@ -571,7 +579,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = True
+GENERATE_CODELISTS = False
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
