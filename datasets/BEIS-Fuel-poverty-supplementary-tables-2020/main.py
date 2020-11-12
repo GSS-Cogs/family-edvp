@@ -579,6 +579,9 @@ SHOW_MAPPING = True
 count = 0
 
 for title, info in table_joins.items():
+
+    if pathify(title) != "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income":
+        continue
     
     df = trace.combine_and_trace(title, info["tables"])
     
