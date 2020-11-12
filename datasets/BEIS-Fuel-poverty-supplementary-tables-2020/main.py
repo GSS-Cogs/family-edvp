@@ -654,11 +654,15 @@ for title, info in table_joins.items():
             # If it's neither common nor value, it's a locally declared dimension
             cols_we_have_a_map_for = list(csvw_common_map.keys())
             cols_we_have_a_map_for.append("Value")
+
+            # TODO - somewhere else
+            url_title = "beis-fuel-poverty-supplementary-tables"
+
             for col in df.columns.values.tolist():
                 if col not in cols_we_have_a_map_for:
                     mapping[col] = {
-                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}".format(title=pathify(title), col=pathify(col)),
-                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(title=pathify(url_title), col=pathify(col)),
+                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
                         "description": ""
                     }
                     
