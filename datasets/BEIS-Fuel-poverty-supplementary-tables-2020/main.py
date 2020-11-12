@@ -678,8 +678,11 @@ for title, info in table_joins.items():
         count += 1
 
 # -
-cubes.output_all()
-trace.render("spec_v1.html")
+#cubes.output_all()
+cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title))
+cubes.cubes[0].multi_trig = scraper.generate_trig()
+cubes.cubes[0].output(Path("./out"), True, cubes.info, False)
+#trace.render("spec_v1.html")
 
 #
 
