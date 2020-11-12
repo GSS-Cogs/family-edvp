@@ -123,7 +123,7 @@ def generate_codelist(title, df, col):
     
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
-    path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
+    path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title))
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
         
     with open('./codelists/{}-{}.csv-schema.json'.format(pathify(title), pathify(col)), 'w') as f:
@@ -571,7 +571,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -621,7 +621,6 @@ for title, info in table_joins.items():
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
             
         if GENERATE_CODELISTS:
-            path_id = "http://gss-data.org.uk/data/gss_data/{}".format(pathify(title))
             generate_codelist(title, df, col)
     
     # CSVW Mapping

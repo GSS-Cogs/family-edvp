@@ -14,123 +14,109 @@
             "name": "value",
             "titles": "Value",
             "datatype": "double",
-            "propertyUrl": "http://gss-data.org.uk/def/measure/median-floor-area"
+            "propertyUrl": "http://gss-data.org.uk/def/measure/median-costs"
           },
           {
             "name": "year",
             "titles": "Year",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year",
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year",
             "valueUrl": "http://reference.data.gov.uk/id/{+year}"
           },
           {
             "name": "low_income_high_costs_matrix",
             "titles": "Low Income High costs Matrix",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/low-income-high-costs-matrix/{low_income_high_costs_matrix}"
-          },
-          {
-            "name": "unit",
-            "titles": "Unit",
-            "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/unit",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-hfuel-payment-type-median-floor-area/concept-scheme/unit/{unit}"
-          },
-          {
-            "name": "measure_type",
-            "titles": "Measure Type",
-            "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/measure-type",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-hfuel-payment-type-median-floor-area/concept-scheme/measure-type/{measure_type}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/low-income-high-costs-matrix/{low_income_high_costs_matrix}"
           },
           {
             "name": "fpeer",
             "titles": "FPEER",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/fpeer/{fpeer}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/fpeer/{fpeer}"
           },
           {
             "name": "sap_band",
             "titles": "SAP BAND",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/sap-band/{sap_band}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/sap-band/{sap_band}"
           },
           {
             "name": "rurality",
             "titles": "Rurality",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/rurality/{rurality}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/rurality/{rurality}"
           },
           {
             "name": "region",
             "titles": "Region",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/region/{region}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/region/{region}"
           },
           {
             "name": "dwelling_type",
             "titles": "Dwelling Type",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/dwelling-type/{dwelling_type}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/dwelling-type/{dwelling_type}"
           },
           {
             "name": "dwelling_age",
             "titles": "Dwelling Age",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/dwelling-age/{dwelling_age}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/dwelling-age/{dwelling_age}"
           },
           {
             "name": "floor_area",
             "titles": "Floor Area",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/floor-area/{floor_area}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/floor-area/{floor_area}"
           },
           {
             "name": "gas_grid_connection",
             "titles": "Gas Grid Connection",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/gas-grid-connection/{gas_grid_connection}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/gas-grid-connection/{gas_grid_connection}"
           },
           {
             "name": "main_fuel_type",
             "titles": "Main Fuel Type",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/main-fuel-type/{main_fuel_type}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/main-fuel-type/{main_fuel_type}"
           },
           {
             "name": "wall_insulation",
             "titles": "Wall Insulation",
             "datatype": "string",
-            "propertyUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/wall-insulation/{wall_insulation}"
+            "propertyUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation",
+            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept/wall-insulation/{wall_insulation}"
           },
           {
             "name": "virt_unit",
             "virtual": true,
             "propertyUrl": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-            "valueUrl": "http://gss-data.org.uk/def/concept/measurement-units/m2"
+            "valueUrl": "http://gss-data.org.uk/def/concept/measurement-units/gbp"
           },
           {
             "name": "virt_measure",
             "virtual": true,
             "propertyUrl": "http://purl.org/linked-data/cube#measureType",
-            "valueUrl": "http://gss-data.org.uk/def/measure/median-floor-area"
+            "valueUrl": "http://gss-data.org.uk/def/measure/median-costs"
           },
           {
             "name": "virt_dataset",
             "virtual": true,
             "propertyUrl": "qb:dataSet",
-            "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset"
+            "valueUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset"
           },
           {
             "name": "virt_type",
@@ -142,8 +128,6 @@
         "primaryKey": [
           "year",
           "low_income_high_costs_matrix",
-          "unit",
-          "measure_type",
           "fpeer",
           "sap_band",
           "rurality",
@@ -155,23 +139,23 @@
           "main_fuel_type",
           "wall_insulation"
         ],
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income/{year}/{low_income_high_costs_matrix}/{unit}/{measure_type}/{fpeer}/{sap_band}/{rurality}/{region}/{dwelling_type}/{dwelling_age}/{floor_area}/{gas_grid_connection}/{main_fuel_type}/{wall_insulation}"
+        "aboutUrl": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income/{year}/{low_income_high_costs_matrix}/{fpeer}/{sap_band}/{rurality}/{region}/{dwelling_type}/{dwelling_age}/{floor_area}/{gas_grid_connection}/{main_fuel_type}/{wall_insulation}"
       }
     }
   ],
-  "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#tables",
+  "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#tables",
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset",
+    "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset",
     "@type": [
       "qb:DataSet",
       "dcat:Dataset"
     ],
     "qb:structure": {
-      "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#structure",
+      "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#structure",
       "@type": "qb:DataStructureDefinition",
       "qb:component": [
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/measure_type",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/measure_type",
           "qb:dimension": {
             "@id": "http://purl.org/linked-data/cube#measureType",
             "@type": "qb:DimensionProperty",
@@ -185,18 +169,18 @@
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/value",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/value",
           "qb:measure": {
-            "@id": "http://gss-data.org.uk/def/measure/median-floor-area",
+            "@id": "http://gss-data.org.uk/def/measure/median-costs",
             "@type": "qb:MeasureProperty"
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/def/measure/median-floor-area"
+            "@id": "http://gss-data.org.uk/def/measure/median-costs"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/unit",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/unit",
           "qb:attribute": {
             "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
             "@type": "qb:AttributeProperty"
@@ -207,15 +191,15 @@
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/year",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/year",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/year"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/year"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Year"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Year"
             },
             "rdfs:label": "Year",
             "rdfs:subPropertyOf": {
@@ -225,251 +209,260 @@
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/year"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/low-income-high-costs-matrix",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/low-income-high-costs-matrix",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/low-income-high-costs-matrix"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/low-income-high-costs-matrix"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/LowIncomeHighCostsMatrix"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/LowIncomeHighCostsMatrix"
             },
-            "rdfs:label": "Low Income High costs Matrix"
-          },
-          "@type": "qb:ComponentSpecification",
-          "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix"
-          }
-        },
-        {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/unit",
-          "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/unit",
-            "@type": "qb:DimensionProperty",
-            "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/unit"
-            },
-            "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Unit"
-            },
-            "rdfs:label": "Unit",
+            "rdfs:label": "Low Income High costs Matrix",
             "rdfs:comment": "",
             "rdfs:subPropertyOf": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-hfuel-payment-type-median-floor-area/concept-scheme/unit"
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/low-income-high-costs-matrix"
             },
             "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/unit"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/low-income-high-costs-matrix"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/measure-type",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/fpeer",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/measure-type",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/measure-type"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/fpeer"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/MeasureType"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Fpeer"
             },
-            "rdfs:label": "Measure Type",
+            "rdfs:label": "FPEER",
             "rdfs:comment": "",
             "rdfs:subPropertyOf": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-hfuel-payment-type-median-floor-area/concept-scheme/measure-type"
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/fpeer"
             },
             "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/measure-type"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/fpeer",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/sap-band",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/fpeer"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/sap-band"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Fpeer"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/SapBand"
             },
-            "rdfs:label": "FPEER"
+            "rdfs:label": "SAP BAND",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/sap-band"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/fpeer"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/sap-band",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/rurality",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/sap-band"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/rurality"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/SapBand"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Rurality"
             },
-            "rdfs:label": "SAP BAND"
+            "rdfs:label": "Rurality",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/rurality"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/sap-band"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/rurality",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/region",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/rurality"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/region"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Rurality"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Region"
             },
-            "rdfs:label": "Rurality"
+            "rdfs:label": "Region",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/region"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/rurality"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/region",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/dwelling-type",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/region"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/dwelling-type"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/Region"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/DwellingType"
             },
-            "rdfs:label": "Region"
+            "rdfs:label": "Dwelling Type",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/region"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/dwelling-type",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/dwelling-age",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/dwelling-type"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/dwelling-age"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/DwellingType"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/DwellingAge"
             },
-            "rdfs:label": "Dwelling Type"
+            "rdfs:label": "Dwelling Age",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-type"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/dwelling-age",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/floor-area",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/dwelling-age"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/floor-area"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/DwellingAge"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/FloorArea"
             },
-            "rdfs:label": "Dwelling Age"
+            "rdfs:label": "Floor Area",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/floor-area"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/dwelling-age"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/floor-area",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/gas-grid-connection",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/floor-area"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/gas-grid-connection"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/FloorArea"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/GasGridConnection"
             },
-            "rdfs:label": "Floor Area"
+            "rdfs:label": "Gas Grid Connection",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/gas-grid-connection"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/floor-area"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/gas-grid-connection",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/main-fuel-type",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/gas-grid-connection"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/main-fuel-type"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/GasGridConnection"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/MainFuelType"
             },
-            "rdfs:label": "Gas Grid Connection"
+            "rdfs:label": "Main Fuel Type",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/main-fuel-type"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/gas-grid-connection"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type"
           }
         },
         {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/main-fuel-type",
+          "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/wall-insulation",
           "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type",
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation",
             "@type": "qb:DimensionProperty",
             "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/main-fuel-type"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/wall-insulation"
             },
             "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/MainFuelType"
+              "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/WallInsulation"
             },
-            "rdfs:label": "Main Fuel Type"
+            "rdfs:label": "Wall Insulation",
+            "rdfs:comment": "",
+            "rdfs:subPropertyOf": {
+              "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-duel-poverty-supplementary-tables-2020/concept-scheme/wall-insulation"
+            },
+            "rdfs:isDefinedBy": {}
           },
           "@type": "qb:ComponentSpecification",
           "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/main-fuel-type"
-          }
-        },
-        {
-          "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#component/wall-insulation",
-          "qb:dimension": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation",
-            "@type": "qb:DimensionProperty",
-            "qb:codeList": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/wall-insulation"
-            },
-            "rdfs:range": {
-              "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#class/WallInsulation"
-            },
-            "rdfs:label": "Wall Insulation"
-          },
-          "@type": "qb:ComponentSpecification",
-          "qb:componentProperty": {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation"
+            "@id": "http://gss-data.org.uk/data/http:/gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension/wall-insulation"
           }
         }
       ]

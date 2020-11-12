@@ -103,56 +103,32 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Payment Method\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Take the left hand column as: \"Payment Method\"."
                         ]
                     },
                     {
                         "Fuel_Type": [
-                            "Set as value: \"Gas\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set as value: \"Gas\"."
                         ]
                     }
                 ]
@@ -172,56 +148,32 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Payment Method\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Take the left hand column as: \"Payment Method\"."
                         ]
                     },
                     {
                         "Fuel_Type": [
-                            "Set as value: \"Electricity\".",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'",
-                            "Added to dataframe '19through20'"
+                            "Set as value: \"Electricity\"."
                         ]
                     }
                 ]
@@ -241,47 +193,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Employment Status\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Take the left hand column as: \"Employment Status\"."
                         ]
                     }
                 ]
@@ -301,47 +233,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Income Decile Group\".",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'",
-                            "Added to dataframe '17through18'"
+                            "Take the left hand column as: \"Income Decile Group\"."
                         ]
                     }
                 ]
@@ -361,47 +273,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Tenure\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Take the left hand column as: \"Tenure\"."
                         ]
                     }
                 ]
@@ -421,47 +313,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Household Composition\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Take the left hand column as: \"Household Composition\"."
                         ]
                     }
                 ]
@@ -481,47 +353,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Age of Youngest Person\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Take the left hand column as: \"Age of Youngest Person\"."
                         ]
                     }
                 ]
@@ -541,47 +393,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Age of Oldest Person\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Take the left hand column as: \"Age of Oldest Person\"."
                         ]
                     }
                 ]
@@ -601,47 +433,27 @@
                 "postTransformNotes": [
                     {
                         "Year": [
-                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\""
                         ]
                     },
                     {
                         "Measure_Type": [
-                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\"."
                         ]
                     },
                     {
                         "Unit": [
-                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\"."
                         ]
                     },
                     {
                         "Category": [
-                            "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Extract colum headers as a temporary \"Category\" column."
                         ]
                     },
                     {
                         "Diffdim": [
-                            "Take the left hand column as: \"Ethnicity\".",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'",
-                            "Added to dataframe '12through16'"
+                            "Take the left hand column as: \"Ethnicity\"."
                         ]
                     }
                 ]
@@ -662,45 +474,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Low Income High costs Matrix\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -722,45 +519,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"FPEER\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -782,45 +564,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"SAP BAND\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -842,45 +609,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Rurality\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -902,45 +654,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Region\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -962,45 +699,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Dwelling Type\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -1022,45 +744,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Dwelling Age\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -1082,45 +789,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Floor Area\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -1142,45 +834,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Gas Grid Connection\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -1202,45 +879,30 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Main Fuel Type\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     }
@@ -1262,139 +924,32 @@
                     {
                         "Year": [
                             "Get year from cell A1 and add \"/year\" prefix, gets us:\"year/2018\"",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Measure_Type": [
                             "Set measure type from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"Median costs\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"Median income\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"Median rating\", \"Median floor area (m2)\": \"Median floor area\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Unit": [
                             "Set unit from mapping: \"{\"Median equivalised fuel costs (\\u00a3)\": \"gdp\", \"Median after housing costs (AHC), equivalised income (\\u00a3)\": \"gdp\", \"Median Fuel Poverty Energy Efficiency Rating (FPEER)\": \"rating\", \"Median floor area (m2)\": \"m2\"}\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Category": [
                             "Extract colum headers as a temporary \"Category\" column.",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
                     },
                     {
                         "Diffdim": [
                             "Take the left hand column as: \"Wall Insulation\".",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
-                            "Added to dataframe '1through17'",
                             "Added to dataframe '1through17'"
                         ]
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs",
-                "identifier": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median equivalised fuel costs||1through17||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 1https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 2https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 3https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 4https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 5https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 6https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 7https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 8https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 9https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 10https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 11",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 1"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 2"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 3"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 4"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 5"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 6"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 7"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 8"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 9"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 10"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 11"
-                    }
-                ],
-                "title": "1through17",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median equivalised fuel costs (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Low_Income_High_costs_Matrix": []
-                    },
-                    {
-                        "FPEER": []
-                    },
-                    {
-                        "SAP_BAND": []
-                    },
-                    {
-                        "Rurality": []
-                    },
-                    {
-                        "Region": []
-                    },
-                    {
-                        "Dwelling_Type": []
-                    },
-                    {
-                        "Dwelling_Age": []
-                    },
-                    {
-                        "Floor_Area": []
-                    },
-                    {
-                        "Gas_Grid_Connection": []
-                    },
-                    {
-                        "Main_Fuel_Type": []
-                    },
-                    {
-                        "Wall_Insulation": []
                     }
                 ]
             },
@@ -1487,718 +1042,6 @@
                     },
                     {
                         "Wall_Insulation": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)",
-                "identifier": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)||1through17||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 1https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 2https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 3https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 4https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 5https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 6https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 7https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 8https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 9https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 10https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 11",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 1"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 2"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 3"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 4"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 5"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 6"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 7"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 8"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 9"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 10"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 11"
-                    }
-                ],
-                "title": "1through17",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median Fuel Poverty Energy Efficiency Rating (FPEER)1\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Low_Income_High_costs_Matrix": []
-                    },
-                    {
-                        "FPEER": []
-                    },
-                    {
-                        "SAP_BAND": []
-                    },
-                    {
-                        "Rurality": []
-                    },
-                    {
-                        "Region": []
-                    },
-                    {
-                        "Dwelling_Type": []
-                    },
-                    {
-                        "Dwelling_Age": []
-                    },
-                    {
-                        "Floor_Area": []
-                    },
-                    {
-                        "Gas_Grid_Connection": []
-                    },
-                    {
-                        "Main_Fuel_Type": []
-                    },
-                    {
-                        "Wall_Insulation": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median floor area",
-                "identifier": "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median floor area||1through17||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 1https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 2https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 3https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 4https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 5https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 6https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 7https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 8https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 9https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 10https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 11",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 1"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 2"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 3"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 4"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 5"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 6"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 7"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 8"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 9"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 10"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 11"
-                    }
-                ],
-                "title": "1through17",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median floor area (m2)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Low_Income_High_costs_Matrix": []
-                    },
-                    {
-                        "FPEER": []
-                    },
-                    {
-                        "SAP_BAND": []
-                    },
-                    {
-                        "Rurality": []
-                    },
-                    {
-                        "Region": []
-                    },
-                    {
-                        "Dwelling_Type": []
-                    },
-                    {
-                        "Dwelling_Age": []
-                    },
-                    {
-                        "Floor_Area": []
-                    },
-                    {
-                        "Gas_Grid_Connection": []
-                    },
-                    {
-                        "Main_Fuel_Type": []
-                    },
-                    {
-                        "Wall_Insulation": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Characteristics - Median equivalised fuel costs",
-                "identifier": "Fuel poverty supplementary tables - Housing Characteristics - Median equivalised fuel costs||12through16||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 12https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 13https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 14https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 15https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 16",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 12"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 13"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 14"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 15"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 16"
-                    }
-                ],
-                "title": "12through16",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median equivalised fuel costs (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Tenure": []
-                    },
-                    {
-                        "Household_Composition": []
-                    },
-                    {
-                        "Age_of_Youngest_Person": []
-                    },
-                    {
-                        "Age_of_Oldest_Person": []
-                    },
-                    {
-                        "Ethnicity": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Characteristics - Median after housing costs (AHC), equivalised income",
-                "identifier": "Fuel poverty supplementary tables - Housing Characteristics - Median after housing costs (AHC), equivalised income||12through16||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 12https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 13https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 14https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 15https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 16",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 12"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 13"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 14"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 15"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 16"
-                    }
-                ],
-                "title": "12through16",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median after housing costs (AHC), equivalised income (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Tenure": []
-                    },
-                    {
-                        "Household_Composition": []
-                    },
-                    {
-                        "Age_of_Youngest_Person": []
-                    },
-                    {
-                        "Age_of_Oldest_Person": []
-                    },
-                    {
-                        "Ethnicity": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)",
-                "identifier": "Fuel poverty supplementary tables - Housing Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)||12through16||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 12https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 13https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 14https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 15https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 16",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 12"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 13"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 14"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 15"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 16"
-                    }
-                ],
-                "title": "12through16",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median Fuel Poverty Energy Efficiency Rating (FPEER)1\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Tenure": []
-                    },
-                    {
-                        "Household_Composition": []
-                    },
-                    {
-                        "Age_of_Youngest_Person": []
-                    },
-                    {
-                        "Age_of_Oldest_Person": []
-                    },
-                    {
-                        "Ethnicity": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Characteristics - Median floor area",
-                "identifier": "Fuel poverty supplementary tables - Housing Characteristics - Median floor area||12through16||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 12https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 13https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 14https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 15https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 16",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 12"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 13"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 14"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 15"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 16"
-                    }
-                ],
-                "title": "12through16",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median floor area (m2)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Tenure": []
-                    },
-                    {
-                        "Household_Composition": []
-                    },
-                    {
-                        "Age_of_Youngest_Person": []
-                    },
-                    {
-                        "Age_of_Oldest_Person": []
-                    },
-                    {
-                        "Ethnicity": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Income - Median equivalised fuel costs",
-                "identifier": "Fuel poverty supplementary tables - Housing Income - Median equivalised fuel costs||17through18||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 17https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 18",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 17"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 18"
-                    }
-                ],
-                "title": "17through18",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median equivalised fuel costs (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Employment_Status": []
-                    },
-                    {
-                        "Income_Decile_Group": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Income - Median after housing costs (AHC), equivalised income",
-                "identifier": "Fuel poverty supplementary tables - Housing Income - Median after housing costs (AHC), equivalised income||17through18||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 17https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 18",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 17"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 18"
-                    }
-                ],
-                "title": "17through18",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median after housing costs (AHC), equivalised income (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Employment_Status": []
-                    },
-                    {
-                        "Income_Decile_Group": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Income - Median Fuel Poverty Energy Efficiency Rating (FPEER)",
-                "identifier": "Fuel poverty supplementary tables - Housing Income - Median Fuel Poverty Energy Efficiency Rating (FPEER)||17through18||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 17https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 18",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 17"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 18"
-                    }
-                ],
-                "title": "17through18",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median Fuel Poverty Energy Efficiency Rating (FPEER)1\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Employment_Status": []
-                    },
-                    {
-                        "Income_Decile_Group": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Housing Income - Median floor area",
-                "identifier": "Fuel poverty supplementary tables - Housing Income - Median floor area||17through18||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 17https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 18",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 17"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 18"
-                    }
-                ],
-                "title": "17through18",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median floor area (m2)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Employment_Status": []
-                    },
-                    {
-                        "Income_Decile_Group": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Fuel Payment Type - Median equivalised fuel costs",
-                "identifier": "Fuel poverty supplementary tables - Fuel Payment Type - Median equivalised fuel costs||19through20||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 19https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 20",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 19"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 20"
-                    }
-                ],
-                "title": "19through20",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median equivalised fuel costs (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Payment_Method": []
-                    },
-                    {
-                        "Fuel_Type": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Fuel Payment Type - Median after housing costs (AHC), equivalised income",
-                "identifier": "Fuel poverty supplementary tables - Fuel Payment Type - Median after housing costs (AHC), equivalised income||19through20||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 19https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 20",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 19"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 20"
-                    }
-                ],
-                "title": "19through20",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median after housing costs (AHC), equivalised income (\u00a3)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Payment_Method": []
-                    },
-                    {
-                        "Fuel_Type": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - Fuel Payment Type - Median Fuel Poverty Energy Efficiency Rating (FPEER)",
-                "identifier": "Fuel poverty supplementary tables - Fuel Payment Type - Median Fuel Poverty Energy Efficiency Rating (FPEER)||19through20||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 19https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 20",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 19"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 20"
-                    }
-                ],
-                "title": "19through20",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median Fuel Poverty Energy Efficiency Rating (FPEER)1\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Payment_Method": []
-                    },
-                    {
-                        "Fuel_Type": []
-                    }
-                ]
-            },
-            {
-                "source_name": "Fuel poverty supplementary tables - HFuel Payment Type - Median floor area",
-                "identifier": "Fuel poverty supplementary tables - HFuel Payment Type - Median floor area||19through20||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 19https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx : Table 20",
-                "source": [
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 19"
-                    },
-                    {
-                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx": "Table 20"
-                    }
-                ],
-                "title": "19through20",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Year": []
-                    },
-                    {
-                        "Measure_Type": [
-                            "Drop all rows not related to: \"Median floor area (m2)\"."
-                        ]
-                    },
-                    {
-                        "Unit": []
-                    },
-                    {
-                        "Category": []
-                    },
-                    {
-                        "Payment_Method": []
-                    },
-                    {
-                        "Fuel_Type": []
                     }
                 ]
             }

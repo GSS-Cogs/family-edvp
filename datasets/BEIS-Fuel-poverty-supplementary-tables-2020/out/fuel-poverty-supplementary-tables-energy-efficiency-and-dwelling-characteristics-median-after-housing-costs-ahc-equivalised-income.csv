@@ -1,66 +1,66 @@
-Value,Year,Low Income High costs Matrix,Unit,Measure Type,FPEER,SAP BAND,Rurality,Region,Dwelling Type,Dwelling Age,Floor Area,Gas Grid Connection,Main Fuel Type,Wall Insulation
-10749,year/2018,low-income-high-costs,gdp,Median income,all,all,all,all,all,all,all,all,all,all
-10463,year/2018,low-income-low-costs,gdp,Median income,all,all,all,all,all,all,all,all,all,all
-29868,year/2018,high-income-high-costs,gdp,Median income,all,all,all,all,all,all,all,all,all,all
-25622,year/2018,high-income-low-costs,gdp,Median income,all,all,all,all,all,all,all,all,all,all
-23212,year/2018,all-households,gdp,Median income,all,all,all,all,all,all,all,all,all,all
-21347,year/2018,all,gdp,Median income,a/b/c,all,all,all,all,all,all,all,all,all
-23817,year/2018,all,gdp,Median income,d,all,all,all,all,all,all,all,all,all
-25617,year/2018,all,gdp,Median income,e,all,all,all,all,all,all,all,all,all
-24126,year/2018,all,gdp,Median income,f,all,all,all,all,all,all,all,all,all
-24536,year/2018,all,gdp,Median income,g,all,all,all,all,all,all,all,all,all
-23212,year/2018,all,gdp,Median income,all-households,all,all,all,all,all,all,all,all,all
-22038,year/2018,all,gdp,Median income,all,a/b/c,all,all,all,all,all,all,all,all
-23528,year/2018,all,gdp,Median income,all,d,all,all,all,all,all,all,all,all
-25247,year/2018,all,gdp,Median income,all,e,all,all,all,all,all,all,all,all
-23810,year/2018,all,gdp,Median income,all,f,all,all,all,all,all,all,all,all
-23961,year/2018,all,gdp,Median income,all,g,all,all,all,all,all,all,all,all
-23212,year/2018,all,gdp,Median income,all,all-households,all,all,all,all,all,all,all,all
-22709,year/2018,all,gdp,Median income,all,all,urban,all,all,all,all,all,all,all
-25011,year/2018,all,gdp,Median income,all,all,semi-rural,all,all,all,all,all,all,all
-27862,year/2018,all,gdp,Median income,all,all,rural,all,all,all,all,all,all,all
-23212,year/2018,all,gdp,Median income,all,all,all-households,all,all,all,all,all,all,all
-21870,year/2018,all,gdp,Median income,all,all,all,north-east,all,all,all,all,all,all
-21769,year/2018,all,gdp,Median income,all,all,all,north-west,all,all,all,all,all,all
-22817,year/2018,all,gdp,Median income,all,all,all,yorkshire-and-the-humber,all,all,all,all,all,all
-22867,year/2018,all,gdp,Median income,all,all,all,east-midlands,all,all,all,all,all,all
-22380,year/2018,all,gdp,Median income,all,all,all,west-midlands,all,all,all,all,all,all
-24005,year/2018,all,gdp,Median income,all,all,all,east,all,all,all,all,all,all
-23101,year/2018,all,gdp,Median income,all,all,all,london,all,all,all,all,all,all
-24880,year/2018,all,gdp,Median income,all,all,all,south-east,all,all,all,all,all,all
-24067,year/2018,all,gdp,Median income,all,all,all,south-west,all,all,all,all,all,all
-23212,year/2018,all,gdp,Median income,all,all,all,all-households,all,all,all,all,all,all
-19985,year/2018,all,gdp,Median income,all,all,all,all,converted-flat2,all,all,all,all,all
-31078,year/2018,all,gdp,Median income,all,all,all,all,detached,all,all,all,all,all
-21389,year/2018,all,gdp,Median income,all,all,all,all,end-terrace,all,all,all,all,all
-20317,year/2018,all,gdp,Median income,all,all,all,all,mid-terrace,all,all,all,all,all
-19314,year/2018,all,gdp,Median income,all,all,all,all,purpose-built-flat,all,all,all,all,all
-23487,year/2018,all,gdp,Median income,all,all,all,all,semi-detached,all,all,all,all,all
-23212,year/2018,all,gdp,Median income,all,all,all,all,all-households,all,all,all,all,all
-24607,year/2018,all,gdp,Median income,all,all,all,all,all,pre-1919,all,all,all,all
-23970,year/2018,all,gdp,Median income,all,all,all,all,all,1919-to-1944,all,all,all,all
-21228,year/2018,all,gdp,Median income,all,all,all,all,all,1945-to-1964,all,all,all,all
-22661,year/2018,all,gdp,Median income,all,all,all,all,all,1965-to-1980,all,all,all,all
-24467,year/2018,all,gdp,Median income,all,all,all,all,all,1981-to-1990,all,all,all,all
-23337,year/2018,all,gdp,Median income,all,all,all,all,all,1991-to-2002,all,all,all,all
-25011,year/2018,all,gdp,Median income,all,all,all,all,all,post-2002,all,all,all,all
-23212,year/2018,all,gdp,Median income,all,all,all,all,all,all-households,all,all,all,all
-17604,year/2018,all,gdp,Median income,all,all,all,all,all,all,less-than-50-sqm,all,all,all
-20726,year/2018,all,gdp,Median income,all,all,all,all,all,all,50-to-69-sqm,all,all,all
-21719,year/2018,all,gdp,Median income,all,all,all,all,all,all,70-to-89-sqm,all,all,all
-26433,year/2018,all,gdp,Median income,all,all,all,all,all,all,90-to-109-sqm,all,all,all
-30829,year/2018,all,gdp,Median income,all,all,all,all,all,all,110-sqm-or-more,all,all,all
-23212,year/2018,all,gdp,Median income,all,all,all,all,all,all,all-households,all,all,all
-23271,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,yes,all,all
-22975,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,no,all,all
-23212,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all-households,all,all
-23271,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,gas,all
-20566,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,electricity,all
-26683,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,other,all
-23212,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all-households,all
-22790,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,cavity-uninsulated
-23101,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,cavity-with-insulation
-23945,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,solid-uninsulated
-22119,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,solid-with-insulation
-23450,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,other2
-23212,year/2018,all,gdp,Median income,all,all,all,all,all,all,all,all,all,all-households
+Value,Year,Low Income High costs Matrix,FPEER,SAP BAND,Rurality,Region,Dwelling Type,Dwelling Age,Floor Area,Gas Grid Connection,Main Fuel Type,Wall Insulation
+10749,year/2018,low-income-high-costs,all,all,all,all,all,all,all,all,all,all
+10463,year/2018,low-income-low-costs,all,all,all,all,all,all,all,all,all,all
+29868,year/2018,high-income-high-costs,all,all,all,all,all,all,all,all,all,all
+25622,year/2018,high-income-low-costs,all,all,all,all,all,all,all,all,all,all
+23212,year/2018,all-households,all,all,all,all,all,all,all,all,all,all
+21347,year/2018,all,a/b/c,all,all,all,all,all,all,all,all,all
+23817,year/2018,all,d,all,all,all,all,all,all,all,all,all
+25617,year/2018,all,e,all,all,all,all,all,all,all,all,all
+24126,year/2018,all,f,all,all,all,all,all,all,all,all,all
+24536,year/2018,all,g,all,all,all,all,all,all,all,all,all
+23212,year/2018,all,all-households,all,all,all,all,all,all,all,all,all
+22038,year/2018,all,all,a/b/c,all,all,all,all,all,all,all,all
+23528,year/2018,all,all,d,all,all,all,all,all,all,all,all
+25247,year/2018,all,all,e,all,all,all,all,all,all,all,all
+23810,year/2018,all,all,f,all,all,all,all,all,all,all,all
+23961,year/2018,all,all,g,all,all,all,all,all,all,all,all
+23212,year/2018,all,all,all-households,all,all,all,all,all,all,all,all
+22709,year/2018,all,all,all,urban,all,all,all,all,all,all,all
+25011,year/2018,all,all,all,semi-rural,all,all,all,all,all,all,all
+27862,year/2018,all,all,all,rural,all,all,all,all,all,all,all
+23212,year/2018,all,all,all,all-households,all,all,all,all,all,all,all
+21870,year/2018,all,all,all,all,north-east,all,all,all,all,all,all
+21769,year/2018,all,all,all,all,north-west,all,all,all,all,all,all
+22817,year/2018,all,all,all,all,yorkshire-and-the-humber,all,all,all,all,all,all
+22867,year/2018,all,all,all,all,east-midlands,all,all,all,all,all,all
+22380,year/2018,all,all,all,all,west-midlands,all,all,all,all,all,all
+24005,year/2018,all,all,all,all,east,all,all,all,all,all,all
+23101,year/2018,all,all,all,all,london,all,all,all,all,all,all
+24880,year/2018,all,all,all,all,south-east,all,all,all,all,all,all
+24067,year/2018,all,all,all,all,south-west,all,all,all,all,all,all
+23212,year/2018,all,all,all,all,all-households,all,all,all,all,all,all
+19985,year/2018,all,all,all,all,all,converted-flat2,all,all,all,all,all
+31078,year/2018,all,all,all,all,all,detached,all,all,all,all,all
+21389,year/2018,all,all,all,all,all,end-terrace,all,all,all,all,all
+20317,year/2018,all,all,all,all,all,mid-terrace,all,all,all,all,all
+19314,year/2018,all,all,all,all,all,purpose-built-flat,all,all,all,all,all
+23487,year/2018,all,all,all,all,all,semi-detached,all,all,all,all,all
+23212,year/2018,all,all,all,all,all,all-households,all,all,all,all,all
+24607,year/2018,all,all,all,all,all,all,pre-1919,all,all,all,all
+23970,year/2018,all,all,all,all,all,all,1919-to-1944,all,all,all,all
+21228,year/2018,all,all,all,all,all,all,1945-to-1964,all,all,all,all
+22661,year/2018,all,all,all,all,all,all,1965-to-1980,all,all,all,all
+24467,year/2018,all,all,all,all,all,all,1981-to-1990,all,all,all,all
+23337,year/2018,all,all,all,all,all,all,1991-to-2002,all,all,all,all
+25011,year/2018,all,all,all,all,all,all,post-2002,all,all,all,all
+23212,year/2018,all,all,all,all,all,all,all-households,all,all,all,all
+17604,year/2018,all,all,all,all,all,all,all,less-than-50-sqm,all,all,all
+20726,year/2018,all,all,all,all,all,all,all,50-to-69-sqm,all,all,all
+21719,year/2018,all,all,all,all,all,all,all,70-to-89-sqm,all,all,all
+26433,year/2018,all,all,all,all,all,all,all,90-to-109-sqm,all,all,all
+30829,year/2018,all,all,all,all,all,all,all,110-sqm-or-more,all,all,all
+23212,year/2018,all,all,all,all,all,all,all,all-households,all,all,all
+23271,year/2018,all,all,all,all,all,all,all,all,yes,all,all
+22975,year/2018,all,all,all,all,all,all,all,all,no,all,all
+23212,year/2018,all,all,all,all,all,all,all,all,all-households,all,all
+23271,year/2018,all,all,all,all,all,all,all,all,all,gas,all
+20566,year/2018,all,all,all,all,all,all,all,all,all,electricity,all
+26683,year/2018,all,all,all,all,all,all,all,all,all,other,all
+23212,year/2018,all,all,all,all,all,all,all,all,all,all-households,all
+22790,year/2018,all,all,all,all,all,all,all,all,all,all,cavity-uninsulated
+23101,year/2018,all,all,all,all,all,all,all,all,all,all,cavity-with-insulation
+23945,year/2018,all,all,all,all,all,all,all,all,all,all,solid-uninsulated
+22119,year/2018,all,all,all,all,all,all,all,all,all,all,solid-with-insulation
+23450,year/2018,all,all,all,all,all,all,all,all,all,all,other2
+23212,year/2018,all,all,all,all,all,all,all,all,all,all,all-households
