@@ -674,7 +674,7 @@ trace.render("spec_v1.html")
 
 
 
-# +
+"""
 import os
 path = os.getcwd() + '/codelists2'
 files = os.listdir(path)
@@ -684,7 +684,7 @@ for index, file in enumerate(files):
     print(file)
     newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
-# -
+"""
 
 
 
