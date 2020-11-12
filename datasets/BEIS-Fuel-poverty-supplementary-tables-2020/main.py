@@ -126,7 +126,7 @@ def generate_codelist(title, df, col):
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title))
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
         
-    with open('./codelists/{}-{}.csv-schema.json'.format(pathify(title), pathify(col)), 'w') as f:
+    with open('./codelists/{}-{}.csv-metadata.json'.format(pathify(title), pathify(col)), 'w') as f:
         f.write(codelist_csvw)
     
 
