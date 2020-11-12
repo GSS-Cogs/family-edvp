@@ -602,6 +602,10 @@ for title, info in table_joins.items():
         
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
+
+    # FOR NOW - remove measure type
+    df = df.drop("Measure Type", axis=1)
+    df = df.drop("Unit", axis=1)
     
     df = df.drop_duplicates()
     
@@ -617,55 +621,60 @@ for title, info in table_joins.items():
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
             
         if GENERATE_CODELISTS:
-            path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
+            path_id = "http://gss-data.org.uk/data/gss_data/{}".format(pathify(title))
             generate_codelist(title, df, col)
     
     # CSVW Mapping
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
-    mapping = {}
-    with open("info.json") as f:
-        info_json = json.load(f)
-        
-    # "Common" column mappings for this dataset
-    for k, v in csvw_common_map.items():
-        mapping[k] = v
-        
-    # "Value" entry for this dataset
-    measures_list = list(df["Measure Type"].unique())
-    assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
-    mapping["Value"] = csvw_value_map[measures_list[0]]
-    
-    # If it's neither common nor value, it's a locally declared dimension
-    cols_we_have_a_map_for = list(csvw_common_map.keys())
-    cols_we_have_a_map_for.append("Value")
-    for col in df.columns.values.tolist():
-        if col not in cols_we_have_a_map_for:
-            mapping[col] = {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}".format(title=pathify(title), col=pathify(col)),
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
-                "description": ""
-            }
+
+    do_mapping = False
+
+    if do_mapping:
+        mapping = {}
+        with open("info.json") as f:
+            info_json = json.load(f)
             
-    # "Deprivation Indicator": {
-    #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
-    #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
-    #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
-    # },
+            # "Common" column mappings for this dataset
+            for k, v in csvw_common_map.items():
+                mapping[k] = v
+                
+            # "Value" entry for this dataset
+            measures_list = list(df["Measure Type"].unique())
+            assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
+            mapping["Value"] = csvw_value_map[measures_list[0]]
+            
+            # If it's neither common nor value, it's a locally declared dimension
+            cols_we_have_a_map_for = list(csvw_common_map.keys())
+            cols_we_have_a_map_for.append("Value")
+            for col in df.columns.values.tolist():
+                if col not in cols_we_have_a_map_for:
+                    mapping[col] = {
+                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}".format(title=pathify(title), col=pathify(col)),
+                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "description": ""
+                    }
+                    
+            # "Deprivation Indicator": {
+            #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
+            #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
+            #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
+            # },
+            
+            # Read the map back into the cubes class
+            info_json["transform"]["columns"] = mapping
+            cubes.info = info_json
     
-    # Read the map back into the cubes class
-    info_json["transform"]["columns"] = mapping
-    cubes.info = info_json
-    
-    if SHOW_MAPPING:
-        print("Mapping for: ", title)
-        print(json.dumps(mapping, indent=2))
-        print("\n")
+        if SHOW_MAPPING:
+            print("Mapping for: ", title)
+            print(json.dumps(mapping, indent=2))
+            print("\n")
     
     # TODO !!!!!!!!!!!!
     # remove the counter, for now just get one working
     if count < 2:
         cubes.add_cube(scraper, df, title)
+        cubes.cubes[-1].scraper.set_dataset_id("http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
         count += 1
 
 # -
