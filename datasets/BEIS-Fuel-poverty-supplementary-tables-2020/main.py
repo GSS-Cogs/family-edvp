@@ -123,7 +123,7 @@ def generate_codelist(title, df, col):
     
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
-    path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title))
+    path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
         
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
@@ -579,7 +579,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -681,7 +681,7 @@ for title, info in table_joins.items():
     # remove the counter, for now just get one working
     if count < 2:
         cubes.add_cube(scraper, df, title)
-        cubes.cubes[-1].scraper.set_dataset_id("http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
+        cubes.cubes[-1].scraper.set_dataset_id("data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
         count += 1
 
 # -

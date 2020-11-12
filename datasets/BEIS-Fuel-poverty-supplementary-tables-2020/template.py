@@ -13,7 +13,7 @@ def generate_codelist_from_template(url, title, label, path_id):
     {{
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
-  "url": "{url}",
+  "url": "{pathified_label}.csv",
   "tableSchema": {{
     "columns": [
       {{
