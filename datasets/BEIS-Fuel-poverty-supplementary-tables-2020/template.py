@@ -10,7 +10,7 @@ def generate_codelist_from_template(url, title, label, path_id):
     return """
     {{
   "@context": "http://www.w3.org/ns/csvw",
-  "@id": "{path_id}#schema",
+  "@id": "#table",
   "url": "{url}",
   "tableSchema": {{
     "columns": [
@@ -36,11 +36,11 @@ def generate_codelist_from_template(url, title, label, path_id):
         "name": "parent_notation",
         "datatype": {{
           "base": "string",
-          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
         }},
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "{path_id}#concept/{pathified_label}/{{parent_notation}}"
+        "valueUrl": "{path_id}/concept-scheme/{pathified_label}/{{parent_notation}}"
       }},
       {{
         "titles": "Sort Priority",
@@ -64,14 +64,14 @@ def generate_codelist_from_template(url, title, label, path_id):
       {{
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "{path_id}#scheme/{pathified_label}"
+        "valueUrl": "{path_id}/concept-scheme/{pathified_label}"
       }}
     ],
     "primaryKey": "notation",
-    "aboutUrl": "{path_id}#concept/{pathified_label}/{{notation}}"
+    "aboutUrl": "{path_id}/concept/{pathified_label}/{{notation}}"
   }},
   "prov:hadDerivation": {{
-    "@id": "{path_id}#scheme/{pathified_label}",
+    "@id": "{path_id}/concept-scheme/{pathified_label}",
     "@type": "skos:ConceptScheme",
     "rdfs:label": "{label}"
   }}
