@@ -1,0 +1,58 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix gdp: <http://gss-data.org.uk/def/gdp#> .
+@prefix gov: <https://www.gov.uk/government/organisations/> .
+@prefix ns1: <http://gss-data.org.uk/graph/www/gov/uk/government/statistics/> .
+@prefix ns2: <http://xmlns.com/foaf/0.1/> .
+@prefix ns3: <urn:x-rdflib:> .
+@prefix ns4: <http://gss-data.org.uk/graph/gss_data/edvp/> .
+@prefix pmd: <http://publishmydata.com/def/dataset#> .
+@prefix pmdcat: <http://publishmydata.com/pmdcat#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix theme: <http://gss-data.org.uk/def/concept/statistics-authority-themes/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns4:fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-metadata {
+    <http://gss-data.org.uk/catalog/datasets> a dcat:Catalog ;
+        dcat:record <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-catalog-record> .
+
+    <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset> a pmdcat:DataCube .
+
+    <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-catalog-entry> a pmdcat:Dataset ;
+        rdfs:label "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median after housing costs (AHC), equivalised income"@en ;
+        gdp:family gdp:edvp ;
+        pmdcat:datasetContents <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dataset> ;
+        pmdcat:graph ns4:fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income ;
+        dct:creator gov:department-for-business-energy-and-industrial-strategy ;
+        dct:description """Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics based on Median Fuel Costs, Income, FPEER Rating and Floor Area,
+The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
+https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook
+"""@en ;
+        dct:issued "2020-04-30T08:30:07+00:00"^^xsd:dateTime ;
+        dct:modified "2020-11-12T07:58:12.868208+00:00"^^xsd:dateTime ;
+        dct:publisher gov:department-for-business-energy-and-industrial-strategy ;
+        dct:title "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median after housing costs (AHC), equivalised income"@en ;
+        void:sparqlEndpoint <http://gss-data.org.uk/sparql> ;
+        rdfs:comment "Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics	 based on Median Fuel Costs, Income, FPEER Rating and Floor Area"@en ;
+        dcat:distribution <https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx> ;
+        dcat:landingPage <https://www.gov.uk/government/statistics/fuel-poverty-supplementary-tables-2020> .
+
+    <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-catalog-record> a dcat:CatalogRecord ;
+        rdfs:label "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median after housing costs (AHC), equivalised income Catalog Record"@en ;
+        pmdcat:metadataGraph ns4:fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-metadata ;
+        dct:issued "2020-04-30T08:30:07+00:00"^^xsd:dateTime ;
+        dct:modified "2020-11-12T07:58:12.868208+00:00"^^xsd:dateTime ;
+        ns2:primaryTopic <http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-catalog-entry> .
+
+    <https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx> a dcat:Distribution ;
+        dct:title "Fuel poverty supplementary tables 2020 (2018 data)"@en ;
+        dcat:byteSize 128000 ;
+        dcat:downloadURL <https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882127/fuel-poverty-supplementary-tables-2020-2018-data.xlsx> ;
+        dcat:mediaType "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" .
+}
+

@@ -1,8 +1,8 @@
 
     {
   "@context": "http://www.w3.org/ns/csvw",
-  "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#schema",
-  "url": "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income-low-income-high-costs-matrix.csv",
+  "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-housing-income-median-floor-area#schema",
+  "url": "fuel-poverty-supplementary-tables-housing-income-median-floor-area-income-decile-group.csv",
   "tableSchema": {
     "columns": [
       {
@@ -31,7 +31,7 @@
         },
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/low-income-high-costs-matrix/{parent_notation}"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-housing-income-median-floor-area#concept/income-decile-group/{parent_notation}"
       },
       {
         "titles": "Sort Priority",
@@ -55,15 +55,15 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/low-income-high-costs-matrix"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-housing-income-median-floor-area#scheme/income-decile-group"
       }
     ],
     "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#concept/low-income-high-costs-matrix/{notation}"
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-housing-income-median-floor-area#concept/income-decile-group/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#scheme/low-income-high-costs-matrix",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-housing-income-median-floor-area#scheme/income-decile-group",
     "@type": "skos:ConceptScheme",
-    "rdfs:label": "Low Income High costs Matrix"
+    "rdfs:label": "Income Decile Group"
   }
     
