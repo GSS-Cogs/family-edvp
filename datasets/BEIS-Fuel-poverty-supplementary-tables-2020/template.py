@@ -7,7 +7,8 @@ def generate_codelist_from_template(url, title, label, path_id):
     pathified_label = pathify(label)
     pathified_title = pathify(title)
 
-    regex_str = r"^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+    regex_str_1 = r"^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+    regex_str_2 = r'"^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"'
 
     return """
     {{
@@ -28,7 +29,7 @@ def generate_codelist_from_template(url, title, label, path_id):
         "name": "notation",
         "datatype": {{
           "base": "string",
-          "format": "{regex_str}"
+          "format": "{regex_str_1}"
         }},
         "required": true,
         "propertyUrl": "skos:notation"
@@ -38,7 +39,7 @@ def generate_codelist_from_template(url, title, label, path_id):
         "name": "parent_notation",
         "datatype": {{
           "base": "string",
-          "format": "{regex_str}"
+          "format": "{regex_str_2}"
         }},
         "required": false,
         "propertyUrl": "skos:broader",
@@ -77,4 +78,5 @@ def generate_codelist_from_template(url, title, label, path_id):
     "@type": "skos:ConceptScheme",
     "rdfs:label": "{label}"
   }}
-    """.format(url=url, label=label, pathified_label=pathified_label, path_id=path_id, pathified_title=pathified_title, regex_str=regex_str)
+    """.format(url=url, label=label, pathified_label=pathified_label, path_id=path_id, 
+    pathified_title=pathified_title, regex_str_1=regex_str_1, regex_str_2=regex_str_2)
