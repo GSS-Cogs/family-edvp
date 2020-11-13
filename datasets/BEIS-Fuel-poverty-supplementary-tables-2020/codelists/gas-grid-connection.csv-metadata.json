@@ -55,14 +55,14 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/gas-grid-connection"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/gas-grid-connection"
       }
     ],
     "primaryKey": "notation",
     "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/gas-grid-connection/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/scheme/gas-grid-connection",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/gas-grid-connection",
     "@type": "skos:ConceptScheme",
     "rdfs:label": "Gas Grid Connection"
   }
