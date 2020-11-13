@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# + {}
+# +
 from gssutils import * 
 import json
 
@@ -41,8 +41,6 @@ def process_little_table(anchor, task, trace):
     
     left_column = anchor.shift(LEFT).fill(DOWN).is_not_blank()
     left_column = clean_lower_tables(left_column)
-
-    measure_type = anchor.fill(RIGHT)
 
     dimensions = [
         HDimConst("Year", year),
@@ -98,7 +96,7 @@ def generate_codelist(title, df, col):
     """
     
     # TODO - use makedir and path!
-    destination = './codelists/{}-{}.csv'.format(pathify(title), pathify(col))
+    destination = './codelists/{}.csv'.format(pathify(col))
     
     # TODO - does it already exist? Are there any unaccounted for
     # values in this version of that codelist?
@@ -123,10 +121,10 @@ def generate_codelist(title, df, col):
     
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
-    path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
+    path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
         
-    with open('./codelists/{}-{}.csv-schema.json'.format(pathify(title), pathify(col)), 'w') as f:
+    with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
     
 
@@ -404,6 +402,14 @@ for category, dataset_task in {
                     df, trace = process_little_table(anchor, dataset_task, trace)
                 else:
                     df, trace = process_big_table(anchor, dataset_task, trace)
+
+            # Strip any subscript
+            # TODO - better
+            for col in df.columns.values.tolist():
+                new_col = col
+                for i in range(0, 10):
+                    new_col = new_col.rstrip(str(i))
+                df = df.rename(columns={col: new_col})
                 
             # Store however many tabs we've extracted against the specified identifier
             trace.store(dataset_task["store_as"], df)
@@ -571,7 +577,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -579,6 +585,9 @@ SHOW_MAPPING = True
 count = 0
 
 for title, info in table_joins.items():
+
+    if pathify(title) != "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income":
+        continue
     
     df = trace.combine_and_trace(title, info["tables"])
     
@@ -599,6 +608,10 @@ for title, info in table_joins.items():
         
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
+
+    # FOR NOW - remove measure type
+    df = df.drop("Measure Type", axis=1)
+    df = df.drop("Unit", axis=1)
     
     df = df.drop_duplicates()
     
@@ -614,64 +627,73 @@ for title, info in table_joins.items():
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
             
         if GENERATE_CODELISTS:
-            path_id = "http://gss-data.org.uk/data/gss_data/edvp/{}".format(pathify(title))
             generate_codelist(title, df, col)
     
     # CSVW Mapping
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
-    mapping = {}
-    with open("info.json") as f:
-        info_json = json.load(f)
-        
-    # "Common" column mappings for this dataset
-    for k, v in csvw_common_map.items():
-        mapping[k] = v
-        
-    # "Value" entry for this dataset
-    measures_list = list(df["Measure Type"].unique())
-    assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
-    mapping["Value"] = csvw_value_map[measures_list[0]]
-    
-    # If it's neither common nor value, it's a locally declared dimension
-    cols_we_have_a_map_for = list(csvw_common_map.keys())
-    cols_we_have_a_map_for.append("Value")
-    for col in df.columns.values.tolist():
-        if col not in cols_we_have_a_map_for:
-            mapping[col] = {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}".format(title=pathify(title), col=pathify(col)),
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/{title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
-                "description": ""
-            }
+
+    do_mapping = True
+
+    if do_mapping:
+        mapping = {}
+        with open("info.json") as f:
+            info_json = json.load(f)
             
-    # "Deprivation Indicator": {
-    #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
-    #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
-    #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
-    # },
+            # "Common" column mappings for this dataset
+            for k, v in csvw_common_map.items():
+                mapping[k] = v
+                
+            # "Value" entry for this dataset
+            measures_list = list(df["Measure Type"].unique())
+            assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
+            mapping["Value"] = csvw_value_map[measures_list[0]]
+            
+            # If it's neither common nor value, it's a locally declared dimension
+            cols_we_have_a_map_for = list(csvw_common_map.keys())
+            cols_we_have_a_map_for.append("Value")
+
+            # TODO - somewhere else
+            url_title = "beis-fuel-poverty-supplementary-tables"
+
+            for col in df.columns.values.tolist():
+                if col not in cols_we_have_a_map_for:
+                    mapping[col] = {
+                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(title=pathify(url_title), col=pathify(col)),
+                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "description": ""
+                    }
+                    
+            # "Deprivation Indicator": {
+            #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
+            #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
+            #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
+            # },
+            
+            # Read the map back into the cubes class
+            info_json["transform"]["columns"] = mapping
+            cubes.info = info_json
     
-    # Read the map back into the cubes class
-    info_json["transform"]["columns"] = mapping
-    cubes.info = info_json
-    
-    if SHOW_MAPPING:
-        print("Mapping for: ", title)
-        print(json.dumps(mapping, indent=2))
-        print("\n")
+        if SHOW_MAPPING:
+            print("Mapping for: ", title)
+            print(json.dumps(mapping, indent=2))
+            print("\n")
     
     # TODO !!!!!!!!!!!!
     # remove the counter, for now just get one working
-    if count < 2:
-        cubes.add_cube(scraper, df, title)
-        count += 1
+    title = "beis-fuel-poverty-supplementary-tables-2020"
+    cubes.add_cube(scraper, df, title)
+    #cubes.cubes[-1].scraper.set_dataset_id("data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
 
 # -
-cubes.output_all()
+#cubes.output_all()
+cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
+cubes.cubes[0].multi_trig = scraper.generate_trig()
+cubes.cubes[0].output(Path("./out"), True, cubes.info, False)
 trace.render("spec_v1.html")
-
 #
 
-
+# http://gss-data.org.uk/data/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
 
 
 """

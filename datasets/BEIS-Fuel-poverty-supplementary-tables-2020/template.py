@@ -42,7 +42,7 @@ def generate_codelist_from_template(url, title, label, path_id):
         }},
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "{path_id}/concept-scheme/{pathified_label}/{{parent_notation}}"
+        "valueUrl": "{path_id}/concept/{pathified_label}/{{parent_notation}}"
       }},
       {{
         "titles": "Sort Priority",
@@ -66,14 +66,14 @@ def generate_codelist_from_template(url, title, label, path_id):
       {{
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "{path_id}/concept-scheme/{pathified_label}"
+        "valueUrl": "{path_id}/concept/{pathified_label}"
       }}
     ],
     "primaryKey": "notation",
     "aboutUrl": "{path_id}/concept/{pathified_label}/{{notation}}"
   }},
   "prov:hadDerivation": {{
-    "@id": "{path_id}/concept-scheme/{pathified_label}",
+    "@id": "{path_id}/scheme/{pathified_label}",
     "@type": "skos:ConceptScheme",
     "rdfs:label": "{label}"
   }}
