@@ -681,6 +681,7 @@ for title, info in table_joins.items():
     
     # TODO !!!!!!!!!!!!
     # remove the counter, for now just get one working
+    title = "beis-fuel-poverty-supplementary-tables-2020"
     cubes.add_cube(scraper, df, title)
     #cubes.cubes[-1].scraper.set_dataset_id("data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
 
@@ -691,23 +692,6 @@ cubes.cubes[0].multi_trig = scraper.generate_trig()
 cubes.cubes[0].output(Path("./out"), True, cubes.info, False)
 trace.render("spec_v1.html")
 #
-
-# NASTY!
-file_to_change = "./out/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income.csv-metadata.json"
-with open(file_to_change, "r") as f:
-
-    unwanted = "http://gss-data.org.uk/data/gss_data/edvp/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income"
-    wanted = "http://gss-data.org.uk/data/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
-    data = json.load(f)
-    for col in data["tables"][0]["tableSchema"]["columns"]:
-        #print(col["propertyUrl"])
-        if unwanted in col["propertyUrl"]:
-            # print("found it in {}".format(col["propertyUrl"]))
-            col["propertyUrl"] = col["propertyUrl"].replace(unwanted, wanted)
-
-with open(file_to_change, "w") as f:
-    json.dump(data, f, indent=2)
-
 
 # http://gss-data.org.uk/data/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
 
