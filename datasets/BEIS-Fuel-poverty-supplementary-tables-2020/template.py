@@ -7,8 +7,8 @@ def generate_codelist_from_template(url, title, label, path_id):
     pathified_label = pathify(label)
     pathified_title = pathify(title)
 
-    regex_str_1 = r"^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
-    regex_str_2 = r'"^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"'
+    regex_str_1 = r'^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$'
+    regex_str_2 = r'^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$'
 
     return """
     {{
