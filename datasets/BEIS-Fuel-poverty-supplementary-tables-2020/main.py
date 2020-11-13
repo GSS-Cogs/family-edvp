@@ -42,6 +42,8 @@ def process_little_table(anchor, task, trace):
     left_column = anchor.shift(LEFT).fill(DOWN).is_not_blank()
     left_column = clean_lower_tables(left_column)
 
+    measure_type = anchor.fill(RIGHT)
+
     dimensions = [
         HDimConst("Year", year),
         HDim(horizontal_dimension, "Category", DIRECTLY, ABOVE),
@@ -608,12 +610,6 @@ for title, info in table_joins.items():
         
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
-
-    # FOR NOW - remove measure type
-    df = df.drop("Measure Type", axis=1)
-    df = df.drop("Unit", axis=1)
-    
-    df = df.drop_duplicates()
     
     # Pathify (sometimes generate codelists from) appropriate columns
     for col in df.columns.values.tolist():
@@ -633,7 +629,7 @@ for title, info in table_joins.items():
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
 
-    do_mapping = False
+    do_mapping = True
 
     if do_mapping:
         mapping = {}
@@ -659,8 +655,8 @@ for title, info in table_joins.items():
             for col in df.columns.values.tolist():
                 if col not in cols_we_have_a_map_for:
                     mapping[col] = {
-                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(title=pathify(url_title), col=pathify(col)),
-                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}/{{{col_underscored}}}".format(title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
+                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
                         "description": ""
                     }
                     
@@ -679,6 +675,12 @@ for title, info in table_joins.items():
             print(json.dumps(mapping, indent=2))
             print("\n")
     
+    # FOR NOW - remove measure type
+    df = df.drop("Measure Type", axis=1)
+    df = df.drop("Unit", axis=1)
+    
+    df = df.drop_duplicates()
+
     # TODO !!!!!!!!!!!!
     # remove the counter, for now just get one working
     title = "beis-fuel-poverty-supplementary-tables-2020"
