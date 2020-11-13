@@ -650,7 +650,7 @@ for title, info in table_joins.items():
             cols_we_have_a_map_for.append("Value")
 
             # TODO - somewhere else
-            url_title = "beis-fuel-poverty-supplementary-tables"
+            url_title = "beis-fuel-poverty-supplementary-tables-2020"
 
             for col in df.columns.values.tolist():
                 if col not in cols_we_have_a_map_for:
@@ -691,7 +691,7 @@ for title, info in table_joins.items():
 #cubes.output_all()
 cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
 cubes.cubes[0].multi_trig = scraper.generate_trig()
-cubes.cubes[0].output(Path("./out"), True, cubes.info, False)
+cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
 trace.render("spec_v1.html")
 #
 
