@@ -656,7 +656,7 @@ for title, info in table_joins.items():
                 if col not in cols_we_have_a_map_for:
                     mapping[col] = {
                         "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
-                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
                         "description": ""
                     }
                     
