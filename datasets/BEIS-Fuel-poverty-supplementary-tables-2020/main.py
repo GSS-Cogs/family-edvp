@@ -685,7 +685,7 @@ for title, info in table_joins.items():
     # remove the counter, for now just get one working
     title = "beis-fuel-poverty-supplementary-tables-2020"
     cubes.add_cube(scraper, df, title)
-    #cubes.cubes[-1].scraper.set_dataset_id("data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
+    cubes.cubes[-1].scraper.set_dataset_id("data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/{}".format(pathify(title)))
 
 # -
 #cubes.output_all()
