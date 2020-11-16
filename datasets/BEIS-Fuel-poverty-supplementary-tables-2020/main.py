@@ -6,6 +6,8 @@ import json
 from template import generate_codelist_from_template
 
 cubes = Cubes("info.json")
+
+coldef = json.load(open('info.json'))
 # -
 
 # # Helpers
@@ -714,7 +716,7 @@ for title, info in table_joins.items():
     csvw_transform = CSVWMapping()
     csvw_transform.set_csv(out / csvName)
     #csvw_transform._mapping = mapping
-    csvw_transform.set_mapping(json.load(open('info.json')))
+    csvw_transform.set_mapping(coldef)
     csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
     csvw_transform.write(out / f'{csvName}-metadata.json')
 
@@ -743,6 +745,8 @@ for index, file in enumerate(files):
     newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
 """
+
+
 
 
 
