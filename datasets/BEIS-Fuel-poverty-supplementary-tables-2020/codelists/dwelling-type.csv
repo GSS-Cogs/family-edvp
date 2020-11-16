@@ -1,9 +1,9 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-converted-flat2,converted-flat2,,
-detached,detached,,
-end-terrace,end-terrace,,
-mid-terrace,mid-terrace,,
-purpose-built-flat,purpose-built-flat,,
-semi-detached,semi-detached,,
-all-households,all-households,,
+all,all,,1
+converted-flat2,converted-flat2,,2
+detached,detached,,3
+end-terrace,end-terrace,,4
+mid-terrace,mid-terrace,,45
+purpose-built-flat,purpose-built-flat,,6
+semi-detached,semi-detached,,7
+all-households,all-households,,8

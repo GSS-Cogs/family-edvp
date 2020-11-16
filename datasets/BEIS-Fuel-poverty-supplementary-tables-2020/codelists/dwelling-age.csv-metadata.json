@@ -1,7 +1,6 @@
-
-    {
+{
   "@context": "http://www.w3.org/ns/csvw",
-  "@id": "http://gss-data.org.uk/data/edvp/beis-fuel-poverty-supplementary-tables-2020#schema",
+  "@id": "#table",
   "url": "dwelling-age.csv",
   "tableSchema": {
     "columns": [
