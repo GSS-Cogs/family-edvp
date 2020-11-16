@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# +
+# + {}
 from gssutils import * 
 import json
 
@@ -480,97 +480,113 @@ table_joins = {
         "category": "Median equivalised fuel costs (£)",
         "tables": "1through17",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "eedc-fuelcosts"
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
         "tables": "1through17",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "eedc-housingcosts"
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
         "tables": "1through17",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "eedc-fpeer"
     },
     "Fuel poverty supplementary tables - Energy Efficiency and Dwelling Characteristics - Median floor area": {
         "category": "Median floor area (m2)",
         "tables": "1through17",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "eedc-floorarea"
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
         "tables": "12through16",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoch-fuelcosts"
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
         "tables": "12through16",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoch-housingcosts"
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
         "tables": "12through16",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoch-fpeer"
     },
     "Fuel poverty supplementary tables - Housing Characteristics - Median floor area": {
         "category": "Median floor area (m2)",
         "tables": "12through16",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoch-floorarea"
     },
     "Fuel poverty supplementary tables - Housing Income - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
         "tables": "17through18",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoin-fuelcosts"
     },
     "Fuel poverty supplementary tables - Housing Income - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
         "tables": "17through18",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoin-housingcosts"
     },
     "Fuel poverty supplementary tables - Housing Income - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
         "tables": "17through18",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoin-fpeer"
     },
     "Fuel poverty supplementary tables - Housing Income - Median floor area": {
         "category": "Median floor area (m2)",
         "tables": "17through18",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "hoin-floorarea"
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median equivalised fuel costs": {
         "category": "Median equivalised fuel costs (£)",
         "tables": "19through20",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "fupt-fuelcosts"
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median after housing costs (AHC), equivalised income": {
         "category": "Median after housing costs (AHC), equivalised income (£)",
         "tables": "19through20",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "fupt-housingcosts"
     },
     "Fuel poverty supplementary tables - Fuel Payment Type - Median Fuel Poverty Energy Efficiency Rating (FPEER)": {
         "category": "Median Fuel Poverty Energy Efficiency Rating (FPEER)1",
         "tables": "19through20",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "fupt-fpeer"
     },
     "Fuel poverty supplementary tables - HFuel Payment Type - Median floor area": {
         "category": "Median floor area (m2)",
         "tables": "19through20",
         "comment": comment,
-        "description": description
+        "description": description,
+        "datasetid": "fupt-floorarea"
     } 
 } 
 
@@ -671,10 +687,10 @@ for title, info in table_joins.items():
             # info_json["transform"]["columns"] = mapping
             # cubes.info = info_json
     
-        if SHOW_MAPPING:
-            print("Mapping for: ", title)
-            print(json.dumps(mapping, indent=2))
-            print("\n")
+        #if SHOW_MAPPING:
+        #    print("Mapping for: ", title)
+        #    print(json.dumps(mapping, indent=2))
+        #    print("\n")
     
     # FOR NOW - remove measure type
     df = df.drop("Measure Type", axis=1)
@@ -682,13 +698,14 @@ for title, info in table_joins.items():
     
     df = df.drop_duplicates()
 
-    csvName = "{}.csv".format(pathify(title))
+    #csvName = "{}.csv".format(pathify(title))
+    csvName = "observations{}.csv".format(pathify(info['datasetid']))
     out = Path('out')
     out.mkdir(exist_ok=True)
     #joined_dat.drop_duplicates().to_csv(out / csvName, index = False)
     df.drop_duplicates().to_csv(out / (csvName), index = False)
 
-    dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() # differentiating name goes here + pa[i]
+    dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
     scraper.set_base_uri('http://gss-data.org.uk')
     scraper.set_dataset_id(dataset_path)
 
@@ -696,7 +713,8 @@ for title, info in table_joins.items():
     
     csvw_transform = CSVWMapping()
     csvw_transform.set_csv(out / csvName)
-    csvw_transform._mapping = mapping
+    #csvw_transform._mapping = mapping
+    csvw_transform.set_mapping(json.load(open('info.json')))
     csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
     csvw_transform.write(out / f'{csvName}-metadata.json')
 
@@ -725,6 +743,8 @@ for index, file in enumerate(files):
     newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
 """
+
+
 
 
 
