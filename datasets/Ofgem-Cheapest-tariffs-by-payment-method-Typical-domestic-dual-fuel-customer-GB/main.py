@@ -57,11 +57,13 @@ trace.Value("Removed commas and whitespaces from Values")
 trace.store(title, df_final)
 trace.render("spec_v1.html")
 
+csvName = "{}.csv".format(pathify(title))
+df_final.to_csv("./out/{}".format(csvName))
+
 out = Path('out')
 out.mkdir(exist_ok=True)
 
 coldef = json.load(open('info.json'))
-csvName = "{}.csv".format(pathify(title))
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
 csvw_transform.set_mapping(coldef)
