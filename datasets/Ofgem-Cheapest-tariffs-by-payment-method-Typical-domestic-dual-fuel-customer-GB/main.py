@@ -1,7 +1,9 @@
 # +
 import pandas as pd 
 import requests
-from gssutils import * 
+from gssutils import *
+
+from urllib.parse import urljoin
 
 scraper = Scraper(seed="info.json")
 # cubes = Cubes("info.json", base_url="http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/")
@@ -56,6 +58,8 @@ trace.render("spec_v1.html")
 out = Path('out')
 out.mkdir(exist_ok=True)
 
+coldef = json.load(open('info.json'))
+csvName = "{}.csv".format(pathify(title))
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
 csvw_transform.set_mapping(coldef)
