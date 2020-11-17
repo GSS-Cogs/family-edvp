@@ -58,7 +58,7 @@ trace.store(title, df_final)
 trace.render("spec_v1.html")
 
 csvName = "{}.csv".format(pathify(title))
-df_final.to_csv("./out/{}".format(csvName))
+df_final.to_csv("./out/{}".format(csvName), index=False)
 
 out = Path('out')
 out.mkdir(exist_ok=True)
