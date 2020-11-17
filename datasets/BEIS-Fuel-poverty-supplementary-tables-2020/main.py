@@ -597,7 +597,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = True
+GENERATE_CODELISTS = False
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
