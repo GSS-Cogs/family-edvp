@@ -1,8 +1,8 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-less-than-50-sqm,less-than-50-sqm,,
-50-to-69-sqm,50-to-69-sqm,,
-70-to-89-sqm,70-to-89-sqm,,
-90-to-109-sqm,90-to-109-sqm,,
-110-sqm-or-more,110-sqm-or-more,,
-all-households,all-households,,
+All,all,,1
+Less than 50sqm,less-than-50-sqm,,2
+50 to 69sqm,50-to-69-sqm,,3
+70 to 89sqm,70-to-89-sqm,,4
+90 to 109sqm,90-to-109-sqm,,5
+110 sqm or more,110-sqm-or-more,,6
+All,all-households,,7

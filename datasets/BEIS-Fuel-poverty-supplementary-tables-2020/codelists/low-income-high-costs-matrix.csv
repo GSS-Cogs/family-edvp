@@ -1,7 +1,7 @@
 Label,Notation,Parent Notation,Sort Priority
-low-income-high-costs,low-income-high-costs,,
-low-income-low-costs,low-income-low-costs,,
-high-income-high-costs,high-income-high-costs,,
-high-income-low-costs,high-income-low-costs,,
-all-households,all-households,,
-all,all,,
+Low income high costs,low-income-high-costs,,1
+Low income low costs,low-income-low-costs,,2
+High income high costs,high-income-high-costs,,3
+High income low costs,high-income-low-costs,,4
+All,all-households,,5
+All,all,,6

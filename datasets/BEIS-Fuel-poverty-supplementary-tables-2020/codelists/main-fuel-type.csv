@@ -1,6 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-gas,gas,,
-electricity,electricity,,
-other,other,,
-all-households,all-households,,
+All,all,,1
+Electricity,electricity,,3
+Other,other,,4
+All,all-households,,5

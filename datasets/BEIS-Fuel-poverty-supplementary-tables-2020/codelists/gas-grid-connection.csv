@@ -1,5 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-yes,yes,,
-no,no,,
-all-households,all-households,,
+All,all,,1
+Yes,yes,,2
+No,no,,3
+All,all-households,,4

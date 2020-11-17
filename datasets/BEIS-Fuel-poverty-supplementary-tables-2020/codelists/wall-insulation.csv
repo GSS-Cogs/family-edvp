@@ -1,8 +1,8 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-cavity-uninsulated,cavity-uninsulated,,
-cavity-with-insulation,cavity-with-insulation,,
-solid-uninsulated,solid-uninsulated,,
-solid-with-insulation,solid-with-insulation,,
-other2,other2,,
-all-households,all-households,,
+All,all,,1
+Cavity Uninsulated,cavity-uninsulated,,2
+Cavity with Insulation,cavity-with-insulation,,3
+Solid Uninsulated,solid-uninsulated,,4
+Solid with Insulation,solid-with-insulation,,5
+Other,other2,,6
+All,all-households,,7
