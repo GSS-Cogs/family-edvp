@@ -4,7 +4,8 @@ import requests
 from gssutils import * 
 
 scraper = Scraper(seed="info.json")
-cubes = Cubes("info.json")
+# cubes = Cubes("info.json", base_url="http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/")
+cubes = Cubes()
 title = "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)"
 scraper.distributions[0].title = title
 scraper
@@ -51,8 +52,16 @@ trace.Value("Removed commas and whitespaces from Values")
 
 trace.store(title, df_final)
 trace.render("spec_v1.html")
-cubes.add_cube(scraper, df_final, title)
-cubes.output_all()
+
+csvw_transform = CSVWMapping()
+csvw_transform.set_csv(out / csvName)
+csvw_transform.set_mapping(coldef)
+csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+csvw_transform.write(out / f'{csvName}-metadata.json')
+
+with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
 df_final
 # -
 
