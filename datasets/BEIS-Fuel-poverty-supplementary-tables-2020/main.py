@@ -465,6 +465,9 @@ csvw_value_map = {
 
 # -
 
+df.head()
+df['Category'].unique()
+
 # # Metadata & Joins
 
 # +
@@ -607,8 +610,8 @@ count = 0
 # https://staging.gss-data.org.uk/cube/explore?uri=http%3A%2F%2Fgss-data.org.uk%2Fdata%2Fgss_data%2Fedvp%2Fbeis-fuel-poverty-supplementary-tables-2020-catalog-entry
 for title, info in table_joins.items():
 
-    if pathify(title) != "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income":
-        continue
+    #if pathify(title) != "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income":
+    #    continue
     
     df = trace.combine_and_trace(title, info["tables"])
     
