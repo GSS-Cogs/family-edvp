@@ -16,7 +16,85 @@
     },
     "transform": {
         "airtable": "rec6Mvb4G6xmIJw1G",
-        "main_issue": 1
+        "main_issue": 1,
+        "transformStage": [
+            {
+                "source_name": "Energy Efficiency",
+                "identifier": "Energy Efficiency||Table 3||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882281/fuel-poverty-detailed-tables-2020-2018-data.xlsx",
+                "source": [
+                    {
+                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882281/fuel-poverty-detailed-tables-2020-2018-data.xlsx": ""
+                    }
+                ],
+                "title": "Table 3",
+                "preview": null,
+                "observation_selection": null,
+                "columns": [],
+                "postTransformNotes": [
+                    {
+                        "Year": [
+                            "Added to dataframe '3through17'"
+                        ]
+                    },
+                    {
+                        "Measure_Type": [
+                            "Set measure type from mapping: \"{\"Aggregate fuel poverty gap (\\u00a3m)\": \"Aggregate fuel poverty Gap\", \"Average fuel poverty gap (\\u00a3)\": \"Average fuel poverty Gap\"}\".",
+                            "Added to dataframe '3through17'"
+                        ]
+                    },
+                    {
+                        "Unit": [
+                            "Set unit from mapping: \"{\"Aggregate fuel poverty gap (\\u00a3m)\": \"million-gbp\", \"Average fuel poverty gap (\\u00a3)\": \"gbp\"}\".",
+                            "Added to dataframe '3through17'"
+                        ]
+                    },
+                    {
+                        "Category": [
+                            "Extract colum headers as a temporary \"Category\" column.",
+                            "Added to dataframe '3through17'"
+                        ]
+                    },
+                    {
+                        "Diffdim": [
+                            "Take the left hand column as: \"FPEER\".",
+                            "Added to dataframe '3through17'"
+                        ]
+                    }
+                ]
+            },
+            {
+                "source_name": "Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Aggregate Gap",
+                "identifier": "Fuel poverty detailed tables - Energy Efficiency and Dwelling Characteristics - Aggregate Gap||3through17||https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882281/fuel-poverty-detailed-tables-2020-2018-data.xlsx : Table 3",
+                "source": [
+                    {
+                        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/882281/fuel-poverty-detailed-tables-2020-2018-data.xlsx": "Table 3"
+                    }
+                ],
+                "title": "3through17",
+                "preview": null,
+                "observation_selection": null,
+                "columns": [],
+                "postTransformNotes": [
+                    {
+                        "Year": []
+                    },
+                    {
+                        "Measure_Type": [
+                            "Drop all rows not related to: \"Aggregate fuel poverty Gap\"."
+                        ]
+                    },
+                    {
+                        "Unit": []
+                    },
+                    {
+                        "Category": []
+                    },
+                    {
+                        "FPEER": []
+                    }
+                ]
+            }
+        ]
     },
     "sizingNotes": "Messy table structures, 36 tabs, mutiple dimensions and footnotes.",
     "notes": ""

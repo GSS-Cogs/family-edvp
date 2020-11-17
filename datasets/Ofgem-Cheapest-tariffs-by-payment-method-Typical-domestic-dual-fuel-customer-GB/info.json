@@ -18,6 +18,21 @@
     "transform": {
         "airtable": "recBV0YIZppI36heJ",
         "main_issue": 2,
+        "columns": {
+            "Value": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+                "measure": "http://gss-data.org.uk/def/measure/tariff",
+                "datatype": "double"
+            },
+            "Period": {
+                "dimension": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/day/{period}"
+            },
+            "Payment Method": {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/concept-scheme/payment-method",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/concept/payment-method/{payment_method}"
+            }
+        },
         "transformStage": [
             {
                 "source_name": "The Office of Gas and Electricity Markets",
@@ -32,7 +47,7 @@
                 "observation_selection": null,
                 "columns": [
                     {
-                        "Dimension 1": [
+                        "Payment Method": [
                             "Six largest suppliers (direct debit)",
                             "Six largest suppliers (standard credit)",
                             "Six largest suppliers (prepayment)",
@@ -60,7 +75,7 @@
                         ]
                     },
                     {
-                        "Dimension_1": [
+                        "Payment_Method": [
                             "Values one of ['Six largest suppliers (direct debit)', 'Six largest suppliers (standard credit)', 'Six largest suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)']"
                         ]
                     },
