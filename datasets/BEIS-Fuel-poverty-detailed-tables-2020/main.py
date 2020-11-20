@@ -1,22 +1,60 @@
 # -*- coding: utf-8 -*-
+# # Documentation
+#
+# There's a lof of tables here but they fall into one of two patterns.
+#
+# What I'm calling the "small" table:
+#
+# ![Small Table](./docs/small_table.png)
+#
+# And what I'm calling the "Big Table"
+#
+# ![Big Table](./docs/big_table.png)
+#
+# They always have a differentiating dimension down the left, each "table style" always has the same headers, the key difference is that **sub field of "Not Fuel Poor" / "Fuel Poor"** in the big style table.
+#
+# # What needs doing?
+#
+# * Fill out the argument definitions based on Leighs spec.md (you can use the supplementary tables pipeline to get the idea). I've titled the right bit of the notebook appropriately.
+# * do the above incrementally, add a tab - see if it works. Havn't proerly finished the "process_big_table" code btw, it aint working at the moment, don't know why but I'd start with getting things working with the one "Argument definition" already in place and build from there.
+# note -  as you add more argument dicts (and populate more than just the eneergy efficiency arguments), you'll need to turn them on via this bit (later on):
+# ```python
+# for category, dataset_task in {
+#     "Energy Efficiency": energy_efficiency_task
+#     }.items():
+# ```
+# * there is a section for CSVW Mapping, flagged off, I'd also leave Leigh to decide if he wants to use it.
+# * there's a final bit at the end called "Metadata & Joins", at that point in the run we'll have all the dataframes (one for each measure of each table of each tab) in memory. The "table_joins" dict defines what get's joined to what and with which comments etc. You should be able to get the details from the spec.md for this pipeline and the gist of what we're after from the supplementary tables example: https://github.com/GSS-Cogs/family-edvp/blob/main/datasets/BEIS-Fuel-poverty-supplementary-tables-2020/main.py
+#
+
 # +
 from gssutils import * 
 import json
 
 from template import generate_codelist_from_template
 
-cubes = Cubes("info.json")
+# was trying this, will leave it to you on whether to go old or new style
+# cubes = Cubes("info.json")
+trace = TransformTrace()
 
 coldef = json.load(open('info.json'))
+
+
 # -
 
 # # Helpers
 #
-# These are all the same two variations of table repeated, so we're just gonna have a function for each
+# This is where most of the magic happens:
+#
+# * **process_big_table** - processes big style table(s) from a tab
+# * **process_little_table** - processes little style table(s) from a tab
+# * **clean_lower_tables** - remove everything below the "sub table" you happend to be looking at
+# * **generate_codelist** - is there if Leigh needs it but is flagged off (leave it off).
+# * **LookupFromDict** - needs replacing, as pandas should be able to just do that
+#
+# There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 # +
-LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
-BIG_TABLE_ANCHOR = "Proportion of households within group (%)" # note we dont want this cell but we're using it to differentiate the styles of table - 
 
 def process_little_table(anchor, task, trace):
     """
@@ -220,11 +258,17 @@ distro = scraper.distribution(latest=True)
 tabs = distro.as_databaker()
 tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Numnbering of tables by concept changes?
 
-# # Energy Efficiency and Dwelling Characteristics
+# # Argument Definitions
+#
+# So the next 4 sections are just defining the arguments to pass to the main loop. There's a fully filled out version of this is the supplementary tables you can look at, here:https://github.com/GSS-Cogs/family-edvp/blob/main/datasets/BEIS-Fuel-poverty-supplementary-tables-2020/main.py 
+
+# ## Energy Efficiency and Dwelling Characteristics
 #
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 # +
+
+# NOTE - started this, didnt finish it
 
 # We're just gonna loop and use slightly different variables each time.
 # If you need yo tweak anything you should be able to do it here.
@@ -252,6 +296,7 @@ energy_efficiency_task = {
 # # Household characteristics
 #
 # Tables 12 through 16 (the parameters, the processing will happen later on)
+#
 
 # # Household income
 #
@@ -263,8 +308,8 @@ energy_efficiency_task = {
 
 # +
 
-trace = TransformTrace()
-table_dict = {}
+LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
+BIG_TABLE_ANCHOR = "Proportion of households within group (%)" # note we dont want this cell but we're using it to differentiate the styles of table - 
 
 # do everything
 # for dataset_task in [energy_efficiency_tasks, household_characteristics_tasks, household_income_tasks,fuel_payment_type_tasks]:
