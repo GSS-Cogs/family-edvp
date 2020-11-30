@@ -1,0 +1,8 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Cavity Uninsulated,cavity-uninsulated,,2
+Cavity with Insulation,cavity-with-insulation,,3
+Solid Uninsulated,solid-uninsulated,,4
+Solid with Insulation,solid-with-insulation,,5
+Other,other2,,6
+All,all-households,,7

@@ -1,0 +1,12 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+North East,north-east,,2
+North West,north-west,,3
+Yorkshire and the Humber,yorkshire-and-the-humber,,4
+East Midlands,east-midlands,,5
+West Midlands,west-midlands,,6
+East,east,,7
+London,london,,8
+South East,south-east,,9
+Aouth West,south-west,,10
+All,all-households,,11
