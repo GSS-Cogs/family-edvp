@@ -1,5 +1,4 @@
-
-    {
+{
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
   "url": "tenure.csv",
@@ -66,4 +65,4 @@
     "@type": "skos:ConceptScheme",
     "rdfs:label": "Tenure"
   }
-    }
+}

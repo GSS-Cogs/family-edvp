@@ -1,5 +1,4 @@
-
-    {
+{
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
   "url": "age-of-youngest-person.csv",
@@ -66,4 +65,4 @@
     "@type": "skos:ConceptScheme",
     "rdfs:label": "Age of Youngest Person"
   }
-    }
+}
