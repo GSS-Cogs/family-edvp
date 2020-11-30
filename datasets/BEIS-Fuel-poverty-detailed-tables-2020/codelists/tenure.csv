@@ -1,0 +1,11 @@
+Label,Notation,Parent Notation,Sort Priority
+all,all,,
+owner-occupied,owner-occupied,,
+private-rented,private-rented,,
+social-housing,social-housing,,
+owner-occupied-own-with-mortgage,owner-occupied-own-with-mortgage,,
+owner-occupied-own-outright,owner-occupied-own-outright,,
+local-authority,local-authority,,
+housing-association,housing-association,,
+private,private,,
+social,social,,

@@ -2,7 +2,7 @@
     {
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
-  "url": "fpeer.csv",
+  "url": "eligibility-type.csv",
   "tableSchema": {
     "columns": [
       {
@@ -31,7 +31,7 @@
         },
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{parent_notation}"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/eligibility-type/{parent_notation}"
       },
       {
         "titles": "Sort Priority",
@@ -55,15 +55,15 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/eligibility-type"
       }
     ],
     "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{notation}"
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/eligibility-type/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/eligibility-type",
     "@type": "skos:ConceptScheme",
-    "rdfs:label": "FPEER"
+    "rdfs:label": "Eligibility Type"
   }
     

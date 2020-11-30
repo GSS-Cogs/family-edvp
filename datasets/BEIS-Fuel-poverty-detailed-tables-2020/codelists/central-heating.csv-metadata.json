@@ -2,7 +2,7 @@
     {
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
-  "url": "fpeer.csv",
+  "url": "central-heating.csv",
   "tableSchema": {
     "columns": [
       {
@@ -31,7 +31,7 @@
         },
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{parent_notation}"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/central-heating/{parent_notation}"
       },
       {
         "titles": "Sort Priority",
@@ -55,15 +55,15 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/central-heating"
       }
     ],
     "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{notation}"
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/central-heating/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/central-heating",
     "@type": "skos:ConceptScheme",
-    "rdfs:label": "FPEER"
+    "rdfs:label": "Central Heating"
   }
     
