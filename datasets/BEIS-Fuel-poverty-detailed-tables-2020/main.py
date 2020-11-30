@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[37]:
+# In[55]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[38]:
+# In[56]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[39]:
+# In[57]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[40]:
+# In[58]:
 
 
 def left(s, amount):
@@ -89,6 +89,12 @@ def cellCont(cell):
 
 def table_one_transform(anchor, task, trace):
 
+    """
+    Table 1 has a different vertical dimension on each of the 2 tables on the Tab which made it a pain in the ass.
+    Since I wasnt sure at this point if the little table process was going to be used for anything else I made a new function bespoke for table 1
+    rather than cater that one. Its horribly hard coded but its only one tab so hey ho
+    """
+
     print(trace.tab_name)
 
     print("Anchor is:", anchor)
@@ -99,12 +105,15 @@ def table_one_transform(anchor, task, trace):
     # Get the obs, we don't want columns f + G
     # TODO - safety to make sure F & G actually are the columns we don't want for a given table
     obs = anchor.shift(DOWN).expand(RIGHT).expand(DOWN).is_not_blank()
-    obs = obs - tab.excel_ref('F:G')
+    obs = obs - tab.excel_ref('F:G') - tab.excel_ref('B:C')
     obs = clean_lower_tables(obs)
 
     obs2 = tab.filter("Vulnerable households only").shift(RIGHT).fill(DOWN).fill(RIGHT).is_not_blank()
-    obs2 = obs2 - tab.excel_ref('F:G')
+    obs2 = obs2 - tab.excel_ref('F:G') - tab.excel_ref('B:C')
     obs2 = clean_lower_tables(obs2)
+
+    fuel_attributeA = tab.filter("In fuel poverty").shift(1, 0)
+    fuel_attributeB = tab.filter("Not in fuel poverty").shift(1, 0)
 
     trace.add_column("Category")
     trace.Category('Extract column headers as a temporary "Category" column.')
@@ -112,27 +121,28 @@ def table_one_transform(anchor, task, trace):
 
     horizontal_dimension2 = clean_lower_tables(tab.filter("Vulnerable households only").fill(RIGHT))
 
-    allHouseholds = clean_lower_tables(tab.filter("All households").fill(DOWN))
-    vulnerableHouseholds = clean_lower_tables(tab.filter("Vulnerable households only").fill(DOWN))
-
     dimensions = [
         HDimConst("Year", year),
         HDim(horizontal_dimension, "Category", DIRECTLY, ABOVE),
-        HDim(allHouseholds, 'All households', DIRECTLY, LEFT)
+        HDimConst('Vulnerability', 'T'),
+        HDim(fuel_attributeA, 'Households in Fuel Poverty', DIRECTLY, LEFT),
+        HDim(fuel_attributeB, 'Households not in Fuel Poverty', CLOSEST, BELOW)
     ]
 
     dimensions2 = [
         HDimConst("Year", year),
         HDim(horizontal_dimension2, "Category", DIRECTLY, ABOVE),
-        HDim(vulnerableHouseholds, 'Vulnerable households only', DIRECTLY, LEFT)
+        HDimConst('Vulnerability', 'Y'),
+        HDim(fuel_attributeA, 'Households in Fuel Poverty', DIRECTLY, LEFT),
+        HDim(fuel_attributeB, 'Households not in Fuel Poverty', CLOSEST, BELOW)
     ]
 
     cs = ConversionSegment(obs, dimensions)
-    savepreviewhtml(cs, fname="Preview.html")
+    savepreviewhtml(cs, fname="Preview2.html")
     df1 = cs.topandas()
 
     cs = ConversionSegment(obs2, dimensions2)
-    savepreviewhtml(cs, fname="Preview.html")
+    savepreviewhtml(cs, fname="Preview2.html")
     df2 = cs.topandas()
 
     df = pd.concat([df1, df2])
@@ -359,7 +369,7 @@ def generate_codelist(title, df, col):
 
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
-
+"""
 
 
 def clean_lower_tables(bag):
@@ -395,7 +405,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[41]:
+# In[59]:
 
 
 scraper = Scraper(seed="info.json")
@@ -501,11 +511,11 @@ household_characteristics_task = {
     "store_as": "householdCharacteristics",
     "tables":{
         #Not sure how to add in Table 1 as Households in Fuel Poverty is an attribute to observations in the rest of the table
-        #"Table 1": {
-        #    "sub_table_count": 1,
-        #    "differentiating_dimension": "All households",
-        #    "secondary_dimension": None
-        #},
+        "Table 1": {
+            "sub_table_count": 1,
+            "differentiating_dimension": "All households",
+            "secondary_dimension": None
+        },
         "Table 18" :{
             "sub_table_count": 3,
             "differentiating_dimension": "Tenure",
@@ -658,7 +668,7 @@ eligibility_task = {
 }
 
 
-# In[42]:
+# In[60]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -673,12 +683,6 @@ for category, dataset_task in {
     "Fuel Payment Type" : fuel_payment_task,
     "Eligibility" : eligibility_task
     }.items():
-
-    #"Fuel Payment":fuel_payment_type_task
-    #"Household Income": household_income_task,
-    #"Household Characteristics": household_characteristics_task,
-    #"Energy Efficiency": energy_efficiency_task
-    #}.items():
 
     try:
         subset_of_tabs = [x for x in tabs if x.name.strip() in dataset_task["tables"].keys()]
@@ -727,7 +731,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[43]:
+# In[61]:
 
 
 # # CSVW Mapping
@@ -737,7 +741,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[44]:
+# In[62]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -760,7 +764,7 @@ csvw_value_map = {
 }
 
 
-# In[45]:
+# In[63]:
 
 
 df.head()
@@ -769,7 +773,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[46]:
+# In[64]:
 
 
 table_joins = {
@@ -790,7 +794,7 @@ table_joins = {
         "description": """Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook""",
-        "datasetid": "edc-fuelcosts-energyavg",
+       "datasetid": "edc-fuelcosts-energyavg",
         "structure" : ['Year', 'FPEER', 'SAP12 Band', 'Rurality', 'Region', 'Dwelling Type', 'Dwelling Age', 'Floor Area', 'Gas Grid Connection', 'Central Heating', 'Main Fuel Type', 'Boiler Type', 'Wall Insulation', 'Wall Type', 'Loft Insulation', 'Households in Fuel Poverty', 'Households not in Fuel Poverty', 'Measure Type', 'Unit', 'Value', 'Marker']
     },
     "Fuel poverty detailed tables - Household Characteristics - Aggregate Gap": {
@@ -870,7 +874,7 @@ table_joins = {
         "description": """Fuel poverty statistics report detailing Eligibility by Aggregate and Average Fuel Poverty Gap
 		The Government is interested in the amount of energy households need to consume to have a warm, well-lit home, with hot water for everyday use, and the running of appliances. Therefore fuel poverty is measured based on required energy bills rather than actual spending. This ensures that those households who have low energy bills simply because they actively limit their use of energy at home, for example, by not heating their home are not overlooked. A methodology handbook has been published alongside this publication. This sets out the method for calculating the headline statistics using the LIHC indicator and the detailed methodology for calculating the income, energy efficiency and fuel prices for each household. It is available at:
 		https://www.gov.uk/government/publications/fuel-poverty-statistics-methodology-handbook""",
-        "datasetid": "edc-fuelcosts-eligibilityavg",
+       "datasetid": "edc-fuelcosts-eligibilityavg",
         "structure" : ["Year", "Eligibility Type", "Eligible", "Households in Fuel Poverty", "Households not in Fuel Poverty", "Measure Type", "Unit", "Value"]
     }
 }
@@ -1084,7 +1088,7 @@ for title, info in table_joins.items():
     #    metadata.write(scraper.generate_trig())
 
 
-# In[47]:
+# In[65]:
 
 
 from IPython.core.display import HTML
@@ -1095,7 +1099,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[48]:
+# In[66]:
 
 
 cubes.output_all()
