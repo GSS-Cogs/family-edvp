@@ -369,7 +369,7 @@ def generate_codelist(title, df, col):
 
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
-"""
+
 
 
 def clean_lower_tables(bag):
