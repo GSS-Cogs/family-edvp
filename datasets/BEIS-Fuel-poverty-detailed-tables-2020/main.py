@@ -41,7 +41,7 @@ from gssutils import *
 import json
 import re
 
-#from template import generate_codelist_from_template
+from template import generate_codelist_from_template
 
 cubes = Cubes("info.json")
 trace = TransformTrace()
@@ -322,11 +322,11 @@ def process_big_table(anchor, task, trace):
 
     return df, trace
 
-"""
+
 def generate_codelist(title, df, col):
-    ""
+    """
     Given a dataframe and a specific column, generate a codelist csv and csvw
-    ""
+    """
 
     # TODO - use makedir and path!
     destination = './codelists/{}.csv'.format(pathify(col))
@@ -360,7 +360,7 @@ def generate_codelist(title, df, col):
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
 
-"""
+
 
 def clean_lower_tables(bag):
     """
