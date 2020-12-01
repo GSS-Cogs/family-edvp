@@ -1,15 +1,30 @@
-from gssutils import * 
-import json 
+#!/usr/bin/env python
+# coding: utf-8
 
-scrape = Scraper(seed="info.json") 
+# In[25]:
+
+
+from gssutils import *
+import json
+from urllib.request import Request, urlopen
+
+cubes = Cubes("info.json")
+
+scrape = Scraper(seed="info.json")
 
 publisher = "The Office of Gas and Electricity Markets"
 title = "Retail price comparison by company and tariff type: Domestic (GB)"
 
 scrape.publisher = publisher
-scrape.distributions[0].title = title
 
-scrape
+dist = scrape.distributions[0]
+dist.title = title
+
+dist
+
+
+# In[26]:
+
 
 def Value_To_Number(value):
     # tidying up values -> removing comma and whitespace
@@ -18,7 +33,7 @@ def Value_To_Number(value):
         return new_value
     except:
         return ''
-    
+
 def Time_Formatter(date):
     # returns time in gregorian-day/dd/mm/yyyy format
     return 'gregorian-day/' + date
@@ -31,7 +46,8 @@ columns = ['Period', 'Dimension 1', 'Value']
 
 trace.start(publisher, title, columns, link)
 
-source = scrape.distributions[0].as_pandas()
+#source = scrape.distributions[0].as_pandas()
+source = pd.read_csv("data.csv")
 
 dimensions = list(source.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions
@@ -43,7 +59,7 @@ for col in dimensions:
     df_loop['Dimension 1'] = col
     df_loop['Value'] = source[col]
     df_list.append(df_loop)
-    
+
 df = pd.concat(df_list)
 
 trace.Period("Values taken from 'Date' column")
@@ -58,14 +74,14 @@ trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
 # if rows have no value -> create a Marker column and add it to the trace
 if '' in df['Value'].unique():
     marker = 'x' # x used as a marker
-    df.loc[df['Value'] == '', 'Marker'] = marker 
+    df.loc[df['Value'] == '', 'Marker'] = marker
     df = df[['Period', 'Dimension 1', 'Marker', 'Value']]
     trace.add_column("Marker")
     trace.Marker("Rows with no values have a marker of '{}'", marker)
-    
-trace.store(title, df)
 
-out = Path('out')
-out.mkdir(exist_ok=True)
+trace.store(title, df)
+cubes.add_cube(scrape, df, title)
+
 trace.render("spec_v1.html")
-df.drop_duplicates().to_csv(out / f'{title}.csv', index=False)
+cubes.output_all()
+
