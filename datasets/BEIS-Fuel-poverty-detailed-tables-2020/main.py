@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[55]:
+# In[25]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[56]:
+# In[26]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[57]:
+# In[27]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[58]:
+# In[28]:
 
 
 def left(s, amount):
@@ -138,11 +138,9 @@ def table_one_transform(anchor, task, trace):
     ]
 
     cs = ConversionSegment(obs, dimensions)
-    savepreviewhtml(cs, fname="Preview2.html")
     df1 = cs.topandas()
 
     cs = ConversionSegment(obs2, dimensions2)
-    savepreviewhtml(cs, fname="Preview2.html")
     df2 = cs.topandas()
 
     df = pd.concat([df1, df2])
@@ -367,6 +365,8 @@ def generate_codelist(title, df, col):
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
 
+    codelist_csvw = codelist_csvw.strip()
+
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
 
@@ -405,7 +405,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[59]:
+# In[29]:
 
 
 scraper = Scraper(seed="info.json")
@@ -668,7 +668,7 @@ eligibility_task = {
 }
 
 
-# In[60]:
+# In[30]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -731,7 +731,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[61]:
+# In[31]:
 
 
 # # CSVW Mapping
@@ -741,7 +741,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[62]:
+# In[32]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -764,7 +764,7 @@ csvw_value_map = {
 }
 
 
-# In[63]:
+# In[33]:
 
 
 df.head()
@@ -773,7 +773,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[64]:
+# In[34]:
 
 
 table_joins = {
@@ -884,7 +884,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -1088,7 +1088,7 @@ for title, info in table_joins.items():
     #    metadata.write(scraper.generate_trig())
 
 
-# In[65]:
+# In[35]:
 
 
 from IPython.core.display import HTML
@@ -1099,7 +1099,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[66]:
+# In[36]:
 
 
 cubes.output_all()
