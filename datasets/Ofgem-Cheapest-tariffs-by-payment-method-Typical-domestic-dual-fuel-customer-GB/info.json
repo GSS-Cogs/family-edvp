@@ -6,7 +6,7 @@
     "datasetNotes": [
         "Landing page consists of a series of interactive charts. Relevant chart is the middle right most chart. Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
     ],
-    "dataURL": "https://www.ofgem.gov.uk/node/95439/revisions/368229/csv?fake=.csv",
+    "dataURL": "https://www.ofgem.gov.uk/node/95439/revisions/371615/csv?fake=.csv",
     "published": "2020-09-28",
     "families": [
         "EDVP"
@@ -36,10 +36,10 @@
         "transformStage": [
             {
                 "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)||https://www.ofgem.gov.uk/node/95439/revisions/368229/csv",
+                "identifier": "The Office of Gas and Electricity Markets||Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)||https://www.ofgem.gov.uk/node/95439/revisions/371615/csv",
                 "source": [
                     {
-                        "https://www.ofgem.gov.uk/node/95439/revisions/368229/csv": ""
+                        "https://www.ofgem.gov.uk/node/95439/revisions/371615/csv": ""
                     }
                 ],
                 "title": "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)",
@@ -48,9 +48,9 @@
                 "columns": [
                     {
                         "Payment Method": [
-                            "Six largest suppliers (direct debit)",
-                            "Six largest suppliers (standard credit)",
-                            "Six largest suppliers (prepayment)",
+                            "Large legacy suppliers (direct debit)",
+                            "Large legacy suppliers (standard credit)",
+                            "Large legacy suppliers (prepayment)",
                             "Market (direct debit)",
                             "Market (standard credit)",
                             "Market (prepayment)"
@@ -58,9 +58,9 @@
                     },
                     {
                         "Value": [
-                            "Six largest suppliers (direct debit)",
-                            "Six largest suppliers (standard credit)",
-                            "Six largest suppliers (prepayment)",
+                            "Large legacy suppliers (direct debit)",
+                            "Large legacy suppliers (standard credit)",
+                            "Large legacy suppliers (prepayment)",
                             "Market (direct debit)",
                             "Market (standard credit)",
                             "Market (prepayment)"
@@ -76,12 +76,12 @@
                     },
                     {
                         "Payment_Method": [
-                            "Values one of ['Six largest suppliers (direct debit)', 'Six largest suppliers (standard credit)', 'Six largest suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)']"
+                            "Values one of ['Large legacy suppliers (direct debit)', 'Large legacy suppliers (standard credit)', 'Large legacy suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)']"
                         ]
                     },
                     {
                         "Value": [
-                            "Values taken from ['Six largest suppliers (direct debit)', 'Six largest suppliers (standard credit)', 'Six largest suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)'] columns",
+                            "Values taken from ['Large legacy suppliers (direct debit)', 'Large legacy suppliers (standard credit)', 'Large legacy suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)'] columns",
                             "Removed commas and whitespaces from Values"
                         ]
                     }

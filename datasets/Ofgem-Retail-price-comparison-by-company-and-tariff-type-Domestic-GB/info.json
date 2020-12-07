@@ -2,7 +2,7 @@
     "title": "Retail price comparison by company and tariff type: Domestic (GB)",
     "publisher": "The Office of Gas and Electricity Markets",
     "description": "This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers. It compares their average standard variable tariffs with the default tariff cap and the cheapest tariffs available in the market (including white label tariffs). Figures are based on a typical domestic dual fuel customer paying by direct debit.",
-    "dataURL": "https://www.ofgem.gov.uk/node/95437/revisions/367905/csv?fake=.csv",
+    "dataURL": "https://www.ofgem.gov.uk/node/95437/revisions/371625/csv?fake=.csv",
     "landingPage": "https://www.ofgem.gov.uk/data-portal/all-charts",
     "datasetNotes": [
         "Landing page consists of a series of interactive charts. Relevant chart is the middle right most but one chart. Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
@@ -21,10 +21,10 @@
         "transformStage": [
             {
                 "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||Retail price comparison by company and tariff type: Domestic (GB)||https://www.ofgem.gov.uk/node/95437/revisions/367905/csv",
+                "identifier": "The Office of Gas and Electricity Markets||Retail price comparison by company and tariff type: Domestic (GB)||https://www.ofgem.gov.uk/node/95437/revisions/371625/csv",
                 "source": [
                     {
-                        "https://www.ofgem.gov.uk/node/95437/revisions/367905/csv": ""
+                        "https://www.ofgem.gov.uk/node/95437/revisions/371625/csv": ""
                     }
                 ],
                 "title": "Retail price comparison by company and tariff type: Domestic (GB)",
@@ -33,9 +33,9 @@
                 "columns": [
                     {
                         "Dimension 1": [
-                            "Average standard variable tariff (Six largest suppliers)",
+                            "Average standard variable tariff (Large legacy suppliers)",
                             "Average standard variable tariff (Other suppliers)",
-                            "Cheapest tariff (Six largest suppliers)",
+                            "Cheapest tariff (Large legacy suppliers)",
                             "Cheapest tariff (All suppliers)",
                             "Cheapest tariff (Basket)",
                             "Default tariff cap level"
@@ -43,9 +43,9 @@
                     },
                     {
                         "Value": [
-                            "Average standard variable tariff (Six largest suppliers)",
+                            "Average standard variable tariff (Large legacy suppliers)",
                             "Average standard variable tariff (Other suppliers)",
-                            "Cheapest tariff (Six largest suppliers)",
+                            "Cheapest tariff (Large legacy suppliers)",
                             "Cheapest tariff (All suppliers)",
                             "Cheapest tariff (Basket)",
                             "Default tariff cap level"
@@ -64,12 +64,12 @@
                     },
                     {
                         "Dimension_1": [
-                            "Values one of ['Average standard variable tariff (Six largest suppliers)', 'Average standard variable tariff (Other suppliers)', 'Cheapest tariff (Six largest suppliers)', 'Cheapest tariff (All suppliers)', 'Cheapest tariff (Basket)', 'Default tariff cap level']"
+                            "Values one of ['Average standard variable tariff (Large legacy suppliers)', 'Average standard variable tariff (Other suppliers)', 'Cheapest tariff (Large legacy suppliers)', 'Cheapest tariff (All suppliers)', 'Cheapest tariff (Basket)', 'Default tariff cap level']"
                         ]
                     },
                     {
                         "Value": [
-                            "Values taken from ['Average standard variable tariff (Six largest suppliers)', 'Average standard variable tariff (Other suppliers)', 'Cheapest tariff (Six largest suppliers)', 'Cheapest tariff (All suppliers)', 'Cheapest tariff (Basket)', 'Default tariff cap level'] columns",
+                            "Values taken from ['Average standard variable tariff (Large legacy suppliers)', 'Average standard variable tariff (Other suppliers)', 'Cheapest tariff (Large legacy suppliers)', 'Cheapest tariff (All suppliers)', 'Cheapest tariff (Basket)', 'Default tariff cap level'] columns",
                             "Removed commas and whitespaces from values"
                         ]
                     },

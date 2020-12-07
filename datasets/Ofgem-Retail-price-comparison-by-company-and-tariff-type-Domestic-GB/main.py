@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[25]:
+# In[1]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ dist.title = title
 dist
 
 
-# In[26]:
+# In[2]:
 
 
 def Value_To_Number(value):
@@ -46,8 +46,7 @@ columns = ['Period', 'Dimension 1', 'Value']
 
 trace.start(publisher, title, columns, link)
 
-#source = scrape.distributions[0].as_pandas()
-source = pd.read_csv("data.csv")
+source = scrape.distributions[0].as_pandas()
 
 dimensions = list(source.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions

@@ -1,7 +1,12 @@
-# +
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[4]:
+
+
 import json
 
-import pandas as pd 
+import pandas as pd
 import requests
 from gssutils import *
 
@@ -15,7 +20,9 @@ scraper.distributions[0].title = title
 scraper
 
 
-# +
+# In[5]:
+
+
 def gregorian_day(date):
     time_string = str(date).replace(".0", "").strip()
     time_len = len(time_string)
@@ -31,7 +38,9 @@ def sanitize_values(value):
          return ''
 
 
-# +
+# In[6]:
+
+
 trace = TransformTrace()
 link = scraper.distributions[0].downloadURL
 link = link.split('?')[0] # Remove ?fake=.csv which is added dataURL since scraper only supports links ending with a proper file extension
@@ -43,7 +52,7 @@ df = scraper.distributions[0].as_pandas()
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions
 trace.Period("Values taken from 'Date' column")
-# Not sure what to call this column, Dimension_1 
+# Not sure what to call this column, Dimension_1
 trace.Payment_Method("Values one of {}", dimensions)
 trace.Value("Values taken from {} columns", dimensions)
 
@@ -55,6 +64,7 @@ df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
 
 trace.store(title, df_final)
+cubes.add_cube(scraper, df, title)
 trace.render("spec_v1.html")
 
 csvName = "{}.csv".format(pathify(title))
@@ -74,6 +84,10 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 df_final
-# -
+
+
+# In[6]:
+
+
 
 
