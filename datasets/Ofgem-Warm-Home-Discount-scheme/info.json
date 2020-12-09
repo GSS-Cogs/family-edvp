@@ -17,6 +17,41 @@
     "transform": {
         "airtable": "recfgcw9GDqKQlOs2",
         "main_issue": 4,
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+year}"
+            },
+            "Nation": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{nation}",
+                "description": ""
+            },
+            "Scheme Year": {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/scheme-year",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/scheme-year/{scheme_year}",
+                "description": "Defined scheme year and year range"
+            },
+            "Support Element": {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/support-element",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/support-element/{support_element}",
+                "description": "The scheme focuses spending against three different support elements, categorised by a ‘core group’, ‘broader group’ and ‘industry initiatives’. ‘Legacy spending’ applied in scheme years 1 to 3"
+            },
+            "Supplier": {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/supplier",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/supplier/{supplier}",
+                "description": "Energy suppliers with over 250,000 domestic customers (referred to as ‘large suppliers’) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the ‘core group’."
+            },
+            "Value": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
+                "measure": "http://gss-data.org.uk/def/measure/percentage",
+                "datatype": "double"
+            },
+            "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+              }
+        },
         "transformStage": [
             {
                 "source_name": "The Office of Gas and Electricity Markets",
