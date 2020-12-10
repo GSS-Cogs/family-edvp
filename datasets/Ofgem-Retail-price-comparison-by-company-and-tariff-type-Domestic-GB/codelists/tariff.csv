@@ -1,0 +1,7 @@
+Label,Notation,Parent Notation,Sort Priority
+Average standard variable tariff (large legacy suppliers),average-standard-variable-tariff-large-legacy-suppliers,,1
+Average standard variable tariff (other suppliers),average-standard-variable-tariff-other-suppliers,,2
+Cheapest tariff (large legacy suppliers),cheapest-tariff-large-legacy-suppliers,,3
+Cheapest tariff (all suppliers),cheapest-tariff-all-suppliers,,4
+Cheapest tariff (basket),cheapest-tariff-basket,,5
+Default tariff cap level,default-tariff-cap-level,,6

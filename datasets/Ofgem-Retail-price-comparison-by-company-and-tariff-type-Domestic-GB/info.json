@@ -18,6 +18,17 @@
     "transform": {
         "airtable": "recEapmrGCsJLqWqj",
         "main_issue": 3,
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+year}"
+            },
+            "Value": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
+                "measure": "http://gss-data.org.uk/def/measure/tariff",
+                "datatype": "double"
+            }
+        },
         "transformStage": [
             {
                 "source_name": "The Office of Gas and Electricity Markets",

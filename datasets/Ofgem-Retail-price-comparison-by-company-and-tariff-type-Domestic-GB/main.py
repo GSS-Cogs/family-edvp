@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[1]:
+# %%
 
 
 from gssutils import *
@@ -23,7 +24,7 @@ dist.title = title
 dist
 
 
-# In[2]:
+# %%
 
 
 def Value_To_Number(value):
@@ -84,3 +85,26 @@ cubes.add_cube(scrape, df, title)
 trace.render("spec_v1.html")
 cubes.output_all()
 
+
+# %%
+#df.head(5)
+
+# %%
+#for c in df.columns:
+#    if (c != "Value") & (c != "Period"):
+#        print(c)
+#        print(df[c].unique())
+#        print("********************************************")
+
+# %%
+#scrape.dataset.family = 'edvp'
+#codelistcreation = ['Tariff']
+#df = df
+#codeclass = CSVCodelists()
+#for cl in codelistcreation:
+#    if cl in df.columns:
+#        df[cl] = df[cl].str.replace("-"," ")
+#        df[cl] = df[cl].str.capitalize()
+#        codeclass.create_codelists(pd.DataFrame(df[cl]), 'codelists', scrape.dataset.family, Path(os.getcwd()).name.lower())
+
+# %%
