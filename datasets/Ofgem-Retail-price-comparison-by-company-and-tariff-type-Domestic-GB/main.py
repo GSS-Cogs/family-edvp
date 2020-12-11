@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[37]:
+# In[51]:
 
 
 from gssutils import *
 import json
 from urllib.request import Request, urlopen
+
+from dateutil.parser import parse
 
 cubes = Cubes("info.json")
 
@@ -23,7 +25,7 @@ dist.title = title
 dist
 
 
-# In[38]:
+# In[52]:
 
 
 def Value_To_Number(value):
@@ -33,8 +35,8 @@ def Value_To_Number(value):
 
 
 def Time_Formatter(date):
-    # returns time in gregorian-day/dd/mm/yyyy format
-    return 'gregorian-day/' + date
+    # returns time in gregorian-day/dd-mm-yyyy format
+    return 'gregorian-day/' + str(parse(date).date())
 
 trace = TransformTrace()
 link = scrape.distributions[0].downloadURL
