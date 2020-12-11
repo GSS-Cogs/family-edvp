@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[393]:
+# In[62]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 import pandas as pd 
@@ -25,43 +25,43 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[394]:
+# In[63]:
 
 
 
 
 
-# In[395]:
+# In[64]:
 
 
 trace = TransformTrace()
@@ -81,7 +81,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[396]:
+# In[65]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -126,6 +126,38 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+mapping = {}
+with open("info.json") as f:
+    info_json = json.load(f)
+
+    # "Value" entry for this dataset
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
+                        "measure": "http://gss-data.org.uk/def/measure/percentage",
+                        "datatype": "double"}
+
+    # If it's neither common nor value, it's a locally declared dimension
+    cols_we_have_a_map_for = ["Value"]
+
+    # TODO - somewhere else
+    url_title = "ofgem-warm-home-discount-scheme"
+
+    for col in df.columns.values.tolist():
+        if col not in cols_we_have_a_map_for:
+            mapping[col] = {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                "description": ""
+            }
+
+    # Read the map back into the cubes class
+    info_json["transform"]["columns"] = mapping
+    #cubes.info = info_json
+
+#if SHOW_MAPPING:
+print("Mapping for: ", 'percentageexpenditure')
+print(json.dumps(mapping, indent=2))
+print("\n")
+
 trace.Period("Values taken from 'Spending proportion' column")
 trace.Scheme_Year("Values taken from 'Spending proportion' column")
 trace.Support_Element("Values one of {}", dimensions)
@@ -148,13 +180,13 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'percentageexpenditure')
+cubes.add_cube(scraper, df, 'percentageexpenditure', info_json_dict=info_json)
 trace.store('percentageexpenditure', df)
 
 df
 
 
-# In[397]:
+# In[66]:
 
 
 with open('info.json') as f:
@@ -168,7 +200,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[ ]:
+# In[67]:
 
 
 def sanitize_values(value):
@@ -209,6 +241,38 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+mapping = {}
+with open("info.json") as f:
+    info_json = json.load(f)
+
+    # "Value" entry for this dataset
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
+                        "measure": "http://gss-data.org.uk/def/measure/gdp",
+                        "datatype": "double"}
+
+    # If it's neither common nor value, it's a locally declared dimension
+    cols_we_have_a_map_for = ["Value"]
+
+    # TODO - somewhere else
+    url_title = "ofgem-warm-home-discount-scheme"
+
+    for col in df.columns.values.tolist():
+        if col not in cols_we_have_a_map_for:
+            mapping[col] = {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                "description": ""
+            }
+
+    # Read the map back into the cubes class
+    info_json["transform"]["columns"] = mapping
+    #cubes.info = info_json
+
+#if SHOW_MAPPING:
+print("Mapping for: ", 'gbpexpenditure')
+print(json.dumps(mapping, indent=2))
+print("\n")
+
 trace.Supplier("Values taken from 'Supplier' column")
 trace.Support_Element("Values one of {}", dimensions)
 trace.Value("Values taken from {} columns", dimensions)
@@ -230,13 +294,13 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'gbpexpenditure')
+cubes.add_cube(scraper, df, 'gbpexpenditure', info_json_dict=info_json)
 trace.store('gbpexpenditure', df)
 
 df
 
 
-# In[ ]:
+# In[68]:
 
 
 with open('info.json') as f:
@@ -250,7 +314,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[ ]:
+# In[69]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -270,6 +334,38 @@ df = df.replace({'Nation' : {'England' : 'E92000001',
 
 df = df[['Period', 'Scheme Year', 'Nation', 'Value']]
 
+mapping = {}
+with open("info.json") as f:
+    info_json = json.load(f)
+
+    # "Value" entry for this dataset
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
+                        "measure": "http://gss-data.org.uk/def/measure/percentage",
+                        "datatype": "double"}
+
+    # If it's neither common nor value, it's a locally declared dimension
+    cols_we_have_a_map_for = ["Value"]
+
+    # TODO - somewhere else
+    url_title = "ofgem-warm-home-discount-scheme"
+
+    for col in df.columns.values.tolist():
+        if col not in cols_we_have_a_map_for:
+            mapping[col] = {
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                "description": ""
+            }
+
+    # Read the map back into the cubes class
+    info_json["transform"]["columns"] = mapping
+    #cubes.info = info_json
+
+#if SHOW_MAPPING:
+print("Mapping for: ", 'nationexpenditure')
+print(json.dumps(mapping, indent=2))
+print("\n")
+
 trace.Nation("Values taken from 'Nation' column")
 trace.Nation("Replace Values with Geography Codes")
 
@@ -286,13 +382,13 @@ We have gathered this information from obligated suppliers for information purpo
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'nationexpenditure')
+cubes.add_cube(scraper, df, 'nationexpenditure', info_json_dict=info_json)
 trace.store('nationexpenditure', df)
 
 df
 
 
-# In[ ]:
+# In[70]:
 
 
 trace.render("spec_v1.html")
