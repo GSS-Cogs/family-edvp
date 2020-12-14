@@ -1,13 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
-
-
-
-
-
-# In[9]:
+# In[57]:
 
 
 import pandas as pd 
@@ -25,43 +19,22 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[9]:
+# In[57]:
 
 
 
 
 
-# In[9]:
+# In[57]:
 
 
+#The three csv urls as of writing are
+#1. https://www.ofgem.gov.uk/node/112635/revisions/349355/csv
+#2. https://www.ofgem.gov.uk/node/112638/revisions/349359/csv
+#3. https://www.ofgem.gov.uk/node/112641/revisions/349537/csv
 
 
-
-# In[9]:
-
-
-
-
-
-# In[9]:
-
-
-
-
-
-# In[9]:
-
-
-
-
-
-# In[9]:
-
-
-
-
-
-# In[10]:
+# In[58]:
 
 
 trace = TransformTrace()
@@ -81,7 +54,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[11]:
+# In[59]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -136,7 +109,7 @@ with open("info.json") as f:
                         "datatype": "double"}
 
     # Read the map back into the cubes class
-    info_json["transform"]["columns"] = mapping
+    info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
 
 #if SHOW_MAPPING:
@@ -172,7 +145,7 @@ trace.store('percentageexpenditure', df)
 df
 
 
-# In[12]:
+# In[60]:
 
 
 with open('info.json') as f:
@@ -186,7 +159,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[13]:
+# In[61]:
 
 
 def sanitize_values(value):
@@ -236,11 +209,8 @@ with open("info.json") as f:
                         "measure": "http://gss-data.org.uk/def/measure/gdp",
                         "datatype": "double"}
 
-    # If it's neither common nor value, it's a locally declared dimension
-    cols_we_have_a_map_for = ["Value"]
-
-    #Read the map back into the cubes class
-    info_json["transform"]["columns"] = mapping
+    # Read the map back into the cubes class
+    info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
 
 #if SHOW_MAPPING:
@@ -275,7 +245,7 @@ trace.store('gbpexpenditure', df)
 df
 
 
-# In[14]:
+# In[62]:
 
 
 with open('info.json') as f:
@@ -289,7 +259,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[15]:
+# In[63]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -319,7 +289,7 @@ with open("info.json") as f:
                         "datatype": "double"}
 
     # Read the map back into the cubes class
-    info_json["transform"]["columns"] = mapping
+    info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
 
 #if SHOW_MAPPING:
@@ -349,7 +319,7 @@ trace.store('nationexpenditure', df)
 df
 
 
-# In[16]:
+# In[64]:
 
 
 trace.render("spec_v1.html")
