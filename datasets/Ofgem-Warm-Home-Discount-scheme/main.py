@@ -343,7 +343,7 @@ We have gathered this information from obligated suppliers for information purpo
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'nationexpenditure', info_json_dict=info_json)
+cubes.add_cube(scraper, df, 'ofgem-warm-home-discount-scheme', info_json_dict=info_json)
 trace.store('nationexpenditure', df)
 
 df
