@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[62]:
+# In[8]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 import pandas as pd 
@@ -25,43 +25,43 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[63]:
+# In[9]:
 
 
 
 
 
-# In[64]:
+# In[10]:
 
 
 trace = TransformTrace()
@@ -81,7 +81,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[65]:
+# In[11]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -135,20 +135,6 @@ with open("info.json") as f:
                         "measure": "http://gss-data.org.uk/def/measure/percentage",
                         "datatype": "double"}
 
-    # If it's neither common nor value, it's a locally declared dimension
-    cols_we_have_a_map_for = ["Value"]
-
-    # TODO - somewhere else
-    url_title = "ofgem-warm-home-discount-scheme"
-
-    for col in df.columns.values.tolist():
-        if col not in cols_we_have_a_map_for:
-            mapping[col] = {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
-                "description": ""
-            }
-
     # Read the map back into the cubes class
     info_json["transform"]["columns"] = mapping
     #cubes.info = info_json
@@ -186,7 +172,7 @@ trace.store('percentageexpenditure', df)
 df
 
 
-# In[66]:
+# In[12]:
 
 
 with open('info.json') as f:
@@ -200,7 +186,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[67]:
+# In[13]:
 
 
 def sanitize_values(value):
@@ -253,18 +239,7 @@ with open("info.json") as f:
     # If it's neither common nor value, it's a locally declared dimension
     cols_we_have_a_map_for = ["Value"]
 
-    # TODO - somewhere else
-    url_title = "ofgem-warm-home-discount-scheme"
-
-    for col in df.columns.values.tolist():
-        if col not in cols_we_have_a_map_for:
-            mapping[col] = {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
-                "description": ""
-            }
-
-    # Read the map back into the cubes class
+    #Read the map back into the cubes class
     info_json["transform"]["columns"] = mapping
     #cubes.info = info_json
 
@@ -300,7 +275,7 @@ trace.store('gbpexpenditure', df)
 df
 
 
-# In[68]:
+# In[14]:
 
 
 with open('info.json') as f:
@@ -314,7 +289,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[69]:
+# In[15]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -342,20 +317,6 @@ with open("info.json") as f:
     mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
                         "measure": "http://gss-data.org.uk/def/measure/percentage",
                         "datatype": "double"}
-
-    # If it's neither common nor value, it's a locally declared dimension
-    cols_we_have_a_map_for = ["Value"]
-
-    # TODO - somewhere else
-    url_title = "ofgem-warm-home-discount-scheme"
-
-    for col in df.columns.values.tolist():
-        if col not in cols_we_have_a_map_for:
-            mapping[col] = {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
-                "description": ""
-            }
 
     # Read the map back into the cubes class
     info_json["transform"]["columns"] = mapping
@@ -388,7 +349,7 @@ trace.store('nationexpenditure', df)
 df
 
 
-# In[70]:
+# In[16]:
 
 
 trace.render("spec_v1.html")
