@@ -79,10 +79,9 @@ dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.fa
 scraper.set_base_uri('http://gss-data.org.uk')
 scraper.set_dataset_id(dataset_path)
 
-coldef = json.load(open('info.json'))
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(coldef)
+csvw_transform.set_mapping(json.load(open('info.json')))
 csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
 csvw_transform.write(out / f'{csvName}-metadata.json')
 
