@@ -4,7 +4,7 @@
 
 # %%
 
-
+import datetime
 import json
 
 import pandas as pd
@@ -41,7 +41,6 @@ def sanitize_values(value):
 
 # %%
 
-
 trace = TransformTrace()
 link = scraper.distributions[0].downloadURL
 link = link.split('?')[0] # Remove ?fake=.csv which is added dataURL since scraper only supports links ending with a proper file extension
@@ -60,7 +59,7 @@ trace.Value("Values taken from {} columns", dimensions)
 df_new_shape = pd.melt(df, id_vars=["Date"])
 df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "Payment Method", "value": "Value"})
 
-df_final['Period'] = df_final['Period'].str.replace("/","-")
+df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%d/%m/%Y").astype(str)
 df_final["Period"] = df_final["Period"].apply(gregorian_day)
 
 trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
@@ -121,14 +120,13 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
-df_final
+df_final.head(10)
 
 
 # %%
 
 
-
-
+# %%
 
 # %%
 
