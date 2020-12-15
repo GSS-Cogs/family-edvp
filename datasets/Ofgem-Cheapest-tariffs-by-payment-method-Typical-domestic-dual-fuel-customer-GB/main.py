@@ -64,15 +64,45 @@ trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
 df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
 
-trace.store(title, df_final)
-cubes.add_cube(scraper, df, title)
-trace.render("spec_v1.html")
+#trace.store(title, df_final)
+#cubes.add_cube(scraper, df, title)
+#trace.render("spec_v1.html")
+
+df_final['Payment Method'] = df_final['Payment Method'].apply(pathify)
 
 csvName = "{}.csv".format(pathify(title))
 df_final.to_csv("./out/{}".format(csvName), index=False)
 
 out = Path('out')
 out.mkdir(exist_ok=True)
+
+scraper.dataset.comment = """
+This data compares the cheapest available tariffs offered by the large legacy suppliers with the cheapest tariff 
+available in the market by payment method (direct debit, standard credit and prepayment). Figures are based on a 
+typical domestic dual fuel customer paying by direct debit.
+"""
+
+scraper.dataset.description = """
+This data compares the cheapest available tariffs offered by the large legacy suppliers with the cheapest tariff 
+available in the market by payment method (direct debit, standard credit and prepayment). Figures are based on a 
+typical domestic dual fuel customer paying by direct debit.
+
+Methodology
+We calculate the bill values associated with the different tariff types using a ‘typical medium domestic consumer’. 
+As of April 2020, typical domestic consumption values (TDCV) for a medium consumer are 12,000kWh/year for gas and 
+2,900kWh/year for electricity (profile class 1). The previous typical domestic consumption values (TDCV), that came 
+into effect as of October 2017 were 12,000kWh/year for gas and 3,100kWh/year for electricity (profile class 1). 
+The chart includes collective switching tariffs from Q1 2016.
+
+All tariffs shown in the chart are for a dual fuel customer. Dual fuel refers to a situation where a customer takes 
+gas and electricity from the same supplier.
+Tariffs with limited availability depending on customer features (for example, tariffs which are only available to 
+new customers, also known as ‘acquisition’ tariffs, or tariffs restricted to certain regions) are excluded from the 
+calculation to make sure that all tariffs considered are generally available to all customers across GB.
+Tariffs available with white label suppliers are included in the calculation of the cheapest tariff. White label 
+suppliers are organisations without supply licenses that partner with an active licensed supplier to offer gas and 
+electricity using their own brand.
+"""
 
 scraper.dataset.family = 'edvp'
 dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
