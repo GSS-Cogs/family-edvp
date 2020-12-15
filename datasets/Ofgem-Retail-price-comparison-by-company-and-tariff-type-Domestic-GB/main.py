@@ -1,32 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[51]:
+# In[5]:
 
 
 from gssutils import *
 import json
 from urllib.request import Request, urlopen
-
+import os
+from urllib.parse import urljoin
 from dateutil.parser import parse
-
-cubes = Cubes("info.json")
-
-scrape = Scraper(seed="info.json")
-
-publisher = "The Office of Gas and Electricity Markets"
-title = "Retail price comparison by company and tariff type: Domestic (GB)"
-
-scrape.publisher = publisher
-
-dist = scrape.distributions[0]
-dist.title = title
-
-dist
-
-
-# In[52]:
-
 
 def Value_To_Number(value):
     # tidying up values -> removing comma and whitespace
@@ -38,15 +21,37 @@ def Time_Formatter(date):
     # returns time in gregorian-day/dd-mm-yyyy format
     return 'gregorian-day/' + str(parse(date).date())
 
+
+# In[6]:
+
+
+#cubes = Cubes("info.json")
+
+scraper = Scraper(seed="info.json")
+
+publisher = "The Office of Gas and Electricity Markets"
+title = "Retail price comparison by company and tariff type: Domestic (GB)"
+
+scraper.publisher = publisher
+
+dist = scraper.distributions[0]
+dist.title = title
+
+dist
+
+
+# In[7]:
+
+
 trace = TransformTrace()
-link = scrape.distributions[0].downloadURL
+link = scraper.distributions[0].downloadURL
 link = link.split('?')[0] # added ?fake=.csv to download link as a hacky fix
 
 columns = ['Period', 'Tariff', 'Value']
 
 trace.start(publisher, title, columns, link)
 
-df = scrape.distributions[0].as_pandas()
+df = scraper.distributions[0].as_pandas()
 
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions%%list of the dimensions
@@ -76,9 +81,9 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-scrape.dataset.comment = "This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers."
+scraper.dataset.comment = "This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers."
 
-scrape.dataset.description = """This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers. It compares their average standard variable tariffs with the default tariff cap and the cheapest tariffs available in the market (including white label tariffs). Figures are based on a typical domestic dual fuel customer paying by direct debit.
+scraper.dataset.description = """This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers. It compares their average standard variable tariffs with the default tariff cap and the cheapest tariffs available in the market (including white label tariffs). Figures are based on a typical domestic dual fuel customer paying by direct debit.
 Relevance and further information
 Tariff differentials reflect pricing in different market segments, as well as how much other suppliers are able to compete on price with the large legacy suppliers. See definition of supplier groups:
 https://www.ofgem.gov.uk/chart/gas-supply-market-shares-company-domestic-gb
@@ -91,10 +96,36 @@ To calculate the average of the cheapest tariffs from the 10 cheapest suppliers 
 The Default tariff cap level only came into effect from 1 October 2020."""
 
 trace.store(title, df)
-cubes.add_cube(scrape, df, title)
+#cubes.add_cube(scraper, df, title)
 
 trace.render("spec_v1.html")
-cubes.output_all()
+#cubes.output_all()
 
-df
+df.head(20)
+
+
+# In[8]:
+
+
+
+
+csvName = pathify(title)+'.csv'
+out = Path('out')
+out.mkdir(exist_ok=True)
+df.drop_duplicates().to_csv(out / csvName, index = False)
+df.drop_duplicates().to_csv(out / (csvName + '.gz'), index = False, compression='gzip')
+
+scraper.dataset.family = 'edvp'
+dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(dataset_path)
+
+csvw_transform = CSVWMapping()
+csvw_transform.set_csv(out / csvName)
+csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+csvw_transform.write(out / f'{csvName}-metadata.json')
+
+with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
 
