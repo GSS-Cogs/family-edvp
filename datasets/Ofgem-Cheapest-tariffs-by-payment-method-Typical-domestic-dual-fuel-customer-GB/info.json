@@ -27,10 +27,6 @@
             "Period": {
                 "dimension": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
                 "value": "http://reference.data.gov.uk/id/day/{period}"
-            },
-            "Payment Method": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/concept-scheme/payment-method",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/concept/payment-method/{payment_method}"
             }
         },
         "transformStage": [
