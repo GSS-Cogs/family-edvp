@@ -19,7 +19,7 @@ def Value_To_Number(value):
 
 def Time_Formatter(date):
     # returns time in gregorian-day/dd-mm-yyyy format
-    return 'gregorian-day/' + str(parse(date).date())
+    return 'day/' + str(parse(date).date())
 
 
 # In[6]:
@@ -66,7 +66,7 @@ trace.Value("Values taken from {} columns", dimensions)
 df['Value'] = df['Value'].apply(Value_To_Number)
 trace.Value("Removed commas and whitespaces from values")
 df['Period'] = df['Period'].apply(Time_Formatter)
-trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
+trace.Period("Formatted time to 'day/dd/mm/yyyy'")
 
 indexNames = df[ df['Tariff'].isin(['Default tariff cap level']) & df['Value'].isin(['nan'])].index
 df.drop(indexNames, inplace = True)
