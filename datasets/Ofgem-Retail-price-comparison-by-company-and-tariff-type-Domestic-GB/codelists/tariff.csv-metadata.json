@@ -30,7 +30,7 @@
         },
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb#concept/tariff/{parent_notation}"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{parent_notation}"
       },
       {
         "titles": "Sort Priority",
@@ -54,16 +54,15 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb#scheme/tariff"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
       }
     ],
     "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb#concept/tariff/{notation}"
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb#scheme/tariff",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff",
     "@type": "skos:ConceptScheme",
-    "rdfs:label": "Tariff",
-    "skos:hasTopConcept": "http://gss-data.org.uk/data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb#concept/{codelist}/all"
+    "rdfs:label": "Tariff"
   }
 }
