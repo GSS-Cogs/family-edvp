@@ -1,195 +1,87 @@
 {
-    "title": "Warm Home Discount scheme",
-    "publisher": "The Office of Gas and Electricity Markets",
-    "description": "Interactive charts - Data on the Warm Home Discount scheme since it launched in 2011 as a government energy scheme to help tackle fuel poverty.",
-    "landingPage": "https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-discount/warm-home-discount-reports-and-statistics",
-    "datasetNotes": [
-        "On landing page three interactive charts towards top of page. Clicking on each chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV. "
-    ],
-    "published": "2019-12-18",
-    "families": [
-        "EDVP"
-    ],
-    "extract": {
-        "source": "CSV",
-        "stage": "Documented"
+  "title": "Warm Home Discount scheme",
+  "publisher": "The Office of Gas and Electricity Markets",
+  "description": "Interactive charts - Data on the Warm Home Discount scheme since it launched in 2011 as a government energy scheme to help tackle fuel poverty.",
+  "landingPage": "https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-discount/warm-home-discount-reports-and-statistics",
+  "datasetNotes": [
+    "On landing page three interactive charts towards top of page. Clicking on each chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV. "
+  ],
+  "published": "2019-12-18",
+  "families": [
+    "EDVP"
+  ],
+  "extract": {
+    "source": "CSV",
+    "stage": "Documented"
+  },
+  "transform": {
+    "airtable": "recfgcw9GDqKQlOs2",
+    "main_issue": 4,
+    "columns": {
+      "Period": {
+        "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+        "value": "http://reference.data.gov.uk/id/{+period}"
+      },
+      "Nation": {
+        "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+        "value": "http://statistics.data.gov.uk/id/statistical-geography/{nation}",
+        "description": ""
+      },
+      "Scheme Year": {
+        "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/scheme-year",
+        "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/scheme-year/{scheme_year}",
+        "description": "Defined scheme year and year range"
+      },
+      "Support Element": {
+        "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/support-element",
+        "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/support-element/{support_element}",
+        "description": "The scheme focuses spending against three different support elements, categorised by a \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122, \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcindustry initiatives\u00e2\u20ac\u2122. \u00e2\u20ac\u02dcLegacy spending\u00e2\u20ac\u2122 applied in scheme years 1 to 3"
+      },
+      "Supplier": {
+        "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/supplier",
+        "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/supplier/{supplier}",
+        "description": "Energy suppliers with over 250,000 domestic customers (referred to as \u00e2\u20ac\u02dclarge suppliers\u00e2\u20ac\u2122) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122."
+      },
+      "Value": {
+        "unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
+        "measure": "http://gss-data.org.uk/def/measure/percentage",
+        "datatype": "double"
+      },
+      "Marker": {
+        "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+        "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+      }
     },
-    "transform": {
-        "airtable": "recfgcw9GDqKQlOs2",
-        "main_issue": 4,
-        "columns": {
-            "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+year}"
-            },
-            "Nation": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-                "value": "http://statistics.data.gov.uk/id/statistical-geography/{nation}",
-                "description": ""
-            },
-            "Scheme Year": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/scheme-year",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/scheme-year/{scheme_year}",
-                "description": "Defined scheme year and year range"
-            },
-            "Support Element": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/support-element",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/support-element/{support_element}",
-                "description": "The scheme focuses spending against three different support elements, categorised by a \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122, \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcindustry initiatives\u00e2\u20ac\u2122. \u00e2\u20ac\u02dcLegacy spending\u00e2\u20ac\u2122 applied in scheme years 1 to 3"
-            },
-            "Supplier": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/supplier",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/supplier/{supplier}",
-                "description": "Energy suppliers with over 250,000 domestic customers (referred to as \u00e2\u20ac\u02dclarge suppliers\u00e2\u20ac\u2122) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122."
-            },
-            "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
-                "measure": "http://gss-data.org.uk/def/measure/percentage",
-                "datatype": "double"
-            },
-            "Marker": {
-                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
-            }
-        },
-        "transformStage": [
-            {
-                "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||percentageexpenditure||https://www.ofgem.gov.uk/node/112635/revisions/349355/csv?fake=.csv",
-                "source": [
-                    {
-                        "https://www.ofgem.gov.uk/node/112635/revisions/349355/csv?fake=.csv": ""
-                    }
-                ],
-                "title": "percentageexpenditure",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [
-                    {
-                        "Support Element": [
-                            "Core group",
-                            "Broader group",
-                            "Industry initiatives",
-                            "Legacy spending"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Core group",
-                            "Broader group",
-                            "Industry initiatives",
-                            "Legacy spending"
-                        ]
-                    }
-                ],
-                "postTransformNotes": [
-                    {
-                        "Period": [
-                            "Values taken from 'Spending proportion' column"
-                        ]
-                    },
-                    {
-                        "Scheme_Year": [
-                            "Values taken from 'Spending proportion' column"
-                        ]
-                    },
-                    {
-                        "Support_Element": [
-                            "Values one of ['Core group', 'Broader group', 'Industry initiatives', 'Legacy spending']"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Values taken from ['Core group', 'Broader group', 'Industry initiatives', 'Legacy spending'] columns"
-                        ]
-                    }
-                ]
-            },
-            {
-                "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||gbpexpenditure||https://www.ofgem.gov.uk/node/112638/revisions/349359/csv?fake=.csv",
-                "source": [
-                    {
-                        "https://www.ofgem.gov.uk/node/112638/revisions/349359/csv?fake=.csv": ""
-                    }
-                ],
-                "title": "gbpexpenditure",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [
-                    {
-                        "Support Element": [
-                            "Core Group",
-                            "Broader Group",
-                            "Industry Initiative"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Core Group",
-                            "Broader Group",
-                            "Industry Initiative"
-                        ]
-                    }
-                ],
-                "postTransformNotes": [
-                    {
-                        "Period": [
-                            "Value added as '15 August 2018 to 31 March 2019'"
-                        ]
-                    },
-                    {
-                        "Scheme_Year": [
-                            "Value added as 'Year 8'"
-                        ]
-                    },
-                    {
-                        "Supplier": [
-                            "Values taken from 'Supplier' column"
-                        ]
-                    },
-                    {
-                        "Support_Element": [
-                            "Values one of ['Core Group', 'Broader Group', 'Industry Initiative']"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Values taken from ['Core Group', 'Broader Group', 'Industry Initiative'] columns",
-                            "Removed commas and whitespaces from Values"
-                        ]
-                    }
-                ]
-            },
-            {
-                "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||nationexpenditure||https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv",
-                "source": [
-                    {
-                        "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv": ""
-                    }
-                ],
-                "title": "nationexpenditure",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [],
-                "postTransformNotes": [
-                    {
-                        "Nation": [
-                            "Values taken from 'Nation' column",
-                            "Replace Values with Geography Codes"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Values taken from Total spend column"
-                        ]
-                    }
-                ]
-            }
+    "transformStage": [
+      {
+        "source_name": "The Office of Gas and Electricity Markets",
+        "identifier": "The Office of Gas and Electricity Markets||nationexpenditure||https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv",
+        "source": [
+          {
+            "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv": ""
+          }
+        ],
+        "title": "nationexpenditure",
+        "preview": null,
+        "observation_selection": null,
+        "columns": [],
+        "postTransformNotes": [
+          {
+            "Nation": [
+              "Values taken from 'Nation' column",
+              "Replace Values with Geography Codes"
+            ]
+          },
+          {
+            "Value": [
+              "Values taken from Total spend column"
+            ]
+          }
         ]
-    },
-    "sizingNotes": "",
-    "notes": "Interactive chart with CSV download option.",
-    "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv"
+      }
+    ]
+  },
+  "sizingNotes": "",
+  "notes": "Interactive chart with CSV download option.",
+  "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv"
 }

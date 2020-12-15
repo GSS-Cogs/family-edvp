@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[57]:
+# %%
 
 
 import pandas as pd 
@@ -19,13 +20,13 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[57]:
+# %%
 
 
 
 
 
-# In[57]:
+# %%
 
 
 #The three csv urls as of writing are
@@ -34,7 +35,7 @@ def mid(s, offset, amount):
 #3. https://www.ofgem.gov.uk/node/112641/revisions/349537/csv
 
 
-# In[58]:
+# %%
 
 
 trace = TransformTrace()
@@ -54,7 +55,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[59]:
+# %%
 
 
 link = scraper.distributions[0].downloadURL
@@ -92,12 +93,12 @@ df = df[['Period', 'Scheme Year', 'Support Element', 'Value']]
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
 for col in df.columns.values.tolist():
-	if col in COLUMNS_TO_NOT_PATHIFY:
-		continue
-	try:
-		df[col] = df[col].apply(pathify)
-	except Exception as err:
-		raise Exception('Failed to pathify column "{}".'.format(col)) from err
+    if col in COLUMNS_TO_NOT_PATHIFY:
+        continue
+    try:
+        df[col] = df[col].apply(pathify)
+    except Exception as err:
+        raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 mapping = {}
 with open("info.json") as f:
@@ -122,7 +123,7 @@ trace.Scheme_Year("Values taken from 'Spending proportion' column")
 trace.Support_Element("Values one of {}", dimensions)
 trace.Value("Values taken from {} columns", dimensions)
 
-scraper.dataset.title = 'Warm Home Discount: Distribution of expenditure by year'
+scraper.dataset.title = 'Warm Home Discount Scheme: Distribution of expenditure by year'
 
 scraper.dataset.comment = """
 Due to delays in bringing the regulations into force for the sixth scheme period, a decision was taken to set the scheme period for SY6 from July 2016 to May 2017.
@@ -139,13 +140,37 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'percentageexpenditure', info_json_dict=info_json)
-trace.store('percentageexpenditure', df)
+#cubes.add_cube(scraper, df, 'percentageexpenditure', info_json_dict=info_json)
+#trace.store('percentageexpenditure', df)
 
-df
+df.head(10)
 
 
-# In[60]:
+# %%
+import os
+from urllib.parse import urljoin
+
+csvName = 'percentageexpenditure.csv'
+out = Path('out')
+out.mkdir(exist_ok=True)
+df.drop_duplicates().to_csv(out / csvName, index = False)
+df.drop_duplicates().to_csv(out / (csvName + '.gz'), index = False, compression='gzip')
+
+scraper.dataset.family = 'edvp'
+dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + "/percentageexpenditure"
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(dataset_path)
+
+csvw_transform = CSVWMapping()
+csvw_transform.set_csv(out / csvName)
+csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+csvw_transform.write(out / f'{csvName}-metadata.json')
+
+with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+# %%
 
 
 with open('info.json') as f:
@@ -159,7 +184,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[61]:
+# %%
 
 
 def sanitize_values(value):
@@ -225,7 +250,7 @@ trace.Period("Value added as '15 August 2018 to 31 March 2019'")
 trace.Scheme_Year("Value added as 'Year 8'")
 trace.Value("Removed commas and whitespaces from Values")
 
-scraper.dataset.title = 'Warm Home Discount: Total expenditure by obligated suppliers'
+scraper.dataset.title = 'Warm Home Discount Scheme: Total expenditure by obligated suppliers'
 
 scraper.dataset.comment = """
 Data details how much suppliers spent fulfilling their obligation of the Warm Home Discount (WHD), a government energy scheme which aims to help people who are in fuel poverty or are at risk of it.
@@ -239,13 +264,37 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'gbpexpenditure', info_json_dict=info_json)
-trace.store('gbpexpenditure', df)
+#cubes.add_cube(scraper, df, 'gbpexpenditure', info_json_dict=info_json)
+#trace.store('gbpexpenditure', df)
 
-df
+df.head(10)
 
 
-# In[62]:
+# %%
+import os
+from urllib.parse import urljoin
+
+csvName = 'gbpexpenditure.csv'
+out = Path('out')
+out.mkdir(exist_ok=True)
+df.drop_duplicates().to_csv(out / csvName, index = False)
+df.drop_duplicates().to_csv(out / (csvName + '.gz'), index = False, compression='gzip')
+
+scraper.dataset.family = 'edvp'
+dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + "/gbpexpenditure"
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(dataset_path)
+
+csvw_transform = CSVWMapping()
+csvw_transform.set_csv(out / csvName)
+csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+csvw_transform.write(out / f'{csvName}-metadata.json')
+
+with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+# %%
 
 
 with open('info.json') as f:
@@ -259,7 +308,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[63]:
+# %%
 
 
 link = scraper.distributions[0].downloadURL
@@ -302,8 +351,11 @@ trace.Nation("Replace Values with Geography Codes")
 
 trace.Value("Values taken from Total spend column")
 
-scraper.dataset.title = 'Warm Home Discount: Percentage spend by nation'
+scraper.dataset.title = 'Warm Home Discount Scheme: Percentage spend by nation'
 
+scraper.dataset.comment = """
+This graph shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the ‘core group’ and ‘broader group’ elements of the Warm Home Discount (WHD).
+"""
 scraper.dataset.description = """
 Data shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the ‘core group’ and ‘broader group’ elements of the Warm Home Discount (WHD). It comprises all participating suppliers in year 8 (2018/19) of the scheme.
 The WHD is a government energy scheme which aims to help people who are in fuel poverty or are at risk of it. It focuses spending against three different support elements, categorised as ‘core group’, ‘broader group’ and ‘industry initiative’ spending.
@@ -313,15 +365,41 @@ We have gathered this information from obligated suppliers for information purpo
 We update this chart on an annual basis.
 """
 
-cubes.add_cube(scraper, df, 'nationexpenditure', info_json_dict=info_json)
-trace.store('nationexpenditure', df)
+#cubes.add_cube(scraper, df, 'nationexpenditure', info_json_dict=info_json)
+#trace.store('nationexpenditure', df)
 
-df
-
-
-# In[64]:
+df.head(10)
 
 
-trace.render("spec_v1.html")
-cubes.output_all()
+# %%
+import os
+from urllib.parse import urljoin
 
+csvName = 'nationexpenditure.csv'
+out = Path('out')
+out.mkdir(exist_ok=True)
+df.drop_duplicates().to_csv(out / csvName, index = False)
+df.drop_duplicates().to_csv(out / (csvName + '.gz'), index = False, compression='gzip')
+
+scraper.dataset.family = 'edvp'
+dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + "/nationexpenditure"
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(dataset_path)
+
+csvw_transform = CSVWMapping()
+csvw_transform.set_csv(out / csvName)
+csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+csvw_transform.write(out / f'{csvName}-metadata.json')
+
+with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+# %%
+
+
+#trace.render("spec_v1.html")
+#cubes.output_all()
+
+
+# %%
