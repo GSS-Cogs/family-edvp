@@ -115,6 +115,7 @@ with open("info.json") as f:
     
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
+    info_json["transform"]["columns"]['Value']["datatype"] = "double"
     
 #if SHOW_MAPPING:
 print("Mapping for: ", 'percentageexpenditure')
@@ -164,7 +165,7 @@ scraper.set_dataset_id(dataset_path)
 
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
-info_json
+csvw_transform.set_mapping(info_json)
 csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
 csvw_transform.write(out / f'{csvName}-metadata.json')
 
@@ -241,6 +242,8 @@ with open("info.json") as f:
 
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gdp"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
+    info_json["transform"]["columns"]['Value']["datatype"] = "integer"
+    
     
 #if SHOW_MAPPING:
 print("Mapping for: ", 'gbpexpenditure')
@@ -347,6 +350,7 @@ with open("info.json") as f:
     
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
+    info_json["transform"]["columns"]['Value']["datatype"] = "double"
 
 #if SHOW_MAPPING:
 print("Mapping for: ", 'nationexpenditure')
