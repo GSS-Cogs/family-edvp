@@ -105,8 +105,8 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
-                        "measure": "http://gss-data.org.uk/def/measure/percentage",
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
+                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
                         "datatype": "double"}
 
     # Read the map back into the cubes class
@@ -126,9 +126,7 @@ trace.Value("Values taken from {} columns", dimensions)
 scraper.dataset.title = 'Warm Home Discount Scheme: Distribution of expenditure by year'
 
 scraper.dataset.comment = """
-Due to delays in bringing the regulations into force for the sixth scheme period, a decision was taken to set the scheme period for SY6 from July 2016 to May 2017.
-Delays in bringing amended WHD Regulations into force for the eighth scheme period delayed the start date of the eighth scheme period and as such, a decision was taken to set the scheme period for SY8 from August 2018 to March 2019.
-Distribution of expenditure for each year so far of the Warm Home Discount (WHD), a government energy scheme 	which aims to help people who are in fuel poverty or are at risk of it.
+This data shows the distribution of expenditure for each year so far of the Warm Home Discount (WHD), a government energy scheme which aims to help people who are in fuel poverty or are at risk of it.
 """
 
 scraper.dataset.description = """
@@ -163,7 +161,7 @@ scraper.set_dataset_id(dataset_path)
 
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(json.load(open('info.json')))
+info_json
 csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
 csvw_transform.write(out / f'{csvName}-metadata.json')
 
@@ -230,8 +228,8 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
-                        "measure": "http://gss-data.org.uk/def/measure/gdp",
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
+                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
                         "datatype": "double"}
 
     # Read the map back into the cubes class
@@ -287,7 +285,7 @@ scraper.set_dataset_id(dataset_path)
 
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_mapping(info_json)
 csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
 csvw_transform.write(out / f'{csvName}-metadata.json')
 
@@ -333,8 +331,8 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
-                        "measure": "http://gss-data.org.uk/def/measure/percentage",
+    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
+                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
                         "datatype": "double"}
 
     # Read the map back into the cubes class
@@ -388,7 +386,7 @@ scraper.set_dataset_id(dataset_path)
 
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(json.load(open('info.json')))
+csvw_transform.set_mapping(info_json)
 csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
 csvw_transform.write(out / f'{csvName}-metadata.json')
 
