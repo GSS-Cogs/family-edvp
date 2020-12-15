@@ -105,14 +105,17 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
-                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
-                        "datatype": "double"}
+    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
+    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
+    #                    "datatype": "double"}
 
     # Read the map back into the cubes class
-    info_json["transform"]["columns"]['Value'] = mapping
+    #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
-
+    
+    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
+    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
+    
 #if SHOW_MAPPING:
 print("Mapping for: ", 'percentageexpenditure')
 print(json.dumps(mapping, indent=2))
@@ -228,14 +231,17 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
-                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
-                        "datatype": "double"}
+    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
+    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
+    #                    "datatype": "integer"}
 
     # Read the map back into the cubes class
-    info_json["transform"]["columns"]['Value'] = mapping
+    #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
 
+    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gdp"
+    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
+    
 #if SHOW_MAPPING:
 print("Mapping for: ", 'gbpexpenditure')
 print(json.dumps(mapping, indent=2))
@@ -331,13 +337,16 @@ with open("info.json") as f:
     info_json = json.load(f)
 
     # "Value" entry for this dataset
-    mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
-                        "measure": "http://gss-data.org.uk/def/measure/expenditure",
-                        "datatype": "double"}
+    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
+    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
+    #                    "datatype": "double"}
 
     # Read the map back into the cubes class
-    info_json["transform"]["columns"]['Value'] = mapping
+    #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
+    
+    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
+    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
 
 #if SHOW_MAPPING:
 print("Mapping for: ", 'nationexpenditure')
