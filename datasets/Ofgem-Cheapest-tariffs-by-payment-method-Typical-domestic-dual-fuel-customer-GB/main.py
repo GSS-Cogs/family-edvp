@@ -59,7 +59,10 @@ trace.Value("Values taken from {} columns", dimensions)
 
 df_new_shape = pd.melt(df, id_vars=["Date"])
 df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "Payment Method", "value": "Value"})
+
+df_final['Period'] = df_final['Period'].str.replace("/","-")
 df_final["Period"] = df_final["Period"].apply(gregorian_day)
+
 trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
 df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
