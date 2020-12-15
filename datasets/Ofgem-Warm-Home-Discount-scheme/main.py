@@ -240,7 +240,7 @@ with open("info.json") as f:
     #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
 
-    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gdp"
+    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gbp"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "integer"
     
