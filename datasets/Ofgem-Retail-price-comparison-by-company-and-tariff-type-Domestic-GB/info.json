@@ -24,8 +24,8 @@
                 "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Tariff": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/Ofgem-Retail-price-comparison-by-company-and-tariff-type-Domestic-GB/concept-scheme/tariff",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/Ofgem-Retail-price-comparison-by-company-and-tariff-type-Domestic-GB/concept/tariff/{tariff}",
+                "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{tariff}",
                 "description": "Temp"
               },
             "Value": {
