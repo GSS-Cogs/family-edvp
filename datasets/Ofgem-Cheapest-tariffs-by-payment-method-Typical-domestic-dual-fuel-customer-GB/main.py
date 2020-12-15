@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[4]:
+# %%
 
 
 import json
@@ -20,7 +21,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[5]:
+# %%
 
 
 def gregorian_day(date):
@@ -38,7 +39,7 @@ def sanitize_values(value):
          return ''
 
 
-# In[6]:
+# %%
 
 
 trace = TransformTrace()
@@ -73,6 +74,11 @@ df_final.to_csv("./out/{}".format(csvName), index=False)
 out = Path('out')
 out.mkdir(exist_ok=True)
 
+scraper.dataset.family = 'edvp'
+dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(dataset_path)
+
 coldef = json.load(open('info.json'))
 csvw_transform = CSVWMapping()
 csvw_transform.set_csv(out / csvName)
@@ -86,8 +92,12 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
 df_final
 
 
-# In[6]:
+# %%
 
 
 
 
+
+# %%
+
+# %%
