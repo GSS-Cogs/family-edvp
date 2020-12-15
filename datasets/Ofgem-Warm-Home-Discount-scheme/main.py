@@ -86,7 +86,7 @@ df = df.replace({'Spending proportion' : {'Scheme Year 1 2011/12' : '1 April 201
 
 df['Period Lower'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[0]).date(), axis = 1)
 df['Period Higher'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[1]).date(), axis = 1)
-df['Period'] = df.apply(lambda x: 'gregorian/interval/'+ str(x['Period Lower']) + 'T00:00:00/P' + str((x['Period Higher'] - x['Period Lower']).days) + 'D', axis = 1)
+df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(x['Period Lower']) + 'T00:00:00/P' + str((x['Period Higher'] - x['Period Lower']).days) + 'D', axis = 1)
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Value']]
 
@@ -210,7 +210,7 @@ df_new_shape = pd.melt(df, id_vars=["Supplier"])
 df_new_shape = df_new_shape.rename(columns={"variable": "Support Element", "value": "Value"})
 
 df = df_new_shape.fillna('')
-df['Period'] = df.apply(lambda x: 'gregorian/interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
+df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
 df['Scheme Year'] = 'year-8'
 df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '' else '', axis = 1)
 df['Value'] = df.apply(lambda x: sanitize_values(x['Value']), axis = 1)
@@ -325,7 +325,7 @@ trace.start(publisher, 'nationexpenditure', columns, link)
 df = scraper.distributions[0].as_pandas()
 
 df = df.rename(columns={'Total spend' : 'Value'})
-df['Period'] = df.apply(lambda x: 'gregorian/interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
+df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
 df['Scheme Year'] = 'year-8'
 df['Value'] = df.apply(lambda x: sanitize_values(x['Value']), axis = 1)
 
