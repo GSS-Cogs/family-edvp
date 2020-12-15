@@ -29,7 +29,7 @@
                 "description": "Temp"
               },
             "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
                 "measure": "http://gss-data.org.uk/def/measure/tariff",
                 "datatype": "double"
             }
