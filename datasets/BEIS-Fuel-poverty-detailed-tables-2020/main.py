@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[592]:
+# In[721]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[593]:
+# In[722]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[594]:
+# In[723]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[595]:
+# In[724]:
 
 
 def left(s, amount):
@@ -349,12 +349,18 @@ def generate_codelist(title, df, col):
         "Parent Notation": [],
         "Sort Priority": []
         }
-
-    for val in list(df[col].unique()):
-        codelist["Label"].append(val)
-        codelist["Notation"].append(pathify(str(val)))
-        codelist["Parent Notation"].append("")
-        codelist["Sort Priority"].append("")
+    if col in ['Households in Fuel Poverty', 'Households not in Fuel Poverty']:
+        for val in list(df[col].unique()):
+            codelist["Label"].append(val.replace('.0', ''))
+            codelist["Notation"].append(val.replace('.0', ''))
+            codelist["Parent Notation"].append("")
+            codelist["Sort Priority"].append("")
+    else:
+        for val in list(df[col].unique()):
+            codelist["Label"].append(val)
+            codelist["Notation"].append(pathify(str(val)))
+            codelist["Parent Notation"].append("")
+            codelist["Sort Priority"].append("")
 
     # Output the codelist csv
     df = pd.DataFrame.from_dict(codelist)
@@ -405,7 +411,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[596]:
+# In[725]:
 
 
 scraper = Scraper(seed="info.json")
@@ -668,7 +674,7 @@ eligibility_task = {
 }
 
 
-# In[597]:
+# In[726]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -731,7 +737,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[598]:
+# In[727]:
 
 
 # # CSVW Mapping
@@ -741,7 +747,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[599]:
+# In[728]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -772,7 +778,7 @@ csvw_value_map = {
 }
 
 
-# In[600]:
+# In[729]:
 
 
 df.head()
@@ -781,7 +787,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[601]:
+# In[730]:
 
 
 table_joins = {
@@ -892,7 +898,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = False
@@ -996,8 +1002,10 @@ for title, info in table_joins.items():
     else:
         df = df.drop(df[(df['Value'] == '')].index)
 
-
     df = df[info['structure']]
+
+    df['Households in Fuel Poverty'] = df.apply(lambda x: x['Households in Fuel Poverty'].replace('.0', ''), axis=1)
+    df['Households not in Fuel Poverty'] = df.apply(lambda x: x['Households not in Fuel Poverty'].replace('.0', ''), axis=1)
 
     df = df.rename(columns={'Year' : 'Period'})
 
@@ -1106,7 +1114,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[602]:
+# In[731]:
 
 
 from IPython.core.display import HTML
@@ -1117,7 +1125,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[603]:
+# In[732]:
 
 
 #cubes.output_all()
