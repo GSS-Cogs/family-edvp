@@ -776,7 +776,7 @@ csvw_common_map = {
 # depending on the measure type used.
 csvw_value_map = {
      "Aggregate fuel poverty Gap": {
-                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/million-gbp",
+                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp-million",
                  "measure": "http://gss-data.org.uk/def/measure/aggregate-fuel-poverty-gap",
                  "datatype": "double"
              },
