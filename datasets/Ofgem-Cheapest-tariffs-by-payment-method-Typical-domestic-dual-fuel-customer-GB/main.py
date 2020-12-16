@@ -48,7 +48,12 @@ columns = ['Period', 'Payment Method', 'Value']
 publisher = "The Office of Gas and Electricity Markets"
 trace.start(publisher, title, columns, link)
 
+
+# %%
 df = scraper.distributions[0].as_pandas()
+scraper.distributions[0]
+
+# %%
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions
 trace.Period("Values taken from 'Date' column")
@@ -59,6 +64,7 @@ trace.Value("Values taken from {} columns", dimensions)
 df_new_shape = pd.melt(df, id_vars=["Date"])
 df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "Payment Method", "value": "Value"})
 
+# %%
 df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%d/%m/%Y").astype(str)
 df_final["Period"] = df_final["Period"].apply(gregorian_day)
 
@@ -66,12 +72,13 @@ trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
 df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
 
-#trace.store(title, df_final)
-#cubes.add_cube(scraper, df, title)
-#trace.render("spec_v1.html")
+trace.store(title, df_final)
+cubes.add_cube(scraper, df, title)
+trace.render("spec_v1.html")
 
 df_final['Payment Method'] = df_final['Payment Method'].apply(pathify)
 
+# %%
 csvName = "{}.csv".format(pathify(title))
 df_final.to_csv("./out/{}".format(csvName), index=False)
 
@@ -106,6 +113,9 @@ suppliers are organisations without supply licenses that partner with an active 
 electricity using their own brand.
 """
 
+
+
+# %%
 scraper.dataset.family = 'edvp'
 dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
 scraper.set_base_uri('http://gss-data.org.uk')
@@ -120,14 +130,7 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
+# %%
 df_final.head(10)
-
-
-# %%
-
-
-# %%
-
-# %%
 
 # %%
