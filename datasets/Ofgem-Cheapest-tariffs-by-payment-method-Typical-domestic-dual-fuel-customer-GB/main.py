@@ -66,7 +66,8 @@ df_final = df_new_shape.rename(columns={"Date": "Period", "variable": "Payment M
 
 # %%
 df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%d/%m/%Y").astype(str)
-df_final["Period"] = df_final["Period"].apply(gregorian_day)
+#df_final["Period"] = df_final["Period"].apply(gregorian_day)
+df_final['Period'] = 'day/' + df_final['Period'].astype(str)
 
 trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
 df_final["Value"] = df_final["Value"].apply(sanitize_values)
@@ -131,6 +132,6 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 # %%
-df_final.head(10)
+#df_final.head(10)
 
 # %%
