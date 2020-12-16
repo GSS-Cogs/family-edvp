@@ -770,7 +770,7 @@ csvw_common_map = {
       },
     "Region": {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{+region}",
                 "description": ""
             }
 }
