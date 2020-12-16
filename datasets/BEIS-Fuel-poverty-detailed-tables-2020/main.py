@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[477]:
+# In[578]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[478]:
+# In[579]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[479]:
+# In[580]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[480]:
+# In[581]:
 
 
 def left(s, amount):
@@ -405,7 +405,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[481]:
+# In[582]:
 
 
 scraper = Scraper(seed="info.json")
@@ -668,7 +668,7 @@ eligibility_task = {
 }
 
 
-# In[482]:
+# In[583]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -731,7 +731,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[483]:
+# In[584]:
 
 
 # # CSVW Mapping
@@ -741,7 +741,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[484]:
+# In[585]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -772,7 +772,7 @@ csvw_value_map = {
 }
 
 
-# In[485]:
+# In[586]:
 
 
 df.head()
@@ -781,7 +781,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[486]:
+# In[587]:
 
 
 table_joins = {
@@ -991,6 +991,9 @@ for title, info in table_joins.items():
                             'After Housing Costs (AHC) equivalised income decile group' : 'Income Decile Group',
                             'Method of payment' : 'Payment Method'})
 
+    if 'Marker' in df.columns.values.tolist():
+        df = df.drop(df[(df['Value'] == '') & (df['Marker'] == '')].index)
+
     df = df[info['structure']]
 
     df = df.rename(columns={'Year' : 'Period'})
@@ -1100,7 +1103,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[487]:
+# In[588]:
 
 
 from IPython.core.display import HTML
@@ -1111,7 +1114,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[488]:
+# In[589]:
 
 
 #cubes.output_all()
@@ -1135,11 +1138,4 @@ for index, file in enumerate(files):
     newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
 """
-
-
-
-
-
-
-
 
