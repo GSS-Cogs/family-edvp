@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[721]:
+# In[1135]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,13 +34,13 @@
 #
 
 
-# In[722]:
+# In[1136]:
 
 
 from gssutils import *
 import json
 import re
-
+import csv
 from template import generate_codelist_from_template
 
 cubes = Cubes("info.json")
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[723]:
+# In[1137]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[724]:
+# In[1138]:
 
 
 def left(s, amount):
@@ -342,29 +342,39 @@ def generate_codelist(title, df, col):
     # TODO - does it already exist? Are there any unaccounted for
     # values in this version of that codelist?
 
-    # TODO - do this as two series then zip? worth it?
-    codelist = {
-        "Label": [],
-        "Notation": [],
-        "Parent Notation": [],
-        "Sort Priority": []
-        }
-    if col in ['Households in Fuel Poverty', 'Households not in Fuel Poverty']:
+    if Path(destination).is_file():
+
+        codelistDF = pd.read_csv(destination).fillna('')
         for val in list(df[col].unique()):
-            codelist["Label"].append(val.replace('.0', ''))
-            codelist["Notation"].append(val.replace('.0', ''))
-            codelist["Parent Notation"].append("")
-            codelist["Sort Priority"].append("")
+            codelistDF = codelistDF.append({'Label' : val , 'Notation' : pathify(str(val)), 'Parent Notation' : '', 'Sort Priority' : ''} , ignore_index=True)
+
     else:
-        for val in list(df[col].unique()):
-            codelist["Label"].append(val)
-            codelist["Notation"].append(pathify(str(val)))
-            codelist["Parent Notation"].append("")
-            codelist["Sort Priority"].append("")
+        codelist = {
+            "Label": [],
+            "Notation": [],
+            "Parent Notation": [],
+            "Sort Priority": []
+            }
+
+        if col in ['Households in Fuel Poverty', 'Households not in Fuel Poverty']:
+            for val in list(df[col].unique()):
+                codelist["Label"].append(val.replace('.0', ''))
+                codelist["Notation"].append(val.replace('.0', ''))
+                codelist["Parent Notation"].append("")
+                codelist["Sort Priority"].append("")
+        else:
+            for val in list(df[col].unique()):
+                codelist["Label"].append(val)
+                codelist["Notation"].append(pathify(str(val)))
+                codelist["Parent Notation"].append("")
+                codelist["Sort Priority"].append("")
 
     # Output the codelist csv
-    df = pd.DataFrame.from_dict(codelist)
-    df.to_csv(destination, index=False)
+    #df = pd.DataFrame.from_dict(codelist)
+    #df.to_csv(destination, index=False)
+
+    codelistDF = codelistDF.drop_duplicates()
+    codelistDF.to_csv(destination, index=False)
 
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
@@ -411,7 +421,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[725]:
+# In[1139]:
 
 
 scraper = Scraper(seed="info.json")
@@ -674,7 +684,7 @@ eligibility_task = {
 }
 
 
-# In[726]:
+# In[1140]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -737,7 +747,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[727]:
+# In[1141]:
 
 
 # # CSVW Mapping
@@ -747,7 +757,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[728]:
+# In[1142]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -778,7 +788,7 @@ csvw_value_map = {
 }
 
 
-# In[729]:
+# In[1143]:
 
 
 df.head()
@@ -787,7 +797,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[730]:
+# In[1144]:
 
 
 table_joins = {
@@ -1114,7 +1124,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[731]:
+# In[1145]:
 
 
 from IPython.core.display import HTML
@@ -1125,7 +1135,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[732]:
+# In[1146]:
 
 
 #cubes.output_all()
