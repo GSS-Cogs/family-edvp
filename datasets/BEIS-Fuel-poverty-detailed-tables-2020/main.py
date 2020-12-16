@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[578]:
+# In[592]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[579]:
+# In[593]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[580]:
+# In[594]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[581]:
+# In[595]:
 
 
 def left(s, amount):
@@ -405,7 +405,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[582]:
+# In[596]:
 
 
 scraper = Scraper(seed="info.json")
@@ -668,7 +668,7 @@ eligibility_task = {
 }
 
 
-# In[583]:
+# In[597]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -731,7 +731,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[584]:
+# In[598]:
 
 
 # # CSVW Mapping
@@ -741,7 +741,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[585]:
+# In[599]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -772,7 +772,7 @@ csvw_value_map = {
 }
 
 
-# In[586]:
+# In[600]:
 
 
 df.head()
@@ -781,7 +781,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[587]:
+# In[601]:
 
 
 table_joins = {
@@ -993,6 +993,9 @@ for title, info in table_joins.items():
 
     if 'Marker' in df.columns.values.tolist():
         df = df.drop(df[(df['Value'] == '') & (df['Marker'] == '')].index)
+    else:
+        df = df.drop(df[(df['Value'] == '')].index)
+
 
     df = df[info['structure']]
 
@@ -1103,7 +1106,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[588]:
+# In[602]:
 
 
 from IPython.core.display import HTML
@@ -1114,7 +1117,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[589]:
+# In[603]:
 
 
 #cubes.output_all()
@@ -1138,4 +1141,6 @@ for index, file in enumerate(files):
     newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
 """
+
+
 
