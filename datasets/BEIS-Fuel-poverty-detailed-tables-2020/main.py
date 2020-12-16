@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[25]:
+# In[477]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[26]:
+# In[478]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[27]:
+# In[479]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[28]:
+# In[480]:
 
 
 def left(s, amount):
@@ -352,7 +352,7 @@ def generate_codelist(title, df, col):
 
     for val in list(df[col].unique()):
         codelist["Label"].append(val)
-        codelist["Notation"].append(pathify(val))
+        codelist["Notation"].append(pathify(str(val)))
         codelist["Parent Notation"].append("")
         codelist["Sort Priority"].append("")
 
@@ -405,7 +405,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[29]:
+# In[481]:
 
 
 scraper = Scraper(seed="info.json")
@@ -668,7 +668,7 @@ eligibility_task = {
 }
 
 
-# In[30]:
+# In[482]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -731,7 +731,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[31]:
+# In[483]:
 
 
 # # CSVW Mapping
@@ -741,30 +741,38 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[32]:
+# In[484]:
 
 
 # csvw mapping for dimensions common to all datasets
 csvw_common_map = {
-    "Year": {
+    "Period": {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+year}"
-            }
+                "value": "http://reference.data.gov.uk/id/{+period}"
+            },
+      "Marker": {
+        "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+        "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+      }
 }
 
 # csvw mapping for representing the different measures and units in the dataset(s)
 # depending on the measure type used.
 csvw_value_map = {
-
-    # "Median floor area": {
-    #             "unit": "http://gss-data.org.uk/def/concept/measurement-units/m2",
-    #             "measure": "http://gss-data.org.uk/def/measure/median-floor-area",
-    #             "datatype": "double"
-    #         }
+     "Aggregate fuel poverty Gap": {
+                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/million-gbp",
+                 "measure": "http://gss-data.org.uk/def/measure/aggregate-fuel-poverty-gap",
+                 "datatype": "double"
+             },
+     "Average fuel poverty Gap": {
+                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+                 "measure": "http://gss-data.org.uk/def/measure/average-fuel-poverty-gap",
+                 "datatype": "double"
+             }
 }
 
 
-# In[33]:
+# In[485]:
 
 
 df.head()
@@ -773,7 +781,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[34]:
+# In[486]:
 
 
 table_joins = {
@@ -884,10 +892,10 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = True
+GENERATE_CODELISTS = False
 
 # Print the mapping where you need to debug stuff
-SHOW_MAPPING = True
+SHOW_MAPPING = False
 
 count = 0
 
@@ -985,6 +993,8 @@ for title, info in table_joins.items():
 
     df = df[info['structure']]
 
+    df = df.rename(columns={'Year' : 'Period'})
+
     # Metadata etc
     scraper.dataset.title = title
     if "comment" in info.keys():
@@ -996,6 +1006,9 @@ for title, info in table_joins.items():
     # Pathify (sometimes generate codelists from) appropriate columns
     for col in df.columns.values.tolist():
 
+        if GENERATE_CODELISTS:
+            generate_codelist(title, df, col)
+
         if col in COLUMNS_TO_NOT_PATHIFY:
             continue
 
@@ -1004,14 +1017,13 @@ for title, info in table_joins.items():
         except Exception as err:
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-        if GENERATE_CODELISTS:
-            generate_codelist(title, df, col)
+
 
     # CSVW Mapping
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
 
-    do_mapping = False
+    do_mapping = True
 
     if do_mapping:
         mapping = {}
@@ -1049,13 +1061,13 @@ for title, info in table_joins.items():
             # },
 
             # Read the map back into the cubes class
-            # info_json["transform"]["columns"] = mapping
+            #info_json["transform"]["columns"] = mapping
             # cubes.info = info_json
 
-        #if SHOW_MAPPING:
-        #    print("Mapping for: ", title)
-        #    print(json.dumps(mapping, indent=2))
-        #    print("\n")
+        if SHOW_MAPPING:
+            print("Mapping for: ", title)
+            print(json.dumps(mapping, indent=2))
+            print("\n")
 
     # FOR NOW - remove measure type
     df = df.drop("Measure Type", axis=1)
@@ -1063,32 +1075,32 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    cubes.add_cube(scraper, df, title)
-    cubes
+    #cubes.add_cube(scraper, df, title)
+    #cubes
 
-    #csvName = "observations-{}.csv".format(pathify(info['datasetid']))
-    #out = Path('out')
-    #out.mkdir(exist_ok=True)
-    #df.drop_duplicates().to_csv(out / (csvName), index = False)
+    csvName = "observations-{}.csv".format(pathify(info['datasetid']))
+    out = Path('out')
+    out.mkdir(exist_ok=True)
+    df.drop_duplicates().to_csv(out / (csvName), index = False)
 
-    #dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
-    #scraper.set_base_uri('http://gss-data.org.uk')
-    #scraper.set_dataset_id(dataset_path)
+    dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
+    scraper.set_base_uri('http://gss-data.org.uk')
+    scraper.set_dataset_id(dataset_path)
 
-    #from urllib.parse import urljoin
+    from urllib.parse import urljoin
 
-    #csvw_transform = CSVWMapping()
-    #csvw_transform.set_csv(out / csvName)
-    #csvw_transform._mapping = mapping
-    #csvw_transform.set_mapping(coldef)
-    #csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
-    #csvw_transform.write(out / f'{csvName}-metadata.json')
+    csvw_transform = CSVWMapping()
+    csvw_transform.set_csv(out / csvName)
+    csvw_transform._mapping = mapping
+    #csvw_transform.set_mapping(mapping)
+    csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+    csvw_transform.write(out / f'{csvName}-metadata.json')
 
-    #with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-    #    metadata.write(scraper.generate_trig())
+    with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+        metadata.write(scraper.generate_trig())
 
 
-# In[35]:
+# In[487]:
 
 
 from IPython.core.display import HTML
@@ -1099,10 +1111,10 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[36]:
+# In[488]:
 
 
-cubes.output_all()
+#cubes.output_all()
 # cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
 #cubes.cubes[0].multi_trig = scraper.generate_trig()
 #cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
