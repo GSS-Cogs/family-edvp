@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1135]:
+# In[1219]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[1136]:
+# In[1220]:
 
 
 from gssutils import *
@@ -49,7 +49,7 @@ trace = TransformTrace()
 coldef = json.load(open('info.json'))
 
 
-# In[1137]:
+# In[1221]:
 
 
 # # Helpers
@@ -65,7 +65,7 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[1138]:
+# In[1222]:
 
 
 def left(s, amount):
@@ -343,10 +343,12 @@ def generate_codelist(title, df, col):
     # values in this version of that codelist?
 
     if Path(destination).is_file():
-
         codelistDF = pd.read_csv(destination).fillna('')
         for val in list(df[col].unique()):
             codelistDF = codelistDF.append({'Label' : val , 'Notation' : pathify(str(val)), 'Parent Notation' : '', 'Sort Priority' : ''} , ignore_index=True)
+
+        codelistDF = codelistDF.drop_duplicates()
+        codelistDF.to_csv(destination, index=False)
 
     else:
         codelist = {
@@ -369,12 +371,8 @@ def generate_codelist(title, df, col):
                 codelist["Parent Notation"].append("")
                 codelist["Sort Priority"].append("")
 
-    # Output the codelist csv
-    #df = pd.DataFrame.from_dict(codelist)
-    #df.to_csv(destination, index=False)
-
-    codelistDF = codelistDF.drop_duplicates()
-    codelistDF.to_csv(destination, index=False)
+        df = pd.DataFrame.from_dict(codelist)
+        df.to_csv(destination, index=False)
 
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
@@ -421,7 +419,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[1139]:
+# In[1223]:
 
 
 scraper = Scraper(seed="info.json")
@@ -684,7 +682,7 @@ eligibility_task = {
 }
 
 
-# In[1140]:
+# In[1224]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -747,7 +745,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[1141]:
+# In[1225]:
 
 
 # # CSVW Mapping
@@ -757,7 +755,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[1142]:
+# In[1226]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -766,10 +764,15 @@ csvw_common_map = {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
                 "value": "http://reference.data.gov.uk/id/{+period}"
             },
-      "Marker": {
-        "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-        "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
-      }
+    "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+      },
+    "Region": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
+                "description": ""
+            }
 }
 
 # csvw mapping for representing the different measures and units in the dataset(s)
@@ -788,7 +791,7 @@ csvw_value_map = {
 }
 
 
-# In[1143]:
+# In[1227]:
 
 
 df.head()
@@ -797,7 +800,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[1144]:
+# In[1228]:
 
 
 table_joins = {
@@ -1124,7 +1127,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[1145]:
+# In[1229]:
 
 
 from IPython.core.display import HTML
@@ -1135,7 +1138,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[1146]:
+# In[1230]:
 
 
 #cubes.output_all()
