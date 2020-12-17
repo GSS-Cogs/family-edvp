@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[75]:
+# In[120]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[76]:
+# In[121]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[77]:
+# In[122]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -146,6 +146,11 @@ def generate_codelist(title, df, col):
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
 
+    codelist_csvw = codelist_csvw.strip()
+
+    with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
+        f.write(codelist_csvw)
+
 
 def clean_lower_tables(bag):
     """
@@ -176,7 +181,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[78]:
+# In[123]:
 
 
 scraper = Scraper(seed="info.json")
@@ -192,7 +197,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[79]:
+# In[124]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -261,7 +266,7 @@ energy_efficiency_task = {
 }
 
 
-# In[80]:
+# In[125]:
 
 
 
@@ -270,7 +275,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[81]:
+# In[126]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -315,7 +320,7 @@ household_characteristics_task = {
 }
 
 
-# In[82]:
+# In[127]:
 
 
 # # Household income
@@ -323,7 +328,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[83]:
+# In[128]:
 
 
 # +
@@ -358,7 +363,7 @@ household_income_task = {
 }
 
 
-# In[84]:
+# In[129]:
 
 
 # # Fuel payment type
@@ -366,7 +371,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[85]:
+# In[130]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -406,7 +411,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[86]:
+# In[131]:
 
 
 trace = TransformTrace()
@@ -511,7 +516,7 @@ csvw_value_map = {
 }
 
 
-# In[87]:
+# In[132]:
 
 
 df.head()
@@ -520,7 +525,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[88]:
+# In[133]:
 
 
 # description we'll add to most joined tables
@@ -793,7 +798,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[89]:
+# In[134]:
 
 
 #cubes.output_all()
@@ -819,7 +824,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[89]:
+# In[134]:
 
 
 

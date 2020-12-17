@@ -1,5 +1,4 @@
-
-    {
+{
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
   "url": "gas-grid-connection.csv",
@@ -66,4 +65,3 @@
     "@type": "skos:ConceptScheme",
     "rdfs:label": "Gas Grid Connection"
   }
-}
