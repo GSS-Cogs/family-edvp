@@ -1101,6 +1101,12 @@ for title, info in table_joins.items():
     df = df.drop("Measure Type", axis=1)
     df = df.drop("Unit", axis=1)
 
+    # FOR NOW - remove the Attributes
+    if "Households not in Fuel Poverty" in df.columns:
+        df = df.drop("Households not in Fuel Poverty", axis=1)
+    if "Households in Fuel Poverty" in df.columns:
+        df = df.drop("Households in Fuel Poverty", axis=1)
+        
     df = df.drop_duplicates()
 
     #cubes.add_cube(scraper, df, title)
