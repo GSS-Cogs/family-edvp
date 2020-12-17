@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[240]:
+# In[31]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[241]:
+# In[32]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[242]:
+# In[33]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -181,7 +181,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[243]:
+# In[34]:
 
 
 scraper = Scraper(seed="info.json")
@@ -197,7 +197,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[244]:
+# In[35]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -266,7 +266,7 @@ energy_efficiency_task = {
 }
 
 
-# In[245]:
+# In[36]:
 
 
 
@@ -275,7 +275,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[246]:
+# In[37]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -320,7 +320,7 @@ household_characteristics_task = {
 }
 
 
-# In[247]:
+# In[38]:
 
 
 # # Household income
@@ -328,7 +328,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[248]:
+# In[39]:
 
 
 # +
@@ -363,7 +363,7 @@ household_income_task = {
 }
 
 
-# In[249]:
+# In[40]:
 
 
 # # Fuel payment type
@@ -371,7 +371,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[250]:
+# In[41]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -411,7 +411,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[251]:
+# In[42]:
 
 
 trace = TransformTrace()
@@ -516,7 +516,7 @@ csvw_value_map = {
 }
 
 
-# In[252]:
+# In[43]:
 
 
 df.head()
@@ -525,7 +525,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[253]:
+# In[44]:
 
 
 # description we'll add to most joined tables
@@ -657,7 +657,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type", "Region"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = False
+GENERATE_CODELISTS = True
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -694,7 +694,7 @@ for title, info in table_joins.items():
                                  'South West' : 'E12000009',
                                  'West Midlands' : 'E12000005',
                                  'Yorkshire and the Humber' : 'E12000003',
-                                 'all' : 'E92000001'}})
+                                 'All households' : 'E92000001'}})
 
     df = df.rename(columns={'Year' : 'Period'})
 
@@ -802,7 +802,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[254]:
+# In[45]:
 
 
 #cubes.output_all()
@@ -828,7 +828,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[254]:
+# In[45]:
 
 
 
