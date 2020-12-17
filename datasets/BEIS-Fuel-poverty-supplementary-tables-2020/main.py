@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[45]:
+# In[60]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[46]:
+# In[61]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[47]:
+# In[62]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -172,7 +172,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[48]:
+# In[63]:
 
 
 scraper = Scraper(seed="info.json")
@@ -188,7 +188,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[49]:
+# In[64]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -257,7 +257,7 @@ energy_efficiency_task = {
 }
 
 
-# In[50]:
+# In[65]:
 
 
 
@@ -266,7 +266,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[51]:
+# In[66]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -311,7 +311,7 @@ household_characteristics_task = {
 }
 
 
-# In[52]:
+# In[67]:
 
 
 # # Household income
@@ -319,7 +319,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[53]:
+# In[68]:
 
 
 # +
@@ -354,7 +354,7 @@ household_income_task = {
 }
 
 
-# In[54]:
+# In[69]:
 
 
 # # Fuel payment type
@@ -362,7 +362,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[55]:
+# In[70]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -402,7 +402,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[56]:
+# In[71]:
 
 
 trace = TransformTrace()
@@ -507,7 +507,7 @@ csvw_value_map = {
 }
 
 
-# In[57]:
+# In[72]:
 
 
 df.head()
@@ -516,7 +516,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[58]:
+# In[73]:
 
 
 # description we'll add to most joined tables
@@ -673,6 +673,18 @@ for title, info in table_joins.items():
     for col in df.columns.values:
         df[df[col] == ""] = "all"
 
+    df = df.replace({'Region' : {'all' : 'E92000001',
+                                 'East' : 'E12000006',
+                                 'East Midlands' : 'E12000004',
+                                 'London' : 'E12000007',
+                                 'North East' : 'E12000001',
+                                 'North West' : 'E12000002',
+                                 'South East' : 'E12000008',
+                                 'South West' : 'E12000009',
+                                 'West Midlands' : 'E12000005',
+                                 'Yorkshire and the Humber' : 'E12000003',
+                                 'all' : 'E92000001'}})
+
     df = df.rename(columns={'Year' : 'Period'})
 
     # Metadata etc
@@ -777,7 +789,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[59]:
+# In[74]:
 
 
 #cubes.output_all()
@@ -803,7 +815,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[59]:
+# In[74]:
 
 
 
