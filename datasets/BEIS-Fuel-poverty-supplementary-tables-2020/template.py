@@ -10,8 +10,7 @@ def generate_codelist_from_template(url, title, label, path_id):
     regex_str_1 = r'^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$'
     regex_str_2 = r'^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$'
 
-    return """
-    {{
+    return """{{
   "@context": "http://www.w3.org/ns/csvw",
   "@id": "#table",
   "url": "{pathified_label}.csv",
@@ -78,5 +77,6 @@ def generate_codelist_from_template(url, title, label, path_id):
     "@type": "skos:ConceptScheme",
     "rdfs:label": "{label}"
   }}
+}}
     """.format(url=url, label=label, pathified_label=pathified_label, path_id=path_id, 
     pathified_title=pathified_title, regex_str_1=regex_str_1, regex_str_2=regex_str_2)
