@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[31]:
+# In[91]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[32]:
+# In[92]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[33]:
+# In[93]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -181,7 +181,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[34]:
+# In[94]:
 
 
 scraper = Scraper(seed="info.json")
@@ -197,7 +197,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[35]:
+# In[95]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -266,7 +266,7 @@ energy_efficiency_task = {
 }
 
 
-# In[36]:
+# In[96]:
 
 
 
@@ -275,7 +275,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[37]:
+# In[97]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -320,7 +320,7 @@ household_characteristics_task = {
 }
 
 
-# In[38]:
+# In[98]:
 
 
 # # Household income
@@ -328,7 +328,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[39]:
+# In[99]:
 
 
 # +
@@ -363,7 +363,7 @@ household_income_task = {
 }
 
 
-# In[40]:
+# In[100]:
 
 
 # # Fuel payment type
@@ -371,7 +371,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[41]:
+# In[101]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -411,7 +411,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[42]:
+# In[102]:
 
 
 trace = TransformTrace()
@@ -516,7 +516,7 @@ csvw_value_map = {
 }
 
 
-# In[43]:
+# In[103]:
 
 
 df.head()
@@ -525,7 +525,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[44]:
+# In[104]:
 
 
 # description we'll add to most joined tables
@@ -657,7 +657,7 @@ table_joins = {
 COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type", "Region"]
 
 # Switch for generating codelists (should usually be False)
-GENERATE_CODELISTS = True
+GENERATE_CODELISTS = False
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
@@ -694,7 +694,10 @@ for title, info in table_joins.items():
                                  'South West' : 'E12000009',
                                  'West Midlands' : 'E12000005',
                                  'Yorkshire and the Humber' : 'E12000003',
-                                 'All households' : 'E92000001'}})
+                                 'All households' : 'E92000001'},
+                     'Dwelling Type' : {'Converted flat2' : 'Converted flat',
+                                        'Purpose-built flat': 'Purpose built flat'},
+                     'Wall Insulation' : {'Other2' : 'Other'}})
 
     df = df.rename(columns={'Year' : 'Period'})
 
@@ -705,6 +708,13 @@ for title, info in table_joins.items():
 
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
+
+    from IPython.core.display import HTML
+    for col in df:
+        if col not in ['Value']:
+            df[col] = df[col].astype('category')
+            display(HTML(f"<h2>{col}</h2>"))
+            display(df[col].cat.categories)
 
     # Pathify (sometimes generate codelists from) appropriate columns
     for col in df.columns.values.tolist():
@@ -802,7 +812,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[45]:
+# In[105]:
 
 
 #cubes.output_all()
@@ -828,7 +838,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[45]:
+# In[105]:
 
 
 
