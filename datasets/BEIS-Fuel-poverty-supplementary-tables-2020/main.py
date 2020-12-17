@@ -1,6 +1,12 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[16]:
+
+
 # -*- coding: utf-8 -*-
 # + {}
-from gssutils import * 
+from gssutils import *
 import json
 
 from template import generate_codelist_from_template
@@ -8,26 +14,32 @@ from template import generate_codelist_from_template
 cubes = Cubes("info.json")
 
 coldef = json.load(open('info.json'))
-# -
+
+
+# In[17]:
+
 
 # # Helpers
 #
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
-# +
+
+# In[18]:
+
+
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
-BIG_TABLE_ANCHOR = "Proportion of households within group (%)" # note we dont want this cell but we're using it to differentiate the styles of table - 
+BIG_TABLE_ANCHOR = "Proportion of households within group (%)" # note we dont want this cell but we're using it to differentiate the styles of table -
 
 def process_little_table(anchor, task, trace):
     """
     Given a single anchoring cell, process the smaller style of the tables
     """
-    
+
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1].strip()
     trace.Year('Get year from cell A1 and add "/year" prefix, gets us:"{}"'.format(year))
-    
+
     # Get the obs, we don't want columns f + G
-    # TODO - safety to make sure F & G actually are the columns we don't want for a given table 
+    # TODO - safety to make sure F & G actually are the columns we don't want for a given table
     obs = anchor.shift(DOWN).expand(RIGHT).expand(DOWN).is_not_blank()
     obs = obs - tab.excel_ref('F:G')
     obs = clean_lower_tables(obs)
@@ -40,7 +52,7 @@ def process_little_table(anchor, task, trace):
     # support being set as an attribute
     trace.add_column({task["tables"][tab.name]["differentiating_dimension"]:"Diffdim"})
     trace.Diffdim('Take the left hand column as: "{}".'.format(task["tables"][tab.name]["differentiating_dimension"]))
-    
+
     left_column = anchor.shift(LEFT).fill(DOWN).is_not_blank()
     left_column = clean_lower_tables(left_column)
 
@@ -54,18 +66,17 @@ def process_little_table(anchor, task, trace):
 
     cs = ConversionSegment(obs, dimensions)
     df = cs.topandas()
-    
+
     # NOTE - moving pathify to after the joins, so we can generate accurate codelists
     # Pathify the differentiating dimension, switch all-households to all
     #df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]].apply(pathify)
-    
-    df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]] \
-            .map(lambda x: x.replace("All Households", "all"))
+
+    df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]]             .map(lambda x: x.replace("All Households", "all"))
 
     # Measure and Unit
     trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
     df["Unit"] = df["Category"].apply(LookupFromDict("unit", task["units_map"]))
-    
+
     trace.Measure_Type('Set measure type from mapping: "{}".'.format(json.dumps(task["measures_map"])))
     df["Measure Type"] = df["Category"].apply(LookupFromDict("measure", task["measures_map"]))
 
@@ -75,7 +86,7 @@ def process_little_table(anchor, task, trace):
             trace.add_column(k)
             trace.multi([k.replace(" ", "_")], 'Set as value: "{}".'.format(v))
             df[k] = v
-    
+
     # Tidy up
     df = df.rename(columns={"OBS": "Value"})
 
@@ -86,25 +97,25 @@ def process_big_table(anchor, task, trace):
     Given a single anchoring cell, process the bigger style of the tables
     """
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1]
-    
+
     # Switch to the anchor point we actually want to use
     anchor = anchor.expand(RIGHT).filter(LITTLE_TABLE_ANCHOR).assert_one()
-    
+
     fuel = anchor.expand(RIGHT).expand(DOWN).filter(contains_string("fuel"))
     fuel = clean_lower_tables(fuel)
     assert len(fuel) == 2, 'We should only be selecting two references to "fuel" per sub table'
-    
+
 def generate_codelist(title, df, col):
     """
     Given a dataframe and a specific column, generate a codelist csv and csvw
     """
-    
+
     # TODO - use makedir and path!
     destination = './codelists/{}.csv'.format(pathify(col))
-    
+
     # TODO - does it already exist? Are there any unaccounted for
     # values in this version of that codelist?
-    
+
     # TODO - do this as two series then zip? worth it?
     codelist = {
         "Label": [],
@@ -112,25 +123,25 @@ def generate_codelist(title, df, col):
         "Parent Notation": [],
         "Sort Priority": []
         }
-    
+
     for val in list(df[col].unique()):
         codelist["Label"].append(val)
         codelist["Notation"].append(pathify(val))
         codelist["Parent Notation"].append("")
         codelist["Sort Priority"].append("")
-        
+
     # Output the codelist csv
     df = pd.DataFrame.from_dict(codelist)
     df.to_csv(destination, index=False)
-    
+
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
-        
+
     with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
         f.write(codelist_csvw)
-    
+
 
 def clean_lower_tables(bag):
     """
@@ -145,12 +156,12 @@ class LookupFromDict:
     Used to figure out the measures to use, uses the "measures_map"
     dictionary passed from the task
     """
-    
+
     # store the dict in the class on instantiation
     def __init__(self, name, measures_map):
         self.map = measures_map
         self.name = name
-        
+
     # do the lookup on each cell value passed in by df[whatever].apply()
     def __call__(self, cell_value):
         try:
@@ -160,9 +171,11 @@ class LookupFromDict:
         except Exception as err:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
-# -
 
-scraper = Scraper(seed="info.json")   
+# In[19]:
+
+
+scraper = Scraper(seed="info.json")
 scraper
 
 
@@ -174,7 +187,9 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 #
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
-# +
+
+# In[20]:
+
 
 # We're just gonna loop and use slightly different variables each time.
 # If you need yo tweak anything you should be able to do it here.
@@ -240,14 +255,19 @@ energy_efficiency_task = {
         "Median floor area (m2)": "m2"
     }
 }
-# -
+
+
+# In[21]:
+
 
 
 # # Household characteristics
 #
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
-# +
+
+# In[22]:
+
 
 # We're just gonna loop and use slightly different variables each time.
 # If you need yo tweak anything you should be able to do it here.
@@ -289,11 +309,18 @@ household_characteristics_task = {
         "Median floor area (m2)": "m2"
     }
 }
-# -
+
+
+# In[23]:
+
 
 # # Household income
 #
 # Tables 17 through 18 (the parameters, the processing will happen later on)
+
+
+# In[24]:
+
 
 # +
 
@@ -325,13 +352,18 @@ household_income_task = {
         "Median floor area (m2)": "m2"
     }
 }
-# -
+
+
+# In[25]:
+
 
 # # Fuel payment type
 #
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
-# +
+
+# In[26]:
+
 
 # We're just gonna loop and use slightly different variables each time.
 # If you need yo tweak anything you should be able to do it here.
@@ -344,14 +376,14 @@ fuel_payment_type_task = {
             "sub_table_count": 1,
             "differentiating_dimension": "Payment Method",
             "constant_columns": {
-              "Fuel Type": "Gas"  
+              "Fuel Type": "Gas"
             }
         },
         "Table 20": {
             "sub_table_count": 1,
             "differentiating_dimension": "Payment Method",
             "constant_columns": {
-              "Fuel Type": "Electricity"  
+              "Fuel Type": "Electricity"
             }
         }
     },
@@ -369,7 +401,9 @@ fuel_payment_type_task = {
     }
 }
 
-# +
+
+# In[27]:
+
 
 trace = TransformTrace()
 table_dict = {}
@@ -386,7 +420,7 @@ for category, dataset_task in {
     try:
         subset_of_tabs = [x for x in tabs if x.name.strip() in dataset_task["tables"].keys()]
         for tab in subset_of_tabs:
-            
+
             # Just specifiy the common dimensions for now
             columns = ["Year", "Measure Type", "Unit"]
             trace.start(category, tab.name, columns, distro.downloadURL)
@@ -414,12 +448,12 @@ for category, dataset_task in {
                 for i in range(0, 10):
                     new_col = new_col.rstrip(str(i))
                 df = df.rename(columns={col: new_col})
-                
+
             # Store however many tabs we've extracted against the specified identifier
             trace.store(dataset_task["store_as"], df)
-        
+
     except Exception as err:
-        raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]), 
+        raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]),
                                                                                          dataset_task["name"])) from err
 # -
 # # CSVW Mapping
@@ -432,9 +466,18 @@ for category, dataset_task in {
 
 # csvw mapping for dimensions common to all datasets
 csvw_common_map = {
-    "Year": {
+    "Period": {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+year}"
+                "value": "http://reference.data.gov.uk/id/{+period}"
+            },
+    "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+      },
+    "Region": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{+region}",
+                "description": ""
             }
 }
 
@@ -463,14 +506,19 @@ csvw_value_map = {
             }
 }
 
-# -
+
+# In[28]:
+
 
 df.head()
 df['Category'].unique()
 
 # # Metadata & Joins
 
-# +
+
+# In[29]:
+
+
 # description we'll add to most joined tables
 
 comment = "Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics	 based on Median Fuel Costs, Income, FPEER Rating and Floor Area"
@@ -592,8 +640,8 @@ table_joins = {
         "comment": comment,
         "description": description,
         "datasetid": "fupt-floorarea"
-    } 
-} 
+    }
+}
 
 # Given there are standard column to all datacubes it's easier
 # to define the columns we're NOT going to pathify
@@ -604,7 +652,7 @@ GENERATE_CODELISTS = False
 
 # Print the mapping where you need to debug stuff
 SHOW_MAPPING = True
-    
+
 count = 0
 
 # https://staging.gss-data.org.uk/cube/explore?uri=http%3A%2F%2Fgss-data.org.uk%2Fdata%2Fgss_data%2Fedvp%2Fbeis-fuel-poverty-supplementary-tables-2020-catalog-entry
@@ -612,41 +660,43 @@ for title, info in table_joins.items():
 
     #if pathify(title) != "fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income":
     #    continue
-    
+
     df = trace.combine_and_trace(title, info["tables"])
-    
+
     # slice just the bit we want using category, then drop the column
     df = df[df["Category"] == info["category"]]
     df = df.drop("Category", axis=1)
     trace.Measure_Type('Drop all rows not related to: "{}".'.format(info["category"]))
-    
+
     # Fill up the sparsity with alls
     df = df.fillna("all")
     for col in df.columns.values:
         df[df[col] == ""] = "all"
-        
+
+    df = df.rename(columns={'Year' : 'Period'})
+
     # Metadata etc
     scraper.dataset.title = title
     if "comment" in info.keys():
         scraper.dataset.comment = info["comment"]
-        
+
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
-    
+
     # Pathify (sometimes generate codelists from) appropriate columns
     for col in df.columns.values.tolist():
-        
+
         if col in COLUMNS_TO_NOT_PATHIFY:
             continue
-            
+
         try:
             df[col] = df[col].apply(pathify)
         except Exception as err:
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
-            
+
         if GENERATE_CODELISTS:
             generate_codelist(title, df, col)
-    
+
     # CSVW Mapping
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
@@ -657,16 +707,16 @@ for title, info in table_joins.items():
         mapping = {}
         with open("info.json") as f:
             info_json = json.load(f)
-            
+
             # "Common" column mappings for this dataset
             for k, v in csvw_common_map.items():
                 mapping[k] = v
-                
+
             # "Value" entry for this dataset
             measures_list = list(df["Measure Type"].unique())
             assert len(measures_list) == 1, "At this point in this transform we should only have one measure type"
             mapping["Value"] = csvw_value_map[measures_list[0]]
-            
+
             # If it's neither common nor value, it's a locally declared dimension
             cols_we_have_a_map_for = list(csvw_common_map.keys())
             cols_we_have_a_map_for.append("Value")
@@ -681,26 +731,26 @@ for title, info in table_joins.items():
                         "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
                         "description": ""
                     }
-                    
+
             # "Deprivation Indicator": {
             #            "parent": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept-scheme/deprivation-indicator",
             #            "value": "http://gss-data.org.uk/data/gss_data/towns-high-streets/sg-scottish-index-of-multiple-deprivation-2020/concept/deprivation-indicator/{deprivation_indicator}",
             #            "description": "SIMD is the Scottish Government's standard approach to identify areas of multiple deprivation in Scotland. It can help improve understanding about the outcomes and circumstances of people living in the most deprived areas in Scotland. It can also allow effective targeting of policies and funding where the aim is to wholly or partly tackle or take account of area concentrations of multiple deprivation. SIMD ranks data zones from most deprived (ranked 1) to least deprived (ranked 6,976). People using SIMD will often focus on the data zones below a certain rank, for example, the 5%, 10%, 15% or 20% most deprived data zones in Scotland. SIMD is an area-based measure of relative deprivation: not every person in a highly deprived area will themselves be experiencing high levels of deprivation."
             # },
-            
+
             # Read the map back into the cubes class
             # info_json["transform"]["columns"] = mapping
             # cubes.info = info_json
-    
+
         #if SHOW_MAPPING:
         #    print("Mapping for: ", title)
         #    print(json.dumps(mapping, indent=2))
         #    print("\n")
-    
+
     # FOR NOW - remove measure type
     df = df.drop("Measure Type", axis=1)
     df = df.drop("Unit", axis=1)
-    
+
     df = df.drop_duplicates()
 
     #csvName = "{}.csv".format(pathify(title))
@@ -715,18 +765,21 @@ for title, info in table_joins.items():
     scraper.set_dataset_id(dataset_path)
 
     from urllib.parse import urljoin
-    
+
     csvw_transform = CSVWMapping()
     csvw_transform.set_csv(out / csvName)
-    #csvw_transform._mapping = mapping
-    csvw_transform.set_mapping(coldef)
+    csvw_transform._mapping = mapping
+    #csvw_transform.set_mapping(coldef)
     csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
     csvw_transform.write(out / f'{csvName}-metadata.json')
 
     with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
         metadata.write(scraper.generate_trig())
 
-# -
+
+# In[30]:
+
+
 #cubes.output_all()
 # cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
 #cubes.cubes[0].multi_trig = scraper.generate_trig()
@@ -749,6 +802,8 @@ for index, file in enumerate(files):
     os.rename(os.path.join(path, file), os.path.join(path, newNme))
 """
 
+
+# In[30]:
 
 
 

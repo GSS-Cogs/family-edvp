@@ -18,23 +18,13 @@
         "airtable": "recjKAoQJVKuWxOrG",
         "main_issue": 5,
         "columns": {
-            "Year": {
+            "Period": {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+year}"
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Low Income High costs Matrix": {
                 "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/low-income-high-costs-matrix",
                 "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/low-income-high-costs-matrix/{low_income_high_costs_matrix}",
-                "description": ""
-            },
-            "Unit": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/unit",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/unit/{unit}",
-                "description": ""
-            },
-            "Measure Type": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/measure-type",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/measure-type/{measure_type}",
                 "description": ""
             },
             "FPEER": {
@@ -53,10 +43,10 @@
                 "description": ""
             },
             "Region": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/region",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/region/{region}",
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
                 "description": ""
-            },
+              },
             "Dwelling Type": {
                 "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type",
                 "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{dwelling_type}",
