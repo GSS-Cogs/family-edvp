@@ -1,6 +1,6 @@
 Label,Notation,Parent Notation,Sort Priority
-Direct debit,direct-debit,,
-Standard credit,standard-credit,,
-Prepayment,prepayment,,
-n/a = No gas,n/a-no-gas,,
-all,all,,
+Direct debit,direct-debit,,1
+Standard credit,standard-credit,,2
+Prepayment,prepayment,,3
+n/a = No gas,n/a-no-gas,,4
+all,all,,5

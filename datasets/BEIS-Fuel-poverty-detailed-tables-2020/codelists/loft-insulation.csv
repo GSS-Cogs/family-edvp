@@ -1,5 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-Not Applicable,not-applicable,,
-125mm or More,125mm-or-more,,
-Under 125mm,under-125mm,,
+all,all,,1
+Not Applicable,not-applicable,,2
+125mm or More,125mm-or-more,,3
+Under 125mm,under-125mm,,4

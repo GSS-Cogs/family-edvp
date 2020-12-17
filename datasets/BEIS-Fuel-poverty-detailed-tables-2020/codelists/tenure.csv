@@ -1,12 +1,12 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-Owner occupied,owner-occupied,,
-Private rented,private-rented,,
-Social housing,social-housing,,
-Owner occupied: Own with mortgage,owner-occupied-own-with-mortgage,,
-Owner occupied: Own outright,owner-occupied-own-outright,,
-Local authority,local-authority,,
-Housing association,housing-association,,
-Private,private,,
-Social,social,,
-All,all,,
+all,all,,1
+Owner occupied,owner-occupied,,2
+Private rented,private-rented,,3
+Social housing,social-housing,,4
+Owner occupied: Own with mortgage,owner-occupied-own-with-mortgage,,5
+Owner occupied: Own outright,owner-occupied-own-outright,,6
+Local authority,local-authority,,7
+Housing association,housing-association,,8
+Private,private,,9
+Social,social,,10
+All,all,,11

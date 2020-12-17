@@ -1,4 +1,4 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
-Ethnic minority,ethnic-minority,,
-White,white,,
+all,all,,1
+Ethnic minority,ethnic-minority,,2
+White,white,,3
