@@ -185,6 +185,12 @@
                 "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/eligible",
                 "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/eligible/{eligible}",
                 "description": ""
+              },            
+              "Households not in Fuel Poverty": {
+                "attribute": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-not-in-fuel-poverty"
+              },
+              "Households in Fuel Poverty": {
+                "attribute": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-in-fuel-poverty"
               }
         },
         "transformStage": [
