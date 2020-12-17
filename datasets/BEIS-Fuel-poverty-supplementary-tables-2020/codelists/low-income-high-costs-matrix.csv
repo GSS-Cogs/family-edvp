@@ -1,13 +1,7 @@
 Label,Notation,Parent Notation,Sort Priority
-Low income high costs,low-income-high-costs,,1.0
-Low income low costs,low-income-low-costs,,2.0
-High income high costs,high-income-high-costs,,3.0
-High income low costs,high-income-low-costs,,4.0
-All,all-households,,5.0
-All,all,,6.0
-low-income-high-costs,low-income-high-costs,,
-low-income-low-costs,low-income-low-costs,,
-high-income-high-costs,high-income-high-costs,,
-high-income-low-costs,high-income-low-costs,,
-all-households,all-households,,
+Low Income High Costs,low-income-high-costs,,
+Low Income Low Costs,low-income-low-costs,,
+High Income High Costs,high-income-high-costs,,
+High Income Low Costs,high-income-low-costs,,
+All households,all-households,,
 all,all,,

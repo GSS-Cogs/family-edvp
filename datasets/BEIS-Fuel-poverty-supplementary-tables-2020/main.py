@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[120]:
+# In[240]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[121]:
+# In[241]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[122]:
+# In[242]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -119,7 +119,7 @@ def generate_codelist(title, df, col):
     if Path(destination).is_file():
         codelistDF = pd.read_csv(destination).fillna('')
         for val in list(df[col].unique()):
-            codelistDF = codelistDF.append({'Label' : val , 'Notation' : pathify(str(val)), 'Parent Notation' : '', 'Sort Priority' : ''} , ignore_index=True)
+            codelistDF = codelistDF.append({'Label' : val.replace('-', 'to') , 'Notation' : pathify(str(val)), 'Parent Notation' : '', 'Sort Priority' : ''} , ignore_index=True)
 
         codelistDF = codelistDF.drop_duplicates()
         codelistDF.to_csv(destination, index=False)
@@ -133,7 +133,7 @@ def generate_codelist(title, df, col):
             }
 
         for val in list(df[col].unique()):
-            codelist["Label"].append(val)
+            codelist["Label"].append(val.replace('-', 'to'))
             codelist["Notation"].append(pathify(str(val)))
             codelist["Parent Notation"].append("")
             codelist["Sort Priority"].append("")
@@ -181,7 +181,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[123]:
+# In[243]:
 
 
 scraper = Scraper(seed="info.json")
@@ -197,7 +197,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[124]:
+# In[244]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -266,7 +266,7 @@ energy_efficiency_task = {
 }
 
 
-# In[125]:
+# In[245]:
 
 
 
@@ -275,7 +275,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[126]:
+# In[246]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -320,7 +320,7 @@ household_characteristics_task = {
 }
 
 
-# In[127]:
+# In[247]:
 
 
 # # Household income
@@ -328,7 +328,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[128]:
+# In[248]:
 
 
 # +
@@ -363,7 +363,7 @@ household_income_task = {
 }
 
 
-# In[129]:
+# In[249]:
 
 
 # # Fuel payment type
@@ -371,7 +371,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[130]:
+# In[250]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -411,7 +411,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[131]:
+# In[251]:
 
 
 trace = TransformTrace()
@@ -516,7 +516,7 @@ csvw_value_map = {
 }
 
 
-# In[132]:
+# In[252]:
 
 
 df.head()
@@ -525,7 +525,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[133]:
+# In[253]:
 
 
 # description we'll add to most joined tables
@@ -664,6 +664,8 @@ SHOW_MAPPING = True
 
 count = 0
 
+test = {}
+
 # https://staging.gss-data.org.uk/cube/explore?uri=http%3A%2F%2Fgss-data.org.uk%2Fdata%2Fgss_data%2Fedvp%2Fbeis-fuel-poverty-supplementary-tables-2020-catalog-entry
 for title, info in table_joins.items():
 
@@ -710,13 +712,15 @@ for title, info in table_joins.items():
         if col in COLUMNS_TO_NOT_PATHIFY:
             continue
 
+        if GENERATE_CODELISTS:
+            generate_codelist(title, df, col)
+
         try:
             df[col] = df[col].apply(pathify)
         except Exception as err:
             raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-        if GENERATE_CODELISTS:
-            generate_codelist(title, df, col)
+
 
     # CSVW Mapping
     # We're gonna change the column mapping on the fly to deal with the large number and
@@ -798,7 +802,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[134]:
+# In[254]:
 
 
 #cubes.output_all()
@@ -824,7 +828,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[134]:
+# In[254]:
 
 
 

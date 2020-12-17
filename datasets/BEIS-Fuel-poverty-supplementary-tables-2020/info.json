@@ -18,69 +18,133 @@
         "airtable": "recjKAoQJVKuWxOrG",
         "main_issue": 5,
         "columns": {
-            "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}"
-            },
-            "Low Income High costs Matrix": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/low-income-high-costs-matrix",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/low-income-high-costs-matrix/{low_income_high_costs_matrix}",
-                "description": ""
-            },
-            "FPEER": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{fpeer}",
-                "description": ""
-            },
-            "SAP BAND": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/sap-band",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/sap-band/{sap_band}",
-                "description": ""
-            },
-            "Rurality": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/rurality",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/rurality/{rurality}",
-                "description": ""
-            },
-            "Region": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
-                "description": ""
-              },
-            "Dwelling Type": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{dwelling_type}",
-                "description": ""
-            },
-            "Dwelling Age": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-age/{dwelling_age}",
-                "description": ""
-            },
-            "Floor Area": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/floor-area",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/floor-area/{floor_area}",
-                "description": ""
-            },
-            "Gas Grid Connection": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/gas-grid-connection",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/gas-grid-connection/{gas_grid_connection}",
-                "description": ""
-            },
-            "Main Fuel Type": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/main-fuel-type",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/main-fuel-type/{main_fuel_type}",
-                "description": ""
-            },
-            "Wall Insulation": {
-                "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/wall-insulation",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/wall-insulation/{wall_insulation}",
-                "description": ""
-            },
-            "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
-                "measure": "http://gss-data.org.uk/def/measure/median-income",
-                "datatype": "double"
+              "Period": {
+			    "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+			    "value": "http://reference.data.gov.uk/id/{+period}"
+			  },
+			  "Marker": {
+			    "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+			    "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+			  },
+			  "Region": {
+			    "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+			    "value": "http://statistics.data.gov.uk/id/statistical-geography/{+region}",
+			    "description": ""
+			  },
+			  "Value": {
+			    "unit": "http://gss-data.org.uk/def/concept/measurement-units/m2",
+			    "measure": "http://gss-data.org.uk/def/measure/median-floor-area",
+			    "datatype": "double"
+			  },
+			  "Low Income High costs Matrix": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/low-income-high-costs-matrix",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/low-income-high-costs-matrix/{low_income_high_costs_matrix}",
+			    "description": ""
+			  },
+			  "Unit": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/unit",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/unit/{unit}",
+			    "description": ""
+			  },
+			  "Measure Type": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/measure-type",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/measure-type/{measure_type}",
+			    "description": ""
+			  },
+			  "FPEER": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fpeer",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fpeer/{fpeer}",
+			    "description": ""
+			  },
+			  "SAP BAND": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/sap-band",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/sap-band/{sap_band}",
+			    "description": ""
+			  },
+			  "Rurality": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/rurality",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/rurality/{rurality}",
+			    "description": ""
+			  },
+			  "Dwelling Type": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{dwelling_type}",
+			    "description": ""
+			  },
+			  "Dwelling Age": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-age/{dwelling_age}",
+			    "description": ""
+			  },
+			  "Floor Area": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/floor-area",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/floor-area/{floor_area}",
+			    "description": ""
+			  },
+			  "Gas Grid Connection": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/gas-grid-connection",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/gas-grid-connection/{gas_grid_connection}",
+			    "description": ""
+			  },
+			  "Main Fuel Type": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/main-fuel-type",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/main-fuel-type/{main_fuel_type}",
+			    "description": ""
+			  },
+			  "Wall Insulation": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/wall-insulation",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/wall-insulation/{wall_insulation}",
+			    "description": ""
+			  },
+			  "Tenure": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/tenure",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/tenure/{tenure}",
+			    "description": ""
+			  },
+			  "Household Composition": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/household-composition",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/household-composition/{household_composition}",
+			    "description": ""
+			  },
+			  "Age of Youngest Person": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/age-of-youngest-person",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/age-of-youngest-person/{age_of_youngest_person}",
+			    "description": ""
+			  },
+			  "Age of Oldest Person": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/age-of-oldest-person",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/age-of-oldest-person/{age_of_oldest_person}",
+			    "description": ""
+			  },
+			  "Ethnicity": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/ethnicity",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/ethnicity/{ethnicity}",
+			    "description": ""
+			  },
+			  "Employment Status": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/employment-status",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/employment-status/{employment_status}",
+			    "description": ""
+			  },
+			  "Income Decile Group": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/income-decile-group/{income_decile_group}",
+			    "description": ""
+			  },
+			  "Payment Method": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/payment-method",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/payment-method/{payment_method}",
+			    "description": ""
+			  },
+			  "Fuel Type": {
+			    "parent": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type",
+			    "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/fuel-type/{fuel_type}",
+			    "description": ""
+			  },
+	          "Value": {
+	            "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+	            "measure": "http://gss-data.org.uk/def/measure/median-income",
+	            "datatype": "double"
             }
         },
         "transformStage": [
