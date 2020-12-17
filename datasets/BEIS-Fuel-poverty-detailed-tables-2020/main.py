@@ -1016,7 +1016,7 @@ for title, info in table_joins.items():
     else:
         df = df.drop(df[(df['Value'] == '')].index)
 
-    df = df[info['structure']]
+    #df = df[info['structure']]
 
     df['Households in Fuel Poverty'] = df.apply(lambda x: x['Households in Fuel Poverty'].replace('.0', ''), axis=1)
     df['Households not in Fuel Poverty'] = df.apply(lambda x: x['Households not in Fuel Poverty'].replace('.0', ''), axis=1)
