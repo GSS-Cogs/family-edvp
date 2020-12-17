@@ -1,6 +1,11 @@
 Label,Notation,Parent Notation,Sort Priority
-All,all,,1
-Urban,urban,,2
-Semi-rural,semi-rural,,3
-Rural,rural,,4
-All,all-households,,5
+All,all,,1.0
+Urban,urban,,2.0
+Semi-rural,semi-rural,,3.0
+Rural,rural,,4.0
+All,all-households,,5.0
+all,all,,
+urban,urban,,
+semi-rural,semi-rural,,
+rural,rural,,
+all-households,all-households,,

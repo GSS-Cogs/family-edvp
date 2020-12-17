@@ -1,8 +1,15 @@
 Label,Notation,Parent Notation,Sort Priority
-All,all,,1
-A/B/C,a/b/c,,2
-D,d,,3
-E,e,,4
-F,f,,5
-G,g,,6
-All,all-households,,6
+All,all,,1.0
+A/B/C,a/b/c,,2.0
+D,d,,3.0
+E,e,,4.0
+F,f,,5.0
+G,g,,6.0
+All,all-households,,6.0
+all,all,,
+a/b/c,a/b/c,,
+d,d,,
+e,e,,
+f,f,,
+g,g,,
+all-households,all-households,,

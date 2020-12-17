@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[60]:
+# In[75]:
 
 
 # -*- coding: utf-8 -*-
@@ -16,7 +16,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[61]:
+# In[76]:
 
 
 # # Helpers
@@ -24,7 +24,7 @@ coldef = json.load(open('info.json'))
 # These are all the same two variations of table repeated, so we're just gonna have a function for each
 
 
-# In[62]:
+# In[77]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -116,31 +116,35 @@ def generate_codelist(title, df, col):
     # TODO - does it already exist? Are there any unaccounted for
     # values in this version of that codelist?
 
-    # TODO - do this as two series then zip? worth it?
-    codelist = {
-        "Label": [],
-        "Notation": [],
-        "Parent Notation": [],
-        "Sort Priority": []
-        }
+    if Path(destination).is_file():
+        codelistDF = pd.read_csv(destination).fillna('')
+        for val in list(df[col].unique()):
+            codelistDF = codelistDF.append({'Label' : val , 'Notation' : pathify(str(val)), 'Parent Notation' : '', 'Sort Priority' : ''} , ignore_index=True)
 
-    for val in list(df[col].unique()):
-        codelist["Label"].append(val)
-        codelist["Notation"].append(pathify(val))
-        codelist["Parent Notation"].append("")
-        codelist["Sort Priority"].append("")
+        codelistDF = codelistDF.drop_duplicates()
+        codelistDF.to_csv(destination, index=False)
 
-    # Output the codelist csv
-    df = pd.DataFrame.from_dict(codelist)
-    df.to_csv(destination, index=False)
+    else:
+        codelist = {
+            "Label": [],
+            "Notation": [],
+            "Parent Notation": [],
+            "Sort Priority": []
+            }
+
+        for val in list(df[col].unique()):
+            codelist["Label"].append(val)
+            codelist["Notation"].append(pathify(str(val)))
+            codelist["Parent Notation"].append("")
+            codelist["Sort Priority"].append("")
+
+        df = pd.DataFrame.from_dict(codelist)
+        df.to_csv(destination, index=False)
 
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
     path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
-
-    with open('./codelists/{}.csv-metadata.json'.format(pathify(col)), 'w') as f:
-        f.write(codelist_csvw)
 
 
 def clean_lower_tables(bag):
@@ -172,7 +176,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[63]:
+# In[78]:
 
 
 scraper = Scraper(seed="info.json")
@@ -188,7 +192,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[64]:
+# In[79]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -257,7 +261,7 @@ energy_efficiency_task = {
 }
 
 
-# In[65]:
+# In[80]:
 
 
 
@@ -266,7 +270,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[66]:
+# In[81]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -311,7 +315,7 @@ household_characteristics_task = {
 }
 
 
-# In[67]:
+# In[82]:
 
 
 # # Household income
@@ -319,7 +323,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[68]:
+# In[83]:
 
 
 # +
@@ -354,7 +358,7 @@ household_income_task = {
 }
 
 
-# In[69]:
+# In[84]:
 
 
 # # Fuel payment type
@@ -362,7 +366,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[70]:
+# In[85]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -402,7 +406,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[71]:
+# In[86]:
 
 
 trace = TransformTrace()
@@ -507,7 +511,7 @@ csvw_value_map = {
 }
 
 
-# In[72]:
+# In[87]:
 
 
 df.head()
@@ -516,7 +520,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[73]:
+# In[88]:
 
 
 # description we'll add to most joined tables
@@ -645,7 +649,7 @@ table_joins = {
 
 # Given there are standard column to all datacubes it's easier
 # to define the columns we're NOT going to pathify
-COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type"]
+COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type", "Region"]
 
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False
@@ -789,7 +793,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[74]:
+# In[89]:
 
 
 #cubes.output_all()
@@ -815,7 +819,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[74]:
+# In[89]:
 
 
 
