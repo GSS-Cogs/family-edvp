@@ -56,6 +56,7 @@ scraper.distributions[0]
 # %%
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions
+print(dimensions)
 trace.Period("Values taken from 'Date' column")
 # Not sure what to call this column, Dimension_1
 trace.Payment_Method("Values one of {}", dimensions)
@@ -70,7 +71,7 @@ df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%d/%m
 df_final['Period'] = 'day/' + df_final['Period'].astype(str)
 
 trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
-df_final["Value"] = df_final["Value"].apply(sanitize_values)
+#df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
 
 trace.store(title, df_final)
@@ -132,6 +133,16 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 # %%
-#df_final.head(10)
+#df = df_final[df_final['Payment Method'] == "market-direct-debit"]
+df.head(6)
+
+# %%
+#scraper.dataset.family = 'edvp'
+#codelistcreation = ['Payment Method'] 
+#df = df_final
+#codeclass = CSVCodelists()
+#for cl in codelistcreation:
+#    if cl in df.columns:
+#        codeclass.create_codelists(pd.DataFrame(df[cl]), 'codelists2', scraper.dataset.family, Path(os.getcwd()).name.lower())
 
 # %%
