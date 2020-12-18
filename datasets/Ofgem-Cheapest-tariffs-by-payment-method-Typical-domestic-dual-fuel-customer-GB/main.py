@@ -36,7 +36,7 @@ def sanitize_values(value):
          new_value = value.replace(' ', '').replace(',', '').strip()
          return new_value
      except:
-         return ''
+         return value
 
 
 # %%
@@ -71,7 +71,7 @@ df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%d/%m
 df_final['Period'] = 'day/' + df_final['Period'].astype(str)
 
 trace.Period("Formatted time to 'gregorian-day/dd/mm/yyyy'")
-#df_final["Value"] = df_final["Value"].apply(sanitize_values)
+df_final["Value"] = df_final["Value"].apply(sanitize_values)
 trace.Value("Removed commas and whitespaces from Values")
 
 trace.store(title, df_final)
@@ -133,7 +133,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 # %%
-#df = df_final[df_final['Payment Method'] == "market-direct-debit"]
+df = df_final[df_final['Payment Method'] == "market-direct-debit"]
 df.head(6)
 
 # %%
