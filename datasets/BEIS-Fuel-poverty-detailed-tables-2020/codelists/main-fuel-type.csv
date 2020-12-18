@@ -1,9 +1,8 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,1
+All,all,,1
 Gas,gas,,2
 Electricity,electricity,,3
 Other,other,,4
 Oil,oil,,5
 Solid,solid,,6
-All,all,,7
-other,other,,8
+other,other,,7
