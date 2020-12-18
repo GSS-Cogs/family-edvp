@@ -2,5 +2,6 @@ Label,Notation,Parent Notation,Sort Priority
 "Large legacy suppliers (direct debit)",large-legacy-suppliers-direct-debit,,1
 "Large legacy suppliers (standard credit)",large-legacy-suppliers-standard-credit,,2
 "Large legacy suppliers (prepayment)",large-legacy-suppliers-prepayment,,3
+"Market (direct debit)",market-direct-debit,,4
 "Market (standard credit)",market-standard-credit,,5
 "Market (prepayment)",market-prepayment,,6
