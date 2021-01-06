@@ -2,12 +2,12 @@
     "title": "Retail price comparison by company and tariff type: Domestic (GB)",
     "publisher": "The Office of Gas and Electricity Markets",
     "description": "This data shows trends in domestic energy bills by tariff offered by the six largest suppliers and all other suppliers. It compares their average standard variable tariffs with the default tariff cap and the cheapest tariffs available in the market (including white label tariffs). Figures are based on a typical domestic dual fuel customer paying by direct debit.",
-    "dataURL": "https://www.ofgem.gov.uk/node/95437/revisions/371625/csv?fake=.csv",
+    "dataURL": "https://www.ofgem.gov.uk/node/95437/revisions/373185/csv?fake=.csv",
     "landingPage": "https://www.ofgem.gov.uk/data-portal/all-charts",
     "datasetNotes": [
         "Landing page consists of a series of interactive charts. Relevant chart is the middle right most but one chart. Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
     ],
-    "published": "2020-09-28",
+    "published": "2020-12-30",
     "families": [
         "EDVP"
     ],

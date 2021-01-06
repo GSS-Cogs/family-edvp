@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[1]:
 
 
 from gssutils import *
@@ -22,7 +22,7 @@ def Time_Formatter(date):
     return 'day/' + str(parse(date).date())
 
 
-# In[6]:
+# In[2]:
 
 
 #cubes = Cubes("info.json")
@@ -40,7 +40,7 @@ dist.title = title
 dist
 
 
-# In[7]:
+# In[3]:
 
 
 trace = TransformTrace()
@@ -104,7 +104,7 @@ trace.render("spec_v1.html")
 df.head(20)
 
 
-# In[8]:
+# In[4]:
 
 
 
