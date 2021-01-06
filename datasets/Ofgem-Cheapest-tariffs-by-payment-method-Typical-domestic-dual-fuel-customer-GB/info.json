@@ -7,7 +7,7 @@
         "Landing page consists of a series of interactive charts. Relevant chart is the middle right most chart. Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
     ],
     "dataURL": "https://www.ofgem.gov.uk/node/95439/revisions/372779/csv?fake=.csv",
-    "published": "2020-09-28",
+    "published": "2020-12-30",
     "families": [
         "EDVP"
     ],
