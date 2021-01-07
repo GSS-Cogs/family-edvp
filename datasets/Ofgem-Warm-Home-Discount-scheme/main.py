@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[46]:
+# In[90]:
 
 
 #!/usr/bin/env python
 # coding: utf-8
 
 
-# In[46]:
+# In[90]:
 
 
 
 
 
-# In[47]:
+# In[91]:
 
 
 
@@ -33,7 +33,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[48]:
+# In[92]:
 
 
 #The three csv urls as of writing are
@@ -42,7 +42,7 @@ def mid(s, offset, amount):
 #3. https://www.ofgem.gov.uk/node/112641/revisions/374169/csv
 
 
-# In[49]:
+# In[93]:
 
 
 
@@ -63,7 +63,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[50]:
+# In[94]:
 
 
 
@@ -97,6 +97,8 @@ df = df.replace({'Spending proportion' : {'Scheme Year 1 2011/12' : '1 April 201
 df['Period Lower'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[0]).date(), axis = 1)
 df['Period Higher'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[1]).date(), axis = 1)
 df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(x['Period Lower']) + 'T00:00:00/P' + str((x['Period Higher'] - x['Period Lower']).days) + 'D', axis = 1)
+
+df['Value'] = df.apply(lambda x: x['Value'].replace('%', ''), axis = 1)
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Value']]
 
@@ -158,7 +160,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[51]:
+# In[95]:
 
 
 import os
@@ -185,7 +187,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[52]:
+# In[96]:
 
 
 
@@ -200,7 +202,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[53]:
+# In[97]:
 
 
 
@@ -292,7 +294,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[54]:
+# In[98]:
 
 
 import os
@@ -319,7 +321,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[55]:
+# In[99]:
 
 
 
@@ -334,7 +336,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[56]:
+# In[100]:
 
 
 
@@ -402,7 +404,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[57]:
+# In[101]:
 
 
 import os
@@ -429,7 +431,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[58]:
+# In[102]:
 
 
 
@@ -437,7 +439,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
 #cubes.output_all()
 
 
-# In[58]:
+# In[102]:
 
 
 
