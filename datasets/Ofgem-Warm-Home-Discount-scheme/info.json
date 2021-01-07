@@ -6,7 +6,7 @@
   "datasetNotes": [
     "On landing page three interactive charts towards top of page. Clicking on each chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV. "
   ],
-  "published": "2019-12-18",
+  "published": "2020-12-18",
   "families": [
     "EDVP"
   ],
@@ -83,5 +83,5 @@
   },
   "sizingNotes": "",
   "notes": "Interactive chart with CSV download option.",
-  "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv"
+  "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/374169/csv?fake=.csv"
 }

@@ -1,12 +1,25 @@
 #!/usr/bin/env python
 # coding: utf-8
-# %%
 
-# %%
+# In[46]:
 
 
-import pandas as pd 
-from gssutils import * 
+#!/usr/bin/env python
+# coding: utf-8
+
+
+# In[46]:
+
+
+
+
+
+# In[47]:
+
+
+
+import pandas as pd
+from gssutils import *
 import json
 from dateutil.parser import parse
 
@@ -20,22 +33,17 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# %%
-
-
-
-
-
-# %%
+# In[48]:
 
 
 #The three csv urls as of writing are
-#1. https://www.ofgem.gov.uk/node/112635/revisions/349355/csv
-#2. https://www.ofgem.gov.uk/node/112638/revisions/349359/csv
-#3. https://www.ofgem.gov.uk/node/112641/revisions/349537/csv
+#1. https://www.ofgem.gov.uk/node/112635/revisions/374173/csv
+#2. https://www.ofgem.gov.uk/node/112638/revisions/374171/csv
+#3. https://www.ofgem.gov.uk/node/112641/revisions/374169/csv
 
 
-# %%
+# In[49]:
+
 
 
 trace = TransformTrace()
@@ -46,7 +54,7 @@ title = "warm-home-discount-distribution-expenditure-year".replace('-', ' ')
 
 with open('info.json') as f:
   info_file_data = json.load(f)
-info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112635/revisions/349355/csv?fake=.csv"
+info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112635/revisions/374173/csv?fake=.csv"
 with open('info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
 scraper = Scraper(seed="info.json")
@@ -55,7 +63,8 @@ scraper.distributions[0].title = title
 scraper
 
 
-# %%
+# In[50]:
+
 
 
 link = scraper.distributions[0].downloadURL
@@ -82,7 +91,8 @@ df = df.replace({'Spending proportion' : {'Scheme Year 1 2011/12' : '1 April 201
                              'Scheme Year 5 2015/16': '1 April 2015 to 31 March 2016',
                              'Scheme Year 6 2016/17': '1 July 2016 to 31 May 2017',
                              'Scheme Year 7 2017/18': '1 June 2017 to 31 March 2018',
-                             'Scheme Year 8 2018/19': '15 August 2018 to 31 March 2019'}})
+                             'Scheme Year 8 2018/19': '15 August 2018 to 31 March 2019',
+                             'Scheme Year 9 2019/20': '1 April 2019 to 31 March 2020'}})
 
 df['Period Lower'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[0]).date(), axis = 1)
 df['Period Higher'] = df.apply(lambda x: parse(x['Spending proportion'].split(' to ')[1]).date(), axis = 1)
@@ -112,11 +122,11 @@ with open("info.json") as f:
     # Read the map back into the cubes class
     #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
-    
+
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "double"
-    
+
 #if SHOW_MAPPING:
 print("Mapping for: ", 'percentageexpenditure')
 print(json.dumps(mapping, indent=2))
@@ -148,7 +158,9 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# %%
+# In[51]:
+
+
 import os
 from urllib.parse import urljoin
 
@@ -172,12 +184,14 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
-# %%
+
+# In[52]:
+
 
 
 with open('info.json') as f:
   info_file_data = json.load(f)
-info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112638/revisions/349359/csv?fake=.csv"
+info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112638/revisions/374171/csv?fake=.csv"
 with open('info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
 scraper = Scraper(seed="info.json")
@@ -186,7 +200,8 @@ scraper.distributions[0].title = title
 scraper
 
 
-# %%
+# In[53]:
+
 
 
 def sanitize_values(value):
@@ -243,8 +258,8 @@ with open("info.json") as f:
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gbp"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "integer"
-    
-    
+
+
 #if SHOW_MAPPING:
 print("Mapping for: ", 'gbpexpenditure')
 print(json.dumps(mapping, indent=2))
@@ -277,7 +292,9 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# %%
+# In[54]:
+
+
 import os
 from urllib.parse import urljoin
 
@@ -301,12 +318,14 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
-# %%
+
+# In[55]:
+
 
 
 with open('info.json') as f:
   info_file_data = json.load(f)
-info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112641/revisions/349537/csv?fake=.csv"
+info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112641/revisions/374169/csv?fake=.csv"
 with open('info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
 scraper = Scraper(seed="info.json")
@@ -315,7 +334,8 @@ scraper.distributions[0].title = title
 scraper
 
 
-# %%
+# In[56]:
+
 
 
 link = scraper.distributions[0].downloadURL
@@ -324,10 +344,10 @@ trace.start(publisher, 'nationexpenditure', columns, link)
 
 df = scraper.distributions[0].as_pandas()
 
-df = df.rename(columns={'Total spend' : 'Value'})
+df = df.rename(columns={'Total Spend' : 'Value'})
 df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
 df['Scheme Year'] = 'year-8'
-df['Value'] = df.apply(lambda x: sanitize_values(x['Value']), axis = 1)
+df['Value'] = df.apply(lambda x: sanitize_values(x['Value'].replace('%', '')), axis = 1)
 
 df = df.replace({'Nation' : {'England' : 'E92000001',
                              'Scotland' : 'S92000003',
@@ -347,7 +367,7 @@ with open("info.json") as f:
     # Read the map back into the cubes class
     #info_json["transform"]["columns"]['Value'] = mapping
     #cubes.info = info_json
-    
+
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "double"
@@ -382,7 +402,9 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# %%
+# In[57]:
+
+
 import os
 from urllib.parse import urljoin
 
@@ -406,11 +428,17 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
-# %%
+
+# In[58]:
+
 
 
 #trace.render("spec_v1.html")
 #cubes.output_all()
 
 
-# %%
+# In[58]:
+
+
+
+
