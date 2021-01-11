@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[90]:
+# In[111]:
 
 
 #!/usr/bin/env python
 # coding: utf-8
 
 
-# In[90]:
+# In[111]:
 
 
 
 
 
-# In[91]:
+# In[112]:
 
 
 
@@ -33,7 +33,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[92]:
+# In[113]:
 
 
 #The three csv urls as of writing are
@@ -42,7 +42,7 @@ def mid(s, offset, amount):
 #3. https://www.ofgem.gov.uk/node/112641/revisions/374169/csv
 
 
-# In[93]:
+# In[114]:
 
 
 
@@ -63,7 +63,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[94]:
+# In[115]:
 
 
 
@@ -160,7 +160,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[95]:
+# In[116]:
 
 
 import os
@@ -187,7 +187,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[96]:
+# In[117]:
 
 
 
@@ -202,7 +202,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[97]:
+# In[118]:
 
 
 
@@ -229,7 +229,7 @@ df_new_shape = df_new_shape.rename(columns={"variable": "Support Element", "valu
 df = df_new_shape.fillna('')
 df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('15 August 2018').date()) + 'T00:00:00/P' + str((parse('31 March 2019') - parse('15 August 2018')).days) + 'D', axis = 1)
 df['Scheme Year'] = 'year-8'
-df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '' else '', axis = 1)
+df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '0' else '', axis = 1)
 df['Value'] = df.apply(lambda x: sanitize_values(x['Value']), axis = 1)
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value']]
@@ -294,7 +294,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[98]:
+# In[119]:
 
 
 import os
@@ -321,7 +321,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[99]:
+# In[120]:
 
 
 
@@ -336,7 +336,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[100]:
+# In[121]:
 
 
 
@@ -404,7 +404,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[101]:
+# In[122]:
 
 
 import os
@@ -431,7 +431,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[102]:
+# In[123]:
 
 
 
@@ -439,7 +439,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
 #cubes.output_all()
 
 
-# In[102]:
+# In[123]:
 
 
 
