@@ -1,21 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[111]:
-
-
-#!/usr/bin/env python
-# coding: utf-8
-
-
-# In[111]:
-
-
-
-
-
-# In[112]:
-
+# In[1]:
 
 
 import pandas as pd
@@ -33,17 +19,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[113]:
-
-
-#The three csv urls as of writing are
-#1. https://www.ofgem.gov.uk/node/112635/revisions/374173/csv
-#2. https://www.ofgem.gov.uk/node/112638/revisions/374171/csv
-#3. https://www.ofgem.gov.uk/node/112641/revisions/374169/csv
-
-
-# In[114]:
-
+# In[2]:
 
 
 trace = TransformTrace()
@@ -63,8 +39,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[115]:
-
+# In[3]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -82,7 +57,6 @@ df_new_shape = df_new_shape.rename(columns={"variable": "Support Element", "valu
 df = df_new_shape[['Spending proportion', 'Support Element', 'Value']]
 
 df['Scheme Year'] = df.apply(lambda x: left(x['Spending proportion'].replace('Scheme ', ''), 6), axis = 1)
-#df['Period'] = df['Spending proportion']
 
 df = df.replace({'Spending proportion' : {'Scheme Year 1 2011/12' : '1 April 2011 to 31 March 2012',
                              'Scheme Year 2 2012/13': '1 April 2012 to 31 March 2013',
@@ -116,20 +90,10 @@ mapping = {}
 with open("info.json") as f:
     info_json = json.load(f)
 
-    # "Value" entry for this dataset
-    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
-    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
-    #                    "datatype": "double"}
-
-    # Read the map back into the cubes class
-    #info_json["transform"]["columns"]['Value'] = mapping
-    #cubes.info = info_json
-
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "double"
 
-#if SHOW_MAPPING:
 print("Mapping for: ", 'percentageexpenditure')
 print(json.dumps(mapping, indent=2))
 print("\n")
@@ -154,13 +118,10 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-#cubes.add_cube(scraper, df, 'percentageexpenditure', info_json_dict=info_json)
-#trace.store('percentageexpenditure', df)
-
 df.head(10)
 
 
-# In[116]:
+# In[4]:
 
 
 import os
@@ -187,7 +148,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[117]:
+# In[5]:
 
 
 
@@ -202,17 +163,16 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[118]:
+# In[6]:
 
 
 
 def sanitize_values(value):
-     #%%removing comma and whitespace from values
-     try:
-         new_value = value.replace(' ', '').replace(',', '').strip()
-         return new_value
-     except:
-         return ''
+    try:
+        new_value = value.replace(' ', '').replace(',', '').strip()
+        return new_value
+    except:
+        return ''
 
 link = scraper.distributions[0].downloadURL
 columns = ['Period', 'Scheme Year', 'Supplier', 'Support Element', 'Value']
@@ -248,21 +208,10 @@ mapping = {}
 with open("info.json") as f:
     info_json = json.load(f)
 
-    # "Value" entry for this dataset
-    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/gdp",
-    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
-    #                    "datatype": "integer"}
-
-    # Read the map back into the cubes class
-    #info_json["transform"]["columns"]['Value'] = mapping
-    #cubes.info = info_json
-
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gbp"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "integer"
 
-
-#if SHOW_MAPPING:
 print("Mapping for: ", 'gbpexpenditure')
 print(json.dumps(mapping, indent=2))
 print("\n")
@@ -288,13 +237,10 @@ https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-di
 We update this chart on an annual basis.
 """
 
-#cubes.add_cube(scraper, df, 'gbpexpenditure', info_json_dict=info_json)
-#trace.store('gbpexpenditure', df)
-
 df.head(10)
 
 
-# In[119]:
+# In[7]:
 
 
 import os
@@ -321,7 +267,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[120]:
+# In[8]:
 
 
 
@@ -336,8 +282,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[121]:
-
+# In[9]:
 
 
 link = scraper.distributions[0].downloadURL
@@ -361,20 +306,10 @@ mapping = {}
 with open("info.json") as f:
     info_json = json.load(f)
 
-    # "Value" entry for this dataset
-    #mapping["Value"] = {"unit": "http://gss-data.org.uk/def/concept/measurement-units/percentage",
-    #                    "measure": "http://gss-data.org.uk/def/measure/expenditure",
-    #                    "datatype": "double"}
-
-    # Read the map back into the cubes class
-    #info_json["transform"]["columns"]['Value'] = mapping
-    #cubes.info = info_json
-
     info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
     info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
     info_json["transform"]["columns"]['Value']["datatype"] = "double"
 
-#if SHOW_MAPPING:
 print("Mapping for: ", 'nationexpenditure')
 print(json.dumps(mapping, indent=2))
 print("\n")
@@ -398,13 +333,10 @@ We have gathered this information from obligated suppliers for information purpo
 We update this chart on an annual basis.
 """
 
-#cubes.add_cube(scraper, df, 'nationexpenditure', info_json_dict=info_json)
-#trace.store('nationexpenditure', df)
-
 df.head(10)
 
 
-# In[122]:
+# In[10]:
 
 
 import os
@@ -429,18 +361,4 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
-
-
-# In[123]:
-
-
-
-#trace.render("spec_v1.html")
-#cubes.output_all()
-
-
-# In[123]:
-
-
-
 
