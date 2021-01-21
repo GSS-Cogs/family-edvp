@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element",
     "url": "support-element.csv",
     "rdfs:label": "Support Element",
     "dc:title": "Support Element",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#concept/support-element/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#concept/support-element/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#concept/support-element/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#concept/support-element/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element",
+        "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,16 +64,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
             },
             "rdfs:label": "Support Element",
             "dc:title": "Support Element",
@@ -100,17 +100,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/support-element"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
             },
             "dc:title": "Support Element Catalog Record",
             "rdfs:label": "Support Element Catalog Record",
