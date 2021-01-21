@@ -85,6 +85,9 @@
             "rdfs:label": "Scheme Year",
             "dc:title": "Scheme Year",
             "rdfs:comment": "Dataset representing the 'Scheme Year' code list.",
+            "dc:publisher": {
+                "@id": "ofgem"
+            },
             "dcat:landingPage": {
                 "@id": "https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-discount/warm-home-discount-reports-and-statistics"
             },
@@ -98,7 +101,7 @@
             },
             "http://publishmydata.com/pmdcat#markdownDescription": {
                 "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
-                "@value": "Scheme Year Catalog Record"
+                "@value": "Interactive charts - Data on the Warm Home Discount scheme since it launched in 2011 as a government energy scheme to help tackle fuel poverty."
             }
         },
         {
@@ -120,11 +123,11 @@
             "rdfs:label": "Scheme Year Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-01-21T14:46:08.295884"
+                "@value": "2021-01-21T14:53:03.939928"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-01-21T14:46:08.295884"
+                "@value": "2021-01-21T14:53:03.939928"
             }
         }
     ]
