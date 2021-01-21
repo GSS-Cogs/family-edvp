@@ -31,17 +31,20 @@
       "Scheme Year": {
         "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/scheme-year",
         "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/scheme-year/{scheme_year}",
-        "description": "Defined scheme year and year range"
+        "description": "Defined scheme year and year range",
+        "codelist": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/scheme-year"
       },
       "Support Element": {
         "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/support-element",
         "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/support-element/{support_element}",
-        "description": "The scheme focuses spending against three different support elements, categorised by a \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122, \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcindustry initiatives\u00e2\u20ac\u2122. \u00e2\u20ac\u02dcLegacy spending\u00e2\u20ac\u2122 applied in scheme years 1 to 3"
+        "description": "The scheme focuses spending against three different support elements, categorised by a \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122, \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcindustry initiatives\u00e2\u20ac\u2122. \u00e2\u20ac\u02dcLegacy spending\u00e2\u20ac\u2122 applied in scheme years 1 to 3",
+        "codelist": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/support-element"
       },
       "Supplier": {
         "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/supplier",
         "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept/supplier/{supplier}",
-        "description": "Energy suppliers with over 250,000 domestic customers (referred to as \u00e2\u20ac\u02dclarge suppliers\u00e2\u20ac\u2122) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122."
+        "description": "Energy suppliers with over 250,000 domestic customers (referred to as \u00e2\u20ac\u02dclarge suppliers\u00e2\u20ac\u2122) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122.",
+        "codelist": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme/concept-scheme/supplier"
       },
       "Value": {
         "unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
