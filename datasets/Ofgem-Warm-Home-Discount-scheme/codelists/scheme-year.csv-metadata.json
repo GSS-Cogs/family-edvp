@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year",
+    "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year",
     "url": "scheme-year.csv",
     "rdfs:label": "Scheme Year",
     "dc:title": "Scheme Year",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#concept/scheme-year/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#concept/scheme-year/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -56,14 +56,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#concept/scheme-year/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#concept/scheme-year/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year",
+        "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,16 +71,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year"
             },
             "rdfs:label": "Scheme Year",
             "dc:title": "Scheme Year",
@@ -107,17 +107,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/warm-home-discount-scheme#scheme/scheme-year"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/scheme-year"
             },
             "dc:title": "Scheme Year Catalog Record",
             "rdfs:label": "Scheme Year Catalog Record",
