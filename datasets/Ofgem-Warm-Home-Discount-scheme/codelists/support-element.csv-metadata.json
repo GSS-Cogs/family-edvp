@@ -71,7 +71,7 @@
     "dc:title": "Support Element",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
@@ -89,14 +89,14 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element",
+            "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
+                "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
                 "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/support-element"
