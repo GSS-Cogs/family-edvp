@@ -2,6 +2,8 @@
     "@context": "http://www.w3.org/ns/csvw",
     "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/supplier",
     "url": "supplier.csv",
+    "rdfs:label": "Supplier",
+    "dc:title": "Supplier",
     "tableSchema": {
         "columns": [
             {
@@ -16,7 +18,7 @@
                 "name": "notation",
                 "datatype": {
                     "base": "string",
-                    "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+                    "format": "^-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*$"
                 },
                 "required": true,
                 "propertyUrl": "skos:notation"
@@ -26,7 +28,7 @@
                 "name": "parent_notation",
                 "datatype": {
                     "base": "string",
-                    "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+                    "format": "^(-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*|)$"
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
@@ -34,17 +36,10 @@
             },
             {
                 "titles": "Sort Priority",
-                "name": "sort",
+                "name": "sort_priority",
                 "datatype": "integer",
                 "required": false,
                 "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-            },
-            {
-                "titles": "Description",
-                "name": "description",
-                "datatype": "string",
-                "required": false,
-                "propertyUrl": "rdfs:comment"
             },
             {
                 "virtual": true,
@@ -67,8 +62,6 @@
             "http://publishmydata.com/pmdcat#ConceptScheme"
         ]
     },
-    "rdfs:label": "Supplier",
-    "dc:title": "Supplier",
     "rdfs:seeAlso": [
         {
             "@id": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-warm-home-discount-scheme#scheme/supplier/dataset",
@@ -84,7 +77,31 @@
             },
             "rdfs:label": "Supplier",
             "dc:title": "Supplier",
-            "rdfs:comment": "Dataset representing the 'Supplier' code list."
+            "rdfs:comment": "Dataset representing the 'Supplier' code list.",
+            "dc:license": {
+                "@id": "ofgem"
+            },
+            "dc:creator": {
+                "@id": "ofgem"
+            },
+            "dc:publisher": {
+                "@id": "ofgem"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.ofgem.gov.uk/environmental-programmes/social-programmes/warm-home-discount/warm-home-discount-reports-and-statistics"
+            },
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2020-12-18T00:00:00"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-01-21T00:00:00"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "Interactive charts - Data on the Warm Home Discount scheme since it launched in 2011 as a government energy scheme to help tackle fuel poverty."
+            }
         },
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
@@ -105,11 +122,11 @@
             "rdfs:label": "Supplier Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-01-21T11:14:43.213233"
+                "@value": "2021-01-21T15:03:31.942808"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-01-21T11:14:43.213233"
+                "@value": "2021-01-21T15:03:31.942808"
             }
         }
     ]
