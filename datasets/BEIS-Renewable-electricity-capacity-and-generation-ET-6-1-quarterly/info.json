@@ -1,0 +1,25 @@
+{
+    "title": "Renewable electricity capacity and generation (ET 6.1 - quarterly)",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "Data on the UK\u2019s renewables sector. These tables focus on renewable electricity capacity and generation.\nPublished quarterly on the last Thursday of each calendar quarter (March, June, September and December). The data is a quarter in arrears.",
+    "landingPage": "https://www.gov.uk/government/statistics/energy-trends-section-6-renewables",
+    "datasetNotes": [
+        "On landing page under heading \"Documents\" where link for dataset can be found."
+    ],
+    "published": "2021-01-14",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "recPJ7oQ1IXmbQ8Z6"
+    },
+    "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
+    "notes": "Data in ODS format in \"Energy Trends renewables tables (ODS)\" file on same landing page."
+}

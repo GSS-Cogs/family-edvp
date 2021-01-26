@@ -1,0 +1,25 @@
+{
+    "title": "Sub-regional Feed-in Tariffs confirmed on the CFR statistics",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "Quarterly sub-regional statistics show the number of installations and total installed capacity by technology type in England, Scotland and Wales at the end the latest quarter that have been confirmed on the Central Feed-in Tariff Register.",
+    "landingPage": "https://www.gov.uk/government/statistical-data-sets/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics",
+    "datasetNotes": [
+        "On landing page scroll to middle of page where link to dataset is."
+    ],
+    "published": "2021-01-30",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "recO9rtKvu2czrvFG"
+    },
+    "sizingNotes": "Several tabs, simple table structures with multiple dimensions and footnotes.",
+    "notes": "Jan 2020 last publication due to closure of Feed In Tariff scheme."
+}

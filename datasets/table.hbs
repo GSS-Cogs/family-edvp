@@ -1,5 +1,8 @@
 <h1>{{family}} Dataset Family</h1>
 
+<button id="toggle_all" type="button" class="btn btn-outline-primary" aria-pressed="false" autocomplete="off">
+  Toggle All
+</button>
 <table id="datasets_table" class="table table-striped table-bordered">
     <thead>
     <tr>
@@ -7,12 +10,12 @@
         <th>Publisher</th>
         <th>Dataset</th>
         <th>Extract Stage</th>
+        <th>Transform Stage</th>
         <th>Tracking</th>
         <th>Transform Status</th>
+        <th>Specification</th>
         <th>Publish Status</th>
         <th>Publication date</th>
-        <th>Specfication</th>
-        <th>Flowchart</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +25,7 @@
             <td>{{info.publisher}}</td>
             <td><a href="?{{directory}}">{{info.title}}</a></td>
             <td>{{info.extract.stage}}</td>
+            <td>{{info.transform.stage}}</td>
             <td>
                 {{#if info.transform.main_issue}}
                     <a href="{{../github}}/issues/{{info.transform.main_issue}}"><img alt="GitHub issue detail" src="{{../issue_badge_base}}/{{info.transform.main_issue}}?style=plastic"></a>
@@ -33,6 +37,16 @@
                 </a>
             </td>
             <td>
+                {{#if info.spec}}
+                    <a href="{{info.spec}}"><i class="fas fa-clipboard-list"></i></a>
+                {{/if}}
+                {{#if info.jenkinsSpec}}
+                    <a href="{{info.jenkinsSpec}}"><i class="fas fa-clipboard-list"></i></a>
+                {{/if}}
+                {{#if info.flowchart}}
+                    <a href="{{info.flowchart}}"><i class="fas fa-sitemap"></i></a>
+                {{/if}}
+            <td>
                 <div>
                     <ul class="fa-ul">
                         {{#each datasets}}
@@ -43,16 +57,6 @@
             </td>
             <td data-order="{{lastModifiedMillis}}">
                 {{lastModified}}
-            </td>
-            <td>
-                <a href='{{../githubcogs}}/datasets/{{directory}}/spec.html'>
-                    <img src='specicon.png' height='60px' width='100px'/>
-                </a>
-            </td>
-             <td>
-                <a href='{{../githubcogs}}/datasets/specflowcharts.html?{{directory}}/flowchart.ttl'>
-                    <img src='fcicon.png' height='60px' width='60px'/>
-                </a>
             </td>
         </tr>
     {{/each}}

@@ -1,0 +1,25 @@
+{
+    "title": "Electric vehicle charging device statistics: [Month Year] data tables",
+    "publisher": "Department for Transport",
+    "description": "Experimental statistics on the number of publicly available electric vehicle charging devices and rapid charging devices in the UK, broken down by local authority. From April 2020, figures are updated and published quarterly.\nData are sourced from the electric vehicle and charging point platform Zap-Map.",
+    "landingPage": "https://www.gov.uk/government/collections/energy-and-environment-statistics",
+    "datasetNotes": [
+        "On landing page scroll to heading \"Latest electric vehicle charging device statistics\" and click link to latest dataset. On new page link to dataset can be found under heading \"Documents\"."
+    ],
+    "published": "2020-11-10",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "ODS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "recaCOiLly6Uq8oTv"
+    },
+    "sizingNotes": "Two tabs of data, simple structure with straightforward dimensions and no footnotes, though some notes.",
+    "notes": ""
+}

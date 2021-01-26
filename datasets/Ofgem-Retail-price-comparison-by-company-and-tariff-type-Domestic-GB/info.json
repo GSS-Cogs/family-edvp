@@ -5,9 +5,9 @@
     "dataURL": "https://www.ofgem.gov.uk/node/95437/revisions/373185/csv?fake=.csv",
     "landingPage": "https://www.ofgem.gov.uk/data-portal/all-charts",
     "datasetNotes": [
-        "Landing page consists of a series of interactive charts. Relevant chart is the middle right most but one chart. Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
+        "Landing page consists of a series of interactive charts. Relevant chart is the middle left most chart (though chart positions can change). Clicking on chart expands it and reveals a menu button top right corner with an option to downlaod as a CSV."
     ],
-    "published": "2020-12-30",
+    "published": "2020-09-28",
     "families": [
         "EDVP"
     ],
@@ -27,7 +27,7 @@
                 "parent": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff",
                 "value": "http://gss-data.org.uk/data/gss_data/edvp/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{tariff}",
                 "description": "Temp"
-              },
+            },
             "Value": {
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
                 "measure": "http://gss-data.org.uk/def/measure/tariff",
@@ -96,6 +96,9 @@
                     }
                 ]
             }
+        ],
+        "stage": [
+            "To Do"
         ]
     },
     "sizingNotes": "",

@@ -1,0 +1,25 @@
+{
+    "title": "Actual ILR Income",
+    "publisher": "Low Carbon Contracts Company Ltd",
+    "description": "This dataset includes the determined Interim Levy Rates(ILR) and the actual daily Interim Levy Rate payments (ILR Income) received by LCCC from electricity suppliers.\nEnergy Intensive Industries (EII) are those industries that are determined by BEIS as intensive users of electricity. They are exempted from paying CfD levy, up to 85% of Supplier's daily gross demand.\nThis dataset is updated daily.",
+    "landingPage": "https://www.lowcarboncontracts.uk/data-portal/dataset/actual-ilr-income",
+    "datasetNotes": [
+        "On landing page dataset found under heading \"Data and Resources\"."
+    ],
+    "published": "2021-01-22",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "JSON, CSV",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "rechXqgrZjBmv8OPM"
+    },
+    "sizingNotes": "Available as Json & CSV",
+    "notes": ""
+}

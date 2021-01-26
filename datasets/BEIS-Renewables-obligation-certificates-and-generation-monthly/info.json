@@ -1,0 +1,25 @@
+{
+    "title": "Renewables obligation: certificates and generation (monthly)",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "Data on the UK\u2019s renewables sector. This data relates to certificates and generation associated with the renewables obligation scheme.\nPublished monthly on the second Thursday of each month.",
+    "landingPage": "https://www.gov.uk/government/statistics/energy-trends-section-6-renewables",
+    "datasetNotes": [
+        "On landing page under heading \"Documents\" where link for dataset can be found."
+    ],
+    "published": "2021-01-14",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "recc7aPOS6tVWy3HQ"
+    },
+    "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
+    "notes": ""
+}

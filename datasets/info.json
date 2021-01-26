@@ -13,8 +13,18 @@
     "sparql": "https://staging.gss-data.org.uk/sparql",
     "pmd": "http://staging.gss-data.org.uk",
     "pipelines": [
+        "BEIS-Digest-of-United-Kingdom-Energy-Statistics-DUKES-2020-annexes-E-to-J-and-long-term-trends-dataset",
+        "BEIS-Digest-of-United-Kingdom-Energy-Statistics-DUKES-2020-main-chapters-and-annexes-A-to-D-dataset",
+        "BEIS-Energy-Trends-December-2020-special-feature-article-Electricity-generation-and-supply-in-Scotland-Wales-Northern-Ireland-and-England-2016-to-2019",
         "BEIS-Fuel-poverty-detailed-tables-2020",
         "BEIS-Fuel-poverty-supplementary-tables-2020",
+        "BEIS-Liquid-biofuels-for-transport-consumption-ET-6-2-quarterly",
+        "BEIS-RHI-monthly-deployment-data-Month-Year-Annual-edition",
+        "BEIS-Renewable-electricity-capacity-and-generation-ET-6-1-quarterly",
+        "BEIS-Renewables-obligation-certificates-and-generation-monthly",
+        "BEIS-Sub-regional-Feed-in-Tariffs-confirmed-on-the-CFR-statistics",
+        "DfT-Electric-vehicle-charging-device-statistics-Month-Year-data-tables",
+        "LCCC-Actual-ILR-Income",
         "Ofgem-Cheapest-tariffs-by-payment-method-Typical-domestic-dual-fuel-customer-GB",
         "Ofgem-Retail-price-comparison-by-company-and-tariff-type-Domestic-GB",
         "Ofgem-Warm-Home-Discount-scheme"

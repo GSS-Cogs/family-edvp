@@ -1,0 +1,25 @@
+{
+    "title": "Digest of United Kingdom Energy Statistics (DUKES) 2020: annexes E to J and long-term trends dataset",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "The Digest of United Kingdom Energy Statistics (DUKES) is the annual energy statistics publication produced by BEIS. It provides a detailed and comprehensive picture on the production and consumption of individual fuels and of energy as a whole. This dataset is annexes E to J and long-term trends.",
+    "landingPage": "https://www.gov.uk/government/collections/digest-of-uk-energy-statistics-dukes#2020",
+    "datasetNotes": [
+        "On landing page scroll down to heading \"2020\" and click on link \"Digest of UK Energy Statistics (DUKES) 2020\"."
+    ],
+    "published": "2020-07-30",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "reclyq64cJrfewqKq"
+    },
+    "sizingNotes": "Multiple tabs, footnotes and dimensions. Table of various structures within tabs.",
+    "notes": "Datasets which are subdatasets of DUKES are available of other landing pages i.e. https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes"
+}
