@@ -1,0 +1,26 @@
+{
+    "title": "Final UK greenhouse gas emissions national statistics: 1990 to 2019",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "Final estimates of UK territorial greenhouse gas emissions.",
+    "landingPage": "https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019",
+    "datasetNotes": [
+        "On landing page scroll down to link for dataset under heading \"Documents\"."
+    ],
+    "published": "2021-02-02",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS, ODS, CSV",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "Priority"
+        ],
+        "airtable": "recyuV6f0DZPXzhHD",
+        "main_issue": 18
+    },
+    "sizingNotes": "Multiple tabs, multiple dimensions and multiple footnotes. Simple table structures but various types of tables. CSV available.",
+    "notes": ""
+}

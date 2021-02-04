@@ -1,0 +1,26 @@
+{
+    "title": "Fuel used in generation (DUKES 5.3)",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "Digest of UK Energy Statistics (DUKES): electricity.\nDUKES chapter 5: statistics on electricity from generation through to sales.",
+    "landingPage": "https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes",
+    "datasetNotes": [
+        "On landing page scroll down to link for dataset under heading \"Documents\"."
+    ],
+    "published": "2020-07-30",
+    "families": [
+        "EDVP"
+    ],
+    "extract": {
+        "source": "XLS",
+        "stage": "Documented"
+    },
+    "transform": {
+        "stage": [
+            "To Do"
+        ],
+        "airtable": "recIo7ftwf1bJO5Ys",
+        "main_issue": 17
+    },
+    "sizingNotes": "Simple table structure with multiple dimensions and footnotes.",
+    "notes": "Requested to be added by Ross B."
+}
