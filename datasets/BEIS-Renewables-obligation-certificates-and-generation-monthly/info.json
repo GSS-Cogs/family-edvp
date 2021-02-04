@@ -18,7 +18,8 @@
         "stage": [
             "To Do"
         ],
-        "airtable": "recc7aPOS6tVWy3HQ"
+        "airtable": "recc7aPOS6tVWy3HQ",
+        "main_issue": 13
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
     "notes": ""

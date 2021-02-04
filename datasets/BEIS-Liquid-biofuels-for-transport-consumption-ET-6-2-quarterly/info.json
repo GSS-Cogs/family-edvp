@@ -18,7 +18,8 @@
         "stage": [
             "To Do"
         ],
-        "airtable": "recIONsCXYYcFYNM0"
+        "airtable": "recIONsCXYYcFYNM0",
+        "main_issue": 8
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
     "notes": "Data in ODS format in \"Energy Trends renewables tables (ODS)\" file on same landing page."

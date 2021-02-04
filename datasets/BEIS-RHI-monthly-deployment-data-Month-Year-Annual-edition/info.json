@@ -15,8 +15,12 @@
         "stage": "Documented"
     },
     "transform": {
-        "airtable": "recc3QIDDaV8mT4v9"
+        "airtable": "recc3QIDDaV8mT4v9",
+        "main_issue": 12,
+        "stage": [
+            "To Do"
+        ]
     },
     "sizingNotes": "Multiple tabs, dimensions and footnotes. Some messy tables. CSV only in zip and multiple small files within zip.",
-    "notes": ""
+    "notes": "Includes CSV but look messy. Requires investigation as to whether to use CSV or XLS format for transformation."
 }

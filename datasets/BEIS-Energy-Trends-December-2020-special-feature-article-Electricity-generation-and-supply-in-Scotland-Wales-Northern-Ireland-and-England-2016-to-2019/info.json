@@ -15,8 +15,12 @@
         "stage": "Documented"
     },
     "transform": {
-        "airtable": "rechhb3qK8yxQPb4P"
+        "airtable": "rechhb3qK8yxQPb4P",
+        "main_issue": 15,
+        "stage": [
+            "To Do"
+        ]
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
-    "notes": "Data is contained in Energy Trends 6.1 & 6.2 but this dataset is included for EDV Pase II Data Vis project as will complement Visualsation."
+    "notes": "Included for EDV Pase II Data Vis project as will complement Visualsation. May have some similar data to Energy Trends 6.1 & 6.2."
 }

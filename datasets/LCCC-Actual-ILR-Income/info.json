@@ -18,7 +18,8 @@
         "stage": [
             "To Do"
         ],
-        "airtable": "rechXqgrZjBmv8OPM"
+        "airtable": "rechXqgrZjBmv8OPM",
+        "main_issue": 14
     },
     "sizingNotes": "Available as Json & CSV",
     "notes": ""

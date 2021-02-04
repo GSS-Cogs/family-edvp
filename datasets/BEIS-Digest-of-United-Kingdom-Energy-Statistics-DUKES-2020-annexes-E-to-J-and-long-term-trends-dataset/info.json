@@ -16,10 +16,11 @@
     },
     "transform": {
         "stage": [
-            "To Do"
+            "Hold"
         ],
-        "airtable": "reclyq64cJrfewqKq"
+        "airtable": "reclyq64cJrfewqKq",
+        "main_issue": 16
     },
     "sizingNotes": "Multiple tabs, footnotes and dimensions. Table of various structures within tabs.",
-    "notes": "Datasets which are subdatasets of DUKES are available of other landing pages i.e. https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes"
+    "notes": "Put on Hold at request of Ross B.\nDatasets which are subdatasets of DUKES are available of other landing pages i.e. https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes"
 }
