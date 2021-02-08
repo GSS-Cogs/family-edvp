@@ -112,7 +112,7 @@ df['Unit'] = 'Electric Vehicle Charging Platform'
 #df['Charge Type'] = df.apply(lambda x: 'Rapid' if 'rapid' in x['Measure Type'].lower() else 'all', axis = 1)
 df['OBS'] = df.apply(lambda x: "{:.2f}".format(x['OBS']), axis = 1)
 
-df = df.rename(columns={'OBS' : 'Value'})
+df = df.rename(columns={'OBS' : 'Value', 'Area' : 'Region'})
 
 COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Area']
 
@@ -124,7 +124,7 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-df = df[['Period', 'Area', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
 df
 
