@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[62]:
 
 
 
@@ -21,28 +21,28 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[2]:
+# In[63]:
 
 
 scraper = Scraper("https://www.gov.uk/government/statistics/electric-vehicle-charging-device-statistics-october-2020")
 scraper
 
 
-# In[3]:
+# In[64]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[4]:
+# In[65]:
 
 
 tabs = [x for x in scraper.distributions[1].as_databaker() if "Info" not in x.name] #
 tabs
 
 
-# In[5]:
+# In[66]:
 
 
 tidied_sheets = {}
@@ -100,7 +100,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[6]:
+# In[67]:
 
 
 df = pd.concat(tidied_sheets.values())
@@ -109,7 +109,7 @@ df['Period'] = df.apply(lambda x: 'year/' + left(x['Period'], 4), axis = 1)
 
 df['Measure Type'] = df.apply(lambda x: x['Measure Type'].replace("\n", " "), axis = 1)
 df['Unit'] = 'Electric Vehicle Charging Platform'
-df['Unit'] = df.apply(lambda x: 'Rapid Electric Vehicle Charging Platform' if 'rapid' in x['Measure Type'].lower() else x['Unit'], axis = 1)
+#df['Charge Type'] = df.apply(lambda x: 'Rapid' if 'rapid' in x['Measure Type'].lower() else 'all', axis = 1)
 df['OBS'] = df.apply(lambda x: "{:.2f}".format(x['OBS']), axis = 1)
 
 df = df.rename(columns={'OBS' : 'Value'})
@@ -129,7 +129,7 @@ df = df[['Period', 'Area', 'Value', 'Measure Type', 'Unit']]
 df
 
 
-# In[7]:
+# In[68]:
 
 
 scraper.dataset.family = 'edvp'
@@ -143,13 +143,13 @@ csvName = 'observations'
 cubes.add_cube(scraper, df.drop_duplicates(), csvName)
 
 
-# In[8]:
+# In[69]:
 
 
 cubes.output_all()
 
 
-# In[9]:
+# In[70]:
 
 
 from IPython.core.display import HTML
