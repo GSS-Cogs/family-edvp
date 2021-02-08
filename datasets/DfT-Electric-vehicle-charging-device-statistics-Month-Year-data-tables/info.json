@@ -1,4 +1,5 @@
 {
+    "id": "dft-electric-vehicle-charging-device-statistics-month-year-data-tables",
     "title": "Electric vehicle charging device statistics: [Month Year] data tables",
     "publisher": "Department for Transport",
     "description": "Experimental statistics on the number of publicly available electric vehicle charging devices and rapid charging devices in the UK, broken down by local authority. From April 2020, figures are updated and published quarterly.\nData are sourced from the electric vehicle and charging point platform Zap-Map.",
@@ -21,23 +22,30 @@
         "airtable": "recaCOiLly6Uq8oTv",
         "main_issue": 11,
         "columns": {
-              "Period": {
+            "Period": {
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
                 "value": "http://reference.data.gov.uk/id/{+period}",
                 "codelist": false
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["charging-devices-per-100-000-population", "rapid-devices", "rapid-devices-per-100-000-population", "total-devices", "total-public-charging-devices", "total-public-rapid-charging-devices"]
-      		},
+                "dimension": "http://purl.org/linked-data/cube#measureType",
+                "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+                "types": [
+                    "charging-devices-per-100-000-population",
+                    "rapid-devices",
+                    "rapid-devices-per-100-000-population",
+                    "total-devices",
+                    "total-public-charging-devices",
+                    "total-public-rapid-charging-devices"
+                ]
+            },
             "Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
-      		},
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+            },
             "Value": {
-        		"datatype": "double"
-      		}
+                "datatype": "double"
+            }
         }
     },
     "sizingNotes": "Two tabs of data, simple structure with straightforward dimensions and no footnotes, though some notes.",
