@@ -36,7 +36,11 @@
                           "Shares of DERV road fuels", "Shares of Motor Spirit road fuels",
                           "Shares of road fuels"]
       		},
-            "Fuel": "Fuel Type",
+            "Fuel" :{
+                "parent": "http://gss-data.org.uk/def/edv/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/edv/concept-scheme/fuel/{fuel}",
+                "codelist": false
+            },
       		"Unit": {
         		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
         		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
