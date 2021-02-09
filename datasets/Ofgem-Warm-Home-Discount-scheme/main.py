@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[1]:
+# %%
 
 
 import pandas as pd
@@ -19,7 +20,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[2]:
+# %%
 
 
 trace = TransformTrace()
@@ -39,7 +40,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[3]:
+# %%
 
 
 link = scraper.distributions[0].downloadURL
@@ -121,7 +122,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[4]:
+# %%
 
 
 import os
@@ -148,7 +149,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[5]:
+# %%
 
 
 
@@ -163,7 +164,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[6]:
+# %%
 
 
 
@@ -240,7 +241,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[7]:
+# %%
 
 
 import os
@@ -267,7 +268,7 @@ with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
-# In[8]:
+# %%
 
 
 
@@ -282,7 +283,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[9]:
+# %%
 
 
 link = scraper.distributions[0].downloadURL
@@ -322,7 +323,7 @@ trace.Value("Values taken from Total spend column")
 scraper.dataset.title = 'Warm Home Discount Scheme: Percentage spend by nation'
 
 scraper.dataset.comment = """
-This graph shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the ‘core group’ and ‘broader group’ elements of the Warm Home Discount (WHD).
+This data shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the ‘core group’ and ‘broader group’ elements of the Warm Home Discount (WHD).
 """
 scraper.dataset.description = """
 Data shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the ‘core group’ and ‘broader group’ elements of the Warm Home Discount (WHD). It comprises all participating suppliers in year 8 (2018/19) of the scheme.
@@ -336,7 +337,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[10]:
+# %%
 
 
 import os
@@ -362,3 +363,5 @@ csvw_transform.write(out / f'{csvName}-metadata.json')
 with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
+
+# %%
