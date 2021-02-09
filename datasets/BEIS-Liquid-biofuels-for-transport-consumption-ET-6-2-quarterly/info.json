@@ -38,7 +38,8 @@
       		},
             "Fuel": {
                 "label": "Fuel",
-                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{fuel}"
+                "description": "Fuel Types",
+                "value": "{fuel}"
             },
       		"Unit": {
         		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
