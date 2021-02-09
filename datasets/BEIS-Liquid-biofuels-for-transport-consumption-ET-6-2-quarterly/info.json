@@ -36,11 +36,7 @@
                           "Shares of DERV road fuels", "Shares of Motor Spirit road fuels",
                           "Shares of road fuels"]
       		},
-            "Fuel": {
-                "label": "Fuel",
-                "description": "Fuel Types",
-                "value": "{fuel}"
-            },
+            "Fuel": "Fuel Type",
       		"Unit": {
         		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
         		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
