@@ -19,6 +19,35 @@
         "stage": [
             "To Do"
         ],
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Measure Type": {
+        		"dimension": "http://purl.org/linked-data/cube#measureType",
+        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
+        		"types": ["energy",
+                          "volume",
+                          "Percentage change in shares of DERV road fuels",
+                          "Percentage change in shares of Motor Spirit road fuels",
+                          "Percentage change in shares of road fuels",
+                          "Shares of DERV road fuels", "Shares of Motor Spirit road fuels",
+                          "Shares of road fuels"]
+      		},
+            "Fuel": {
+                "label": "Fuel",
+                "value": "http://gss-data.org.uk/data/gss_data/edvp/beis-liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{fuel}"
+            },
+      		"Unit": {
+        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+      		},
+      		"Value": {
+        		"datatype": "double"
+      		}
+        },
         "airtable": "recIONsCXYYcFYNM0",
         "main_issue": 8
     },
