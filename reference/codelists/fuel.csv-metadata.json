@@ -60,8 +60,6 @@
         "primaryKey": "notation",
         "aboutUrl": "http://gss-data.org.uk/def/trade/concept/fuel/{notation}"
     },
-    "rdfs:label": "Fuel",
-    "dc:title": "Fuel",
     "prov:hadDerivation": {
         "@id": "http://gss-data.org.uk/def/trade/concept-scheme/fuel",
         "@type": [
@@ -69,6 +67,8 @@
             "http://publishmydata.com/pmdcat#ConceptScheme"
         ]
     },
+    "rdfs:label": "Fuel",
+    "dc:title": "Fuel",
     "rdfs:seeAlso": [
         {
             "@id": "http://gss-data.org.uk/def/trade/concept-scheme/fuel/dataset",
