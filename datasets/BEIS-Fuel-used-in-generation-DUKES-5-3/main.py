@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[104]:
+# In[143]:
 
 
 
@@ -22,7 +22,7 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[105]:
+# In[144]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -30,7 +30,7 @@ scraper.dataset.family = 'edvp'
 scraper
 
 
-# In[106]:
+# In[145]:
 
 
 dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)" in x.title][0]
@@ -38,7 +38,7 @@ dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)
 display(dist)
 
 
-# In[107]:
+# In[146]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents']]
@@ -79,7 +79,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[108]:
+# In[147]:
 
 
 df = pd.concat([tidied_sheets['5.3']]).fillna('NaN')
@@ -124,7 +124,7 @@ for col in df.columns.values.tolist():
 df
 
 
-# In[109]:
+# In[148]:
 
 
 from IPython.core.display import HTML
@@ -135,18 +135,25 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[110]:
+# In[149]:
 
+
+dfOil, dfActual = [x for _, x in df.groupby(df['Unit'] != 'millions-of-tonnes-of-oil-equivalent')]
 
 scraper.comments = """
 For Major Power Producers, 'other fuels' only includes non-biodegradable waste. This was included in 'other renewables'  prior
 to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable waste, coke oven gas, blast furnace gas, and waste
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
 
-cubes.add_cube(scraper, df.drop_duplicates(), scraper.title)
+scraper.dataset.title = "Fuel used in generation (DUKES 5.3) - Oil Equivalent Values"
+scraper.dataset.description = "Digest of UK Energy Statistics (DUKES): electricity. DUKES chapter 5: statistics on electricity from generation through to sales. Measure as an equivalent to Oil"
+cubes.add_cube(scraper, dfOil.drop_duplicates(), scraper.title)
+
+scraper.dataset.title = "Fuel used in generation (DUKES 5.3)"
+cubes.add_cube(scraper, dfActual.drop_duplicates(), scraper.title)
 
 
-# In[111]:
+# In[150]:
 
 
 cubes.output_all()
