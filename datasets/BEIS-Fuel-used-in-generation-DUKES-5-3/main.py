@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[143]:
+# In[209]:
 
 
 
@@ -22,7 +22,7 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[144]:
+# In[210]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -30,7 +30,7 @@ scraper.dataset.family = 'edvp'
 scraper
 
 
-# In[145]:
+# In[211]:
 
 
 dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)" in x.title][0]
@@ -38,7 +38,7 @@ dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)
 display(dist)
 
 
-# In[146]:
+# In[212]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents']]
@@ -69,7 +69,6 @@ for tab in tabs:
                 HDim(period, 'Period', DIRECTLY, ABOVE),
                 HDim(fuel, 'Fuel', DIRECTLY, LEFT),
                 HDim(generators, 'Generating Companies', CLOSEST, ABOVE),
-                HDimConst('Measure Type', 'Fuel used in Generation'),
                 HDim(unit, 'Unit', CLOSEST, ABOVE, cellvalueoverride={'    "' : 'M tonnes'})
         ]
 
@@ -79,7 +78,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[147]:
+# In[213]:
 
 
 df = pd.concat([tidied_sheets['5.3']]).fillna('NaN')
@@ -110,6 +109,8 @@ df = df.replace({'Fuel' : {
 
 df = df.rename(columns={'OBS' : 'Value'})
 
+df['Measure Type'] = df.apply(lambda x: 'fuel used in generation - representative' if 'equivalent' in x['Unit'] else 'fuel used in generation', axis = 1)
+
 COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
 
 for col in df.columns.values.tolist():
@@ -120,11 +121,12 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+df = df[['Period', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
 
 df
 
 
-# In[148]:
+# In[214]:
 
 
 from IPython.core.display import HTML
@@ -135,25 +137,20 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[149]:
+# In[215]:
 
 
-dfOil, dfActual = [x for _, x in df.groupby(df['Unit'] != 'millions-of-tonnes-of-oil-equivalent')]
+scraper.dataset.title = info['title']
 
 scraper.comments = """
 For Major Power Producers, 'other fuels' only includes non-biodegradable waste. This was included in 'other renewables'  prior
 to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable waste, coke oven gas, blast furnace gas, and waste
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
 
-scraper.dataset.title = "Fuel used in generation (DUKES 5.3) - Oil Equivalent Values"
-scraper.dataset.description = "Digest of UK Energy Statistics (DUKES): electricity. DUKES chapter 5: statistics on electricity from generation through to sales. Measure as an equivalent to Oil"
-cubes.add_cube(scraper, dfOil.drop_duplicates(), scraper.title)
-
-scraper.dataset.title = "Fuel used in generation (DUKES 5.3)"
-cubes.add_cube(scraper, dfActual.drop_duplicates(), scraper.title)
+cubes.add_cube(scraper, df.drop_duplicates(), scraper.title)
 
 
-# In[150]:
+# In[216]:
 
 
 cubes.output_all()
