@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[10]:
 
 
 
@@ -21,28 +21,28 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[2]:
+# In[11]:
 
 
 scraper = Scraper("https://www.gov.uk/government/statistics/electric-vehicle-charging-device-statistics-october-2020")
 scraper
 
 
-# In[3]:
+# In[12]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[4]:
+# In[13]:
 
 
 tabs = [x for x in scraper.distributions[1].as_databaker() if "Info" not in x.name] #
 tabs
 
 
-# In[5]:
+# In[14]:
 
 
 tidied_sheets = {}
@@ -100,7 +100,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[6]:
+# In[15]:
 
 
 df = pd.concat(tidied_sheets.values())
@@ -113,6 +113,9 @@ df['Unit'] = 'Electric Vehicle Charging Platform'
 df['OBS'] = df.apply(lambda x: "{:.2f}".format(x['OBS']), axis = 1)
 
 df = df.rename(columns={'OBS' : 'Value', 'Area' : 'Region'})
+
+df = df.replace({'Measure Type' : {'total-public-charging-devices' : 'total-devices',
+                                   'total-public-rapid-charging-devices' : 'rapid-devices'}})
 
 COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Region']
 
@@ -129,7 +132,7 @@ df = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 df
 
 
-# In[7]:
+# In[16]:
 
 
 scraper.dataset.family = 'edvp'
@@ -143,13 +146,13 @@ csvName = 'observations'
 cubes.add_cube(scraper, df.drop_duplicates(), csvName)
 
 
-# In[8]:
+# In[17]:
 
 
 cubes.output_all()
 
 
-# In[9]:
+# In[18]:
 
 
 from IPython.core.display import HTML
