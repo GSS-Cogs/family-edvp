@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[84]:
 
 
 
@@ -21,28 +21,28 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[11]:
+# In[85]:
 
 
 scraper = Scraper("https://www.gov.uk/government/statistics/electric-vehicle-charging-device-statistics-october-2020")
 scraper
 
 
-# In[12]:
+# In[86]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[13]:
+# In[87]:
 
 
 tabs = [x for x in scraper.distributions[1].as_databaker() if "Info" not in x.name] #
 tabs
 
 
-# In[14]:
+# In[88]:
 
 
 tidied_sheets = {}
@@ -100,7 +100,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[15]:
+# In[89]:
 
 
 df = pd.concat(tidied_sheets.values())
@@ -114,9 +114,6 @@ df['OBS'] = df.apply(lambda x: "{:.2f}".format(x['OBS']), axis = 1)
 
 df = df.rename(columns={'OBS' : 'Value', 'Area' : 'Region'})
 
-df = df.replace({'Measure Type' : {'total-public-charging-devices' : 'total-devices',
-                                   'total-public-rapid-charging-devices' : 'rapid-devices'}})
-
 COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Region']
 
 for col in df.columns.values.tolist():
@@ -127,12 +124,16 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+df = df.replace({'Measure Type' : {'total-public-charging-devices' : 'total-devices',
+                                   'total-public-rapid-charging-devices' : 'rapid-devices',
+                                   'charging-devices-per-100-000-population' : 'total-devices-per-100-000-population'}})
+
 df = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
 df
 
 
-# In[16]:
+# In[90]:
 
 
 scraper.dataset.family = 'edvp'
@@ -146,13 +147,13 @@ csvName = 'observations'
 cubes.add_cube(scraper, df.drop_duplicates(), csvName)
 
 
-# In[17]:
+# In[91]:
 
 
 cubes.output_all()
 
 
-# In[18]:
+# In[92]:
 
 
 from IPython.core.display import HTML
