@@ -37,7 +37,7 @@
                 "dimension": "http://purl.org/linked-data/cube#measureType",
                 "value": "http://gss-data.org.uk/def/energy/measure/{measure_type}",
                 "types": [
-                    "total-devices"
+                    "total-devices",
                     "total-devices-per-100-000-population",
                     "rapid-devices",
                     "rapid-devices-per-100-000-population"
