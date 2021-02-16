@@ -5,9 +5,9 @@
             "@language": "en"
         }
     ],
-    "@id": "http://gss-data.org.uk/def/edvp/ontology/measures",
+    "@id": "http://gss-data.org.uk/def/energy/ontology/measures",
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/def/edvp/ontology/measures",
+        "@id": "http://gss-data.org.uk/def/energy/ontology/measures",
         "@type": "owl:Ontology"
     },
     "url": "measures.csv",
