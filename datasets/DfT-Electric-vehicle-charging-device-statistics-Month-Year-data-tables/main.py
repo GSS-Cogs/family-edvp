@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[84]:
+# In[122]:
 
 
 
@@ -21,28 +21,28 @@ cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[85]:
+# In[123]:
 
 
 scraper = Scraper("https://www.gov.uk/government/statistics/electric-vehicle-charging-device-statistics-october-2020")
 scraper
 
 
-# In[86]:
+# In[124]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[87]:
+# In[125]:
 
 
 tabs = [x for x in scraper.distributions[1].as_databaker() if "Info" not in x.name] #
 tabs
 
 
-# In[88]:
+# In[126]:
 
 
 tidied_sheets = {}
@@ -84,12 +84,15 @@ for tab in tabs:
 
         year = pivot.shift(0, 6).fill(DOWN).is_not_blank() - remove
 
+        quarter = year.shift(RIGHT)
+
         measure = pivot.shift(2, 6).expand(RIGHT).is_not_blank()
 
         observations = year.shift(2, 0).expand(RIGHT).is_not_blank() - remove
 
         dimensions = [
                 HDim(year, 'Period', DIRECTLY, LEFT),
+                HDim(quarter, 'Quarter', DIRECTLY, LEFT),
                 HDimConst('Area', 'K02000001'),
                 HDim(measure, 'Measure Type', DIRECTLY, ABOVE)
         ]
@@ -100,12 +103,12 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[89]:
+# In[127]:
 
 
-df = pd.concat(tidied_sheets.values())
+df = pd.concat(tidied_sheets.values()).fillna('NaN')
 
-df['Period'] = df.apply(lambda x: 'year/' + left(x['Period'], 4), axis = 1)
+df['Period'] = df.apply(lambda x: 'year/' + left(x['Period'], 4) if 'NaN' in x['Quarter'] else 'quarter/'+left(x['Period'], 4)+'-'+x['Quarter'], axis = 1)
 
 df['Measure Type'] = df.apply(lambda x: x['Measure Type'].replace("\n", " "), axis = 1)
 df['Unit'] = 'Electric Vehicle Charging Platform'
@@ -133,7 +136,7 @@ df = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 df
 
 
-# In[90]:
+# In[128]:
 
 
 scraper.dataset.family = 'edvp'
@@ -147,13 +150,13 @@ csvName = 'observations'
 cubes.add_cube(scraper, df.drop_duplicates(), csvName)
 
 
-# In[91]:
+# In[129]:
 
 
 cubes.output_all()
 
 
-# In[92]:
+# In[130]:
 
 
 from IPython.core.display import HTML
@@ -162,4 +165,33 @@ for col in df:
         df[col] = df[col].astype('category')
         display(HTML(f"<h2>{col}</h2>"))
         display(df[col].cat.categories)
+
+
+# In[131]:
+
+
+import pandas as pd
+df = pd.read_csv("out/observations.csv")
+df["all_dimensions_concatenated"] = ""
+for col in df.columns.values:
+    if col != "Value":
+        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
+found = []
+bad_combos = []
+for item in df["all_dimensions_concatenated"]:
+    if item not in found:
+        found.append(item)
+    else:
+        bad_combos.append(item)
+df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
+drop_these_cols = []
+for col in df.columns.values:
+    if col != "all_dimensions_concatenated" and col != "Value":
+        drop_these_cols.append(col)
+for dtc in drop_these_cols:
+    df = df.drop(dtc, axis=1)
+df = df[["all_dimensions_concatenated", "Value"]]
+df = df.sort_values(by=['all_dimensions_concatenated'])
+df.to_csv("duplicates_with_values.csv", index=False)
+# Find duplicates
 
