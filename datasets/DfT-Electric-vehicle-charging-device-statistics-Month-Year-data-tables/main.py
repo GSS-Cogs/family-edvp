@@ -189,5 +189,4 @@ for col in df:
         df[col] = df[col].astype('category')
         display(HTML(f"<h2>{col}</h2>"))
         display(df[col].cat.categories)
-e)
 
