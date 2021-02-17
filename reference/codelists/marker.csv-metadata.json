@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker",
+    "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker",
     "url": "marker.csv",
     "tableSchema": {
         "columns": [
@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/def/energy/concept-scheme/marker/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -54,14 +54,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/def/edvp/concept-scheme/marker"
+                "valueUrl": "http://gss-data.org.uk/def/energy/concept-scheme/marker"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/def/energy/concept-scheme/marker/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker",
+        "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,7 +71,7 @@
     "dc:title": "EDVP Markers",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/dataset",
+            "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
@@ -79,11 +79,11 @@
             "rdfs:label": "EDVP Markers",
             "dc:title": "EDVP Markers",
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker"
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker"
             },
             "rdfs:comment": "Dataset representing the 'EDVP Markers' code list.",
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker"
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker"
             },
             "dc:modified": {
                 "@type": "dateTime",
@@ -97,11 +97,11 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/catalog-record"
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/catalog-record",
+            "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker/catalog-record",
             "@type": "dcat:CatalogRecord",
             "dc:title": "EDVP Markers Catalog Record",
             "rdfs:label": "EDVP Markers Catalog Record",
@@ -114,10 +114,10 @@
                 "@value": "2020-12-23T11:58:58.135311"
             },
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker/dataset"
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/def/edvp/concept-scheme/marker"
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/marker"
             }
         }
     ]
