@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel",
     "url": "fuel.csv",
     "rdfs:label": "Fuel",
     "dc:title": "Fuel",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#concept/fuel/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,16 +64,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
             },
             "rdfs:label": "Fuel",
             "dc:title": "Fuel",
@@ -109,17 +109,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/liquid-biofuels-for-transport-consumption-et-6-2-quarterly#scheme/fuel"
             },
             "dc:title": "Fuel Catalog Record",
             "rdfs:label": "Fuel Catalog Record",

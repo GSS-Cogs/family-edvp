@@ -35,14 +35,12 @@
             },
             "Measure Type": {
                 "dimension": "http://purl.org/linked-data/cube#measureType",
-                "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+                "value": "http://gss-data.org.uk/def/energy/measure/{measure_type}",
                 "types": [
-                    "charging-devices-per-100-000-population",
-                    "rapid-devices",
-                    "rapid-devices-per-100-000-population",
                     "total-devices",
-                    "total-public-charging-devices",
-                    "total-public-rapid-charging-devices"
+                    "total-devices-per-100-000-population",
+                    "rapid-devices",
+                    "rapid-devices-per-100-000-population"
                 ]
             },
             "Unit": {

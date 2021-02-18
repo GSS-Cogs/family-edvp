@@ -30,7 +30,7 @@
         },
         "required": false,
         "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/tenure/{parent_notation}"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/tenure/{parent_notation}"
       },
       {
         "titles": "Sort Priority",
@@ -54,14 +54,14 @@
       {
         "virtual": true,
         "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/tenure"
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/tenure"
       }
     ],
     "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept/tenure/{notation}"
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/tenure/{notation}"
   },
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/tenure",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/tenure",
     "@type": "skos:ConceptScheme",
     "rdfs:label": "Tenure"
   }

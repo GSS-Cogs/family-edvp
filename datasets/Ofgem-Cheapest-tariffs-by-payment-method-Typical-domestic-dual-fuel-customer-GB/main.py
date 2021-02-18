@@ -14,7 +14,7 @@ from gssutils import *
 from urllib.parse import urljoin
 
 scraper = Scraper(seed="info.json")
-# cubes = Cubes("info.json", base_url="http://gss-data.org.uk/data/gss_data/edvp/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/")
+# cubes = Cubes("info.json", base_url="http://gss-data.org.uk/data/gss_data/energy/cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb/")
 cubes = Cubes()
 title = "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)"
 scraper.distributions[0].title = title

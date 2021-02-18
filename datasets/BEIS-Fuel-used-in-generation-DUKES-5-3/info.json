@@ -19,6 +19,33 @@
         "stage": [
             "To Do"
         ],
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Measure Type": {
+        		"dimension": "http://purl.org/linked-data/cube#measureType",
+        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
+        		"types": ["fuel-used-in-generation"]
+      		},
+            "Fuel" :{
+                "parent": "http://gss-data.org.uk/def/edv/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/edv/concept-scheme/fuel/{fuel}",
+                "codelist": false
+            },
+            "Generating Companies": {
+                "description": "Type of companies involved in fuel generation"
+            },
+      		"Unit": {
+        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+      		},
+      		"Value": {
+        		"datatype": "double"
+      		}
+        },
         "airtable": "recIo7ftwf1bJO5Ys",
         "main_issue": 17
     },

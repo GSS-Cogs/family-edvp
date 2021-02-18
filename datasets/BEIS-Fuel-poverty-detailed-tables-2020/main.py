@@ -377,7 +377,7 @@ def generate_codelist(title, df, col):
 
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
-    path_id = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
+    path_id = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
 
     codelist_csvw = codelist_csvw.strip()
@@ -1077,8 +1077,8 @@ for title, info in table_joins.items():
             for col in df.columns.values.tolist():
                 if col not in cols_we_have_a_map_for:
                     mapping[col] = {
-                        "parent": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
-                        "value": "http://gss-data.org.uk/data/gss_data/edvp/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
+                        "parent": "http://gss-data.org.uk/data/gss_data/energy/{url_title}/concept-scheme/{col}".format(url_title=pathify(url_title), col=pathify(col)),
+                        "value": "http://gss-data.org.uk/data/gss_data/energy/{url_title}/concept/{col}/{{{col_underscored}}}".format(url_title=pathify(url_title), col=pathify(col), col_underscored=pathify(col).replace("-", "_")),
                         "description": ""
                     }
 
@@ -1149,13 +1149,13 @@ for col in df:
 
 
 #cubes.output_all()
-# cubes.base_url = "http://gss-data.org.uk/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020"
+# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
 #cubes.cubes[0].multi_trig = scraper.generate_trig()
 #cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
 trace.render("spec_v1.html")
 #
 
-# http://gss-data.org.uk/data/data/gss_data/edvp/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
+# http://gss-data.org.uk/data/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
 
 
 """

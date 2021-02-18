@@ -31,7 +31,7 @@
 		Measure Type: expenditure
 		Unit: percentage
 	Scraper:
-		dataset_path: gss_data/edvp/ofgem-warm-home-discount-scheme/percentageexpenditure
+		dataset_path: gss_data/energy/ofgem-warm-home-discount-scheme/percentageexpenditure
 		Title: Warm Home Discount: Distribution of expenditure by year
 		Comment: 
 		Distribution of expenditure for each year so far of the Warm Home Discount (WHD), a government energy scheme 	which aims to help people who are in fuel poverty or are at risk of it.
@@ -57,7 +57,7 @@
 	Measures:
 		Measure Type: expenditure
 		Unit: gbp
-	 dataset_path: gss_data/edvp/ofgem-warm-home-discount-scheme/gbpexpenditure
+	 dataset_path: gss_data/energy/ofgem-warm-home-discount-scheme/gbpexpenditure
 		Title: Home Discount: Total expenditure by obligated suppliers
 		Comment: 
 		Data details how much suppliers spent fulfilling their obligation of the Warm Home Discount (WHD), a government energy scheme which aims to help people who are in fuel poverty or are at risk of it. 
@@ -80,7 +80,7 @@
 	Measures:
 		Measure Type: expenditure
 		Unit: percentage
-	dataset_path: gss_data/edvp/ofgem-warm-home-discount-scheme/nationexpenditure
+	dataset_path: gss_data/energy/ofgem-warm-home-discount-scheme/nationexpenditure
 		Title: Warm Home Discount: Percentage spend by nation
 		Comment:
 		Description:	
