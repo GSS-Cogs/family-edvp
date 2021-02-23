@@ -1,2 +1,2 @@
 Namespace,Label,Path,Qb Property Type,Parent Property,Source,Range,Comment
-edvp,Fuel,dimension/fuel,qb:DimensionProperty,,,http://gss-data.org.uk/def/energy/concept-scheme/fuel,Fuel
+energy,Fuel,dimension/fuel,qb:DimensionProperty,,,http://gss-data.org.uk/def/energy/concept-scheme/fuel,Fuel
