@@ -24,7 +24,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 #Add cubes class
-# cubes = Cubes("info.json")
+cubes = Cubes("info.json")
 
 #Add TransformTrace
 trace = TransformTrace()
@@ -37,31 +37,30 @@ distribution
 # Extract all the tabs and its content from the spread sheet
 tabs = distribution.as_databaker()
 
-# +
-# # List out all the tab names to cross verify with spread sheet
-# for tab in tabs:
-#     print(tab.name)
-# -
+# List out all the tab names to cross verify with spread sheet
+for tab in tabs:
+    print(tab.name)
 
-columns = ["Period", "Gas", "dim", "nc_category_child", "nc_sub_sector_parent", "nc_sector_parent"]
+columns = ["Period", "Gas", "dim", "nc_category_child", "nc_sub_sector_parent", "nc_sector_parent", "Unit"]
 
 # Filtering the tabs which are required and start stage-1 transform
-# tabs_i_want = ["1.1"]
-# tabs = [x for x in tabs if x.name in tabs_i_want]
 for tab in tabs:
     if tab.name == "1.1":
         print(tab.name)
         trace.start(datasetTitle, tab, columns, distribution.downloadURL)
-
+        remove = tab.filter(contains_string("Footnotes")).expand(RIGHT).expand(DOWN)
+#         savepreviewhtml(remove, fname=tab.name + "Preview.html")
+        
         cell = tab.excel_ref("A1")
 
         period = cell.shift(0, 2).fill(RIGHT).is_not_blank().is_not_whitespace()
+        trace.Period('Defined from cell B3 right')
 
-
-        gas = cell.shift(0, 2).fill(DOWN).is_not_blank().is_not_whitespace()-tab.excel_ref("A").filter(contains_string("Footnotes:")).expand(DOWN).expand(RIGHT)
-
+        gas = cell.shift(0, 2).fill(DOWN).is_not_blank().is_not_whitespace()-remove
+        trace.Gas("Defined from cell A4 down")
+        
         unit = "Million tonnes carbon dioxide equivalent (MtCO2e)"
-    #     unit = cell.shift(0, 1).expand(RIGHT).filter(lambda x:type(x.value) != "Million tonnes carbon dioxide equivalent (MtCO2e)" in x.value)
+        trace.Unit("Hard coded as Million tonnes carbon dioxide equivalent (MtCO2e)")
 
         observations = period.waffle(gas)
 
@@ -76,42 +75,39 @@ for tab in tabs:
         trace.with_preview(tidy_sheet)
         trace.store("combined_dataframe", tidy_sheet.topandas())
 
-# +
-# df = trace.combine_and_trace(datasetTitle, "combined_dataframe")
-# df
-# -
-
 tabs = distribution.as_databaker()
 
-columns = ["Period", "Gas", "dim", "nc_category_child", "nc_sub_sector_parent", "nc_sector_parent"]
+columns = ["Period", "Gas", "Nc_Category_Child", "Nc_Sub_Sector_Parent", "Nc_Sector_Parent", "Unit"]
 
-# +
 # Filtering the tabs which are required and start stage-1 transform
 tabs_i_want = ["1.2", "1.3", "1.4", "1.5", "1.6"]
 tabs = [x for x in tabs if x.name in tabs_i_want]
 for tab in tabs:
     print(tab.name)
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
-    
-    cell = tab.excel_ref("A1")
-    
-    period = cell.shift(1, 2).fill(RIGHT).is_not_blank().is_not_whitespace()
-    
-    gas = "All"
-    
-    unit = "Million tonnes carbon dioxide equivalent (MtCO2e)"
-    
-    nc_category_child = cell.shift(1, 2).fill(DOWN).is_not_blank().is_not_whitespace()
-    
-    nc_sub_sector_parent = nc_category_child.shift(LEFT).is_not_blank()
-    
-    nc_sector_parent = nc_category_child.shift(LEFT).shift(ABOVE).is_not_bold() - nc_category_child.shift(LEFT).is_not_bold()
 
-#     nc_sector = cell.shift(0, 2).fill(DOWN).is_not_blank().is_not_whitespace()-tab.excel_ref("A").filter(contains_string("Grand Total"))
-#     savepreviewhtml(nc_sector, fname=tab.name + "Preview.html")
+    cell = tab.excel_ref("A1")
+
+    period = cell.shift(1, 2).fill(RIGHT).is_not_blank().is_not_whitespace()
+    trace.Period("Defined from cell C3 right")
+
+    gas = "All"
+    trace.Gas("Hardcoded as all")
+
+    unit = "Million tonnes carbon dioxide equivalent (MtCO2e)"
+    trace.Unit("Hardcoded as Million tonnes carbon dioxide equivalent (MtCO2e)")
+
+    nc_category_child = cell.shift(1, 2).fill(DOWN).is_not_blank().is_not_whitespace()
+    trace.Nc_Category_Child("Defined from cell B4 down")
+
+    nc_sub_sector_parent = nc_category_child.shift(LEFT).is_not_blank()
+    trace.Nc_Sub_Sector_Parent("Defined from cell A3 down which is not bold")
+
+    nc_sector_parent = nc_category_child.shift(LEFT).shift(ABOVE).is_not_bold() - nc_category_child.shift(LEFT).is_not_bold()
+    trace.Nc_Sector_Parent("Defined from cell A3 down which is bold")
 
     observations = period.waffle(nc_category_child)|period.waffle(nc_sector_parent).is_not_blank().is_not_whitespace()
-
+        
     dimensions = [
         HDim(period, "Period", DIRECTLY, ABOVE),
         HDim(nc_category_child, "Nc Category Child", CLOSEST, ABOVE),
@@ -124,72 +120,77 @@ for tab in tabs:
     savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
     trace.with_preview(tidy_sheet)
     trace.store("combined_dataframe", tidy_sheet.topandas())
-# +
-# df = trace.combine_and_trace(datasetTitle, "combined_dataframe")
-# df
-
-# +
-# with pd.option_context('display.max_rows', None):
-#     print(df[["Nc Category Child", "Nc Sub Sector Parent", "Nc Sector Parent"]])
-
-
-# +
-# df['Gas'].unique()
-
-# +
-# df['Nc Sector Parent'].unique()
-
-# +
-# df['Nc Sub Sector Parent'].unique()
-# -
-
 tabs = distribution.as_databaker()
 
-columns = ["Geographic Coverage", "inclusions-exclusions", "Gas", "Year", "Value"]
+columns = ["Period", "Geographic Coverage", "Inclusions-Exclusions", "Gas", "Year", "Value"]
 
-# +
 for tab in tabs:
     if tab.name == "3.1":
         
         trace.start(datasetTitle, tab, columns, distribution.downloadURL)
         
         remove = tab.filter(contains_string("Footnotes")).expand(RIGHT).expand(DOWN)
-#         savepreviewhtml(remove, fname=tab.name + "Preview.html")
         cell = tab.excel_ref("A1")
     
         period = cell.shift(2, 2).fill(RIGHT).is_not_whitespace()
-#         savepreviewhtml(period, fname=tab.name + "Preview.html")
+        trace.Period("Defined from cell D3 and right")
 
         gas = cell.shift(2, 2).fill(DOWN).is_not_whitespace()
-#         savepreviewhtml(gas, fname=tab.name + "Preview.html")
+        trace.Gas("Defined from cell C3 down")
         
         inclusions_exclusions = cell.shift(1, 2).fill(DOWN).is_not_whitespace()
-#         savepreviewhtml(inclusions_exclusions, fname=tab.name + "Preview.html")
+        trace.Inclusions_Exclusions("Defined from cell B3 down")
 
-# What to do with Total green house gas emissions at the bottom of dimension
         geographic_coverage = cell.shift(0, 2).fill(DOWN).is_not_whitespace()-remove
-#         savepreviewhtml(geographic_coverage, fname=tab.name + "Preview.html")
+        trace.Geographic_Coverage("Defined from cell A3 down")
         
-# What to do with Total value(at the bottom) in observation
-        observations = period.waffle(gas)
-#         savepreviewhtml(observations, fname=tab.name + "Preview.html")
+        observations = period.waffle(gas)-remove
         
         dimensions =[
             HDim(period, "Period", DIRECTLY, ABOVE),
             HDim(gas, "Gas", DIRECTLY, LEFT),
-            HDim(inclusions_exclusions, "Inclusions_Exclusions", CLOSEST, ABOVE),
-            HDim(geographic_coverage, "Geographic Coverage", CLOSEST, ABOVE) 
+            HDim(inclusions_exclusions, "Inclusions Exclusions", CLOSEST, ABOVE),
+            HDim(geographic_coverage, "Geographic Coverage", CLOSEST, ABOVE ) 
         ]
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
         trace.with_preview(tidy_sheet)
         trace.store("combined_dataframe", tidy_sheet.topandas())
-# -
 
-df = trace.combine_and_trace(datasetTitle, "combined_dataframe")
+df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
 df
 
-# : in DATAMARKER needs to be fixed
-df["DATAMARKER"].unique()
+# Post processing
+df["DATAMARKER"].replace({":" : "Data not available"}, inplace = True)
 
 
+# +
+def left(s, amount):
+    return s[:amount]
+def date_time (date):
+    if len(date) == 6:
+        return 'year/' + left(date, 4)
+    
+df['Period'] =  df["Period"].apply(date_time)
+# -
+
+df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
+
+# +
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
+
+for col in df.columns.values.tolist():
+    if col in COLUMNS_TO_NOT_PATHIFY:
+        continue
+    try:
+        df[col] = df[col].apply(pathify)
+    except Exception as err:
+        raise Exception('Failed to pathify column "{}".'.format(col)) from err
+
+df
+# -
+
+cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
+cubes.output_all()
+
+trace.render("spec_v1.html")
