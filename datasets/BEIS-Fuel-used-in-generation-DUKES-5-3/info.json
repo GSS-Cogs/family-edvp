@@ -31,8 +31,8 @@
         		"types": ["fuel-used-in-generation"]
       		},
             "Fuel" :{
-                "parent": "http://gss-data.org.uk/def/edv/property/dimension/fuel",
-                "value": "http://gss-data.org.uk/def/edv/concept-scheme/fuel/{fuel}",
+                "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept-scheme/fuel/{fuel}",
                 "codelist": false
             },
             "Generating Companies": {
