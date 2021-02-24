@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[95]:
 
 
 from gssutils import *
@@ -28,7 +28,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[2]:
+# In[96]:
 
 
 # extract latest distribution and datasetTitle
@@ -38,14 +38,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[3]:
+# In[97]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[4]:
+# In[98]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -53,14 +53,14 @@ for tab in tabs:
     print(tab)
 
 
-# In[5]:
+# In[99]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[6]:
+# In[100]:
 
 
 # Filtering out the tabs which are not required and start the transform
@@ -108,7 +108,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[7]:
+# In[101]:
 
 
 for name, tab in tabs.items():
@@ -164,7 +164,7 @@ for name, tab in tabs.items():
 # # changes in local authority name to be implemented in post processing
 
 
-# In[8]:
+# In[102]:
 
 
 for name, tab in tabs.items():
@@ -215,7 +215,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[9]:
+# In[103]:
 
 
 import numpy as np
@@ -238,7 +238,7 @@ df = df.rename(columns={'Technology' : 'Technology Type', 'Households' : 'Buildi
 
 df['Technology Type'] = df.apply(lambda x: 'All' if x['Technology Type'] == '' else x['Technology Type'], axis = 1)
 
-df = df.replace({'Building Type' : {'Total Non-Domestic' : 'Non-Domestic', 'Total Domestic' : 'Total'},
+df = df.replace({'Building Type' : {'Total Non-Domestic' : 'Non-Domestic', 'Total Domestic' : 'Domestic'},
                  'Measure Type' : {'Cumulative number of installations 2' : 'cumulative installations',
                                    'Cumulative installed capacity (kW) 2' : 'cumulative installed capacity',
                                    'Cumulative installed capacity 2' : 'cumulative installed capacity',
@@ -288,20 +288,27 @@ df = df.drop(['Region'], axis=1)
 
 df = df.rename(columns={'Area Code' : 'Region'})
 
-df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit']]
+indexNames = df[ df['Region'].isin(['K03000001', 'Unallocated']) ].index
+df.drop(indexNames, inplace = True)
+
+#I cant find anyway to accurately represent the unallocated values in the dataset, and therefore the "grand total" (all areas including unallocated)
+#so I have removed them, this will not be an issue as this is currently being used for proof of concept, will need to be addressed at some point in the future
+
+df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit', 'Tab']]
 
 df
 
 
-# In[10]:
+# In[104]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
-
-
-# In[11]:
-
-
 trace.render("spec_v1.html")
+
+
+# In[105]:
+
+
+
 
