@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies",
     "url": "generating-companies.csv",
     "rdfs:label": "Generating Companies",
     "dc:title": "Generating Companies",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#concept/generating-companies/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#concept/generating-companies/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#concept/generating-companies/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#concept/generating-companies/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,16 +64,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             },
             "rdfs:label": "Generating Companies",
             "dc:title": "Generating Companies",
@@ -103,33 +103,33 @@
             },
             "http://publishmydata.com/pmdcat#markdownDescription": {
                 "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
-                "@value": "Digest of UK Energy Statistics (DUKES): electricity.\\nDUKES chapter 5: statistics on electricity from generation through to sales."
+                "@value": "Digest of UK Energy Statistics (DUKES): electricity.\\\\nDUKES chapter 5: statistics on electricity from generation through to sales."
             }
         },
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             },
             "dc:title": "Generating Companies Catalog Record",
             "rdfs:label": "Generating Companies Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-02-11T11:26:46.412560"
+                "@value": "2021-02-24T14:32:59.009837"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-02-11T11:26:46.412560"
+                "@value": "2021-02-24T14:32:59.009837"
             }
         }
     ]
