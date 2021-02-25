@@ -328,6 +328,7 @@ df
 # In[69]:
 
 
+scraper.dataset.family = 'energy'
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 trace.render("spec_v1.html")
