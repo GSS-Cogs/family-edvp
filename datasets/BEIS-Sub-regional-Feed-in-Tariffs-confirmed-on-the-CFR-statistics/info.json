@@ -34,9 +34,9 @@
             "Measure Type": {
         		"dimension": "http://purl.org/linked-data/cube#measureType",
         		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["cumulative installations",
-                          "installations per 10000 households",
-                          "cumulative installed capacity"]
+        		"types": ["cumulative-installations",
+                          "installations-per-10000-households",
+                          "cumulative-installed-capacity"]
       		},
             "Technology Type": {
                 "description": "Technology involved in energy generation"
