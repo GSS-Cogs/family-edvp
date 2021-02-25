@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type",
     "url": "technology-type.csv",
     "rdfs:label": "Technology Type",
     "dc:title": "Technology Type",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/technology-type/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/technology-type/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/technology-type/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/technology-type/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,16 +64,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
             },
             "rdfs:label": "Technology Type",
             "dc:title": "Technology Type",
@@ -109,17 +109,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/technology-type"
             },
             "dc:title": "Technology Type Catalog Record",
             "rdfs:label": "Technology Type Catalog Record",

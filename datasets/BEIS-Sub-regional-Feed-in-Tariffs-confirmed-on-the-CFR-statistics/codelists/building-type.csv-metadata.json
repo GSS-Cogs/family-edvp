@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type",
     "url": "building-type.csv",
     "rdfs:label": "Building Type",
     "dc:title": "Building Type",
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/building-type/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/building-type/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/building-type/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#concept/building-type/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,16 +64,16 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
             },
             "rdfs:label": "Building Type",
             "dc:title": "Building Type",
@@ -109,17 +109,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/edvp/sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics#scheme/building-type"
             },
             "dc:title": "Building Type Catalog Record",
             "rdfs:label": "Building Type Catalog Record",
