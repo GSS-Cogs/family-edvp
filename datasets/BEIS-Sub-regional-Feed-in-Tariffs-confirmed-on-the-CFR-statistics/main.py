@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[60]:
+# In[94]:
 
 
 from gssutils import *
@@ -20,7 +20,12 @@ def mid(s, offset, amount):
 #extract spread sheet from landing page
 scraper = Scraper(seed="info.json")
 scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
+scraper.dataset.family = 'energy'
 scraper
+
+
+# In[95]:
+
 
 # Add cubes class
 cubes = Cubes("info.json")
@@ -28,7 +33,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[61]:
+# In[96]:
 
 
 # extract latest distribution and datasetTitle
@@ -38,14 +43,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[62]:
+# In[97]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[63]:
+# In[98]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -53,14 +58,14 @@ for tab in tabs:
     print(tab)
 
 
-# In[64]:
+# In[99]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[65]:
+# In[100]:
 
 
 # Filtering out the tabs which are not required and start the transform
@@ -108,7 +113,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[66]:
+# In[ ]:
 
 
 for name, tab in tabs.items():
@@ -164,7 +169,7 @@ for name, tab in tabs.items():
 # # changes in local authority name to be implemented in post processing
 
 
-# In[67]:
+# In[ ]:
 
 
 for name, tab in tabs.items():
@@ -226,7 +231,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[68]:
+# In[ ]:
 
 
 import numpy as np
@@ -325,16 +330,15 @@ df = df.drop_duplicates()
 df
 
 
-# In[69]:
+# In[ ]:
 
 
-scraper.dataset.family = 'energy'
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[70]:
+# In[ ]:
 
 
 from IPython.core.display import HTML
@@ -345,7 +349,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[71]:
+# In[ ]:
 
 
 
