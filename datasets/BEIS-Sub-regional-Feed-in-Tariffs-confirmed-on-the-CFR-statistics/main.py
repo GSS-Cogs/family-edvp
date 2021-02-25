@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[95]:
+# In[60]:
 
 
 from gssutils import *
@@ -28,7 +28,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[96]:
+# In[61]:
 
 
 # extract latest distribution and datasetTitle
@@ -38,14 +38,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[97]:
+# In[62]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[98]:
+# In[63]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -53,14 +53,14 @@ for tab in tabs:
     print(tab)
 
 
-# In[99]:
+# In[64]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[100]:
+# In[65]:
 
 
 # Filtering out the tabs which are not required and start the transform
@@ -108,7 +108,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[101]:
+# In[66]:
 
 
 for name, tab in tabs.items():
@@ -164,7 +164,7 @@ for name, tab in tabs.items():
 # # changes in local authority name to be implemented in post processing
 
 
-# In[102]:
+# In[67]:
 
 
 for name, tab in tabs.items():
@@ -200,22 +200,33 @@ for name, tab in tabs.items():
 
     observations = leps_authority.fill(RIGHT).is_not_blank().is_not_whitespace()-footer
 
-    dimensions = [
-        HDim(local_enterprise_partnerships, "Local Enterprise Partnerships", CLOSEST, ABOVE),
-        HDim(leps_authority, "Leps_Authority", CLOSEST, ABOVE),
-        HDim(households, "Households", CLOSEST, LEFT),
-        HDim(technology, "Technology", CLOSEST, LEFT),
-        HDim(installation, "Installation", CLOSEST, LEFT),
-        HDim(period, "Period", CLOSEST, LEFT),
-        HDimConst('Tab', tab.name)
-    ]
+    if 'LEPs (kW)' in tab.name:
+        dimensions = [
+            HDim(local_enterprise_partnerships, "Local Enterprise Partnerships", CLOSEST, ABOVE),
+            HDim(leps_authority, "Leps_Authority", CLOSEST, ABOVE),
+            HDim(households, "Households", CLOSEST, LEFT),
+            HDim(technology, "Technology", CLOSEST, LEFT),
+            HDim(installation, "Installation", CLOSEST, LEFT, cellvalueoverride = {'Cumulative number of installations 2' : 'Cumulative installed capacity (kW) 2'}),
+            HDim(period, "Period", CLOSEST, LEFT),
+            HDimConst('Tab', tab.name)
+        ]
+    else:
+        dimensions = [
+            HDim(local_enterprise_partnerships, "Local Enterprise Partnerships", CLOSEST, ABOVE),
+            HDim(leps_authority, "Leps_Authority", CLOSEST, ABOVE),
+            HDim(households, "Households", CLOSEST, LEFT),
+            HDim(technology, "Technology", CLOSEST, LEFT),
+            HDim(installation, "Installation", CLOSEST, LEFT),
+            HDim(period, "Period", CLOSEST, LEFT),
+            HDimConst('Tab', tab.name)
+        ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
     trace.with_preview(tidy_sheet)
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[103]:
+# In[68]:
 
 
 import numpy as np
@@ -294,12 +305,27 @@ df.drop(indexNames, inplace = True)
 #I cant find anyway to accurately represent the unallocated values in the dataset, and therefore the "grand total" (all areas including unallocated)
 #so I have removed them, this will not be an issue as this is currently being used for proof of concept, will need to be addressed at some point in the future
 
-df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit', 'Tab']]
+df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit']]
+
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Value']
+
+for col in df.columns.values.tolist():
+	if col in COLUMNS_TO_NOT_PATHIFY:
+		continue
+	try:
+		df[col] = df[col].apply(pathify)
+	except Exception as err:
+		raise Exception('Failed to pathify column "{}".'.format(col)) from err
+
+df['Value'] = df['Value'].apply(lambda x: round(x, 2))
+#having to round to 2 decimal places to fix some duplicate issues, should fix at later date but should be fine for proof of concept EDV stuff
+
+df = df.drop_duplicates()
 
 df
 
 
-# In[104]:
+# In[69]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -307,7 +333,18 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[105]:
+# In[70]:
+
+
+from IPython.core.display import HTML
+for col in df:
+    if col not in ['Value']:
+        df[col] = df[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(df[col].cat.categories)
+
+
+# In[71]:
 
 
 
