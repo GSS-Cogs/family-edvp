@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[44]:
+# In[62]:
 
 
 from gssutils import *
@@ -24,7 +24,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[45]:
+# In[63]:
 
 
 # Add cubes class
@@ -33,14 +33,14 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[46]:
+# In[64]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[47]:
+# In[65]:
 
 
 # extract latest distribution and datasetTitle
@@ -50,14 +50,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[48]:
+# In[66]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[49]:
+# In[67]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -65,16 +65,17 @@ for tab in tabs:
     print(tab)
 
 
-# In[50]:
+# In[68]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[51]:
+# In[97]:
 
 
+import numpy as np
 # Filtering out the tabs which are not required and start the transform
 for name, tab in tabs.items():
     if tab.name not in ['Latest Quarter - Region', 'Latest Quarter - Region (kW)']:
@@ -98,10 +99,10 @@ for name, tab in tabs.items():
     technology = technology - remove
 
     #installation may potentially become measure type. A word from DM is awaited.
-    installation = cell.shift(0, -2).fill(RIGHT).is_not_blank().is_not_whitespace()
+    installation = cell.shift(0, -2).fill(RIGHT).is_not_blank().is_not_whitespace() | tab.filter(contains_string('Cumulative')).shift(LEFT)
     trace.Installation("Taken from cell B5 right which is not blank")
 
-    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace()
+    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace() | cell.shift(1, -4)
     trace.Period("taken from cell B3 right which is not blank")
 
     observations = region.fill(RIGHT).is_not_blank().is_not_whitespace()-footer
@@ -116,11 +117,19 @@ for name, tab in tabs.items():
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
+
+    df = tidy_sheet.topandas()
+    df = df.replace(r'^\s*$', np.nan, regex=True)
+    df['Period'] = df['Period'].fillna(method='backfill')
+    df['Installation'] = df['Installation'].fillna(method='backfill')
+
+    #This is a horrible way of fixing the annoying placement of the year and measure type
+
     trace.with_preview(tidy_sheet)
-    trace.store("combined_dataframe", tidy_sheet.topandas())
+    trace.store("combined_dataframe", df)
 
 
-# In[52]:
+# In[ ]:
 
 
 for name, tab in tabs.items():
@@ -130,7 +139,7 @@ for name, tab in tabs.items():
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
     cell = tab.excel_ref("B7")
 
-# Datamarker is catching footer values from Latest Quarter - LA and Latest Quarter - LA (kW) tabs
+    # Datamarker is catching footer values from Latest Quarter - LA and Latest Quarter - LA (kW) tabs
     footer = tab.filter(contains_string("Notes")).expand(RIGHT).expand(DOWN)
 
     #datamarker is catching weired values from footer so footer is caught and deleted
@@ -149,10 +158,10 @@ for name, tab in tabs.items():
     technology = technology - remove
 
     #installation may potentially become measure type. A word from DM is awaited.
-    installation = cell.shift (0, -2).fill(RIGHT).is_not_blank().is_not_whitespace()
+    installation = cell.shift (0, -2).fill(RIGHT).is_not_blank().is_not_whitespace() | tab.filter(contains_string('Cumulative')).shift(LEFT)
     trace.Installation("Taken from cell B5 right which is not blank")
 
-    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace()
+    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace() | cell.shift(2, -4)
     trace.Period("taken from cell B3 right which is not blank")
 
     #datamarker is catching weired values from footer so footer is caught and deleted
@@ -169,14 +178,19 @@ for name, tab in tabs.items():
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
-    trace.with_preview(tidy_sheet)
-    trace.store("combined_dataframe", tidy_sheet.topandas())
 
+    df = tidy_sheet.topandas()
+    df = df.replace(r'^\s*$', np.nan, regex=True)
+    df['Period'] = df['Period'].fillna(method='backfill')
+    df['Installation'] = df['Installation'].fillna(method='backfill')
+
+    trace.with_preview(tidy_sheet)
+    trace.store("combined_dataframe", df)
 # # changes in local authority code to be implemented in post processing
 # # changes in local authority name to be implemented in post processing
 
 
-# In[53]:
+# In[71]:
 
 
 for name, tab in tabs.items():
@@ -238,7 +252,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[54]:
+# In[72]:
 
 
 import numpy as np
@@ -337,7 +351,7 @@ df = df.drop_duplicates()
 df
 
 
-# In[55]:
+# In[73]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -345,7 +359,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[56]:
+# In[74]:
 
 
 from IPython.core.display import HTML
@@ -356,7 +370,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[56]:
+# In[74]:
 
 
 
