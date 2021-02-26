@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[44]:
 
 
 from gssutils import *
@@ -19,12 +19,12 @@ def mid(s, offset, amount):
 
 #extract spread sheet from landing page
 scraper = Scraper(seed="info.json")
-scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
+#scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
 scraper.dataset.family = 'energy'
 scraper
 
 
-# In[2]:
+# In[45]:
 
 
 # Add cubes class
@@ -33,24 +33,31 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[3]:
+# In[46]:
+
+
+for i in scraper.distributions:
+    display(i)
+
+
+# In[47]:
 
 
 # extract latest distribution and datasetTitle
-distribution = scraper.distribution(latest = True)
+distribution = scraper.distribution(title=lambda t: 'Feed-in Tariffs' in t)
 datasetTitle = distribution.title
 print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[4]:
+# In[48]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[5]:
+# In[49]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -58,19 +65,19 @@ for tab in tabs:
     print(tab)
 
 
-# In[6]:
+# In[50]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[7]:
+# In[51]:
 
 
 # Filtering out the tabs which are not required and start the transform
 for name, tab in tabs.items():
-    if 'Title' in name or 'Calculation' in name     or'Latest Quarter - LA' in name or 'Latest Quarter - LA (kW)' in name     or 'Latest Quarter - PC' in name or 'Latest Quarter - PC (kW)' in name     or 'Latest Quarter - LEPs' in name or 'Latest Quarter - LEPs (kW)' in name:
+    if tab.name not in ['Latest Quarter - Region', 'Latest Quarter - Region (kW)']:
         continue
     print(tab.name)
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
@@ -113,11 +120,11 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[8]:
+# In[52]:
 
 
 for name, tab in tabs.items():
-    if 'Title' in name or 'Calculation' in name     or 'Latest Quarter - Region' in name or 'Latest Quarter - Region (kW)' in name     or 'Latest Quarter - LEPs' in name or 'Latest Quarter - LEPs (kW)' in name:
+    if tab.name not in ['Latest Quarter - LA', 'Latest Quarter - LA (kW)', 'Latest Quarter - PC', 'Latest Quarter - PC (kW)']:
         continue
     print(tab.name)
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
@@ -169,11 +176,11 @@ for name, tab in tabs.items():
 # # changes in local authority name to be implemented in post processing
 
 
-# In[9]:
+# In[53]:
 
 
 for name, tab in tabs.items():
-    if 'Title' in name or 'Calculation' in name     or 'Latest Quarter - Region' in name or 'Latest Quarter - Region (kW)' in name     or 'Latest Quarter - LA' in name or 'Latest Quarter - LA (KW)' in name     or 'Latest Quarter - PC' in name or 'Latest Quarter - PC (kW)' in name:
+    if tab.name not in ['Latest Quarter - LEPs', 'Latest Quarter - LEPs (kW)']:
         continue
     print(tab.name)
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
@@ -231,7 +238,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[10]:
+# In[54]:
 
 
 import numpy as np
@@ -330,7 +337,7 @@ df = df.drop_duplicates()
 df
 
 
-# In[11]:
+# In[55]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -338,7 +345,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[12]:
+# In[56]:
 
 
 from IPython.core.display import HTML
@@ -349,7 +356,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[12]:
+# In[56]:
 
 
 
