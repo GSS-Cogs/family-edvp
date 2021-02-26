@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[94]:
+# In[1]:
 
 
 from gssutils import *
@@ -24,7 +24,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[95]:
+# In[2]:
 
 
 # Add cubes class
@@ -33,7 +33,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[96]:
+# In[3]:
 
 
 # extract latest distribution and datasetTitle
@@ -43,14 +43,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[97]:
+# In[4]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[98]:
+# In[5]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -58,14 +58,14 @@ for tab in tabs:
     print(tab)
 
 
-# In[99]:
+# In[6]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[100]:
+# In[7]:
 
 
 # Filtering out the tabs which are not required and start the transform
@@ -113,7 +113,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[ ]:
+# In[8]:
 
 
 for name, tab in tabs.items():
@@ -169,7 +169,7 @@ for name, tab in tabs.items():
 # # changes in local authority name to be implemented in post processing
 
 
-# In[ ]:
+# In[9]:
 
 
 for name, tab in tabs.items():
@@ -231,7 +231,7 @@ for name, tab in tabs.items():
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[ ]:
+# In[10]:
 
 
 import numpy as np
@@ -330,7 +330,7 @@ df = df.drop_duplicates()
 df
 
 
-# In[ ]:
+# In[11]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -338,7 +338,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[ ]:
+# In[12]:
 
 
 from IPython.core.display import HTML
@@ -349,7 +349,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[ ]:
+# In[12]:
 
 
 
