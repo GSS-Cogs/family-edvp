@@ -60,6 +60,8 @@
         "primaryKey": "notation",
         "aboutUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{notation}"
     },
+    "rdfs:label": "Fuel",
+    "dc:title": "Fuel",
     "prov:hadDerivation": {
         "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel",
         "@type": [
@@ -67,8 +69,6 @@
             "http://publishmydata.com/pmdcat#ConceptScheme"
         ]
     },
-    "rdfs:label": "Fuel",
-    "dc:title": "Fuel",
     "rdfs:seeAlso": [
         {
             "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel/dataset",
@@ -87,11 +87,11 @@
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-02-11T11:35:22.815540"
+                "@value": "2021-02-03T11:35:22.815540"
             },
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-02-11T11:35:22.815540"
+                "@value": "2021-02-03T11:35:22.815540"
             }
         },
         {
