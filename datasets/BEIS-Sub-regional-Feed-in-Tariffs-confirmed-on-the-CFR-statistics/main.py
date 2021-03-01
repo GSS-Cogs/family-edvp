@@ -353,6 +353,8 @@ df
 
 # In[73]:
 
+scraper.dataset.comment = """Quarterly sub-regional statistics show the number of installations and total installed capacity by technology type in England, Scotland and Wales at the end the latest quarter that have been confirmed on the Central Feed-in Tariff Register."""
+
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
