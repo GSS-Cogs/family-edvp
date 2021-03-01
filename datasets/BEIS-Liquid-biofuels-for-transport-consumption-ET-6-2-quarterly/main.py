@@ -210,7 +210,6 @@ df
 # In[635]:
 
 
-scraper.dataset.family = 'edvp'
 scraper.dataset.comment = """
 Data on UK liquid biofuels for transport consumption. Quarterly data published a quarter in arrears with detailed commentary available in the BEIS statistical publication Energy Trends.
 https://www.uktradeinfo.com/Statistics/Pages/TaxAndDutybulletins.aspx
