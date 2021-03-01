@@ -138,8 +138,6 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-tidy_sheet.topandas()
-
 
 # In[632]:
 
