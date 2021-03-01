@@ -32,6 +32,7 @@ info = json.load(open('info.json'))
 
 
 scraper = Scraper(info['landingPage'])
+scraper.dataset.family = 'energy'
 scraper
 
 
