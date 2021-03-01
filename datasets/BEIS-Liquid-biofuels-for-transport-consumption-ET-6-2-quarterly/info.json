@@ -9,7 +9,7 @@
     ],
     "published": "2021-01-14",
     "families": [
-        "EDVP"
+        "energy"
     ],
     "extract": {
         "source": "XLS",
@@ -28,13 +28,14 @@
             "Measure Type": {
         		"dimension": "http://purl.org/linked-data/cube#measureType",
         		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["energy",
-                          "volume",
-                          "Percentage change in shares of DERV road fuels",
-                          "Percentage change in shares of Motor Spirit road fuels",
-                          "Percentage change in shares of road fuels",
-                          "Shares of DERV road fuels", "Shares of Motor Spirit road fuels",
-                          "Shares of road fuels"]
+        		"types": ["volume", 
+                          "energy", 
+                          "shares-of-motor-spirit-road-fuels", 
+                          "shares-of-derv-road-fuels", 
+                          "shares-of-road-fuels", 
+                          "percentage-change-in-shares-of-motor-spirit-road-fuels", 
+                          "percentage-change-in-shares-of-derv-road-fuels", 
+                          "percentage-change-in-shares-of-road-fuels"]
       		},
             "Fuel" :{
                 "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
