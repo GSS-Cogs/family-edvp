@@ -316,7 +316,7 @@ df = df.replace({'Area Code' : {'Somerset West and Taunton Deane' : 'E07000246',
 
 df['Area Code'] = df.apply(lambda x: 'Unallocated' if 'Unallocated' in x['Region'] or 'Unallocated' in x['Region Name'] else x['Area Code'], axis = 1)
 
-df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in ['Measure Type'] else 'installation', axis = 1)
+df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in x['Measure Type'] else 'installation', axis = 1)
 
 indexNames = df[ (df['Region'] == '') & (df['Region Name'] == '') & (df['Value'] == 0)].index
 df.drop(indexNames, inplace = True)
