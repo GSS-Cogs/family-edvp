@@ -142,7 +142,8 @@ for col in df:
 
 scraper.dataset.title = info['title']
 
-scraper.comments = """
+scraper.dataset.comment = """
+Data on the UK\u2019s renewables sector. These tables focus on  liquid biofuels consumption.\nPublished quarterly on the last Thursday of each calendar quarter (March, June, September and December). The data is a quarter in arrears.
 For Major Power Producers, 'other fuels' only includes non-biodegradable waste. This was included in 'other renewables'  prior
 to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable waste, coke oven gas, blast furnace gas, and waste
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
