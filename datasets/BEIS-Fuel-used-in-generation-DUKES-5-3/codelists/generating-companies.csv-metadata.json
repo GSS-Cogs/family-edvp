@@ -75,35 +75,16 @@
             "http://publishmydata.com/pmdcat#graph": {
                 "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-03-03T08:23:56.697351"
+            },
             "rdfs:label": "Generating Companies",
             "dc:title": "Generating Companies",
             "rdfs:comment": "Dataset representing the 'Generating Companies' code list.",
-            "dc:license": {
-                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-            },
-            "dc:creator": {
-                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
-            },
-            "dc:publisher": {
-                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
-            },
-            "dcat:contactPoint": {
-                "@id": "electricitystatistics@beis.gov.uk"
-            },
-            "dcat:landingPage": {
-                "@id": "https://www.gov.uk/government/statistics/electricity-chapter-5-digest-of-united-kingdom-energy-statistics-dukes"
-            },
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2012-07-26T00:00:00"
-            },
-            "dc:modified": {
-                "@type": "dateTime",
-                "@value": "2020-07-30T00:00:00"
-            },
-            "http://publishmydata.com/pmdcat#markdownDescription": {
-                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
-                "@value": "Digest of UK Energy Statistics (DUKES): electricity.\\\\nDUKES chapter 5: statistics on electricity from generation through to sales."
+                "@value": "2021-03-03T08:23:56.697351"
             }
         },
         {
@@ -121,15 +102,15 @@
             "http://publishmydata.com/pmdcat#metadataGraph": {
                 "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-used-in-generation-dukes-5-3#scheme/generating-companies"
             },
-            "dc:title": "Generating Companies Catalog Record",
+            "dc:title": "Generating Companies",
             "rdfs:label": "Generating Companies Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-02-24T14:32:59.009837"
+                "@value": "2021-03-03T08:23:56.697351"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-02-24T14:32:59.009837"
+                "@value": "2021-03-03T08:23:56.697351"
             }
         }
     ]
