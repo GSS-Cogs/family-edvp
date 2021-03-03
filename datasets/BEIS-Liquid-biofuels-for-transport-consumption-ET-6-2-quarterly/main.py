@@ -209,6 +209,7 @@ df
 
 # In[635]:
 
+scraper.dataset.title = info['title']
 
 scraper.dataset.comment = """
 Data on UK liquid biofuels for transport consumption. Quarterly data published a quarter in arrears with detailed commentary available in the BEIS statistical publication Energy Trends.
