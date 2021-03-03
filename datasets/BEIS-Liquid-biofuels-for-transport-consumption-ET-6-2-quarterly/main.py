@@ -145,7 +145,7 @@ for tab in tabs:
 
 df = pd.concat([tidied_sheets['Annual'], tidied_sheets['Quarter']]).fillna('NaN')
 
-df['Period'] = df.apply(lambda x: 'Quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Period'] == 'NaN' else 'Year/' + left(x['Period'], 4), axis = 1)
+df['Period'] = df.apply(lambda x: 'quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Period'] == 'NaN' else 'year/' + left(x['Period'], 4), axis = 1)
 
 df = df.drop(['Quarter', 'Year'], axis=1)
 
