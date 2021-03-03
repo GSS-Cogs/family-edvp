@@ -20,6 +20,7 @@ def mid(s, offset, amount):
 #extract spread sheet from landing page
 scraper = Scraper(seed="info.json")
 #scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
+scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper.dataset.family = 'energy'
 scraper
 
