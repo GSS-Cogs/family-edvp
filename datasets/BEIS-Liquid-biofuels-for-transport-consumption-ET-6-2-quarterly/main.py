@@ -166,7 +166,7 @@ df
 
 dfShares = pd.concat([tidied_sheets['Main table']]).fillna('NaN')
 
-dfShares['Period'] = dfShares.apply(lambda x: 'Quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Quarter'] != '' else 'Year/' + left(x['Year'], 4), axis = 1)
+dfShares['Period'] = dfShares.apply(lambda x: 'quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Quarter'] != '' else 'year/' + left(x['Year'], 4), axis = 1)
 
 dfShares = dfShares.drop(['Quarter', 'Year'], axis=1)
 
