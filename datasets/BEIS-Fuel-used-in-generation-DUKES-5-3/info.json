@@ -28,7 +28,7 @@
             "Measure Type": {
         		"dimension": "http://purl.org/linked-data/cube#measureType",
         		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["fuel-used-in-generation"]
+        		"types": ["fuel-used-in-generation", "fuel-used-in-generation-representative"]
       		},
             "Fuel" :{
                 "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
