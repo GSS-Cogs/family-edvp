@@ -20,7 +20,6 @@ def mid(s, offset, amount):
 #extract spread sheet from landing page
 scraper = Scraper(seed="info.json")
 #scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
-scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper.dataset.family = 'energy'
 scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper
@@ -299,31 +298,7 @@ df = df.replace({'Building Type' : {'Total Non-Domestic' : 'Non-Domestic', 'Tota
 
 df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in x['Measure Type'] else 'installation', axis = 1)
 
-<<<<<<< HEAD
 df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Measure Type', 'Unit']]
-=======
-df = df.replace({'Area Code' : {'Somerset West and Taunton Deane' : 'E07000246',
-                                        'Kingston upon Hull, city of': 'E06000010'}})
-
-df['Area Code'] = df.apply(lambda x: 'Unallocated' if 'Unallocated' in x['Region'] or 'Unallocated' in x['Region Name'] else x['Area Code'], axis = 1)
-
-df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in x['Measure Type'] else 'installation', axis = 1)
-
-indexNames = df[ (df['Region'] == '') & (df['Region Name'] == '') & (df['Value'] == 0)].index
-df.drop(indexNames, inplace = True)
-
-df = df.drop(['Region'], axis=1)
-
-df = df.rename(columns={'Area Code' : 'Region'})
-
-indexNames = df[ df['Region'].isin(['K03000001', 'Unallocated']) ].index
-df.drop(indexNames, inplace = True)
-
-#I cant find anyway to accurately represent the unallocated values in the dataset, and therefore the "grand total" (all areas including unallocated)
-#so I have removed them, this will not be an issue as this is currently being used for proof of concept, will need to be addressed at some point in the future
-
-df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit']]
->>>>>>> df000250f4b6433f988028767d374b9de9ca9280
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Value']
 
@@ -347,10 +322,6 @@ df
 
 
 scraper.dataset.comment = """Quarterly sub-regional statistics show the number of installations and total installed capacity by technology type in England, Scotland and Wales at the end the latest quarter that have been confirmed on the Central Feed-in Tariff Register."""
-<<<<<<< HEAD
-=======
-
->>>>>>> df000250f4b6433f988028767d374b9de9ca9280
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
