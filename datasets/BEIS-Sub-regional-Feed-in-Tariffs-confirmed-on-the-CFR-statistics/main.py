@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[62]:
+# In[98]:
 
 
 from gssutils import *
@@ -22,10 +22,11 @@ scraper = Scraper(seed="info.json")
 #scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
 scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper.dataset.family = 'energy'
+scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper
 
 
-# In[63]:
+# In[99]:
 
 
 # Add cubes class
@@ -34,14 +35,14 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[64]:
+# In[100]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[65]:
+# In[101]:
 
 
 # extract latest distribution and datasetTitle
@@ -51,14 +52,14 @@ print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[66]:
+# In[102]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[67]:
+# In[103]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -66,215 +67,217 @@ for tab in tabs:
     print(tab)
 
 
-# In[68]:
+# In[104]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[97]:
+# In[105]:
 
+
+tidy_tabs = {}
 
 import numpy as np
 # Filtering out the tabs which are not required and start the transform
 for name, tab in tabs.items():
     if tab.name not in ['Latest Quarter - Region', 'Latest Quarter - Region (kW)']:
         continue
+
     print(tab.name)
-    trace.start(datasetTitle, tab, columns, distribution.downloadURL)
 
-    cell = tab.excel_ref("B7")
+    cell = tab.filter('Region')
 
-    footer = tab.filter(contains_string("Notes")).expand(RIGHT).expand(DOWN)
+    remove = tab.filter('Notes:').expand(RIGHT).expand(DOWN)
 
-    region = cell.fill(DOWN).is_not_blank().is_not_whitespace()-footer
-    trace.Region("Taken from cell B7 down excluding footer")
+    region = cell.fill(DOWN).is_not_blank() - remove
 
-    households = cell.fill(RIGHT).is_not_blank().is_not_whitespace()
-    trace.Households("Taken from cell B7 right")
+    technology = cell.shift(1, -1).expand(RIGHT).is_not_blank() | tab.filter('Total Domestic').shift(-1, -1).expand(RIGHT)
 
-    technology = cell.shift(0, -1).fill(RIGHT)#.is_not_blank().is_not_whitespace()
-    trace.Technology("Taken from cell B6 right which is not blank")
-    remove = households.filter('Total').shift(UP)
-    technology = technology - remove
+    installation = cell.shift(2, -2).expand(RIGHT).is_not_blank()
 
-    #installation may potentially become measure type. A word from DM is awaited.
-    installation = cell.shift(0, -2).fill(RIGHT).is_not_blank().is_not_whitespace() | tab.filter(contains_string('Cumulative')).shift(LEFT)
-    trace.Installation("Taken from cell B5 right which is not blank")
+    perTen = cell.shift(2, -2).expand(RIGHT) - cell.shift(2, -2)
 
-    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace() | cell.shift(1, -4)
-    trace.Period("taken from cell B3 right which is not blank")
+    periodYear = cell.shift(2, -4)
 
-    observations = region.fill(RIGHT).is_not_blank().is_not_whitespace()-footer
+    periodQuarter = cell.shift(2, -3)
+
+    buildingType = cell.shift(2, 0).expand(RIGHT).is_not_blank()
+
+    observations = region.shift(RIGHT).fill(RIGHT).is_not_blank()
 
     dimensions = [
         HDim(region, "Region", DIRECTLY, LEFT),
-        HDim(households, "Households", CLOSEST, LEFT),
         HDim(technology, "Technology", CLOSEST, LEFT),
         HDim(installation, "Installation", CLOSEST, LEFT),
-        HDim(period, "Period", CLOSEST, LEFT),
-        HDimConst('Tab', tab.name)
+        HDim(perTen, 'per Ten', CLOSEST, RIGHT),
+        HDim(periodYear, "Period Year", CLOSEST, LEFT),
+        HDim(periodQuarter, "Period Quarter", CLOSEST, LEFT),
+        HDim(buildingType, 'Building Type', DIRECTLY, ABOVE)
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
     df = tidy_sheet.topandas()
-    df = df.replace(r'^\s*$', np.nan, regex=True)
-    df['Period'] = df['Period'].fillna(method='backfill')
-    df['Installation'] = df['Installation'].fillna(method='backfill')
 
-    #This is a horrible way of fixing the annoying placement of the year and measure type
+    if 'kW' not in tab.name:
+        df['Installation'] = df.apply(lambda x: 'installations per 10000 households' if 'Installations per 10,000 households' in x['per Ten'] else 'cumulative installations', axis = 1)
 
-    trace.with_preview(tidy_sheet)
-    trace.store("combined_dataframe", df)
+    df['Technology'] = df.apply(lambda x: 'all' if x['Technology'] == '' else x['Technology'], axis = 1)
+
+    df = df.drop(['per Ten'], axis=1)
+
+    tidy_tabs[tab.name] = df
 
 
-# In[ ]:
+# In[106]:
 
 
 for name, tab in tabs.items():
-    if tab.name not in ['Latest Quarter - LA', 'Latest Quarter - LA (kW)', 'Latest Quarter - PC', 'Latest Quarter - PC (kW)']:
+    if tab.name not in ['Latest Quarter - LA', 'Latest Quarter - LA (kW)']:
         continue
+
     print(tab.name)
-    trace.start(datasetTitle, tab, columns, distribution.downloadURL)
-    cell = tab.excel_ref("B7")
 
-    # Datamarker is catching footer values from Latest Quarter - LA and Latest Quarter - LA (kW) tabs
-    footer = tab.filter(contains_string("Notes")).expand(RIGHT).expand(DOWN)
+    cell = tab.filter('Local Authority Code5')
 
-    #datamarker is catching weired values from footer so footer is caught and deleted
-    local_or_parliamentary_code = cell.fill(DOWN)-footer
-    trace.Local_Or_Parliamentary_Code("Taken from cell B7 down excluding footer")
+    remove = tab.filter('Notes:').expand(RIGHT).expand(DOWN)
 
-    regionName = local_or_parliamentary_code.shift(RIGHT)
-    trace.Region_Name("Taken from cell B7 down excluding footer")
+    region = cell.fill(DOWN).is_not_blank() - remove
 
-    households = cell.shift(1, 0).fill(RIGHT).is_not_blank().is_not_whitespace()
-    trace.Households("Taken from cell B7 right")
+    technology = cell.shift(1, -1).expand(RIGHT).is_not_blank() | tab.filter('Total Domestic').shift(-1, -1).expand(RIGHT)
 
-    technology = cell.shift (0, -1).fill(RIGHT)#.is_not_blank().is_not_whitespace()
-    trace.Technology("Taken from cell B6 right which is not blank")
-    remove = households.filter('Total').shift(UP)
-    technology = technology - remove
+    installation = cell.shift(3, -2).expand(RIGHT).is_not_blank()
 
-    #installation may potentially become measure type. A word from DM is awaited.
-    installation = cell.shift (0, -2).fill(RIGHT).is_not_blank().is_not_whitespace() | tab.filter(contains_string('Cumulative')).shift(LEFT)
-    trace.Installation("Taken from cell B5 right which is not blank")
+    periodYear = cell.shift(3, -4)
 
-    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace() | cell.shift(2, -4)
-    trace.Period("taken from cell B3 right which is not blank")
+    periodQuarter = cell.shift(3, -3)
 
-    #datamarker is catching weired values from footer so footer is caught and deleted
-    observations = households.fill(DOWN).is_not_blank().is_not_whitespace()-footer
+    buildingType = cell.shift(3, 0).expand(RIGHT).is_not_blank()
+
+    observations = region.shift(2, 0).fill(RIGHT).is_not_blank()
 
     dimensions = [
-        HDim(local_or_parliamentary_code, "Local Or Parliamentary Code", DIRECTLY, LEFT),
-        HDim(regionName, "Region Name", DIRECTLY, LEFT),
-        HDim(households, "Households", CLOSEST, LEFT),
+        HDim(region, "Region", DIRECTLY, LEFT),
         HDim(technology, "Technology", CLOSEST, LEFT),
         HDim(installation, "Installation", CLOSEST, LEFT),
-        HDim(period, "Period", CLOSEST, LEFT),
-        HDimConst('Tab', tab.name)
+        HDim(periodYear, "Period Year", CLOSEST, LEFT),
+        HDim(periodQuarter, "Period Quarter", CLOSEST, LEFT),
+        HDim(buildingType, 'Building Type', DIRECTLY, ABOVE)
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
     df = tidy_sheet.topandas()
-    df = df.replace(r'^\s*$', np.nan, regex=True)
-    df['Period'] = df['Period'].fillna(method='backfill')
-    df['Installation'] = df['Installation'].fillna(method='backfill')
 
-    trace.with_preview(tidy_sheet)
-    trace.store("combined_dataframe", df)
-# # changes in local authority code to be implemented in post processing
-# # changes in local authority name to be implemented in post processing
+    df['Technology'] = df.apply(lambda x: 'all' if x['Technology'] == '' else x['Technology'], axis = 1)
+
+    tidy_tabs[tab.name] = df
+
+df
 
 
-# In[71]:
+# In[107]:
 
 
 for name, tab in tabs.items():
-    if tab.name not in ['Latest Quarter - LEPs', 'Latest Quarter - LEPs (kW)']:
+    if tab.name not in ['Latest Quarter - PC', 'Latest Quarter - PC (kW)']:
         continue
+
     print(tab.name)
-    trace.start(datasetTitle, tab, columns, distribution.downloadURL)
 
-    cell = tab.excel_ref("B7")
+    cell = tab.filter('Parliamentary Constituency Code')
 
-    footer = tab.filter(contains_string("Notes")).expand(RIGHT).expand(DOWN)
+    remove = tab.filter('Notes:').expand(RIGHT).expand(DOWN)
 
-    local_enterprise_partnerships = cell.fill(DOWN).is_not_blank().is_not_whitespace()-footer
-    trace.Local_Enterprise_Partnerships("Taken from cell B7 down excluding footer")
+    region = cell.fill(DOWN).is_not_blank() - remove
 
-    leps_authority = cell.shift(1, 0).fill(DOWN).is_not_blank().is_not_whitespace()
-    trace.Leps_Authority("Taken from cell C7 down")
+    technology = cell.shift(1, -1).expand(RIGHT).is_not_blank() | tab.filter('Total Domestic').shift(-1, -1).expand(RIGHT)
 
-    households = cell.shift(1, 0).fill(RIGHT).is_not_blank().is_not_whitespace()
-    trace.Households("Taken from cell C7 right")
+    installation = cell.shift(2, -2).expand(RIGHT).is_not_blank()
 
-    technology = cell.shift (0, -1).fill(RIGHT)#.is_not_blank().is_not_whitespace()
-    trace.Technology("Taken from cell B6 right which is not blank")
-    remove = households.filter('Total').shift(UP)
-    technology = technology - remove
+    periodYear = cell.shift(2, -4)
 
-    #installation may potentially become measure type. A word from DM is awaited.
-    installation = cell.shift (0, -2).fill(RIGHT).is_not_blank().is_not_whitespace()
-    trace.Installation("Taken from cell B5 right which is not blank")
+    periodQuarter = cell.shift(2, -3)
 
-    period = cell.shift(0, -4).fill(RIGHT).is_not_blank().is_not_whitespace()
-    trace.Period("taken from cell B3 right which is not blank")
+    buildingType = cell.shift(2, 0).expand(RIGHT).is_not_blank()
 
-    observations = leps_authority.fill(RIGHT).is_not_blank().is_not_whitespace()-footer
+    observations = region.shift(1, 0).fill(RIGHT).is_not_blank()
 
-    if 'LEPs (kW)' in tab.name:
-        dimensions = [
-            HDim(local_enterprise_partnerships, "Local Enterprise Partnerships", CLOSEST, ABOVE),
-            HDim(leps_authority, "Leps_Authority", CLOSEST, ABOVE),
-            HDim(households, "Households", CLOSEST, LEFT),
-            HDim(technology, "Technology", CLOSEST, LEFT),
-            HDim(installation, "Installation", CLOSEST, LEFT, cellvalueoverride = {'Cumulative number of installations 2' : 'Cumulative installed capacity (kW) 2'}),
-            HDim(period, "Period", CLOSEST, LEFT),
-            HDimConst('Tab', tab.name)
-        ]
-    else:
-        dimensions = [
-            HDim(local_enterprise_partnerships, "Local Enterprise Partnerships", CLOSEST, ABOVE),
-            HDim(leps_authority, "Leps_Authority", CLOSEST, ABOVE),
-            HDim(households, "Households", CLOSEST, LEFT),
-            HDim(technology, "Technology", CLOSEST, LEFT),
-            HDim(installation, "Installation", CLOSEST, LEFT),
-            HDim(period, "Period", CLOSEST, LEFT),
-            HDimConst('Tab', tab.name)
-        ]
+    dimensions = [
+        HDim(region, "Region", DIRECTLY, LEFT),
+        HDim(technology, "Technology", CLOSEST, LEFT),
+        HDim(installation, "Installation", CLOSEST, LEFT),
+        HDim(periodYear, "Period Year", CLOSEST, LEFT),
+        HDim(periodQuarter, "Period Quarter", CLOSEST, LEFT),
+        HDim(buildingType, 'Building Type', DIRECTLY, ABOVE)
+    ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
     savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
-    trace.with_preview(tidy_sheet)
-    trace.store("combined_dataframe", tidy_sheet.topandas())
+
+    df = tidy_sheet.topandas()
+
+    df['Technology'] = df.apply(lambda x: 'all' if x['Technology'] == '' else x['Technology'], axis = 1)
+
+    tidy_tabs[tab.name] = df
 
 
-# In[72]:
+# In[108]:
 
 
-import numpy as np
+#All information in these tabs is covered by LA pages, these tabs just have the same data but with another column informing what LEP each LA is a part of
 
-def get_code(input, reference):
-    ind = reference[reference['Name']==input]
-    if ind['Code'].empty:
-        pass
-    else:
-        return ind['Code'].iloc[0]
+"""for name, tab in tabs.items():
+    if tab.name not in ['Latest Quarter - LEPs', 'Latest Quarter - LEPs (kW)']:
+        continue
 
-df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
+    print(tab.name)
 
-indexNames = df[df['Households'] == 'Estimated number of households3' ].index
-df.drop(indexNames, inplace = True)
+    cell = tab.filter('LEPs')
 
-df['Period'] = df.apply(lambda x: 'quarter/'+ left(x['Period'], 4) + '-Q1', axis =1) #need to change to include quarter values from tabs
+    remove = tab.filter('Notes:').expand(RIGHT).expand(DOWN)
+
+    region = cell.fill(DOWN).is_not_blank() - remove
+
+    technology = cell.shift(1, -1).expand(RIGHT).is_not_blank() | tab.filter('Total Domestic').shift(-1, -1).expand(RIGHT)
+
+    installation = cell.shift(2, -2).expand(RIGHT).is_not_blank()
+
+    periodYear = cell.shift(2, -4)
+
+    periodQuarter = cell.shift(2, -3)
+
+    buildingType = cell.shift(2, 0).expand(RIGHT).is_not_blank()
+
+    observations = region.shift(1, 0).fill(RIGHT).is_not_blank()
+
+    dimensions = [
+        HDim(region, "Region", DIRECTLY, LEFT),
+        HDim(technology, "Technology", CLOSEST, LEFT),
+        HDim(installation, "Installation", CLOSEST, LEFT),
+        HDim(periodYear, "Period Year", CLOSEST, LEFT),
+        HDim(periodQuarter, "Period Quarter", CLOSEST, LEFT),
+        HDim(buildingType, 'Building Type', DIRECTLY, ABOVE)
+    ]
+    tidy_sheet = ConversionSegment(tab, dimensions, observations)
+    savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
+
+    df = tidy_sheet.topandas()
+
+    df['Technology'] = df.apply(lambda x: 'all' if x['Technology'] == '' else x['Technology'], axis = 1)
+
+    tidy_tabs[tab.name] = df"""
+
+
+# In[109]:
+
+
+df = pd.concat(x for x in tidy_tabs.values())
 
 df = df.rename(columns={'Technology' : 'Technology Type', 'Households' : 'Building Type', 'Installation' : 'Measure Type', 'OBS' : 'Value', 'DATAMARKER' : 'Marker'})
 
-df['Technology Type'] = df.apply(lambda x: 'All' if x['Technology Type'] == '' else x['Technology Type'], axis = 1)
+df['Period'] = df.apply(lambda x: 'quarter/' + left(x['Period Year'], 4) + '-Q' + mid(x['Period Quarter'], 8, 1), axis = 1)
 
 df = df.replace({'Building Type' : {'Total Non-Domestic' : 'Non-Domestic', 'Total Domestic' : 'Domestic'},
                  'Measure Type' : {'Cumulative number of installations 2' : 'cumulative installations',
@@ -292,26 +295,13 @@ df = df.replace({'Building Type' : {'Total Non-Domestic' : 'Non-Domestic', 'Tota
                                     'Yorkshire and The Humber' : 'E12000003',
                                     'Total for England' : 'E92000001',
                                     'Wales' : 'W92000004',
-                                    'Scotland' : 'S92000003',
-                                    'Grand Total' : 'K03000001'}})
-#Check that Grand Total is fine as Great Britain
+                                    'Scotland' : 'S92000003'}})
 
-df['Region'] = df.apply(lambda x: 'K03000001' if x['Region Name'] in ['Total', 'Grand Total'] else ('Unallocated' if 'Unallocated' in x['Region Name'] else x['Region']), axis = 1)
+df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in x['Measure Type'] else 'installation', axis = 1)
 
-df['Area'] = df['Region'] + df['Local Or Parliamentary Code'] + df['Leps_Authority']
-
-df = df.replace({'Area' : {'Stoke-on-trent' : 'Stoke-on-Trent'}})
-
-regions = df[['Local Or Parliamentary Code', 'Region Name']]
-dfLA = regions.copy()
-dfLA['Region Name'].replace('', np.nan, inplace=True)
-dfLA.dropna(subset=['Region Name'], inplace=True)
-dfLA = dfLA.drop_duplicates()
-dfLA = dfLA.rename(columns={'Local Or Parliamentary Code' : 'Code', 'Region Name' : 'Name'})
-
-df['Area Code'] = df.apply(lambda x: get_code(x['Area'], dfLA), axis = 1)
-df['Area Code'] = df.apply(lambda x: x['Area'] if x['Area Code'] is None else x['Area Code'], axis = 1)
-
+<<<<<<< HEAD
+df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Measure Type', 'Unit']]
+=======
 df = df.replace({'Area Code' : {'Somerset West and Taunton Deane' : 'E07000246',
                                         'Kingston upon Hull, city of': 'E06000010'}})
 
@@ -333,6 +323,7 @@ df.drop(indexNames, inplace = True)
 #so I have removed them, this will not be an issue as this is currently being used for proof of concept, will need to be addressed at some point in the future
 
 df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Marker', 'Measure Type', 'Unit']]
+>>>>>>> df000250f4b6433f988028767d374b9de9ca9280
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Value']
 
@@ -352,17 +343,20 @@ df = df.drop_duplicates()
 df
 
 
-# In[73]:
+# In[110]:
+
 
 scraper.dataset.comment = """Quarterly sub-regional statistics show the number of installations and total installed capacity by technology type in England, Scotland and Wales at the end the latest quarter that have been confirmed on the Central Feed-in Tariff Register."""
+<<<<<<< HEAD
+=======
 
+>>>>>>> df000250f4b6433f988028767d374b9de9ca9280
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
-trace.render("spec_v1.html")
 
 
-# In[74]:
+# In[111]:
 
 
 from IPython.core.display import HTML
@@ -373,7 +367,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[74]:
+# In[111]:
 
 
 
