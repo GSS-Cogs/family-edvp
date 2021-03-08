@@ -300,6 +300,9 @@ df['Unit'] = df.apply(lambda x: 'kilowatt' if 'capacity' in x['Measure Type'] el
 
 df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Measure Type', 'Unit']]
 
+indexNames = df[ df['Region'].isin(['Unallocated']) ].index
+df.drop(indexNames, inplace = True)
+
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Value']
 
 for col in df.columns.values.tolist():
