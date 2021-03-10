@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[28]:
+
+
 # ---
 # jupyter:
 #   jupytext:
@@ -43,7 +49,7 @@ def with_year_overrides(period_dimension):
     not_blank_cells = [x for x in period_dimension.hbagset if x.value != '']
     for cell in period_dimension.hbagset:
         # If a dimension cell is blank
-        if cell.value == '': 
+        if cell.value == '':
             # Is there a value two cells to the left? if so use that value
             cell_checked = [x for x in not_blank_cells if x.x == cell.x-2]
             if len(cell_checked) > 0:
@@ -77,131 +83,152 @@ trace = TransformTrace()
 
 for tab in tabs:
     if tab.name == 'Generation and supply':
-        title = title1 
+        title = title1
         scraper.dataset.title = title
         scraper.dataset.comment = title
         scraper.dataset.description = title
-        
+
         columns = ['Period', 'Region', 'Description of Generation & Supply', 'Measure Type', 'Unit', 'Value']
         trace.start(title, tab, columns, distribution.downloadURL)
 
         footnote = tab.excel_ref('A23').expand(DOWN)
-        
+
         generation = tab.excel_ref('A5').expand(DOWN).is_not_blank() - footnote
         region = tab.excel_ref('B4').expand(RIGHT).is_not_blank()
-        
+
         trace.Period("Selected as the given years, with the blank cells filled in with the 'with_year_overrides' function")
-        period = region.shift(UP) 
+        period = region.shift(UP)
 
         observations = tab.excel_ref('B5').expand(DOWN).expand(RIGHT).is_not_blank()
 
         dimensions = [
             HDim(period, 'Period', DIRECTLY, ABOVE),
             HDim(region, 'Region', DIRECTLY, ABOVE),
-            HDim(generation, 'Description of Generation & Supply', DIRECTLY, LEFT),
-            
-            HDimConst('Measure Type', 'Electricity'),
-            HDimConst('Unit', 'GWh')
+            HDim(generation, 'Measure Type', DIRECTLY, LEFT),
+            HDimConst('Unit', 'gwh')
         ]
         dimensions[0] = with_year_overrides(dimensions[0])
-        
+
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         trace.store('dataframe1', tidy_sheet.topandas())
-        
+
         df = trace.combine_and_trace(title, 'dataframe1')
-        
+
         df = df.replace({'Region': {
             'UK Total' : 'K02000001',
             'Scotland' : 'S92000003',
             'Wales' : 'W92000004',
             'Northern Ireland' : 'N92000002',
-            'England' : 'K04000001'    
+            'England' : 'K04000001'
             }})
-        
+
         df['Period'] = df['Period'].astype(float).astype(int)
+        df['Period'] = df.apply(lambda x: 'year/' + str(x['Period']), axis = 1)
         df['OBS'] = df['OBS'].astype(int)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
-        tidy = df[['Period', 'Region', 'Description of Generation & Supply', 'Measure Type', 'Unit', 'Value']]
-        
+        tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
+
         for column in tidy:
             if column in ('Description of Generation & Supply', 'Measure Type'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
+        tidy = tidy.replace({'Measure Type' : {'consumption-from-public-supply-a' : 'consumption-from-public-supply',
+                                               'electricity-sales-public-supply-b' : 'electricity-sales-public-supply',
+                                               'statistical-difference-between-calculated-consumption-a-and-sales-b' : 'statistical-difference-between-calculated-consumption-a-and-sales'}})
+
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
-        
+
     elif tab.name == 'Electricity generation by fuel':
-        title = title2 
+        title = title2
         scraper.dataset.title = title
         scraper.dataset.comment = title
         scraper.dataset.description = title
-        
+
         columns = ['Period', 'Region', 'Generating Company', 'Fuel Type', 'Measure Type', 'Unit', 'Value']
         trace.start(title, tab, columns, distribution.downloadURL)
-        
+
         footnote = tab.excel_ref('A53').expand(DOWN).expand(RIGHT).is_not_blank()
-        
+
         within_which = tab.excel_ref('A').expand(DOWN).by_index([20, 27, 32, 41, 46])
-        
+
         share_totalGen = tab.excel_ref('A40').expand(DOWN).expand(RIGHT) - footnote
-        
+
         total_electricity = tab.excel_ref('B').expand(DOWN).by_index([15, 25, 39])
-        
-        trace.Generating_Company('Selected as the electricity generating companies with the totals pulled over \
-        from cell B, and with the share of total generation(%) and the footnote removed')
-        generators = tab.excel_ref('A5').expand(DOWN).is_not_blank()|total_electricity 
+
+        trace.Generating_Company('Selected as the electricity generating companies with the totals pulled over         from cell B, and with the share of total generation(%) and the footnote removed')
+        generators = tab.excel_ref('A5').expand(DOWN).is_not_blank()|total_electricity
         generators = generators - within_which - share_totalGen - footnote
-        
-        trace.Fuel_Type('Selected as the fuel type with the share of total generation(%) and the footnote removed. \
-            The totals cell pulled over to generators are removed below')
-        fuel = tab.excel_ref('B5').expand(DOWN).is_not_blank() - share_totalGen - footnote 
-        
+
+        trace.Fuel_Type('Selected as the fuel type with the share of total generation(%) and the footnote removed.             The totals cell pulled over to generators are removed below')
+        fuel = tab.excel_ref('B5').expand(DOWN).is_not_blank() - share_totalGen - footnote
+
         region = tab.excel_ref('C4').expand(RIGHT).is_not_blank()
-        
+
         trace.Period("Selected as the given years with the blank cells filled in with the 'with_year_overrides' function")
-        period = region.shift(UP) 
+        period = region.shift(UP)
 
         observations = tab.excel_ref('C5').expand(DOWN).expand(RIGHT).is_not_blank() - share_totalGen - footnote
-        
+
         '''Correcting the 'total' cells in fuel column'''
         fuel_override = {}
         for cell in fuel:
             if cell in generators:
                 fuel_override[cell.value] = 'all'
-                
-        dimensions = [ 
+
+        dimensions = [
             HDim(period, 'Period', DIRECTLY, ABOVE),
             HDim(region, 'Region', DIRECTLY, ABOVE),
             HDim(generators, 'Generating Company', CLOSEST, ABOVE),
-            HDim(fuel, 'Fuel Type', DIRECTLY, LEFT, cellvalueoverride = fuel_override),
-            HDimConst('Measure Type', 'Electricity'),
+            HDim(fuel, 'Fuel', DIRECTLY, LEFT, cellvalueoverride = fuel_override),
+            HDimConst('Measure Type', 'gigawatt hours'),
             HDimConst('Unit', 'GWh')
         ]
         dimensions[0] = with_year_overrides(dimensions[0])
-        
+
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         trace.store('dataframe2', tidy_sheet.topandas())
-        
+
         df = trace.combine_and_trace(title, 'dataframe2')
-        
+
         df = df.replace({'Region': {
             'UK total' : 'K02000001',
             'Scotland' : 'S92000003',
             'Wales' : 'W92000004',
             'Northern Ireland' : 'N92000002',
-            'England' : 'K04000001'    
+            'England' : 'K04000001'
             }})
-        
+
         '''removing footnote caption from fuel type'''
-        df['Fuel Type'] = df['Fuel Type'].str.replace(r'\(.*\)', ' ')
-        
+        df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
+
         df['Period'] = df['Period'].astype(float).astype(int)
         df['OBS'] = df['OBS'].astype(int)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
-        
-        tidy = df[['Period', 'Region', 'Generating Company', 'Fuel Type', 'Measure Type', 'Unit', 'Value']]
+
+        tidy = df[['Period', 'Region', 'Generating Company', 'Fuel', 'Value', 'Measure Type', 'Unit']]
         for column in tidy:
-            if column in ('Generating Company', 'Fuel Type', 'Measure Type'):
+            if column in ('Generating Company', 'Fuel', 'Measure Type'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
-cubes.output_all()  
+
+tidy
+
+
+# In[29]:
+
+
+cubes.output_all()
+
+
+# In[30]:
+
+
+
+from IPython.core.display import HTML
+for col in tidy:
+    if col not in ['Value']:
+        tidy[col] = tidy[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(tidy[col].cat.categories)
+
