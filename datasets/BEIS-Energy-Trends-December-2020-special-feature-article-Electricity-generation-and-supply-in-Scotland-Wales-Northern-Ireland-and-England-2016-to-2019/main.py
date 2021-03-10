@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[289]:
 
 
 # ---
@@ -25,6 +25,7 @@ import json
 import pandas
 from gssutils import *
 from databaker.framework import *
+import numpy as np
 
 cubes = Cubes('info.json')
 
@@ -48,12 +49,8 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-def with_year_overrides(period_dimension):
-    """
-    We're going to add a cellvalue overrides to each cell within the dimension AFTER
-    it's been defined.
-    So replacing the value of any dimensions cells that are blank with the appropriate year.
-    """
+def create_xy_lookup(period_dimension):
+    override_from_xy = {}
     not_blank_cells = [x for x in period_dimension.hbagset if x.value != '']
     for cell in period_dimension.hbagset:
         # If a dimension cell is blank
@@ -61,20 +58,20 @@ def with_year_overrides(period_dimension):
             # Is there a value two cells to the left? if so use that value
             cell_checked = [x for x in not_blank_cells if x.x == cell.x-2]
             if len(cell_checked) > 0:
-                period_dimension.AddCellValueOverride(cell, cell_checked[0].value)
-            # Is there a value one cell to the left? if so use that value
+                override_from_xy[cell.x] = cell_checked[0].value
             cell_checked = [x for x in not_blank_cells if x.x == cell.x-1]
             if len(cell_checked) > 0:
-                period_dimension.AddCellValueOverride(cell, cell_checked[0].value)
+                override_from_xy[cell.x] = cell_checked[0].value
             # Is there a value one cells to the right? if so use that value
             cell_checked = [x for x in not_blank_cells if x.x == cell.x+1]
             if len(cell_checked) > 0:
-                period_dimension.AddCellValueOverride(cell, cell_checked[0].value)
+                override_from_xy[cell.x] = cell_checked[0].value
             # Is there a value two cells to the right? if so use that value
             cell_checked = [x for x in not_blank_cells if x.x == cell.x+2]
             if len(cell_checked) > 0:
-                period_dimension.AddCellValueOverride(cell, cell_checked[0].value)
-    return period_dimension
+                override_from_xy[cell.x] = cell_checked[0].value
+
+    return override_from_xy
 
 
 pd.set_option('display.float_format', lambda x: '%.0f' % x)
@@ -115,13 +112,17 @@ for tab in tabs:
             HDim(generation, 'Measure Type', DIRECTLY, LEFT),
             HDimConst('Unit', 'gwh')
         ]
-        dimensions[0] = with_year_overrides(dimensions[0])
+        my_lookup_dict = create_xy_lookup(dimensions[0])
 
-        tidy_sheet = ConversionSegment(tab, dimensions, observations)
+        tidy_sheet = ConversionSegment(tab, dimensions, observations, includecellxy=True)
         trace.store('dataframe1', tidy_sheet.topandas())
         savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
         df = trace.combine_and_trace(title, 'dataframe1')
+
+        df["Period"] = df.apply(lambda x: my_lookup_dict.get(x['__x'], x) if '20' not in x['Period'] else x['Period'], axis = 1)
+
+        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
 
         df = df.replace({'Region': {
             'UK Total' : 'K02000001',
@@ -131,8 +132,9 @@ for tab in tabs:
             'England' : 'K04000001'
             }})
 
-        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
-        df['OBS'] = df['OBS'].astype(int)
+        df = df.replace(r'^\s*$', np.nan, regex=True)
+
+        df['OBS'] = round(df['OBS'], 2)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
         tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
@@ -177,27 +179,25 @@ for tab in tabs:
 
         observations = tab.excel_ref('C5').expand(DOWN).expand(RIGHT).is_not_blank() - share_totalGen - footnote
 
-        '''Correcting the 'total' cells in fuel column'''
-        fuel_override = {}
-        for cell in fuel:
-            if cell in generators:
-                fuel_override[cell.value] = 'all'
-
         dimensions = [
             HDim(period, 'Period', DIRECTLY, ABOVE),
             HDim(region, 'Region', DIRECTLY, ABOVE),
             HDim(generators, 'Generating Company', CLOSEST, ABOVE),
-            HDim(fuel, 'Fuel', DIRECTLY, LEFT, cellvalueoverride = fuel_override),
+            HDim(fuel, 'Fuel', DIRECTLY, LEFT),
             HDimConst('Measure Type', 'gigawatt hours'),
             HDimConst('Unit', 'GWh')
         ]
-        dimensions[0] = with_year_overrides(dimensions[0])
+        my_lookup_dict = create_xy_lookup(dimensions[0])
 
-        tidy_sheet = ConversionSegment(tab, dimensions, observations)
+        tidy_sheet = ConversionSegment(tab, dimensions, observations, includecellxy=True)
         trace.store('dataframe2', tidy_sheet.topandas())
         savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
         df = trace.combine_and_trace(title, 'dataframe2')
+
+        df["Period"] = df.apply(lambda x: my_lookup_dict.get(x['__x'], x) if '20' not in x['Period'] else x['Period'], axis = 1)
+
+        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
 
         df = df.replace({'Region': {
             'UK total' : 'K02000001',
@@ -210,8 +210,7 @@ for tab in tabs:
         '''removing footnote caption from fuel type'''
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
-        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
-        df['OBS'] = df['OBS'].astype(int)
+        df['OBS'] = round(df['OBS'], 2)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
 
         tidy = df[['Period', 'Region', 'Generating Company', 'Fuel', 'Value', 'Measure Type', 'Unit']]
@@ -219,18 +218,22 @@ for tab in tabs:
             if column in ('Generating Company', 'Fuel', 'Measure Type'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
+        tidy = tidy.replace({'Fuel' : {'total-mpps' : 'all',
+                                       'total-all-generating-companies' : 'all',
+                                       'total-other-generators' : 'all'}})
+
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
 tidy
 
 
-# In[12]:
+# In[290]:
 
 
 cubes.output_all()
 
 
-# In[13]:
+# In[291]:
 
 
 
