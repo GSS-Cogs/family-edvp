@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[34]:
+# In[11]:
 
 
 # ---
@@ -119,6 +119,7 @@ for tab in tabs:
 
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         trace.store('dataframe1', tidy_sheet.topandas())
+        savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
         df = trace.combine_and_trace(title, 'dataframe1')
 
@@ -194,6 +195,7 @@ for tab in tabs:
 
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         trace.store('dataframe2', tidy_sheet.topandas())
+        savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
         df = trace.combine_and_trace(title, 'dataframe2')
 
@@ -222,13 +224,13 @@ for tab in tabs:
 tidy
 
 
-# In[35]:
+# In[12]:
 
 
 cubes.output_all()
 
 
-# In[36]:
+# In[13]:
 
 
 
