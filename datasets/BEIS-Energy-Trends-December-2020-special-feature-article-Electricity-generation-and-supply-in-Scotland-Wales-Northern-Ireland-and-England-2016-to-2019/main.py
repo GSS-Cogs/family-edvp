@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[28]:
+# In[34]:
 
 
 # ---
@@ -39,6 +39,14 @@ tabs = distribution.as_databaker()
 tab_names = [tab.name for tab in tabs]
 tab_names
 
+def left(s, amount):
+    return s[:amount]
+
+def right(s, amount):
+    return s[-amount:]
+
+def mid(s, offset, amount):
+    return s[offset:offset+amount]
 
 def with_year_overrides(period_dimension):
     """
@@ -122,8 +130,7 @@ for tab in tabs:
             'England' : 'K04000001'
             }})
 
-        df['Period'] = df['Period'].astype(float).astype(int)
-        df['Period'] = df.apply(lambda x: 'year/' + str(x['Period']), axis = 1)
+        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
         df['OBS'] = df['OBS'].astype(int)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
         tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
@@ -201,7 +208,7 @@ for tab in tabs:
         '''removing footnote caption from fuel type'''
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
-        df['Period'] = df['Period'].astype(float).astype(int)
+        df['Period'] = df.apply(lambda x: 'year/' + left(str(x['Period']), 4), axis = 1)
         df['OBS'] = df['OBS'].astype(int)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
 
@@ -215,13 +222,13 @@ for tab in tabs:
 tidy
 
 
-# In[29]:
+# In[35]:
 
 
 cubes.output_all()
 
 
-# In[30]:
+# In[36]:
 
 
 
