@@ -20,7 +20,63 @@
         "main_issue": 15,
         "stage": [
             "To Do"
-        ]
+        ],
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Region": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
+                "description": "",
+                "codelist": false
+            },
+            "Measure Type": {
+        		"dimension": "http://purl.org/linked-data/cube#measureType",
+        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
+        		"types": [ "gigawatt-hours",
+                           "consumption-by-autogenerators",
+                           "consumption-from-public-supply",
+                           "distribution-losses-and-theft",
+                           "electricity-generated-by-major-power-producers-mpps",
+                           "electricity-generated-by-other-generators",
+                           "electricity-sales-public-supply",
+                           "electricity-transferred-to-england-net-of-receipts",
+                           "electricity-transferred-to-europe-net-of-receipts",
+                           "electricity-transferred-to-northern-ireland-net-of-receipts",
+                           "net-electricity-supplied-by-mpps",
+                           "net-electricity-supplied-by-other-generators",
+                           "own-use-by-other-generators",
+                           "statistical-difference-between-calculated-consumption-a-and-sales",
+                           "total-electricity-consumed",
+                           "total-electricity-generated",
+                           "transfers-from-other-generators-to-public-supply",
+                           "transmission-losses",
+                           "used-in-pumping-at-pumped-storage-and-other-own-use-by-mpps"]
+      		},
+            "Fuel" :{
+                "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
+                "codelist": false
+            },
+            "Generating Companies": {
+                "description": "Type of companies involved in fuel generation"
+            },
+      		"Unit": {
+        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+      		},
+      		"Value": {
+        		"datatype": "double"
+      		},
+            "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
+                "codelist": false
+            }
+        }
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
     "notes": "Included for EDV Pase II Data Vis project as will complement Visualsation. May have some similar data to Energy Trends 6.1 & 6.2."
