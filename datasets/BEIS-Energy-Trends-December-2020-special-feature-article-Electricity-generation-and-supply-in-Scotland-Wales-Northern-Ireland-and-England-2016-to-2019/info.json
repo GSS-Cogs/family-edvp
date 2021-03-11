@@ -61,8 +61,10 @@
                 "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
                 "codelist": false
             },
-            "Generating Companies": {
-                "description": "Type of companies involved in fuel generation"
+            "Generating Companies" :{
+                "parent": "http://gss-data.org.uk/def/energy/property/dimension/generating-companies",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{generating_companies}",
+                "codelist": false
             },
       		"Unit": {
         		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
