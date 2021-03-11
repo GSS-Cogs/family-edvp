@@ -97,7 +97,7 @@ for tab in tabs:
     unit = "Million tonnes carbon dioxide equivalent (MtCO2e)"
     trace.Unit("Hardcoded as Million tonnes carbon dioxide equivalent (MtCO2e)")
 
-    nc_category_child = cell.shift(1, 2).fill(DOWN).is_not_blank().is_not_whitespace()
+    nc_category_child = cell.shift(1, 2).fill(DOWN)
     trace.Nc_Category_Child("Defined from cell B4 down")
 
     nc_sub_sector_parent = nc_category_child.shift(LEFT).is_not_blank()
@@ -106,8 +106,8 @@ for tab in tabs:
     nc_sector_parent = nc_category_child.shift(LEFT).shift(ABOVE).is_not_bold() - nc_category_child.shift(LEFT).is_not_bold()
     trace.Nc_Sector_Parent("Defined from cell A3 down which is bold")
 
-    observations = period.waffle(nc_category_child)|period.waffle(nc_sector_parent).is_not_blank().is_not_whitespace()
-        
+    observations = period.waffle(nc_category_child).is_not_blank().is_not_whitespace()
+    
     dimensions = [
         HDim(period, "Period", DIRECTLY, ABOVE),
         HDim(nc_category_child, "Nc Category Child", CLOSEST, ABOVE),
@@ -117,13 +117,14 @@ for tab in tabs:
         HDimConst("Unit", "Million tonnes carbon dioxide equivalent (MtCO2e)")
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
-    savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
-    trace.with_preview(tidy_sheet)
+    # savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
+    # trace.with_preview(tidy_sheet)
     trace.store("combined_dataframe", tidy_sheet.topandas())
-tabs = distribution.as_databaker()
+
 
 columns = ["Period", "Geographic Coverage", "Inclusions-Exclusions", "Gas", "Year", "Value"]
 
+tabs = distribution.as_databaker()
 for tab in tabs:
     if tab.name == "3.1":
         
@@ -150,18 +151,35 @@ for tab in tabs:
             HDim(period, "Period", DIRECTLY, ABOVE),
             HDim(gas, "Gas", DIRECTLY, LEFT),
             HDim(inclusions_exclusions, "Inclusions Exclusions", CLOSEST, ABOVE),
-            HDim(geographic_coverage, "Geographic Coverage", CLOSEST, ABOVE ) 
+            HDim(geographic_coverage, "Geographic Coverage", CLOSEST, ABOVE ),
+            HDimConst("Unit", "TBD - needs investigating")
         ]
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
         trace.with_preview(tidy_sheet)
         trace.store("combined_dataframe", tidy_sheet.topandas())
 
-df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
-df
+df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
+df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
-# Post processing
-df["DATAMARKER"].replace({":" : "Data not available"}, inplace = True)
+# +
+# replace the nans now we've confirmed they're where they should be
+replace_nans = {
+    "Marker": "",
+    "Nc Category Child": "all",
+    "Nc Sub Sector Parent": "all",
+    "Nc Sector Parent": "all",
+    "Inclusions Exclusions": "all",
+    "Geographic Coverage": "all"
+}
+for col, na_val in replace_nans.items():
+    df[col][df[col] == ""] = na_val
+
+# confirm there's no blanks remaining where there shouldn't be blanks
+for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
+    assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
+
+df
 
 
 # +
