@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[364]:
+
+
 # ---
 # jupyter:
 #   jupytext:
@@ -12,7 +18,10 @@
 #     name: python3
 # ---
 
-# +
+
+# In[365]:
+
+
 import json
 
 import pandas as pd
@@ -28,7 +37,10 @@ cubes = Cubes("info.json")
 
 #Add TransformTrace
 trace = TransformTrace()
-# -
+
+
+# In[366]:
+
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
 datasetTitle = distribution.title
@@ -50,7 +62,7 @@ for tab in tabs:
         trace.start(datasetTitle, tab, columns, distribution.downloadURL)
         remove = tab.filter(contains_string("Footnotes")).expand(RIGHT).expand(DOWN)
 #         savepreviewhtml(remove, fname=tab.name + "Preview.html")
-        
+
         cell = tab.excel_ref("A1")
 
         period = cell.shift(0, 2).fill(RIGHT).is_not_blank().is_not_whitespace()
@@ -58,7 +70,7 @@ for tab in tabs:
 
         gas = cell.shift(0, 2).fill(DOWN).is_not_blank().is_not_whitespace()-remove
         trace.Gas("Defined from cell A4 down")
-        
+
         unit = "Million tonnes carbon dioxide equivalent (MtCO2e)"
         trace.Unit("Hard coded as Million tonnes carbon dioxide equivalent (MtCO2e)")
 
@@ -86,6 +98,8 @@ for tab in tabs:
     print(tab.name)
     trace.start(datasetTitle, tab, columns, distribution.downloadURL)
 
+    remove = tab.filter('Footnotes:').expand(RIGHT).expand(DOWN)
+
     cell = tab.excel_ref("A1")
 
     period = cell.shift(1, 2).fill(RIGHT).is_not_blank().is_not_whitespace()
@@ -100,14 +114,14 @@ for tab in tabs:
     nc_category_child = cell.shift(1, 2).fill(DOWN)
     trace.Nc_Category_Child("Defined from cell B4 down")
 
-    nc_sub_sector_parent = nc_category_child.shift(LEFT).is_not_blank()
+    nc_sub_sector_parent = nc_category_child.shift(LEFT).is_not_blank() - remove
     trace.Nc_Sub_Sector_Parent("Defined from cell A3 down which is not bold")
 
-    nc_sector_parent = nc_category_child.shift(LEFT).shift(ABOVE).is_not_bold() - nc_category_child.shift(LEFT).is_not_bold()
+    nc_sector_parent = tab.filter('NC Category').fill(DOWN).is_blank().shift(LEFT) - remove
     trace.Nc_Sector_Parent("Defined from cell A3 down which is bold")
 
     observations = period.waffle(nc_category_child).is_not_blank().is_not_whitespace()
-    
+
     dimensions = [
         HDim(period, "Period", DIRECTLY, ABOVE),
         HDim(nc_category_child, "Nc Category Child", CLOSEST, ABOVE),
@@ -117,7 +131,7 @@ for tab in tabs:
         HDimConst("Unit", "Million tonnes carbon dioxide equivalent (MtCO2e)")
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
-    # savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
+    savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
     # trace.with_preview(tidy_sheet)
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
@@ -127,32 +141,32 @@ columns = ["Period", "Geographic Coverage", "Inclusions-Exclusions", "Gas", "Yea
 tabs = distribution.as_databaker()
 for tab in tabs:
     if tab.name == "3.1":
-        
+
         trace.start(datasetTitle, tab, columns, distribution.downloadURL)
-        
+
         remove = tab.filter(contains_string("Footnotes")).expand(RIGHT).expand(DOWN)
         cell = tab.excel_ref("A1")
-    
+
         period = cell.shift(2, 2).fill(RIGHT).is_not_whitespace()
         trace.Period("Defined from cell D3 and right")
 
         gas = cell.shift(2, 2).fill(DOWN).is_not_whitespace()
         trace.Gas("Defined from cell C3 down")
-        
+
         inclusions_exclusions = cell.shift(1, 2).fill(DOWN).is_not_whitespace()
         trace.Inclusions_Exclusions("Defined from cell B3 down")
 
         geographic_coverage = cell.shift(0, 2).fill(DOWN).is_not_whitespace()-remove
         trace.Geographic_Coverage("Defined from cell A3 down")
-        
+
         observations = period.waffle(gas)-remove
-        
+
         dimensions =[
             HDim(period, "Period", DIRECTLY, ABOVE),
             HDim(gas, "Gas", DIRECTLY, LEFT),
             HDim(inclusions_exclusions, "Inclusions Exclusions", CLOSEST, ABOVE),
             HDim(geographic_coverage, "Geographic Coverage", CLOSEST, ABOVE ),
-            HDimConst("Unit", "TBD - needs investigating")
+            HDimConst("Unit", "Million tonnes carbon dioxide equivalent (MtCO2e)")
         ]
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
         savepreviewhtml(tidy_sheet, fname=tab.name + "Preview.html")
@@ -162,7 +176,10 @@ for tab in tabs:
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
-# +
+
+# In[367]:
+
+
 # replace the nans now we've confirmed they're where they should be
 replace_nans = {
     "Marker": "",
@@ -179,22 +196,42 @@ for col, na_val in replace_nans.items():
 for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
-df
+
+# In[368]:
 
 
-# +
 def left(s, amount):
     return s[:amount]
 def date_time (date):
     if len(date) == 6:
         return 'year/' + left(date, 4)
-    
+
 df['Period'] =  df["Period"].apply(date_time)
-# -
 
-df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
-# +
+# In[369]:
+
+
+pd.set_option('display.float_format', lambda x: '%.5f' % x)
+
+badInheritance = ['Aviation between UK and Crown Dependencies', 'Shipping between UK and Crown Dependencies', 'Aviation between the Crown Dependencies and Overseas Territories']
+
+df['Inclusions Exclusions'] = df.apply(lambda x: '' if x['Geographic Coverage'] in badInheritance else x['Inclusions Exclusions'], axis = 1)
+df['Inclusions Exclusions'] = df.apply(lambda x: '' if '' in x['Inclusions Exclusions'] and 'all' in x['Geographic Coverage'] else x['Inclusions Exclusions'], axis = 1)
+
+df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker', 'Inclusions Exclusions' : 'Breakdown', 'Nc Category Child' : 'Nc Category', 'Nc Sub Sector Parent' : 'Nc Sub Sector', 'Nc Sector Parent' : 'Nc Sector'}, inplace = True)
+
+df['Measure Type'] = 'Gas Emissions'
+df = df.replace({'Unit' : {'Million tonnes carbon dioxide equivalent (MtCO2e)' : 'Millions of Tonnes of CO2 Equivalent'},
+                 'Gas' : {'Total' : 'All'}})
+
+indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
+df.drop(indexNames, inplace = True)
+
+
+# In[370]:
+
+
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
 for col in df.columns.values.tolist():
@@ -205,10 +242,22 @@ for col in df.columns.values.tolist():
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Measure Type', 'Unit']]
+
 df
-# -
+
+
+# In[371]:
+
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 
 trace.render("spec_v1.html")
+
+
+# In[372]:
+
+
+
+
