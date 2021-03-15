@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[364]:
+# In[455]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[365]:
+# In[456]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[366]:
+# In[457]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -120,6 +120,17 @@ for tab in tabs:
     nc_sector_parent = tab.filter('NC Category').fill(DOWN).is_blank().shift(LEFT) - remove
     trace.Nc_Sector_Parent("Defined from cell A3 down which is bold")
 
+    if tab.name == '1.2':
+        gas = 'all'
+    elif tab.name == '1.3':
+        gas = 'Carbon Dioxide CO2'
+    elif tab.name == '1.4':
+        gas = 'Methane CH4'
+    elif tab.name == '1.5':
+        gas = 'Nitrous Oxide N2O'
+    elif tab.name == '1.6':
+        gas = 'Fluorinated Gases F Gases'
+
     observations = period.waffle(nc_category_child).is_not_blank().is_not_whitespace()
 
     dimensions = [
@@ -127,7 +138,7 @@ for tab in tabs:
         HDim(nc_category_child, "Nc Category Child", CLOSEST, ABOVE),
         HDim(nc_sub_sector_parent, "Nc Sub Sector Parent", CLOSEST, ABOVE),
         HDim(nc_sector_parent, "Nc Sector Parent", CLOSEST, ABOVE),
-        HDimConst("Gas", "All"),
+        HDimConst("Gas", gas),
         HDimConst("Unit", "Million tonnes carbon dioxide equivalent (MtCO2e)")
     ]
     tidy_sheet = ConversionSegment(tab, dimensions, observations)
@@ -177,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[367]:
+# In[458]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -187,7 +198,7 @@ replace_nans = {
     "Nc Sub Sector Parent": "all",
     "Nc Sector Parent": "all",
     "Inclusions Exclusions": "all",
-    "Geographic Coverage": "all"
+    "Geographic Coverage": "K02000001"
 }
 for col, na_val in replace_nans.items():
     df[col][df[col] == ""] = na_val
@@ -197,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[368]:
+# In[459]:
 
 
 def left(s, amount):
@@ -209,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[369]:
+# In[460]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -229,7 +240,7 @@ indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[370]:
+# In[461]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
@@ -247,7 +258,7 @@ df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Cate
 df
 
 
-# In[371]:
+# In[462]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -256,8 +267,9 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[372]:
+# In[463]:
 
 
-
+for i in df['Gas'].unique().tolist():
+    print(i)
 
