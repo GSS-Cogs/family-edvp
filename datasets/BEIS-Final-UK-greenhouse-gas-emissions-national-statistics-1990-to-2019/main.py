@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[455]:
+# In[19]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[456]:
+# In[20]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[457]:
+# In[21]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[458]:
+# In[22]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[459]:
+# In[23]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[460]:
+# In[24]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -240,7 +240,7 @@ indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[461]:
+# In[25]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
@@ -258,7 +258,7 @@ df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Cate
 df
 
 
-# In[462]:
+# In[26]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -267,9 +267,8 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[463]:
+# In[27]:
 
 
-for i in df['Gas'].unique().tolist():
-    print(i)
+
 
