@@ -255,7 +255,7 @@ for col in df.columns.values.tolist():
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value']]
 
 df
 

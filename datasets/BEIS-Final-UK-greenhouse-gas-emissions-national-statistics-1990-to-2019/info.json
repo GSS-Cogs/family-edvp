@@ -25,11 +25,6 @@
                 "value": "http://reference.data.gov.uk/id/{+period}",
                 "codelist": false
             },
-            "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["gas-emissions"]
-      		},
             "Geographic Coverage": {
                 "description": "Geological area in which the data relates"
             },
