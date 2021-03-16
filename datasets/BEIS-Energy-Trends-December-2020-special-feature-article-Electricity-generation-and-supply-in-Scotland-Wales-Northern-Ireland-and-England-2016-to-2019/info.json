@@ -9,7 +9,7 @@
     ],
     "published": "2021-01-11",
     "families": [
-        "EDVP"
+        "energy"
     ],
     "extract": {
         "source": "XLS",
@@ -57,9 +57,9 @@
                            "used-in-pumping-at-pumped-storage-and-other-own-use-by-mpps"]
       		},
             "Fuel" :{
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "description": "Type of fuel",
                 "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
-                "codelist": false
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
             },
             "Generating Companies" :{
                 "description": "Companies generating electricity",
