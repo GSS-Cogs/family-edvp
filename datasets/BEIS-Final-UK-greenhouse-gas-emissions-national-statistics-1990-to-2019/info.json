@@ -30,19 +30,19 @@
             },
             "Nc Sector": {
                 "description": "NC Sector",
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
+                "dimension": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_sector}",
                 "codelist": false
             },
             "Nc Sub Sector": {
                 "description": "NC Sub Sector",
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
+                "dimension": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_sub_sector}",
                 "codelist": false
             },
             "Nc Category": {
                 "description": "NC Category",
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
+                "dimension": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_category}",
                 "codelist": false
             },
