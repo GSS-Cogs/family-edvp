@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[24]:
 
 
 # ---
@@ -220,20 +220,25 @@ for tab in tabs:
 
         tidy = tidy.replace({'Fuel' : {'total-mpps' : 'all',
                                        'total-all-generating-companies' : 'all',
-                                       'total-other-generators' : 'all'}})
+                                       'total-other-generators' : 'all'},
+                             'Generating Companies' : {
+                                        'total-other-generators' : 'other-generators',
+                                        'total-all-generating-companies' : 'all-generating-companies',
+                                        'major-power-producers-mpps' : 'major-power-producers',
+                                        'total-mpps' : 'major-power-producers'}})
 
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
 tidy
 
 
-# In[2]:
+# In[25]:
 
 
 cubes.output_all()
 
 
-# In[3]:
+# In[26]:
 
 
 
