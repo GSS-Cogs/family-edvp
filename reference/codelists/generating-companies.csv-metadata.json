@@ -60,8 +60,8 @@
         "primaryKey": "notation",
         "aboutUrl": "http://gss-data.org.uk/def/energy/concept/generating-companies/{notation}"
     },
-    "rdfs:label": "Fuel",
-    "dc:title": "Fuel",
+    "rdfs:label": "Generating Companies",
+    "dc:title": "Generating Companies",
     "prov:hadDerivation": {
         "@id": "http://gss-data.org.uk/def/energy/concept-scheme/generating-companies",
         "@type": [
