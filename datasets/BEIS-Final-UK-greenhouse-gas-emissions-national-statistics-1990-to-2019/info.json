@@ -56,11 +56,6 @@
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/millions-of-tonnes-of-co2-equivalent",
                 "measure": "http://gss-data.org.uk/def/measure/gas-emissions",
                 "datatype": "double"
-            },
-            "Marker": {
-                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
-                "codelist": false
             }
         },
         "airtable": "recyuV6f0DZPXzhHD",
