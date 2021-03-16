@@ -57,13 +57,11 @@
             "Breakdown": {
                 "description": "How the value is broken down (inclusions, exclusions)"
             },
-      		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
-      		},
       		"Value": {
-        		"datatype": "double"
-      		},
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/millions-of-tonnes-of-co2-equivalent",
+                "measure": "http://gss-data.org.uk/def/measure/gas-emissions",
+                "datatype": "integer"
+            },
             "Marker": {
                 "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
                 "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
