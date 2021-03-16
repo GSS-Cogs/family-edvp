@@ -36,7 +36,7 @@
             "Measure Type": {
         		"dimension": "http://purl.org/linked-data/cube#measureType",
         		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": [ "gigawatt-hours",
+        		"types": [ "electricity-generated",
                            "consumption-by-autogenerators",
                            "consumption-from-public-supply",
                            "distribution-losses-and-theft",
