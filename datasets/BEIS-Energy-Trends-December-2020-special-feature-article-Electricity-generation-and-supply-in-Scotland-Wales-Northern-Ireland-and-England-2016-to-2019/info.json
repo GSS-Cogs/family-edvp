@@ -62,9 +62,9 @@
                 "codelist": false
             },
             "Generating Companies" :{
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/generating-companies",
+                "description": "Companies generating electricity",
                 "value": "http://gss-data.org.uk/def/energy/concept/generating-companies/{generating_companies}",
-                "codelist": false
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/generating-companies"
             },
       		"Unit": {
         		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
