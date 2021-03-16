@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[289]:
+# In[1]:
 
 
 # ---
@@ -211,11 +211,11 @@ for tab in tabs:
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
         df['OBS'] = round(df['OBS'], 2)
-        df.rename(columns={'OBS' : 'Value'}, inplace=True)
+        df.rename(columns={'OBS' : 'Value', 'Generating Company' : 'Generating Companies'}, inplace=True)
 
-        tidy = df[['Period', 'Region', 'Generating Company', 'Fuel', 'Value', 'Measure Type', 'Unit']]
+        tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
         for column in tidy:
-            if column in ('Generating Company', 'Fuel', 'Measure Type'):
+            if column in ('Generating Companies', 'Fuel', 'Measure Type'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
         tidy = tidy.replace({'Fuel' : {'total-mpps' : 'all',
@@ -227,13 +227,13 @@ for tab in tabs:
 tidy
 
 
-# In[290]:
+# In[2]:
 
 
 cubes.output_all()
 
 
-# In[291]:
+# In[3]:
 
 
 
