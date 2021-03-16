@@ -264,6 +264,7 @@ df
 # In[149]:
 
 
+scraper.dataset.description = 'Final estimates of UK territorial greenhouse gas emissions.'
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 
