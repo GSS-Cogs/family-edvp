@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[52]:
+# In[61]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[53]:
+# In[62]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[54]:
+# In[63]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[55]:
+# In[64]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[56]:
+# In[65]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[57]:
+# In[66]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -235,13 +235,14 @@ df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker', 'Inclusions Exclusio
 
 df['Measure Type'] = 'Gas Emissions'
 df = df.replace({'Unit' : {'Million tonnes carbon dioxide equivalent (MtCO2e)' : 'Millions of Tonnes of CO2 Equivalent'},
-                 'Gas' : {'Total' : 'All'}})
+                 'Gas' : {'Total' : 'All'},
+                 'Geographic Coverage' : {'United Kingdom only' : 'United Kingdom'}})
 
 indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[58]:
+# In[67]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
@@ -259,7 +260,7 @@ df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Cate
 df
 
 
-# In[59]:
+# In[68]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -268,7 +269,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[59]:
+# In[69]:
 
 
 
