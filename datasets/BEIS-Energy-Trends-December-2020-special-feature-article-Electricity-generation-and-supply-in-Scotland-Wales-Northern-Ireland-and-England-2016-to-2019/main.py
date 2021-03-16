@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[48]:
+# In[100]:
 
 
 # ---
@@ -28,6 +28,12 @@ from databaker.framework import *
 import numpy as np
 
 cubes = Cubes('info.json')
+
+info = json.load(open('info.json'))
+
+
+# In[101]:
+
 
 scraper = Scraper(seed='info.json')
 scraper
@@ -146,6 +152,11 @@ for tab in tabs:
                                                'electricity-sales-public-supply-b' : 'electricity-sales-public-supply',
                                                'statistical-difference-between-calculated-consumption-a-and-sales-b' : 'statistical-difference-between-calculated-consumption-a-and-sales'}})
 
+        info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
+
+        with open('info.json', 'w') as f:
+            json.dump(info, f, indent=4)
+
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
     elif tab.name == 'Electricity generation by fuel':
@@ -227,18 +238,23 @@ for tab in tabs:
                                         'major-power-producers-mpps' : 'major-power-producers',
                                         'total-mpps' : 'major-power-producers'}})
 
+        info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
+
+        with open('info.json', 'w') as f:
+            json.dump(info, f, indent=4)
+
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
 tidy
 
 
-# In[49]:
+# In[102]:
 
 
 cubes.output_all()
 
 
-# In[50]:
+# In[103]:
 
 
 
