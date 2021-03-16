@@ -31,17 +31,17 @@
             "Nc Sector": {
                 "description": "NC Sector",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_sector}",
-                "codelist": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors"
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/nc-sectors"
             },
             "Nc Sub Sector": {
                 "description": "NC Sub Sector",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_sub_sector}",
-                "codelist": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors"
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/nc-sectors"
             },
             "Nc Category": {
                 "description": "NC Category",
                 "value": "http://gss-data.org.uk/def/energy/concept/nc-sectors/{nc_category}",
-                "codelist": "http://gss-data.org.uk/def/energy/property/dimension/nc-sectors"
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/nc-sectors"
             },
             "Gas": {
                 "description": "Type of Gas"
