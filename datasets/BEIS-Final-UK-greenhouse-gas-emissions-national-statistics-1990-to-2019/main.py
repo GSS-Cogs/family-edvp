@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[125]:
+# In[142]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[126]:
+# In[143]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[127]:
+# In[144]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[128]:
+# In[145]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[129]:
+# In[146]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[130]:
+# In[147]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -236,16 +236,17 @@ df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker', 'Inclusions Exclusio
 df['Measure Type'] = 'Gas Emissions'
 df = df.replace({'Unit' : {'Million tonnes carbon dioxide equivalent (MtCO2e)' : 'Millions of Tonnes of CO2 Equivalent'},
                  'Gas' : {'Total' : 'All'},
-                 'Geographic Coverage' : {'United Kingdom only' : 'United Kingdom'}})
+                 'Geographic Coverage' : {'United Kingdom only' : 'United Kingdom'},
+                 'Marker' : {':' : 'not-available'}})
 
 indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[131]:
+# In[148]:
 
 
-COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value', 'Marker']
 
 for col in df.columns.values.tolist():
     if col in COLUMNS_TO_NOT_PATHIFY:
@@ -255,12 +256,12 @@ for col in df.columns.values.tolist():
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value']]
+df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Marker']]
 
 df
 
 
-# In[132]:
+# In[149]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -269,7 +270,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[132]:
+# In[150]:
 
 
 
