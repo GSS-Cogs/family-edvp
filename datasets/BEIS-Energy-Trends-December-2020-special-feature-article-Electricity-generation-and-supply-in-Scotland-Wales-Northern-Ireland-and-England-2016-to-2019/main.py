@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[24]:
+# In[48]:
 
 
 # ---
@@ -184,7 +184,7 @@ for tab in tabs:
             HDim(region, 'Region', DIRECTLY, ABOVE),
             HDim(generators, 'Generating Company', CLOSEST, ABOVE),
             HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-            HDimConst('Measure Type', 'gigawatt hours'),
+            HDimConst('Measure Type', 'Electricity Generated'),
             HDimConst('Unit', 'GWh')
         ]
         my_lookup_dict = create_xy_lookup(dimensions[0])
@@ -215,7 +215,7 @@ for tab in tabs:
 
         tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
         for column in tidy:
-            if column in ('Generating Companies', 'Fuel', 'Measure Type'):
+            if column in ('Generating Companies', 'Fuel', 'Measure Type', 'Unit'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
         tidy = tidy.replace({'Fuel' : {'total-mpps' : 'all',
@@ -232,13 +232,13 @@ for tab in tabs:
 tidy
 
 
-# In[25]:
+# In[49]:
 
 
 cubes.output_all()
 
 
-# In[26]:
+# In[50]:
 
 
 
