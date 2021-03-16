@@ -264,7 +264,8 @@ df
 # In[149]:
 
 
-scraper.dataset.description = 'Final estimates of UK territorial greenhouse gas emissions.'
+scraper.dataset.comment = """Final estimates of UK territorial greenhouse gas emissions.
+In accordance with international reporting and carbon trading protocols, each of these gases are weighted by their global warming potential (GWP), so that total greenhouse gas emissions can be reported on a consistent basis (in carbon dioxide equivalent units)."""
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 
