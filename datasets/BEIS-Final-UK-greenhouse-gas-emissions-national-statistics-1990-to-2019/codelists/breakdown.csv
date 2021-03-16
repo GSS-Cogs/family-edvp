@@ -1,0 +1,5 @@
+Label,Notation,Parent Notation,Sort Priority
+None,none,,1
+Excluding Net Emissions and Removals from Land Use - Land Use Change and Forestry LULUCF,excluding-net-emissions/removals-from-land-use-land-use-change-and-forestry-lulucf,,2
+Including Net Emissions and Removals From LULUCF,including-net-emissions/removals-from-lulucf,,3
+Excluding Net Emissions and Removals from LULUCF,excluding-net-emissions/removals-from-lulucf,,4

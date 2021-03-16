@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[61]:
+# In[116]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[62]:
+# In[117]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[63]:
+# In[118]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[64]:
+# In[119]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[65]:
+# In[120]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[66]:
+# In[121]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -228,7 +228,7 @@ pd.set_option('display.float_format', lambda x: '%.5f' % x)
 badInheritance = ['Aviation between UK and Crown Dependencies', 'Shipping between UK and Crown Dependencies', 'Aviation between the Crown Dependencies and Overseas Territories']
 
 df['Inclusions Exclusions'] = df.apply(lambda x: '' if x['Geographic Coverage'] in badInheritance else x['Inclusions Exclusions'], axis = 1)
-df['Inclusions Exclusions'] = df.apply(lambda x: 'None' if '' in x['Inclusions Exclusions'] and 'K02000001' in x['Geographic Coverage'] else x['Inclusions Exclusions'], axis = 1)
+df['Inclusions Exclusions'] = df.apply(lambda x: 'None' if '' in x['Inclusions Exclusions'] and x['Geographic Coverage'] == 'United Kingdom' else x['Inclusions Exclusions'], axis = 1)
 df['Inclusions Exclusions'] = df.apply(lambda x: 'None' if x['Geographic Coverage'] in badInheritance else x['Inclusions Exclusions'], axis = 1)
 
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker', 'Inclusions Exclusions' : 'Breakdown', 'Nc Category Child' : 'Nc Category', 'Nc Sub Sector Parent' : 'Nc Sub Sector', 'Nc Sector Parent' : 'Nc Sector'}, inplace = True)
@@ -242,7 +242,7 @@ indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[67]:
+# In[122]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
@@ -260,7 +260,7 @@ df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Cate
 df
 
 
-# In[68]:
+# In[123]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -269,7 +269,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[69]:
+# In[124]:
 
 
 
