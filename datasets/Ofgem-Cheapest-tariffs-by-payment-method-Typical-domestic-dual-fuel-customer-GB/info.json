@@ -90,5 +90,6 @@
         ]
     },
     "sizingNotes": "",
-    "notes": "Interactive chart with CSV download option."
+    "notes": "Interactive chart with CSV download option.",
+    "scraper_state": "ok"
 }

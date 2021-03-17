@@ -76,5 +76,6 @@
     },
     "sizingNotes": "",
     "notes": "Interactive chart with CSV download option.",
-    "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/374169/csv?fake=.csv"
+    "dataURL": "https://www.ofgem.gov.uk/node/112641/revisions/374169/csv?fake=.csv",
+    "scraper_state": "ok"
 }
