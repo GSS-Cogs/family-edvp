@@ -20,7 +20,45 @@
             "To Do"
         ],
         "airtable": "recPJ7oQ1IXmbQ8Z6",
-        "main_issue": 10
+        "main_issue": 10,
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Region": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
+                "description": "",
+                "codelist": false
+            },
+            "Measure Type": {
+        		"dimension": "http://purl.org/linked-data/cube#measureType",
+        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
+        		"types": ["cumulative-installed-capacity",
+                          "electricity-generated",
+                          "load-factors",
+                          "total-electricity-generated"]
+      		},
+            "Fuel": {
+                "description": "Type of fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
+            },
+      		"Unit": {
+        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+      		},
+      		"Value": {
+        		"datatype": "double"
+      		},
+            "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
+                "codelist": false
+            }
+        }
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
     "notes": "Data in ODS format in \"Energy Trends renewables tables (ODS)\" file on same landing page."
