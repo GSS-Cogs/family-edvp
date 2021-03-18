@@ -24,7 +24,26 @@ Wind Wave and Solar Photovoltaics,wind-wave-and-solar-photovoltaics,,22
 Oil,oil,,23
 Bioenergy,bioenergy,,25
 Hydro Pumped Storage,hydro-pumped-storage,,26
-Shoreline Wave and Tidal,shoreline-wave-and-tidal,,27
+Shoreline Wave and Tidal,shoreline-wave-and-tidal,hydro,27
 Fossil Fuels,fossil-fuels,,28
 Renewables,renewables,,29
 Pumped Storage,pumped-storage,,30
+Hydro,hydro,,31
+Onshore Wind,onshore-wind,wind,32
+Offshore Wind,offshore-wind,wind,33
+Solar photovoltaics,solar-photovoltaics,solar,34
+Small scale Hydro,small-scale-hydro,hydro,35
+Large scale Hydro,large-scale-hydro,hydro,36
+Landfill gas,landfill-gas,gas,37
+Sewage sludge digestion,sewage-sludge-digestion,,38
+Energy from waste,energy-from-waste,,39
+Animal Biomass (non-AD),animal-biomass-non-ad,,40
+Anaerobic Digestion,anaerobic-digestion,,41
+Plant Biomass,plant-biomass,bioenergy,42
+Co-firing,co-firing,,43
+Co-firing with fossil fuels,co-firing-with-fossil-fuels,,44
+Non-biodegradable wastes,non-biodegradable-wastes,,45
+all (excluding co-firing and non-biodegradable wastes),all-excluding-co-firing-and-non-biodegradable-wastes,,46
+All renewables,all-renewables,,47
+Other biomass,other-biomass,,48
+Other biomass (inc. co-firing),other-biomass-inc-co-firing,,49
