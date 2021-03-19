@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[256]:
+# In[24]:
 
 
 # -*- coding: utf-8 -*-
@@ -22,7 +22,7 @@
 # ---
 
 
-# In[257]:
+# In[25]:
 
 
 import json
@@ -32,7 +32,7 @@ import pandas as pd
 from gssutils import *
 
 
-# In[258]:
+# In[26]:
 
 
 infoFileName = 'info.json'
@@ -43,7 +43,7 @@ cubes   = Cubes(infoFileName)
 distro  = scraper.distribution(latest=True, title=lambda t: 'Renewable electricity capacity and generation (ET 6.1 - quarterly)' in t)
 
 
-# In[259]:
+# In[27]:
 
 
 # Enumerate the tabs
@@ -167,21 +167,21 @@ extract = df['Head'].str.extract('\((.*?)\) \((.*?)\)')
 # df['Head'].value_counts(), extract[0].value_counts(), extract[1].value_counts()
 
 
-# In[260]:
+# In[28]:
 
 
 # So we're going to assign as described and verified above
 df['Unit'] = extract[1]
 
 
-# In[261]:
+# In[29]:
 
 
 # Next, strip these values from Head
 df['Head'] = df['Head'].str.replace(r'\([^)]*\)', '').str.strip()
 
 
-# In[262]:
+# In[30]:
 
 
 # Date formatting
@@ -216,6 +216,7 @@ df = df.replace({'Category' : {
             'Shoreline wave / tidal (5)'  : 'Shoreline Wave and Tidal',
             'Shoreline wave / tidal (6)'  : 'Shoreline Wave and Tidal',
             'Solar PV (5)'  : 'Solar Photovoltaics',
+            'Solar PV'  : 'Solar Photovoltaics',
             'Solar photovoltaics (6)' : 'Solar photovoltaics',
             'TOTAL'  : 'all',
             'TOTAL (excluding co-firing and non-biodegradable wastes)'  : 'all (excluding co-firing and non-biodegradable wastes)',
@@ -226,7 +227,7 @@ df = df.replace({'Category' : {
 df
 
 
-# In[263]:
+# In[31]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['DATAMARKER', 'Geography', 'OBS', 'Period']
@@ -240,7 +241,7 @@ for col in df.columns.values.tolist():
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 
-# In[264]:
+# In[32]:
 
 
 df = df.rename(columns={'Category' : 'Fuel', 'Head' : 'Measure Type', 'OBS' : 'Value', 'Geography' : 'Region', 'DATAMARKER' : 'Marker'}).fillna('')
@@ -252,7 +253,7 @@ df['Unit'] = df.apply(lambda x: 'percent' if 'load-factors' in x['Measure Type']
 df
 
 
-# In[265]:
+# In[33]:
 
 
 cubes.add_cube(scraper, df, scraper.title)
@@ -260,7 +261,7 @@ cubes.add_cube(scraper, df, scraper.title)
 cubes.output_all()
 
 
-# In[266]:
+# In[34]:
 
 
 from IPython.core.display import HTML
