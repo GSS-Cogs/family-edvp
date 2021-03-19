@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[24]:
+# In[35]:
 
 
 # -*- coding: utf-8 -*-
@@ -22,7 +22,7 @@
 # ---
 
 
-# In[25]:
+# In[36]:
 
 
 import json
@@ -32,7 +32,7 @@ import pandas as pd
 from gssutils import *
 
 
-# In[26]:
+# In[37]:
 
 
 infoFileName = 'info.json'
@@ -43,7 +43,7 @@ cubes   = Cubes(infoFileName)
 distro  = scraper.distribution(latest=True, title=lambda t: 'Renewable electricity capacity and generation (ET 6.1 - quarterly)' in t)
 
 
-# In[27]:
+# In[38]:
 
 
 # Enumerate the tabs
@@ -167,21 +167,21 @@ extract = df['Head'].str.extract('\((.*?)\) \((.*?)\)')
 # df['Head'].value_counts(), extract[0].value_counts(), extract[1].value_counts()
 
 
-# In[28]:
+# In[39]:
 
 
 # So we're going to assign as described and verified above
 df['Unit'] = extract[1]
 
 
-# In[29]:
+# In[40]:
 
 
 # Next, strip these values from Head
 df['Head'] = df['Head'].str.replace(r'\([^)]*\)', '').str.strip()
 
 
-# In[30]:
+# In[41]:
 
 
 # Date formatting
@@ -227,7 +227,7 @@ df = df.replace({'Category' : {
 df
 
 
-# In[31]:
+# In[42]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['DATAMARKER', 'Geography', 'OBS', 'Period']
@@ -241,7 +241,7 @@ for col in df.columns.values.tolist():
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 
-# In[32]:
+# In[43]:
 
 
 df = df.rename(columns={'Category' : 'Fuel', 'Head' : 'Measure Type', 'OBS' : 'Value', 'Geography' : 'Region', 'DATAMARKER' : 'Marker'}).fillna('')
@@ -253,15 +253,18 @@ df['Unit'] = df.apply(lambda x: 'percent' if 'load-factors' in x['Measure Type']
 df
 
 
-# In[33]:
+# In[44]:
 
+
+scraper.dataset.title = info['title']
+scraper.dataset.comment = info['description']
 
 cubes.add_cube(scraper, df, scraper.title)
 
 cubes.output_all()
 
 
-# In[34]:
+# In[45]:
 
 
 from IPython.core.display import HTML
