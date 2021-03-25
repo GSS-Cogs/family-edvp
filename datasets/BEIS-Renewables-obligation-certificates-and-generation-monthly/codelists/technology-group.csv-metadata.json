@@ -1,9 +1,9 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type",
-    "url": "technology-type.csv",
-    "rdfs:label": "Technology Type",
-    "dc:title": "Technology Type",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group",
+    "url": "technology-group.csv",
+    "rdfs:label": "Technology Group",
+    "dc:title": "Technology Group",
     "tableSchema": {
         "columns": [
             {
@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#concept/technology-type/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#concept/technology-group/{parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -49,14 +49,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#concept/technology-type/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#concept/technology-group/{notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -64,20 +64,20 @@
     },
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group"
             },
-            "rdfs:label": "Technology Type",
-            "dc:title": "Technology Type",
-            "rdfs:comment": "Dataset representing the 'Technology Type' code list.",
+            "rdfs:label": "Technology Group",
+            "dc:title": "Technology Group",
+            "rdfs:comment": "Dataset representing the 'Technology Group' code list.",
             "dc:license": {
                 "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
             },
@@ -109,20 +109,20 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-type"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-renewables-obligation-certificates-and-generation-monthly#scheme/technology-group"
             },
-            "dc:title": "Technology Type Catalog Record",
-            "rdfs:label": "Technology Type Catalog Record",
+            "dc:title": "Technology Group Catalog Record",
+            "rdfs:label": "Technology Group Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
                 "@value": "2021-02-24T11:56:38.520038"
