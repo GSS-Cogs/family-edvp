@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[31]:
+# In[40]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[32]:
+# In[41]:
 
 
 #Add cubes class
@@ -23,7 +23,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[33]:
+# In[42]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -32,7 +32,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[34]:
+# In[43]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[35]:
+# In[44]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -190,7 +190,7 @@ df.drop(indexNames, inplace = True)
 df
 
 
-# In[36]:
+# In[45]:
 
 
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
@@ -199,7 +199,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[37]:
+# In[46]:
 
 
 from IPython.core.display import HTML
@@ -208,32 +208,4 @@ for col in df:
         df[col] = df[col].astype('category')
         display(HTML(f"<h2>{col}</h2>"))
         display(df[col].cat.categories)
-
-
-# In[38]:
-
-
-import pandas as pd
-df = pd.read_csv("out/renewables-obligation-certificates-and-generation-monthly.csv")
-df["all_dimensions_concatenated"] = ""
-for col in df.columns.values:
-    if col != "Value":
-        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
-found = []
-bad_combos = []
-for item in df["all_dimensions_concatenated"]:
-    if item not in found:
-        found.append(item)
-    else:
-        bad_combos.append(item)
-df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
-drop_these_cols = []
-for col in df.columns.values:
-    if col != "all_dimensions_concatenated" and col != "Value":
-        drop_these_cols.append(col)
-for dtc in drop_these_cols:
-    df = df.drop(dtc, axis=1)
-df = df[["all_dimensions_concatenated", "Value"]]
-df = df.sort_values(by=['all_dimensions_concatenated'])
-df.to_csv("duplicates_with_values.csv", index=False)
 

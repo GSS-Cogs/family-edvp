@@ -29,7 +29,8 @@
             },
             "Roc Per Mwh" : {
                 "description" : "Mwh generated per Renewables obligation certificate",
-                "codelist" : false
+                "value": "http://gss-data.org.uk/def/energy/concept/roc-per-mwh/{roc_per_mwh}",
+                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/roc-per-mwh"
             },
             "Technology Group" : {
                 "description" : ""
