@@ -1,4 +1,4 @@
-Label,Notation,Parent Notation,Sort Order
+Label,Notation,Parent Notation,Sort Priority
 All,all,,1
 Hydro 50kW DNC or less,hydro-50kw-dnc-or-less,,2
 Wind 50kW DNC or less,wind-50kw-dnc-or-less,,3
