@@ -193,6 +193,9 @@ df
 # In[45]:
 
 
+scraper.dataset.title = 'Renewables obligation: certificates and generation'
+scraper.dataset.comment = 'Data on the UK’s renewables sector. This data relates to certificates and generation associated with the renewables obligation scheme. Published monthly on the second Thursday of each month.'
+
 cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
 cubes.output_all()
 
