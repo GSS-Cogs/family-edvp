@@ -31,7 +31,7 @@
                 "description" : "Mwh generated per Renewables obligation certificate",
                 "codelist" : false
             },
-            "Technology Type" : {
+            "Technology Group" : {
                 "codelist" : false
             },
             "Generation Type" : {
