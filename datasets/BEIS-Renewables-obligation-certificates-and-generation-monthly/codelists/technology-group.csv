@@ -1,0 +1,26 @@
+Label,Notation,Parent Notation,Sort Order
+All,all,,1
+Hydro 50kW DNC or less,hydro-50kw-dnc-or-less,,2
+Wind 50kW DNC or less,wind-50kw-dnc-or-less,,3
+Photovoltaic 50kW DNC or less,photovoltaic-50kw-dnc-or-less,,4
+Biomass 50kW DNC or less,biomass-50kw-dnc-or-less,,5
+Biomass,biomass,,6
+Onshore wind,onshore-wind,,7
+Offshore wind,offshore-wind,,8
+Hydro,hydro,,9
+Solar PV,solar-pv,,10
+Anaerobic Digestion,anaerobic-digestion,,11
+Co-firing,co-firing,,12
+Conversions,conversions,,13
+Dedicated Biomass,dedicated-biomass,,14
+Landfill Gas,landfill-gas,,15
+Sewage Gas,sewage-gas,,16
+Other Biomass,other-biomass,,17
+Wave & Tidal,wave-tidal,,18
+Micro Hydro,micro-hydro,,19
+Off-shore Wind,off-shore-wind,,20
+On-shore Wind,on-shore-wind,,21
+Photovoltaic ,photovoltaic,,22
+Fuelled,fuelled,,23
+Tidal Flow,tidal-flow,,24
+Wave Power,wave-power,,25

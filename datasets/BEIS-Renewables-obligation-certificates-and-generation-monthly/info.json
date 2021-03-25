@@ -20,7 +20,29 @@
             "To Do"
         ],
         "airtable": "recc7aPOS6tVWy3HQ",
-        "main_issue": 13
+        "main_issue": 13,
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Roc Per Mwh" : {
+                "description" : "Mwh generated per Renewables obligation certificate",
+                "codelist" : false
+            },
+            "Technology Type" : {
+                "codelist" : false
+            },
+            "Generation Type" : {
+                "codelist" : false
+            },
+            "Value": {
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/certificates",
+                "measure": "http://gss-data.org.uk/def/measure/count",
+                "datatype": "integer"
+            }
+        }
     },
     "sizingNotes": "Simple table structure and dimensions. Footnotes and multiple dimensions.",
     "notes": ""

@@ -1,0 +1,26 @@
+Label,Notation,Parent Notation,Sort Order
+N/A,n/a,,1
+AD,ad,,2
+Standard gasification,standard-gasification,,3
+Dedicated biomass,dedicated-biomass,,4
+Dedicated biomass with CHP - BL,dedicated-biomass-with-chp-bl,,5
+Advanced gasification,advanced-gasification,,6
+Energy from waste with CHP,energy-from-waste-with-chp,,7
+Unspecified,unspecified,,8
+Dedicated biomass with CHP,dedicated-biomass-with-chp,,9
+Dedicated biomass - BL,dedicated-biomass-bl,,10
+Dedicated energy crops,dedicated-energy-crops,,11
+Dedicated energy crops with CHP,dedicated-energy-crops-with-chp,,12
+Electricity generated from sewage gas,electricity-generated-from-sewage-gas,,13
+Station conversion,station-conversion,,14
+Station conversion - BL,station-conversion-bl,,15
+Unit conversion,unit-conversion,,16
+Co-firing of biomass,co-firing-of-biomass,,17
+Co-firing of energy crops,co-firing-of-energy-crops,,18
+Co-firing of regular bioliquid,co-firing-of-regular-bioliquid,,19
+Low-range co-firing,low-range-co-firing,,20
+Low range co-firing of relevant energy crop,low-range-co-firing-of-relevant-energy-crop,,21
+Mid-range co-firing,mid-range-co-firing,,22
+High-range co-firing,high-range-co-firing,,23
+Electricity generated from landfill gas,electricity-generated-from-landfill-gas,,24
+Wave Power,wave-power,,25
