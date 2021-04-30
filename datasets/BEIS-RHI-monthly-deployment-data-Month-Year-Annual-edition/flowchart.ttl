@@ -1,0 +1,85 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix cogsgit: <https://github.com/GSS-Cogs/> .
+@prefix cogs: <http://gss-cogs.uk/def/arch/> .
+
+<http://gss-cogs.uk/def/arch> a owl:Ontology;
+  rdfs:label "COGS EDVP Transform Mapping" ;
+.
+
+cogs:SoftwarePackage a owl:Class ;
+  rdfs:label "Software package" ;
+.
+cogs:SoftwarePackage a owl:Class ;
+  rdfs:label2 "Label2" ;
+.
+cogs:LandingPage a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Landing Page" ;
+.
+cogs:Datasets a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Output Dataset" ;
+.
+cogs:Sheets a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Sheet Name";
+.
+cogs:Columns a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Table" ;
+.
+cogs:PMD a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "PMD" ;
+.
+cogs:Rename a owl:Class ;
+  rdfs:subClassOf cogs:SoftwarePackage ;
+  rdfs:label "Rename & Add" ;
+.
+###########################################################################################################
+
+cogsgit:top-level a cogs:LandingPage ;
+  rdfs:label "Landing Page" ;
+  rdfs:label2 "<b>BEIS - RHI Deployment data</b>" ;
+  rdfs:comment <https://www.gov.uk/government/collections/renewable-heat-incentive-statistics>;
+  cogs:scrape cogsgit:rename1, cogsgit:rename2 ; .
+
+cogsgit:rename1 a cogs:Rename ; rdfs:label "Non-Domestic" ; rdfs:comment "Non-domestic RHI deployment data" ; cogs:transforms cogsgit:sheet1, cogsgit:sheet2, cogsgit:sheet3, cogsgit:sheet4, cogsgit:sheet5, cogsgit:sheet6, cogsgit:sheet7, cogsgit:sheet8, cogsgit:sheet9, cogsgit:sheet10 ; .
+cogsgit:rename2 a cogs:Rename ; rdfs:label "Domestic" ; rdfs:comment "Domestic RHI deployment data" ; cogs:transforms cogsgit:sheet11, cogsgit:sheet12, cogsgit:sheet13, cogsgit:sheet14, cogsgit:sheet15, cogsgit:sheet16, cogsgit:sheet17, cogsgit:sheet18 ; .
+
+cogsgit:sheet1 a cogs:Sheets ; rdfs:label "1.1" ; rdfs:comment "Number of applications and total capacity by technology type" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet2 a cogs:Sheets ; rdfs:label "1.2" ; rdfs:comment "Application status" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet3 a cogs:Sheets ; rdfs:label "1.3" ; rdfs:comment "Number of applications and capacity by region" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet4 a cogs:Sheets ; rdfs:label "1.4" ; rdfs:comment "Number of accredited applications and installed capacity by local authority" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet5 a cogs:Sheets ; rdfs:label "1.6" ; rdfs:comment "Number of tariff guarantee applications by tariff band" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet6 a cogs:Sheets ; rdfs:label "M1.1" ; rdfs:comment "Number of full applications, number of accredited full applications, and installed capacity per month" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet7 a cogs:Sheets ; rdfs:label "M1.2" ; rdfs:comment "Number of full applications (by date of first submission), by technology, per month," ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet8 a cogs:Sheets ; rdfs:label "M1.3" ; rdfs:comment "Capacity of full applications (MW) (by date of first submission), by technology, per month" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet9 a cogs:Sheets ; rdfs:label "M1.4" ; rdfs:comment "Number of TG applications (by date of first submission), by technology, per month" ; cogs:joins cogsgit:columns1 ; .
+cogsgit:sheet10 a cogs:Sheets ; rdfs:label "Q1.1" ; rdfs:comment "Number of full applications, number of accreditations, and installed capacity per quarter" ; cogs:joins cogsgit:columns1; .
+
+cogsgit:sheet11 a cogs:Sheets ; rdfs:label "2.1" ; rdfs:comment "Number of applications and accreditations by technology type" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet12 a cogs:Sheets ; rdfs:label "2.2" ; rdfs:comment "Application status by technolog" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet13 a cogs:Sheets ; rdfs:label "2.3" ; rdfs:comment "Number of applications and accredited applications by region" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet14 a cogs:Sheets ; rdfs:label "2.4" ; rdfs:comment "Number of accreditations by local authorit" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet15 a cogs:Sheets ; rdfs:label "M2.1" ; rdfs:comment "Number of applications and accreditations per month" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet16 a cogs:Sheets ; rdfs:label "M2.2" ; rdfs:comment "Number of applications and accreditations per month by technology" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet17 a cogs:Sheets ; rdfs:label "Q2.1" ; rdfs:comment "Number of applications and accreditations per quarter" ; cogs:joins cogsgit:columns4 ; .
+cogsgit:sheet18 a cogs:Sheets ; rdfs:label "Q2.2" ; rdfs:comment "Number of applications and accreditations per quarter by technology" ; cogs:joins cogsgit:columns4 ; .
+
+cogsgit:columns1 a cogs:Columns ; rdfs:label "Non-dom Application & Capacity" ; rdfs:comment "Period, Technology Type, Application Type, Application Status, Geography, SIC, Measure Type, Value" ; cogs:joins cogsgit:dataset1, cogsgit:dataset2 ; .
+cogsgit:columns4 a cogs:Columns ; rdfs:label "Domestic Applications" ; rdfs:comment "Period, Technology Type, Application Type, Application Status, Geography, SIC, Measure Type, Value" ; cogs:joins cogsgit:dataset2 ; .
+
+cogsgit:dataset1 a cogs:Columns ; rdfs:label "Non-domestic Capacity" ; rdfs:comment "Period, Technology Type, Application Type, Geography, SIC, Measure Type, Value" ; cogs:uploads cogsgit:pmd1; .
+cogsgit:dataset2 a cogs:Columns ; rdfs:label "Non-dom/domestic Applications" ; rdfs:comment "Period, Technology Type, Application Type, Application Status, Geography, SIC, Measure Type, Value" ; cogs:uploads cogsgit:pmd1 ; .
+
+
+
+
+cogsgit:pmd1 a cogs:PMD ;
+  rdfs:label "PMD" ;
+  rdfs:comment "Publish my Data: http://gss-data.org.uk/data/search" ;
+.
+###################################################################################################
