@@ -32,7 +32,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-warm-home-discount-scheme#concept/scheme-year/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-warm-home-discount-scheme#concept/scheme-year/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -60,7 +60,7 @@
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-warm-home-discount-scheme#concept/scheme-year/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-warm-home-discount-scheme#concept/scheme-year/{+notation}"
     },
     "prov:hadDerivation": {
         "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-warm-home-discount-scheme#scheme/scheme-year",
@@ -97,7 +97,7 @@
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-01-21T00:00:00"
+                "@value": "2021-05-20T11:35:12.541302"
             },
             "http://publishmydata.com/pmdcat#markdownDescription": {
                 "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",

@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/def/energy/concept/generating-companies/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/def/energy/concept/generating-companies/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -58,7 +58,7 @@
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/def/energy/concept/generating-companies/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/def/energy/concept/generating-companies/{+notation}"
     },
     "rdfs:label": "Generating Companies",
     "dc:title": "Generating Companies",
@@ -87,7 +87,7 @@
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-02-03T11:35:22.815540"
+                "@value": "2021-05-20T11:35:12.594632"
             },
             "dc:issued": {
                 "@type": "dateTime",

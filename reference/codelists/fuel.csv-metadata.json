@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -58,7 +58,7 @@
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{notation}"
+        "aboutUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{+notation}"
     },
     "rdfs:label": "Fuel",
     "dc:title": "Fuel",
@@ -87,7 +87,7 @@
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-02-03T11:35:22.815540"
+                "@value": "2021-05-20T11:35:12.596839"
             },
             "dc:issued": {
                 "@type": "dateTime",

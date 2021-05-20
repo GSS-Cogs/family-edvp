@@ -1,68 +1,124 @@
 {
-  "@context": "http://www.w3.org/ns/csvw",
-  "@id": "#table",
-  "url": "tariff.csv",
-  "tableSchema": {
-    "columns": [
-      {
-        "titles": "Label",
-        "name": "label",
-        "datatype": "string",
-        "required": true,
-        "propertyUrl": "rdfs:label"
-      },
-      {
-        "titles": "Notation",
-        "name": "notation",
-        "datatype": {
-          "base": "string",
-          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
-        },
-        "required": true,
-        "propertyUrl": "skos:notation"
-      },
-      {
-        "titles": "Parent Notation",
-        "name": "parent_notation",
-        "datatype": {
-          "base": "string",
-          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
-        },
-        "required": false,
-        "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{parent_notation}"
-      },
-      {
-        "titles": "Sort Priority",
-        "name": "sort",
-        "datatype": "integer",
-        "required": false,
-        "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-      },
-      {
-        "titles": "Description",
-        "name": "description",
-        "datatype": "string",
-        "required": false,
-        "propertyUrl": "rdfs:comment"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "rdf:type",
-        "valueUrl": "skos:Concept"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
-      }
-    ],
-    "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{notation}"
-  },
-  "prov:hadDerivation": {
+    "@context": "http://www.w3.org/ns/csvw",
     "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff",
-    "@type": "skos:ConceptScheme",
-    "rdfs:label": "Tariff"
-  }
+    "url": "tariff.csv",
+    "tableSchema": {
+        "columns": [
+            {
+                "titles": "Label",
+                "name": "label",
+                "datatype": "string",
+                "required": true,
+                "propertyUrl": "rdfs:label"
+            },
+            {
+                "titles": "Notation",
+                "name": "notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+                },
+                "required": true,
+                "propertyUrl": "skos:notation"
+            },
+            {
+                "titles": "Parent Notation",
+                "name": "parent_notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+                },
+                "required": false,
+                "propertyUrl": "skos:broader",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{+parent_notation}"
+            },
+            {
+                "titles": "Sort Priority",
+                "name": "sort",
+                "datatype": "integer",
+                "required": false,
+                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+                "titles": "Description",
+                "name": "description",
+                "datatype": "string",
+                "required": false,
+                "propertyUrl": "rdfs:comment"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "rdf:type",
+                "valueUrl": "skos:Concept"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "skos:inScheme",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
+            }
+        ],
+        "primaryKey": "notation",
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept/tariff/{+notation}"
+    },
+    "prov:hadDerivation": {
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff",
+        "@type": [
+            "skos:ConceptScheme",
+            "http://publishmydata.com/pmdcat#ConceptScheme"
+        ]
+    },
+    "rdfs:label": "Tariff",
+    "dc:title": "Tariff",
+    "rdfs:seeAlso": [
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/dataset",
+            "@type": [
+                "dcat:Dataset",
+                "http://publishmydata.com/pmdcat#Dataset"
+            ],
+            "http://publishmydata.com/pmdcat#datasetContents": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
+            },
+            "http://publishmydata.com/pmdcat#graph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-05-20T11:35:12.522232"
+            },
+            "rdfs:label": "Tariff",
+            "dc:title": "Tariff",
+            "rdfs:comment": "Dataset representing the 'Tariff' code list.",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-05-20T11:21:03.027505"
+            }
+        },
+        {
+            "@id": "http://gss-data.org.uk/catalog/vocabularies",
+            "dcat:record": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/catalog-record"
+            }
+        },
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/catalog-record",
+            "@type": "dcat:CatalogRecord",
+            "foaf:primaryTopic": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/dataset"
+            },
+            "http://publishmydata.com/pmdcat#metadataGraph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
+            },
+            "dc:title": "Tariff Catalog Record",
+            "rdfs:label": "Tariff Catalog Record",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-05-20T11:21:03.027505"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-05-20T11:21:03.027505"
+            }
+        }
+    ]
 }
