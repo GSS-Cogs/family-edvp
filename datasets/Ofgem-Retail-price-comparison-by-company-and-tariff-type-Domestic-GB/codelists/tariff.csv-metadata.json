@@ -71,20 +71,20 @@
     "dc:title": "Tariff",
     "rdfs:seeAlso": [
         {
-            "@id": "#table/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "#table"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "#table"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.027505"
+                "@value": "2021-05-20T11:35:12.522232"
             },
             "rdfs:label": "Tariff",
             "dc:title": "Tariff",
@@ -97,17 +97,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "#table/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/catalog-record"
             }
         },
         {
-            "@id": "#table/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "#table/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "#table"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-retail-price-comparison-by-company-and-tariff-type-domestic-gb/concept-scheme/tariff"
             },
             "dc:title": "Tariff Catalog Record",
             "rdfs:label": "Tariff Catalog Record",
