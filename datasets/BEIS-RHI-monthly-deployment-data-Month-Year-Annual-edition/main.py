@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 from gssutils import *
 import json
 import re
@@ -18,7 +24,7 @@ def RepresentsInt(s):
         return False
 
 
-# In[1256]:
+# In[2]:
 
 
 info = json.load(open('info.json'))
@@ -36,27 +42,27 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[1257]:
+# In[3]:
 
 
 cubes = Cubes("info.json")
 
 
-# In[1258]:
+# In[4]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[1259]:
+# In[5]:
 
 
 dist = [x for x in scraper.distributions if "Excel" in x.title][0]
 dist
 
 
-# In[1260]:
+# In[6]:
 
 
 unneeded_tabs = ['Title', 'Contents', 'Key Statistics', 'Glossary', 'Scheme background',
@@ -69,7 +75,7 @@ for i in tabs:
     print(i.name)
 
 
-# In[1261]:
+# In[7]:
 
 
 out = Path('previews')
@@ -571,13 +577,13 @@ for tab in tabs:
 tidied_sheet
 
 
-# In[1262]:
+# In[8]:
 
 
 formatted_sheets = {}
 
 
-# In[1263]:
+# In[9]:
 
 
 try:
@@ -615,7 +621,7 @@ except Exception as err:
 df
 
 
-# In[1264]:
+# In[10]:
 
 
 try:
@@ -657,7 +663,7 @@ except Exception as err:
 df
 
 
-# In[1265]:
+# In[11]:
 
 
 try:
@@ -691,7 +697,7 @@ except Exception as err:
 df
 
 
-# In[1266]:
+# In[12]:
 
 
 try:
@@ -723,7 +729,7 @@ except Exception as err:
 df
 
 
-# In[1267]:
+# In[13]:
 
 
 try:
@@ -749,7 +755,7 @@ except Exception as err:
 df
 
 
-# In[1268]:
+# In[14]:
 
 
 try:
@@ -792,7 +798,7 @@ except Exception as err:
 df
 
 
-# In[1269]:
+# In[15]:
 
 
 try:
@@ -824,7 +830,7 @@ except Exception as err:
 df
 
 
-# In[1270]:
+# In[16]:
 
 
 try:
@@ -856,7 +862,7 @@ except Exception as err:
 df
 
 
-# In[1271]:
+# In[17]:
 
 
 try:
@@ -886,7 +892,7 @@ except Exception as err:
 df
 
 
-# In[1272]:
+# In[18]:
 
 
 try:
@@ -917,7 +923,7 @@ except Exception as err:
 df
 
 
-# In[1273]:
+# In[19]:
 
 
 try:
@@ -946,7 +952,7 @@ except Exception as err:
 df
 
 
-# In[1274]:
+# In[20]:
 
 
 try:
@@ -976,7 +982,7 @@ except Exception as err:
 df
 
 
-# In[1275]:
+# In[21]:
 
 
 try:
@@ -1006,7 +1012,7 @@ except Exception as err:
 df
 
 
-# In[1276]:
+# In[22]:
 
 
 try:
@@ -1036,7 +1042,7 @@ except Exception as err:
 df
 
 
-# In[1277]:
+# In[23]:
 
 
 try:
@@ -1067,7 +1073,7 @@ except Exception as err:
 df
 
 
-# In[1278]:
+# In[24]:
 
 
 try:
@@ -1100,7 +1106,7 @@ except Exception as err:
 df
 
 
-# In[1279]:
+# In[25]:
 
 
 try:
@@ -1129,7 +1135,7 @@ except Exception as err:
 df
 
 
-# In[1280]:
+# In[26]:
 
 
 try:
@@ -1158,7 +1164,7 @@ except Exception as err:
 df
 
 
-# In[1281]:
+# In[27]:
 
 
 try:
@@ -1187,7 +1193,7 @@ except Exception as err:
 df
 
 
-# In[1282]:
+# In[28]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['1.1', '1.2', '1.3', '1.4', '1.6', '1.7', 'M1.1', 'M1.2', 'M1.3', 'M1.4', 'Q1.1']], sort = False)
@@ -1227,7 +1233,7 @@ df = df.replace({'Technology Type' : {'Biogas6' : 'Biogas',
 df
 
 
-# In[1283]:
+# In[29]:
 
 
 applications = df.loc[df['Measure Type'] == 'applications']
@@ -1239,12 +1245,15 @@ applications['Applicant'] = 'non-domestic'
 applications
 
 
-# In[1284]:
+# In[30]:
 
 
 capacity = df.loc[df['Measure Type'] == 'mw']
 
-capacity = capacity.drop(columns=['Application Status'])
+capacity = capacity.drop(columns=['Application Status', 'Measure Type'])
+
+indexNames = capacity[ capacity['Application Type'].fillna('').str.contains('Cumulative')].index
+capacity.drop(indexNames, inplace = True)
 
 scraper.dataset.title = 'RHI deployment data - Capacity (MW)'
 scraper.dataset.comment = 'Capacity (MW) statistics for the Renewable Heat Incentive (RHI) programme'
@@ -1265,7 +1274,7 @@ cubes.add_cube(copy.deepcopy(scraper), capacity, scraper.dataset.title)
 capacity
 
 
-# In[1285]:
+# In[31]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['2.1', '2.2', '2.3', '2.4', 'M2.1', 'M2.2', 'Q2.1', 'Q2.2']], sort = False)
@@ -1298,30 +1307,45 @@ for col in df.columns.values.tolist():
         raise Exception('Failed to clean column "{}".'.format(col)) from err
 
 df = df.replace({'Application Status' : {'Rejected, Failed or Cancelled3,' : 'Rejected, Failed or Cancelled'},
-                 'Installation' : {'Legacy installations3,' : 'Legacy installations'}})
+                 'Installation' : {'Legacy installations3,' : 'Legacy installations'},
+                 'Geography' : {'Great Britain' : 'K03000001'}})
+
+df['SIC'] = 'total'
 
 df['Applicant'] = 'domestic'
 
 df
 
 
-# In[1286]:
+# In[32]:
 
 
 df = pd.concat([df, applications], sort = False)
 
 df['Installation'] = df['Installation'].fillna('Total')
 
+df = df.drop(columns = ['Measure Type'])
+
 scraper.dataset.title = 'RHI deployment data - Application Numbers, domestic and non-domestic'
 scraper.dataset.comment = 'Application statistics for the Renewable Heat Incentive (RHI) programme'
 scraper.dataset.description = 'Application statistics for the Renewable Heat Incentive (RHI) programme by technology type, region, local authority & domestic and non-domestic'                               'Accredited applications are a subset of full applications i.e. once a system has become accredited, it is counted as both a full application and an accredited installation.'                               'New installations refers to applications for systems installed after the launch of the domestic RHI scheme on 9 April 2014.'                               'Legacy refers to all applications for systems installed before the launch of the domestic RHI scheme on 9 April 2014, whether they claimed a RHPP voucher or not.'
+
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Geography', 'Value', 'Marker']
+
+for col in df.columns.values.tolist():
+	if col in COLUMNS_TO_NOT_PATHIFY:
+		continue
+	try:
+		df[col] = df[col].apply(pathify)
+	except Exception as err:
+		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 cubes.add_cube(copy.deepcopy(scraper), df, scraper.dataset.title)
 
 df
 
 
-# In[1287]:
+# In[33]:
 
 
 from IPython.core.display import HTML
@@ -1332,7 +1356,18 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[1288]:
+# In[34]:
+
+
+from IPython.core.display import HTML
+for col in capacity:
+    if col not in ['Value']:
+        capacity[col] = capacity[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(capacity[col].cat.categories)
+
+
+# In[35]:
 
 
 info['landingPage'] = "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
@@ -1341,7 +1376,7 @@ with open('info.json', 'w') as outfile:
     json.dump(info, outfile, indent= 4 )
 
 
-# In[1289]:
+# In[36]:
 
 
 cubes.output_all()
