@@ -9,7 +9,7 @@
     ],
     "published": "2021-01-21",
     "families": [
-        "EDVP"
+        "energy"
     ],
     "extract": {
         "source": "XLS, ODS, CSV",
@@ -18,6 +18,56 @@
     "transform": {
         "airtable": "recc3QIDDaV8mT4v9",
         "main_issue": 12,
+        "columns": {
+            "Period": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
+            },
+            "Geography": {
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{ons_geography_code}",
+                "codelist": false
+            },
+            "Installation": {
+                "description": "Installation"
+            },
+            "Technology Type": {
+                "description": "Technology Type"
+            },
+            "Application Type": {
+                "description": "Application Type"
+            },
+            "Application Status": {
+                "description": "Application Status"
+            },
+            "SIC": {
+                "description": "SIC"
+            },
+            "Applicant": {
+                "description": "Applicant"
+            },
+            "Measure Type": {
+                "dimension": "http://purl.org/linked-data/cube#measureType",
+                "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+                "types": [
+                    "applications",
+                    "capacity"
+                ]
+            },
+            "Unit": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+            },
+            "Value": {
+                "datatype": "double"
+            },
+            "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
+                "codelist": false
+            }
+        },
         "stage": [
             "To Do"
         ]
