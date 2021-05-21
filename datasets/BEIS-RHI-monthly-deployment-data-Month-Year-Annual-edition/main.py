@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[1109]:
 
 
 from gssutils import *
@@ -24,7 +24,7 @@ def RepresentsInt(s):
         return False
 
 
-# In[2]:
+# In[1110]:
 
 
 info = json.load(open('info.json'))
@@ -42,27 +42,27 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[3]:
+# In[1111]:
 
 
 cubes = Cubes("info.json")
 
 
-# In[4]:
+# In[1112]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[5]:
+# In[1113]:
 
 
 dist = [x for x in scraper.distributions if "Excel" in x.title][0]
 dist
 
 
-# In[6]:
+# In[1114]:
 
 
 unneeded_tabs = ['Title', 'Contents', 'Key Statistics', 'Glossary', 'Scheme background',
@@ -75,7 +75,7 @@ for i in tabs:
     print(i.name)
 
 
-# In[7]:
+# In[1115]:
 
 
 out = Path('previews')
@@ -117,9 +117,9 @@ for tab in tabs:
         if tab.name == '1.2':
             observations = application_status.fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
         elif tab.name == '1.3':
-            observations = geography.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
+            observations = geography.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
         else:
-            observations = technology_type.fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
+            observations = technology_type.fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         if tab.name == '1.2':
             dimensions = [
@@ -176,7 +176,7 @@ for tab in tabs:
 
         application_type = pivot.shift(4, 2).expand(RIGHT).is_not_blank()
 
-        observations = geography.shift(3, 0).fill(RIGHT).is_not_blank()
+        observations = geography.shift(3, 0).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDim(geography, 'Geography', DIRECTLY, LEFT),
@@ -210,7 +210,7 @@ for tab in tabs:
 
         measure_type = application_type.shift(DOWN)
 
-        observations = technology_type.fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
+        observations = technology_type.fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Geography', geography),
@@ -247,7 +247,7 @@ for tab in tabs:
 
         measure_type = application_type.shift(DOWN)
 
-        observations = SIC.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
+        observations = SIC.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Geography', 'Great Britain'),
@@ -299,11 +299,13 @@ for tab in tabs:
             application_type = pivot.expand(RIGHT).is_not_blank()
 
         if tab.name in ['M1.4']:
-            observations = technology_type.fill(DOWN).is_not_blank() - remove
+            observations = technology_type.fill(DOWN).is_not_blank() - remove - tab.filter(contains_string('Total')).fill(RIGHT) - tab.filter(contains_string('Total')).fill(RIGHT)
         elif tab.name in ['M2.1']:
-            observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Cumulative')).expand(DOWN)
+            observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Cumulative')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
+        elif tab.name in ['M1.2']:
+            observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Cumulative')).expand(DOWN) - tab.filter(contains_string('Total')).fill(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
         else:
-            observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank()
+            observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Total')).fill(RIGHT) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         if tab.name in ['M1.2', 'M1.3']:
             dimensions = [
@@ -363,7 +365,7 @@ for tab in tabs:
 
         measure_type = application_type.shift(DOWN)
 
-        observations = application_type.shift(DOWN).fill(DOWN).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('MW')).expand(DOWN) - remove - measure_type - application_type
+        observations = application_type.shift(DOWN).fill(DOWN).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('MW')).expand(DOWN) - remove - measure_type - application_type - tab.filter(contains_string('Total')).fill(RIGHT)
 
         technology_type = observations.fill(LEFT).is_not_blank() - observations - tab.filter(contains_string('%')).expand(DOWN)
 
@@ -405,7 +407,7 @@ for tab in tabs:
 
         measure_type = technology_type.shift(RIGHT)
 
-        observations = technology_type.shift(RIGHT).fill(RIGHT).is_not_blank()
+        observations = technology_type.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Period Start', period_start),
@@ -444,7 +446,7 @@ for tab in tabs:
 
         application_type = measure_type.shift(UP)
 
-        observations = geography.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN)
+        observations = geography.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('%')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Period Start', period_start),
@@ -516,7 +518,7 @@ for tab in tabs:
 
         technology_type = pivot.shift(3, 3).expand(RIGHT).is_not_blank()
 
-        observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank()
+        observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Geography', 'Great Britain'),
@@ -554,7 +556,7 @@ for tab in tabs:
 
         application_type = pivot.shift(3, 2).expand(RIGHT).is_not_blank()
 
-        observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Cumulative')).expand(DOWN)
+        observations = period_month.shift(RIGHT).fill(RIGHT).is_not_blank() - tab.filter(contains_string('Cumulative')).expand(DOWN) - tab.filter(contains_string('Total')).fill(RIGHT)
 
         dimensions = [
                 HDimConst('Geography', 'Great Britain'),
@@ -577,13 +579,13 @@ for tab in tabs:
 tidied_sheet
 
 
-# In[8]:
+# In[1116]:
 
 
 formatted_sheets = {}
 
 
-# In[9]:
+# In[1117]:
 
 
 try:
@@ -621,7 +623,7 @@ except Exception as err:
 df
 
 
-# In[10]:
+# In[1118]:
 
 
 try:
@@ -663,7 +665,7 @@ except Exception as err:
 df
 
 
-# In[11]:
+# In[1119]:
 
 
 try:
@@ -697,7 +699,7 @@ except Exception as err:
 df
 
 
-# In[12]:
+# In[1120]:
 
 
 try:
@@ -729,7 +731,7 @@ except Exception as err:
 df
 
 
-# In[13]:
+# In[1121]:
 
 
 try:
@@ -755,7 +757,7 @@ except Exception as err:
 df
 
 
-# In[14]:
+# In[1122]:
 
 
 try:
@@ -798,7 +800,7 @@ except Exception as err:
 df
 
 
-# In[15]:
+# In[1123]:
 
 
 try:
@@ -830,7 +832,7 @@ except Exception as err:
 df
 
 
-# In[16]:
+# In[1124]:
 
 
 try:
@@ -862,7 +864,7 @@ except Exception as err:
 df
 
 
-# In[17]:
+# In[1125]:
 
 
 try:
@@ -892,7 +894,7 @@ except Exception as err:
 df
 
 
-# In[18]:
+# In[1126]:
 
 
 try:
@@ -923,7 +925,7 @@ except Exception as err:
 df
 
 
-# In[19]:
+# In[1127]:
 
 
 try:
@@ -952,7 +954,7 @@ except Exception as err:
 df
 
 
-# In[20]:
+# In[1128]:
 
 
 try:
@@ -982,7 +984,7 @@ except Exception as err:
 df
 
 
-# In[21]:
+# In[1129]:
 
 
 try:
@@ -1012,7 +1014,7 @@ except Exception as err:
 df
 
 
-# In[22]:
+# In[1130]:
 
 
 try:
@@ -1042,7 +1044,7 @@ except Exception as err:
 df
 
 
-# In[23]:
+# In[1131]:
 
 
 try:
@@ -1073,7 +1075,7 @@ except Exception as err:
 df
 
 
-# In[24]:
+# In[1132]:
 
 
 try:
@@ -1106,7 +1108,7 @@ except Exception as err:
 df
 
 
-# In[25]:
+# In[1133]:
 
 
 try:
@@ -1135,7 +1137,7 @@ except Exception as err:
 df
 
 
-# In[26]:
+# In[1134]:
 
 
 try:
@@ -1164,7 +1166,7 @@ except Exception as err:
 df
 
 
-# In[27]:
+# In[1135]:
 
 
 try:
@@ -1193,7 +1195,7 @@ except Exception as err:
 df
 
 
-# In[28]:
+# In[1136]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['1.1', '1.2', '1.3', '1.4', '1.6', '1.7', 'M1.1', 'M1.2', 'M1.3', 'M1.4', 'Q1.1']], sort = False)
@@ -1233,7 +1235,7 @@ df = df.replace({'Technology Type' : {'Biogas6' : 'Biogas',
 df
 
 
-# In[29]:
+# In[1137]:
 
 
 applications = df.loc[df['Measure Type'] == 'applications']
@@ -1245,15 +1247,18 @@ applications['Applicant'] = 'non-domestic'
 applications
 
 
-# In[30]:
+# In[1138]:
 
 
 capacity = df.loc[df['Measure Type'] == 'mw']
 
-capacity = capacity.drop(columns=['Application Status', 'Measure Type'])
+capacity = capacity.drop(columns=['Application Status'])
 
 indexNames = capacity[ capacity['Application Type'].fillna('').str.contains('Cumulative')].index
 capacity.drop(indexNames, inplace = True)
+
+capacity['Measure Type'] = 'capacity'
+capacity['Unit'] = 'mw'
 
 scraper.dataset.title = 'RHI deployment data - Capacity (MW)'
 scraper.dataset.comment = 'Capacity (MW) statistics for the Renewable Heat Incentive (RHI) programme'
@@ -1274,7 +1279,7 @@ cubes.add_cube(copy.deepcopy(scraper), capacity, scraper.dataset.title)
 capacity
 
 
-# In[31]:
+# In[1139]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['2.1', '2.2', '2.3', '2.4', 'M2.1', 'M2.2', 'Q2.1', 'Q2.2']], sort = False)
@@ -1302,7 +1307,7 @@ for col in df.columns.values.tolist():
         continue
     try:
         df[col] = df.apply(lambda x: x[col][:-1] if RepresentsInt(x[col][-1:]) is True else x[col], axis = 1)
-        df[col] = df[col].str.replace(r"\(.*\)","").str.strip()
+        #df[col] = df[col].str.replace(r"\(.*\)","").str.strip()
     except Exception as err:
         raise Exception('Failed to clean column "{}".'.format(col)) from err
 
@@ -1317,14 +1322,18 @@ df['Applicant'] = 'domestic'
 df
 
 
-# In[32]:
+# In[1140]:
 
 
 df = pd.concat([df, applications], sort = False)
 
 df['Installation'] = df['Installation'].fillna('Total')
 
-df = df.drop(columns = ['Measure Type'])
+df['Measure Type'] = 'applications'
+df['Unit'] = 'applicant'
+
+indexNames = df[ df['Application Type'].fillna('').str.contains('Cumulative')].index
+df.drop(indexNames, inplace = True)
 
 scraper.dataset.title = 'RHI deployment data - Application Numbers, domestic and non-domestic'
 scraper.dataset.comment = 'Application statistics for the Renewable Heat Incentive (RHI) programme'
@@ -1345,7 +1354,7 @@ cubes.add_cube(copy.deepcopy(scraper), df, scraper.dataset.title)
 df
 
 
-# In[33]:
+# In[1141]:
 
 
 from IPython.core.display import HTML
@@ -1356,7 +1365,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[34]:
+# In[1142]:
 
 
 from IPython.core.display import HTML
@@ -1367,7 +1376,7 @@ for col in capacity:
         display(capacity[col].cat.categories)
 
 
-# In[35]:
+# In[1143]:
 
 
 info['landingPage'] = "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
@@ -1376,8 +1385,35 @@ with open('info.json', 'w') as outfile:
     json.dump(info, outfile, indent= 4 )
 
 
-# In[36]:
+# In[1144]:
 
 
 cubes.output_all()
+
+
+# In[1145]:
+
+
+df = pd.read_csv("out/rhi-deployment-data-application-numbers-domestic-and-non-domestic.csv")
+df["all_dimensions_concatenated"] = ""
+for col in df.columns.values:
+    if col != "Value":
+        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
+found = []
+bad_combos = []
+for item in df["all_dimensions_concatenated"]:
+    if item not in found:
+        found.append(item)
+    else:
+        bad_combos.append(item)
+df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
+drop_these_cols = []
+for col in df.columns.values:
+    if col != "all_dimensions_concatenated" and col != "Value":
+        drop_these_cols.append(col)
+for dtc in drop_these_cols:
+    df = df.drop(dtc, axis=1)
+df = df[["all_dimensions_concatenated", "Value"]]
+df = df.sort_values(by=['all_dimensions_concatenated'])
+df.to_csv("duplicates_with_values.csv", index=False)
 
