@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1255]:
-
-
 from gssutils import *
 import json
 import re
