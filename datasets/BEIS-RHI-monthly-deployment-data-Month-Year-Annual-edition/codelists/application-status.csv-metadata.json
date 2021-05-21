@@ -1,0 +1,136 @@
+{
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status",
+    "url": "application-status.csv",
+    "rdfs:label": "Application Status",
+    "dc:title": "Application Status",
+    "tableSchema": {
+        "columns": [
+            {
+                "titles": "Label",
+                "name": "label",
+                "datatype": "string",
+                "required": true,
+                "propertyUrl": "rdfs:label"
+            },
+            {
+                "titles": "Notation",
+                "name": "notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*$"
+                },
+                "required": true,
+                "propertyUrl": "skos:notation"
+            },
+            {
+                "titles": "Parent Notation",
+                "name": "parent_notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^(-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*|)$"
+                },
+                "required": false,
+                "propertyUrl": "skos:broader",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#concept/application-status/{+parent_notation}"
+            },
+            {
+                "titles": "Sort Priority",
+                "name": "sort_priority",
+                "datatype": "integer",
+                "required": false,
+                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "rdf:type",
+                "valueUrl": "skos:Concept"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "skos:inScheme",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status"
+            }
+        ],
+        "primaryKey": "notation",
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#concept/application-status/{+notation}"
+    },
+    "prov:hadDerivation": {
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status",
+        "@type": [
+            "skos:ConceptScheme",
+            "http://publishmydata.com/pmdcat#ConceptScheme"
+        ]
+    },
+    "rdfs:seeAlso": [
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status/dataset",
+            "@type": [
+                "dcat:Dataset",
+                "http://publishmydata.com/pmdcat#Dataset"
+            ],
+            "http://publishmydata.com/pmdcat#datasetContents": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status"
+            },
+            "http://publishmydata.com/pmdcat#graph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-05-21T12:15:28.870443"
+            },
+            "rdfs:label": "Application Status",
+            "dc:title": "Application Status",
+            "rdfs:comment": "Dataset representing the 'Application Status' code list.",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-05-21T12:15:28.870443"
+            },
+            "dc:license": {
+                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            },
+            "dc:creator": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dc:publisher": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dcat:contactPoint": {
+                "@id": "Anna.Carlsson@beis.gov.uk"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "This statistical series provides deployment data for:\\nthe non-domestic Renewable Heat Incentive (RHI) introduced in Great Britain in November 2011 to support the uptake of renewable heat in the non-domestic sector,\\nthe domestic RHI introduced in Great Britain in April 2014 to encourage a switch to renewable heating systems in the domestic sector.\""
+            }
+        },
+        {
+            "@id": "http://gss-data.org.uk/catalog/vocabularies",
+            "dcat:record": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status/catalog-record"
+            }
+        },
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status/catalog-record",
+            "@type": "dcat:CatalogRecord",
+            "foaf:primaryTopic": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status/dataset"
+            },
+            "http://publishmydata.com/pmdcat#metadataGraph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-rhi-monthly-deployment-data-month-year-annual-edition#scheme/application-status"
+            },
+            "dc:title": "Application Status Catalog Record",
+            "rdfs:label": "Application Status Catalog Record",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-05-21T12:15:28.870443"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-05-21T12:15:28.870443"
+            }
+        }
+    ]
+}
