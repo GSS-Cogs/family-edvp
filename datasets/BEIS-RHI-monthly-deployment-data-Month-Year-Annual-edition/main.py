@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1109]:
+# In[1962]:
 
 
 from gssutils import *
@@ -9,6 +9,9 @@ import json
 import re
 from datetime import datetime
 import copy
+import glob
+import os
+import numpy as np
 
 def cellCont(cell):
     return re.findall(r"'([^']*)'", str(cell))[0]
@@ -24,7 +27,7 @@ def RepresentsInt(s):
         return False
 
 
-# In[1110]:
+# In[1963]:
 
 
 info = json.load(open('info.json'))
@@ -42,27 +45,27 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[1111]:
+# In[1964]:
 
 
 cubes = Cubes("info.json")
 
 
-# In[1112]:
+# In[1965]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[1113]:
+# In[1966]:
 
 
 dist = [x for x in scraper.distributions if "Excel" in x.title][0]
 dist
 
 
-# In[1114]:
+# In[1967]:
 
 
 unneeded_tabs = ['Title', 'Contents', 'Key Statistics', 'Glossary', 'Scheme background',
@@ -75,7 +78,7 @@ for i in tabs:
     print(i.name)
 
 
-# In[1115]:
+# In[1968]:
 
 
 out = Path('previews')
@@ -579,13 +582,13 @@ for tab in tabs:
 tidied_sheet
 
 
-# In[1116]:
+# In[1969]:
 
 
 formatted_sheets = {}
 
 
-# In[1117]:
+# In[1970]:
 
 
 try:
@@ -623,7 +626,7 @@ except Exception as err:
 df
 
 
-# In[1118]:
+# In[1971]:
 
 
 try:
@@ -665,7 +668,7 @@ except Exception as err:
 df
 
 
-# In[1119]:
+# In[1972]:
 
 
 try:
@@ -699,7 +702,7 @@ except Exception as err:
 df
 
 
-# In[1120]:
+# In[1973]:
 
 
 try:
@@ -731,7 +734,7 @@ except Exception as err:
 df
 
 
-# In[1121]:
+# In[1974]:
 
 
 try:
@@ -757,7 +760,7 @@ except Exception as err:
 df
 
 
-# In[1122]:
+# In[1975]:
 
 
 try:
@@ -800,7 +803,7 @@ except Exception as err:
 df
 
 
-# In[1123]:
+# In[1976]:
 
 
 try:
@@ -832,7 +835,7 @@ except Exception as err:
 df
 
 
-# In[1124]:
+# In[1977]:
 
 
 try:
@@ -864,7 +867,7 @@ except Exception as err:
 df
 
 
-# In[1125]:
+# In[1978]:
 
 
 try:
@@ -879,12 +882,12 @@ try:
 
     df['Period'] = df.apply(lambda x: 'month/' + x['Period Year'][:4] + '-' + x['Period Month'] if 'Total' not in x['Period Year'] else 'gregorian-interval/' + str(x['Period Start'])[:10] + 'T00:00:00/P' + str(diff_month(x['Period End'], x['Period Start'])) + 'M', axis = 1)
 
-    df = df.rename(columns={'OBS' : 'Value'})
+    df = df.rename(columns={'OBS' : 'Value', 'DATAMARKER' : 'Marker'})
 
     df = df.replace({'Marker' : {'#' : 'suppressed',
                                  '^' : 'suppressed'}})
 
-    df = df[['Period', 'Geography', 'Technology Type', 'Application Type', 'Application Status', 'SIC', 'Value', 'Measure Type']]
+    df = df[['Period', 'Geography', 'Technology Type', 'Application Type', 'Application Status', 'SIC', 'Value', 'Measure Type', 'Marker']]
 
     formatted_sheets['M1.3'] = df
 
@@ -894,7 +897,7 @@ except Exception as err:
 df
 
 
-# In[1126]:
+# In[1979]:
 
 
 try:
@@ -925,7 +928,7 @@ except Exception as err:
 df
 
 
-# In[1127]:
+# In[1980]:
 
 
 try:
@@ -954,7 +957,7 @@ except Exception as err:
 df
 
 
-# In[1128]:
+# In[1981]:
 
 
 try:
@@ -984,7 +987,7 @@ except Exception as err:
 df
 
 
-# In[1129]:
+# In[1982]:
 
 
 try:
@@ -1014,7 +1017,7 @@ except Exception as err:
 df
 
 
-# In[1130]:
+# In[1983]:
 
 
 try:
@@ -1044,7 +1047,7 @@ except Exception as err:
 df
 
 
-# In[1131]:
+# In[1984]:
 
 
 try:
@@ -1060,12 +1063,12 @@ try:
 
     df['Period'] = df.apply(lambda x: 'gregorian-interval/' + str(x['Period Start'])[:10] + 'T00:00:00/P' + str(diff_month(x['Period End'], x['Period Start'])) + 'M', axis = 1)
 
-    df = df.rename(columns={'OBS' : 'Value'})
+    df = df.rename(columns={'OBS' : 'Value', 'DATAMARKER' : 'Marker'})
 
     df = df.replace({'Marker' : {'#' : 'suppressed',
                                  '^' : 'suppressed'}})
 
-    df = df[['Period', 'Geography', 'Technology Type', 'Application Type', 'Application Status', 'Value', 'Measure Type']]
+    df = df[['Period', 'Geography', 'Technology Type', 'Application Type', 'Application Status', 'Value', 'Measure Type', 'Marker']]
 
     formatted_sheets['2.4'] = df
 
@@ -1075,7 +1078,7 @@ except Exception as err:
 df
 
 
-# In[1132]:
+# In[1985]:
 
 
 try:
@@ -1108,7 +1111,7 @@ except Exception as err:
 df
 
 
-# In[1133]:
+# In[1986]:
 
 
 try:
@@ -1137,7 +1140,7 @@ except Exception as err:
 df
 
 
-# In[1134]:
+# In[1987]:
 
 
 try:
@@ -1166,7 +1169,7 @@ except Exception as err:
 df
 
 
-# In[1135]:
+# In[1988]:
 
 
 try:
@@ -1195,7 +1198,7 @@ except Exception as err:
 df
 
 
-# In[1136]:
+# In[1989]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['1.1', '1.2', '1.3', '1.4', '1.6', '1.7', 'M1.1', 'M1.2', 'M1.3', 'M1.4', 'Q1.1']], sort = False)
@@ -1235,19 +1238,17 @@ df = df.replace({'Technology Type' : {'Biogas6' : 'Biogas',
 df
 
 
-# In[1137]:
+# In[1990]:
 
 
 applications = df.loc[df['Measure Type'] == 'applications']
 
 applications['Applicant'] = 'non-domestic'
 
-# To be joined with dataset 3
-
 applications
 
 
-# In[1138]:
+# In[1991]:
 
 
 capacity = df.loc[df['Measure Type'] == 'mw']
@@ -1255,6 +1256,9 @@ capacity = df.loc[df['Measure Type'] == 'mw']
 capacity = capacity.drop(columns=['Application Status'])
 
 indexNames = capacity[ capacity['Application Type'].fillna('').str.contains('Cumulative')].index
+capacity.drop(indexNames, inplace = True)
+
+indexNames = capacity[ capacity['Marker'].fillna('').str.contains('N/A')].index
 capacity.drop(indexNames, inplace = True)
 
 capacity['Measure Type'] = 'capacity'
@@ -1279,7 +1283,7 @@ cubes.add_cube(copy.deepcopy(scraper), capacity, scraper.dataset.title)
 capacity
 
 
-# In[1139]:
+# In[1992]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['2.1', '2.2', '2.3', '2.4', 'M2.1', 'M2.2', 'Q2.1', 'Q2.2']], sort = False)
@@ -1302,8 +1306,10 @@ for key in monthReplace.keys():
 
 df['Installation'] = df['Installation'].fillna('Total (New & legacy installations)')
 
+df['Installation'] = df['Installation'].str.replace('&', 'and')
+
 for col in df.columns.values.tolist():
-    if col in ['Period', 'Value', 'Geography']:
+    if col in ['Period', 'Value', 'Geography', 'Marker']:
         continue
     try:
         df[col] = df.apply(lambda x: x[col][:-1] if RepresentsInt(x[col][-1:]) is True else x[col], axis = 1)
@@ -1322,7 +1328,7 @@ df['Applicant'] = 'domestic'
 df
 
 
-# In[1140]:
+# In[1993]:
 
 
 df = pd.concat([df, applications], sort = False)
@@ -1354,29 +1360,7 @@ cubes.add_cube(copy.deepcopy(scraper), df, scraper.dataset.title)
 df
 
 
-# In[1141]:
-
-
-from IPython.core.display import HTML
-for col in df:
-    if col not in ['Value']:
-        df[col] = df[col].astype('category')
-        display(HTML(f"<h2>{col}</h2>"))
-        display(df[col].cat.categories)
-
-
-# In[1142]:
-
-
-from IPython.core.display import HTML
-for col in capacity:
-    if col not in ['Value']:
-        capacity[col] = capacity[col].astype('category')
-        display(HTML(f"<h2>{col}</h2>"))
-        display(capacity[col].cat.categories)
-
-
-# In[1143]:
+# In[1994]:
 
 
 info['landingPage'] = "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
@@ -1385,35 +1369,8 @@ with open('info.json', 'w') as outfile:
     json.dump(info, outfile, indent= 4 )
 
 
-# In[1144]:
+# In[1995]:
 
 
 cubes.output_all()
-
-
-# In[1145]:
-
-
-df = pd.read_csv("out/rhi-deployment-data-application-numbers-domestic-and-non-domestic.csv")
-df["all_dimensions_concatenated"] = ""
-for col in df.columns.values:
-    if col != "Value":
-        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
-found = []
-bad_combos = []
-for item in df["all_dimensions_concatenated"]:
-    if item not in found:
-        found.append(item)
-    else:
-        bad_combos.append(item)
-df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
-drop_these_cols = []
-for col in df.columns.values:
-    if col != "all_dimensions_concatenated" and col != "Value":
-        drop_these_cols.append(col)
-for dtc in drop_these_cols:
-    df = df.drop(dtc, axis=1)
-df = df[["all_dimensions_concatenated", "Value"]]
-df = df.sort_values(by=['all_dimensions_concatenated'])
-df.to_csv("duplicates_with_values.csv", index=False)
 
