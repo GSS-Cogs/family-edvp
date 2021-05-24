@@ -257,6 +257,7 @@ for col in df.columns.values.tolist():
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 df['Nc Category'] = df['Nc Category'].str.replace('/', '-')
+df['Breakdown'] = df['Breakdown'].str.replace('/', '-')
 
 df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Marker']]
 
