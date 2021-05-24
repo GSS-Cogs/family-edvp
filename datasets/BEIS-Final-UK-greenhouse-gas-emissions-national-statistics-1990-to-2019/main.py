@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[142]:
+# In[20]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[143]:
+# In[21]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[144]:
+# In[22]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[145]:
+# In[23]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[146]:
+# In[24]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[147]:
+# In[25]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -243,7 +243,7 @@ indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[148]:
+# In[26]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value', 'Marker']
@@ -256,12 +256,14 @@ for col in df.columns.values.tolist():
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+df['Nc Category'] = df['Nc Category'].str.replace('/', '-')
+
 df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Marker']]
 
 df
 
 
-# In[149]:
+# In[27]:
 
 
 scraper.dataset.comment = """Final estimates of UK territorial greenhouse gas emissions.
@@ -272,8 +274,13 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[150]:
+# In[28]:
 
 
-
+from IPython.core.display import HTML
+for col in df:
+    if col not in ['Value']:
+        df[col] = df[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(df[col].cat.categories)
 
