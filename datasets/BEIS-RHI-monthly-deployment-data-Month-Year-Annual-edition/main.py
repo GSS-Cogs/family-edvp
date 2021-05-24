@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1962]:
+# In[35]:
 
 
 from gssutils import *
@@ -27,7 +27,7 @@ def RepresentsInt(s):
         return False
 
 
-# In[1963]:
+# In[36]:
 
 
 info = json.load(open('info.json'))
@@ -45,27 +45,27 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[1964]:
+# In[37]:
 
 
 cubes = Cubes("info.json")
 
 
-# In[1965]:
+# In[38]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[1966]:
+# In[39]:
 
 
 dist = [x for x in scraper.distributions if "Excel" in x.title][0]
 dist
 
 
-# In[1967]:
+# In[40]:
 
 
 unneeded_tabs = ['Title', 'Contents', 'Key Statistics', 'Glossary', 'Scheme background',
@@ -78,7 +78,7 @@ for i in tabs:
     print(i.name)
 
 
-# In[1968]:
+# In[41]:
 
 
 out = Path('previews')
@@ -582,13 +582,13 @@ for tab in tabs:
 tidied_sheet
 
 
-# In[1969]:
+# In[42]:
 
 
 formatted_sheets = {}
 
 
-# In[1970]:
+# In[43]:
 
 
 try:
@@ -626,7 +626,7 @@ except Exception as err:
 df
 
 
-# In[1971]:
+# In[44]:
 
 
 try:
@@ -668,7 +668,7 @@ except Exception as err:
 df
 
 
-# In[1972]:
+# In[45]:
 
 
 try:
@@ -702,7 +702,7 @@ except Exception as err:
 df
 
 
-# In[1973]:
+# In[46]:
 
 
 try:
@@ -734,7 +734,7 @@ except Exception as err:
 df
 
 
-# In[1974]:
+# In[47]:
 
 
 try:
@@ -760,7 +760,7 @@ except Exception as err:
 df
 
 
-# In[1975]:
+# In[48]:
 
 
 try:
@@ -803,7 +803,7 @@ except Exception as err:
 df
 
 
-# In[1976]:
+# In[49]:
 
 
 try:
@@ -835,7 +835,7 @@ except Exception as err:
 df
 
 
-# In[1977]:
+# In[50]:
 
 
 try:
@@ -867,7 +867,7 @@ except Exception as err:
 df
 
 
-# In[1978]:
+# In[51]:
 
 
 try:
@@ -897,7 +897,7 @@ except Exception as err:
 df
 
 
-# In[1979]:
+# In[52]:
 
 
 try:
@@ -928,7 +928,7 @@ except Exception as err:
 df
 
 
-# In[1980]:
+# In[53]:
 
 
 try:
@@ -957,7 +957,7 @@ except Exception as err:
 df
 
 
-# In[1981]:
+# In[54]:
 
 
 try:
@@ -987,7 +987,7 @@ except Exception as err:
 df
 
 
-# In[1982]:
+# In[55]:
 
 
 try:
@@ -1017,7 +1017,7 @@ except Exception as err:
 df
 
 
-# In[1983]:
+# In[56]:
 
 
 try:
@@ -1047,7 +1047,7 @@ except Exception as err:
 df
 
 
-# In[1984]:
+# In[57]:
 
 
 try:
@@ -1078,7 +1078,7 @@ except Exception as err:
 df
 
 
-# In[1985]:
+# In[58]:
 
 
 try:
@@ -1111,7 +1111,7 @@ except Exception as err:
 df
 
 
-# In[1986]:
+# In[59]:
 
 
 try:
@@ -1140,7 +1140,7 @@ except Exception as err:
 df
 
 
-# In[1987]:
+# In[60]:
 
 
 try:
@@ -1169,7 +1169,7 @@ except Exception as err:
 df
 
 
-# In[1988]:
+# In[61]:
 
 
 try:
@@ -1198,7 +1198,7 @@ except Exception as err:
 df
 
 
-# In[1989]:
+# In[62]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['1.1', '1.2', '1.3', '1.4', '1.6', '1.7', 'M1.1', 'M1.2', 'M1.3', 'M1.4', 'Q1.1']], sort = False)
@@ -1214,6 +1214,7 @@ monthReplace = {'January' : '01',
               'September' : '09',
               'October' : '10',
               'November' : '11',
+              'Novemeber' : '11',
               'December' : '12'}
 
 for key in monthReplace.keys():
@@ -1238,7 +1239,7 @@ df = df.replace({'Technology Type' : {'Biogas6' : 'Biogas',
 df
 
 
-# In[1990]:
+# In[63]:
 
 
 applications = df.loc[df['Measure Type'] == 'applications']
@@ -1248,7 +1249,7 @@ applications['Applicant'] = 'non-domestic'
 applications
 
 
-# In[1991]:
+# In[64]:
 
 
 capacity = df.loc[df['Measure Type'] == 'mw']
@@ -1283,7 +1284,7 @@ cubes.add_cube(copy.deepcopy(scraper), capacity, scraper.dataset.title)
 capacity
 
 
-# In[1992]:
+# In[65]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['2.1', '2.2', '2.3', '2.4', 'M2.1', 'M2.2', 'Q2.1', 'Q2.2']], sort = False)
@@ -1299,6 +1300,7 @@ monthReplace = {'January' : '01',
               'September' : '09',
               'October' : '10',
               'November' : '11',
+              'Novemeber' : '11',
               'December' : '12'}
 
 for key in monthReplace.keys():
@@ -1328,7 +1330,7 @@ df['Applicant'] = 'domestic'
 df
 
 
-# In[1993]:
+# In[66]:
 
 
 df = pd.concat([df, applications], sort = False)
@@ -1360,7 +1362,7 @@ cubes.add_cube(copy.deepcopy(scraper), df, scraper.dataset.title)
 df
 
 
-# In[1994]:
+# In[67]:
 
 
 info['landingPage'] = "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
@@ -1369,7 +1371,7 @@ with open('info.json', 'w') as outfile:
     json.dump(info, outfile, indent= 4 )
 
 
-# In[1995]:
+# In[68]:
 
 
 cubes.output_all()
