@@ -112,16 +112,16 @@ Forest land remaining forest land,forest-land-remaining-forest-land,forest-land,
 Biomass burning - Forest land,biomass-burning-forest-land,forest-land,112
 Land converted to forest land,land-converted-to-forest-land,forest-land,113
 Drainage of organic soils - Forest land,drainage-of-organic-soils-forest-land,forest-land,114
-Direct N2O emissions from N mineralization/immobilisation - Forest land,direct-n2o-emissions-from-n-mineralization/immobilisation-forest-land,forest-land,115
+Direct N2O emissions from N mineralization/immobilisation - Forest land,direct-n2o-emissions-from-n-mineralization-immobilisation-forest-land,forest-land,115
 Biomass burning - Cropland,biomass-burning-cropland,cropland,116
 Cropland remaining cropland,cropland-remaining-cropland,cropland,117
 Land converted to cropland,land-converted-to-cropland,cropland,118
-Direct N2O emissions from N mineralization/immobilisation - Cropland,direct-n2o-emissions-from-n-mineralization/immobilisation-cropland,cropland,119
+Direct N2O emissions from N mineralization/immobilisation - Cropland,direct-n2o-emissions-from-n-mineralization-immobilisation-cropland,cropland,119
 Biomass burning - Grassland,biomass-burning-grassland,grassland,120
 Grassland remaining grassland,grassland-remaining-grassland,grassland,121
 Land converted to grassland,land-converted-to-grassland,grassland,122
 Drainage of organic soils - grassland,drainage-of-organic-soils-grassland,grassland,123
-Direct N2O emissions from N mineralization/immobilisation - Grassland,direct-n2o-emissions-from-n-mineralization/immobilisation-grassland,grassland,124
+Direct N2O emissions from N mineralization/immobilisation - Grassland,direct-n2o-emissions-from-n-mineralization-immobilisation-grassland,grassland,124
 Wetlands remaining wetland,wetlands-remaining-wetland,wetlands,125
 Drainage of organic soils - wetland,drainage-of-organic-soils-wetland,wetlands,126
 Land converted to wetland,land-converted-to-wetland,wetlands,127
@@ -129,7 +129,7 @@ Settlements remaining settlements,settlements-remaining-settlements,settlements,
 Biomass burning - Settlements,biomass-burning-settlements,settlements,129
 Land converted to settlements,land-converted-to-settlements,settlements,130
 Drainage of organic soils - settlements,drainage-of-organic-soils-settlements,settlements,131
-Direct N2O emissions from N mineralization/immobilisation - Settlements,direct-n2o-emissions-from-n-mineralization/immobilisation-settlements,settlements,132
+Direct N2O emissions from N mineralization/immobilisation - Settlements,direct-n2o-emissions-from-n-mineralization-immobilisation-settlements,settlements,132
 Harvested wood,harvested-wood,other-lulucf,133
 Indirect N2O emissions ,indirect-n2o-emissions,other-lulucf,134
 Landfill,landfill,waste-management,135
