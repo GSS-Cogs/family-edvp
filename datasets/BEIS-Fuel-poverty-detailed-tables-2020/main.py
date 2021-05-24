@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
-# %%
 
-# %%
+# In[35]:
 
 
 # -*- coding: utf-8 -*-
@@ -35,7 +34,7 @@
 #
 
 
-# %%
+# In[36]:
 
 
 from gssutils import *
@@ -48,9 +47,22 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 coldef = json.load(open('info.json'))
+etl_title = coldef["title"]
+etl_publisher = coldef["publisher"]
+print("Publisher: " + etl_publisher)
+print("Title: " + etl_title)
+
+coldef['landingPage'] = "https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2021"
+
+with open('info.json', 'w') as outfile:
+    json.dump(coldef, outfile, indent= 4 )
+
+# Scraper needs updating as it currently doesn't look into each release of the publication, so it needs to be fed the release itself
+# Needs to be updated to look in each and return distributions for each
 
 
-# %%
+# In[37]:
+
 
 
 # # Helpers
@@ -66,7 +78,8 @@ coldef = json.load(open('info.json'))
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# %%
+# In[38]:
+
 
 
 def left(s, amount):
@@ -420,11 +433,22 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# %%
+# In[39]:
+
 
 
 scraper = Scraper(seed="info.json")
 scraper
+
+
+# In[40]:
+
+
+scraper.distributions
+
+
+# In[41]:
+
 
 
 distro = scraper.distribution(latest=True)
@@ -683,7 +707,8 @@ eligibility_task = {
 }
 
 
-# %%
+# In[42]:
+
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -746,7 +771,8 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# %%
+# In[43]:
+
 
 
 # # CSVW Mapping
@@ -756,7 +782,8 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# %%
+# In[44]:
+
 
 
 # csvw mapping for dimensions common to all datasets
@@ -792,7 +819,8 @@ csvw_value_map = {
 }
 
 
-# %%
+# In[45]:
+
 
 
 df.head()
@@ -801,7 +829,8 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# %%
+# In[46]:
+
 
 
 table_joins = {
@@ -1106,7 +1135,7 @@ for title, info in table_joins.items():
         df = df.drop("Households not in Fuel Poverty", axis=1)
     if "Households in Fuel Poverty" in df.columns:
         df = df.drop("Households in Fuel Poverty", axis=1)
-        
+
     df = df.drop_duplicates()
 
     #cubes.add_cube(scraper, df, title)
@@ -1134,7 +1163,8 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# %%
+# In[47]:
+
 
 
 from IPython.core.display import HTML
@@ -1145,7 +1175,8 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# %%
+# In[48]:
+
 
 
 #cubes.output_all()
@@ -1171,12 +1202,11 @@ for index, file in enumerate(files):
 """
 
 
+# In[49]:
 
 
-# %%
+coldef['landingPage'] = "https://www.gov.uk/government/collections/fuel-poverty-statistics"
 
-# %%
+with open('info.json', 'w') as outfile:
+    json.dump(info, outfile, indent= 4 )
 
-# %%
-
-# %%
