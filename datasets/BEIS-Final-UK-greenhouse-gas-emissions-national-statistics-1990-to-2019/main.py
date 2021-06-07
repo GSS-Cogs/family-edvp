@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[20]:
+# In[27]:
 
 
 # ---
@@ -19,7 +19,7 @@
 # ---
 
 
-# In[21]:
+# In[28]:
 
 
 import json
@@ -39,7 +39,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[22]:
+# In[29]:
 
 
 distribution  = scraper.distribution(latest=True, title = lambda x:"2019 UK greenhouse gas emissions: final figures - data tables" in x)
@@ -188,7 +188,7 @@ df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna('')
 df.rename(columns = {'OBS': 'Value', 'DATAMARKER':'Marker'}, inplace = True)
 
 
-# In[23]:
+# In[30]:
 
 
 # replace the nans now we've confirmed they're where they should be
@@ -208,7 +208,7 @@ for col in [x for x in df.columns.values if x not in ["Value", "Marker"]]:
     assert "" not in df[col].unique(), f'Column "{col}" has one or more blank entries and shouldn\'t. Got {df[col].unique()}'
 
 
-# In[24]:
+# In[31]:
 
 
 def left(s, amount):
@@ -220,7 +220,7 @@ def date_time (date):
 df['Period'] =  df["Period"].apply(date_time)
 
 
-# In[25]:
+# In[32]:
 
 
 pd.set_option('display.float_format', lambda x: '%.5f' % x)
@@ -243,7 +243,7 @@ indexNames = df[ df['Breakdown'] == 'Net emissions/removals from LULUCF' ].index
 df.drop(indexNames, inplace = True)
 
 
-# In[26]:
+# In[33]:
 
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value', 'Marker']
@@ -259,12 +259,25 @@ for col in df.columns.values.tolist():
 df['Nc Category'] = df['Nc Category'].str.replace('/', '-')
 df['Breakdown'] = df['Breakdown'].str.replace('/', '-')
 
+df = df.replace({'Breakdown' : {'excluding-net-emissions-removals-from-land-use-land-use-change-and-forestry-lulucf' : 'excluding-net-emissions-removals-from-lulucf'}})
+
 df = df[['Period', 'Geographic Coverage', 'Nc Sector', 'Nc Sub Sector', 'Nc Category', 'Gas', 'Breakdown', 'Value', 'Marker']]
 
 df
 
 
-# In[27]:
+# In[34]:
+
+
+from IPython.core.display import HTML
+for col in df:
+    if col not in ['Value']:
+        df[col] = df[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(df[col].cat.categories)
+
+
+# In[35]:
 
 
 scraper.dataset.comment = """Final estimates of UK territorial greenhouse gas emissions.
@@ -275,7 +288,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[28]:
+# In[ ]:
 
 
 from IPython.core.display import HTML
