@@ -76,12 +76,12 @@
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
-            "rdfs:label": "Fuel",
-            "dc:title": "Fuel",
+            "rdfs:label": "Generating Companies",
+            "dc:title": "Generating Companies",
             "http://publishmydata.com/pmdcat#datasetContents": {
                 "@id": "http://gss-data.org.uk/def/energy/concept-scheme/generating-companies"
             },
-            "rdfs:comment": "Dataset representing the 'Fuel' code list.",
+            "rdfs:comment": "Dataset representing the 'Generating Companies' code list.",
             "http://publishmydata.com/pmdcat#graph": {
                 "@id": "http://gss-data.org.uk/def/energy/concept-scheme/generating-companies"
             },
