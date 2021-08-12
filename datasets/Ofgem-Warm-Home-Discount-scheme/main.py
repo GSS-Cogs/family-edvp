@@ -25,7 +25,7 @@ def mid(s, offset, amount):
 cubes = Cubes("info.json", job_name='')
 
 publisher = "The Office of Gas and Electricity Markets"
-title = "warm-home-discount-distribution-expenditure-year".replace('-', ' ')
+title = str("warm-home-discount-distribution-expenditure-year".replace('-', ' '))
 
 with open('info.json') as f:
   info_file_data = json.load(f)
@@ -34,8 +34,8 @@ with open('info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
 
 scraper = Scraper(seed="info.json")
-title = "ofgem-WarmHomeDiscount_Distributionofexpenditurebyyear".replace('-', ' ')
-scraper.distributions[0].title = title
+scraper.dataset.family = 'energy'
+title = "ofgem-WarmHomeDiscount-Distributionofexpenditurebyyear".replace('-', ' ')
 scraper
 
 
@@ -110,11 +110,7 @@ df.head(10)
 # In[4]:
 
 
-csvName = 'distributionexpenditure'
-
-scraper.dataset.family = 'energy'
-
-cubes.add_cube(scraper, df, csvName)
+cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
 # In[5]:
@@ -140,7 +136,7 @@ dimensions = list(df.columns) #%%list of columns
 dimensions = [col for col in dimensions if 'category' not in col.lower()] #%%list of the dimensions
 
 df_new_shape = pd.melt(df, id_vars=["Category"])
-df_new_shape = df_new_shape.rename(columns={"variable": "Support Element", "value": "Value"})
+df_new_shape = df_new_shape.rename(columns={"variable": "Support Element", "value": "Value", 'Category' : 'Supplier'})
 
 df = df_new_shape.fillna('')
 df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('01 April 2019').date()) + 'T00:00:00/P' + str((parse('31 March 2020') - parse('01 April 2019')).days) + 'D', axis = 1)
@@ -148,7 +144,7 @@ df['Scheme Year'] = 'year-9'
 #These two things need updating to be automatically updated
 df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '' else '', axis = 1)
 
-df = df[['Period', 'Scheme Year', 'Support Element', 'Category', 'Marker', 'Value']]
+df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value']]
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
@@ -188,11 +184,7 @@ df.head(10)
 # In[7]:
 
 
-csvName = 'totalexpenditure'
-
-scraper.dataset.family = 'energy'
-
-cubes.add_cube(scraper, df, csvName)
+cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
 # In[8]:
@@ -214,16 +206,16 @@ scraper
 
 df = pd.read_csv('percentage-spend.csv')
 
-df = df.rename(columns={'Total Spend' : 'Value'})
+df = df.rename(columns={'Total Spend' : 'Value', 'Category' : 'Nation'})
 df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(parse('01 April 2019').date()) + 'T00:00:00/P' + str((parse('31 March 2020') - parse('01 April 2019')).days) + 'D', axis = 1)
 df['Scheme Year'] = 'year-9'
 #These two things need updating to be automatically updated
 
-df = df.replace({'Category' : {'England' : 'E92000001',
+df = df.replace({'Nation' : {'England' : 'E92000001',
                              'Scotland' : 'S92000003',
                              'Wales' : 'W92000004'}})
 
-df = df[['Period', 'Scheme Year', 'Category', 'Value']]
+df = df[['Period', 'Scheme Year', 'Nation', 'Value']]
 
 with open("info.json") as f:
     info_json = json.load(f)
@@ -253,11 +245,7 @@ df.head(10)
 # In[10]:
 
 
-csvName = 'nationexpenditure'
-
-scraper.dataset.family = 'energy'
-
-cubes.add_cube(scraper, df, csvName)
+cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
 # In[11]:
