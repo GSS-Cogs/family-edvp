@@ -32,9 +32,18 @@
       "Scheme Year": "Defined scheme year and year range",
       "Support Element": "The scheme focuses spending against three different support elements, categorised by a \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122, \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcindustry initiatives\u00e2\u20ac\u2122. \u00e2\u20ac\u02dcLegacy spending\u00e2\u20ac\u2122 applied in scheme years 1 to 3",
       "Supplier": "Energy suppliers with over 250,000 domestic customers (referred to as \\u00e2\\u20ac\\u02dclarge suppliers\\u00e2\\u20ac\\u2122) are obligated to participate in each element of the scheme. Some suppliers with a smaller customer base also voluntarily participate. They only take part in the \\u00e2\\u20ac\\u02dccore group\\u00e2\\u20ac\\u2122.",
+      "Measure Type": {
+        "dimension": "http://purl.org/linked-data/cube#measureType",
+        "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+        "types": [
+          "expenditure"
+        ]
+      },
+      "Unit": {
+        "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+        "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+      },
       "Value": {
-        "unit": "http://gss-data.org.uk/def/concept/measurement-units/expenditure",
-        "measure": "http://gss-data.org.uk/def/measure/percentage",
         "datatype": "double"
       },
       "Marker": {

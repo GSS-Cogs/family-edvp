@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[111]:
 
 
 import pandas as pd
@@ -19,7 +19,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[2]:
+# In[112]:
 
 
 cubes = Cubes("info.json", job_name='')
@@ -39,7 +39,7 @@ title = "ofgem-WarmHomeDiscount-Distributionofexpenditurebyyear".replace('-', ' 
 scraper
 
 
-# In[3]:
+# In[113]:
 
 
 df = pd.read_csv('distribution-expenditure.csv')
@@ -70,7 +70,10 @@ df['Period'] = df.apply(lambda x: 'gregorian-interval/'+ str(x['Period Lower']) 
 
 df['Value'] = df.apply(lambda x: str(x['Value']).replace('%', ''), axis = 1)
 
-df = df[['Period', 'Scheme Year', 'Support Element', 'Value']]
+df['Measure Type'] = 'expenditure'
+df['Unit'] = 'percent'
+
+df = df[['Period', 'Scheme Year', 'Support Element', 'Value', 'Measure Type', 'Unit']]
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
@@ -82,12 +85,6 @@ for col in df.columns.values.tolist():
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-with open("info.json") as f:
-    info_json = json.load(f)
-
-    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
-    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
-    info_json["transform"]["columns"]['Value']["datatype"] = "double"
 
 scraper.dataset.title = 'Warm Home Discount Scheme: Distribution of expenditure by year'
 
@@ -107,13 +104,13 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[4]:
+# In[114]:
 
 
 cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
-# In[5]:
+# In[115]:
 
 
 with open('info.json') as f:
@@ -127,7 +124,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[6]:
+# In[116]:
 
 
 df = pd.read_csv('total-expenditure.csv')
@@ -144,7 +141,10 @@ df['Scheme Year'] = 'year-9'
 #These two things need updating to be automatically updated
 df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '' else '', axis = 1)
 
-df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value']]
+df['Measure Type'] = 'expenditure'
+df['Unit'] = 'gbp'
+
+df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value', 'Measure Type', 'Unit']]
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
@@ -155,14 +155,6 @@ for col in df.columns.values.tolist():
 		df[col] = df[col].apply(pathify)
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
-
-with open("info.json") as f:
-    info_json = json.load(f)
-
-    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/gbp"
-    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
-    info_json["transform"]["columns"]['Value']["datatype"] = "integer"
-
 
 scraper.dataset.title = 'Warm Home Discount Scheme: Total expenditure by obligated suppliers'
 
@@ -181,13 +173,13 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[7]:
+# In[117]:
 
 
 cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
-# In[8]:
+# In[118]:
 
 
 with open('info.json') as f:
@@ -201,7 +193,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[9]:
+# In[119]:
 
 
 df = pd.read_csv('percentage-spend.csv')
@@ -215,15 +207,10 @@ df = df.replace({'Nation' : {'England' : 'E92000001',
                              'Scotland' : 'S92000003',
                              'Wales' : 'W92000004'}})
 
-df = df[['Period', 'Scheme Year', 'Nation', 'Value']]
+df['Measure Type'] = 'expenditure'
+df['Unit'] = 'percent'
 
-with open("info.json") as f:
-    info_json = json.load(f)
-
-    info_json["transform"]["columns"]['Value']["unit"] = "http://gss-data.org.uk/def/concept/measurement-units/percentage"
-    info_json["transform"]["columns"]['Value']["measure"] = "http://gss-data.org.uk/def/measure/expenditure"
-    info_json["transform"]["columns"]['Value']["datatype"] = "double"
-
+df = df[['Period', 'Scheme Year', 'Nation', 'Value', 'Measure Type', 'Unit']]
 
 scraper.dataset.title = 'Warm Home Discount Scheme: Percentage spend by nation'
 
@@ -242,13 +229,13 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[10]:
+# In[120]:
 
 
 cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
 
-# In[11]:
+# In[121]:
 
 
 cubes.output_all()
