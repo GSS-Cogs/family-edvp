@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[100]:
+# In[21]:
 
 
 # ---
@@ -32,7 +32,7 @@ cubes = Cubes('info.json')
 info = json.load(open('info.json'))
 
 
-# In[101]:
+# In[22]:
 
 
 scraper = Scraper(seed='info.json')
@@ -140,7 +140,7 @@ for tab in tabs:
 
         df = df.replace(r'^\s*$', np.nan, regex=True)
 
-        df['OBS'] = round(df['OBS'], 2)
+        df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
         tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
@@ -221,7 +221,7 @@ for tab in tabs:
         '''removing footnote caption from fuel type'''
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
-        df['OBS'] = round(df['OBS'], 2)
+        df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value', 'Generating Company' : 'Generating Companies'}, inplace=True)
 
         tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
@@ -248,13 +248,13 @@ for tab in tabs:
 tidy
 
 
-# In[102]:
+# In[23]:
 
 
 cubes.output_all()
 
 
-# In[103]:
+# In[24]:
 
 
 
