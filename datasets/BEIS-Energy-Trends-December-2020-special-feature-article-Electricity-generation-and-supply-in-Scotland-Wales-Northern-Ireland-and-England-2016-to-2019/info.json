@@ -34,45 +34,47 @@
                 "codelist": false
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": [ "electricity-generated",
-                           "consumption-by-autogenerators",
-                           "consumption-from-public-supply",
-                           "distribution-losses-and-theft",
-                           "electricity-generated-by-major-power-producers-mpps",
-                           "electricity-generated-by-other-generators",
-                           "electricity-sales-public-supply",
-                           "electricity-transferred-to-england-net-of-receipts",
-                           "electricity-transferred-to-europe-net-of-receipts",
-                           "electricity-transferred-to-northern-ireland-net-of-receipts",
-                           "net-electricity-supplied-by-mpps",
-                           "net-electricity-supplied-by-other-generators",
-                           "own-use-by-other-generators",
-                           "statistical-difference-between-calculated-consumption-a-and-sales",
-                           "total-electricity-consumed",
-                           "total-electricity-generated",
-                           "transfers-from-other-generators-to-public-supply",
-                           "transmission-losses",
-                           "used-in-pumping-at-pumped-storage-and-other-own-use-by-mpps"]
-      		},
-            "Fuel" :{
+                "dimension": "http://purl.org/linked-data/cube#measureType",
+                "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+                "types": [
+                    "electricity-generated-by-major-power-producers-mpps",
+                    "electricity-generated-by-other-generators",
+                    "total-electricity-generated",
+                    "own-use-by-other-generators",
+                    "net-electricity-supplied-by-other-generators",
+                    "used-in-pumping-at-pumped-storage-and-other-own-use-by-mpps",
+                    "net-electricity-supplied-by-mpps",
+                    "electricity-transferred-to-england-net-of-receipts",
+                    "electricity-transferred-to-northern-ireland-net-of-receipts",
+                    "electricity-transferred-to-europe-net-of-receipts",
+                    "transfers-from-other-generators-to-public-supply",
+                    "transmission-losses",
+                    "distribution-losses-and-theft",
+                    "consumption-from-public-supply",
+                    "consumption-by-autogenerators",
+                    "total-electricity-consumed",
+                    "electricity-sales-public-supply",
+                    "statistical-difference-between-calculated-consumption-a-and-sales",
+                    "electricity-generated"
+                ]
+            },
+            "Fuel": {
                 "description": "Type of fuel",
                 "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
                 "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
             },
-            "Generating Companies" :{
+            "Generating Companies": {
                 "description": "Companies generating electricity",
                 "value": "http://gss-data.org.uk/def/energy/concept/generating-companies/{generating_companies}",
                 "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/generating-companies"
             },
-      		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
-      		},
-      		"Value": {
-        		"datatype": "double"
-      		},
+            "Unit": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+            },
+            "Value": {
+                "datatype": "double"
+            },
             "Marker": {
                 "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
                 "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",

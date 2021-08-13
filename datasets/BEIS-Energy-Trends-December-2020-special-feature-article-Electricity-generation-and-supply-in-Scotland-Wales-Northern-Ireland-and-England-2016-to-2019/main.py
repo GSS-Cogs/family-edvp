@@ -1,22 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[21]:
+# In[33]:
 
-
-# ---
-# jupyter:
-#   jupytext:
-#     text_representation:
-#       extension: .py
-#       format_name: light
-#       format_version: '1.5'
-#       jupytext_version: 1.9.1
-#   kernelspec:
-#     display_name: Python 3
-#     language: python
-#     name: python3
-# ---
 
 # Electricity generation and supply in Scotland, Wales, Northern Ireland and England, 2016 to 2019
 
@@ -32,7 +18,7 @@ cubes = Cubes('info.json')
 info = json.load(open('info.json'))
 
 
-# In[22]:
+# In[34]:
 
 
 scraper = Scraper(seed='info.json')
@@ -152,10 +138,10 @@ for tab in tabs:
                                                'electricity-sales-public-supply-b' : 'electricity-sales-public-supply',
                                                'statistical-difference-between-calculated-consumption-a-and-sales-b' : 'statistical-difference-between-calculated-consumption-a-and-sales'}})
 
-        info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
+        """info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
 
         with open('info.json', 'w') as f:
-            json.dump(info, f, indent=4)
+            json.dump(info, f, indent=4)"""
 
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
@@ -238,23 +224,23 @@ for tab in tabs:
                                         'major-power-producers-mpps' : 'major-power-producers',
                                         'total-mpps' : 'major-power-producers'}})
 
-        info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
+        """info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
 
         with open('info.json', 'w') as f:
-            json.dump(info, f, indent=4)
+            json.dump(info, f, indent=4)"""
 
         cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
 
 tidy
 
 
-# In[23]:
+# In[35]:
 
 
 cubes.output_all()
 
 
-# In[24]:
+# In[36]:
 
 
 
