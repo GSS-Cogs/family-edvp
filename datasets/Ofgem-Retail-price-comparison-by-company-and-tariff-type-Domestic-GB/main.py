@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[16]:
 
 
 from gssutils import *
@@ -16,16 +16,15 @@ def Value_To_Number(value):
     new_value = str(value).replace(' ', '').replace(',', '').strip()
     return new_value
 
-
 def Time_Formatter(date):
     # returns time in gregorian-day/dd-mm-yyyy format
     return 'day/' + str(parse(date).date())
 
 
-# In[2]:
+# In[17]:
 
 
-#cubes = Cubes("info.json")
+cubes = Cubes("info.json")
 
 scraper = Scraper(seed="info.json")
 
@@ -40,33 +39,24 @@ dist.title = title
 dist
 
 
-# In[3]:
+# In[18]:
 
 
-trace = TransformTrace()
-link = scraper.distributions[0].downloadURL
-link = link.split('?')[0] # added ?fake=.csv to download link as a hacky fix
+df = pd.read_csv('retail-price-comparison.csv')
+df
 
-columns = ['Period', 'Tariff', 'Value']
 
-trace.start(publisher, title, columns, link)
+# In[19]:
 
-df = scraper.distributions[0].as_pandas()
 
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions%%list of the dimensions
 
-df = pd.melt(df, id_vars=["Date"])
-df = df.rename(columns={"Date": "Period", "value": "Value", 'variable' : 'Tariff'})
-
-trace.Period("Values taken from 'Date' column")
-trace.Tariff("Values one of {}", dimensions)
-trace.Value("Values taken from {} columns", dimensions)
+df = pd.melt(df, id_vars=["\n"])
+df = df.rename(columns={"\n": "Period", "value": "Value", 'variable' : 'Tariff'})
 
 df['Value'] = df['Value'].apply(Value_To_Number)
-trace.Value("Removed commas and whitespaces from values")
 df['Period'] = df['Period'].apply(Time_Formatter)
-trace.Period("Formatted time to 'day/dd/mm/yyyy'")
 
 indexNames = df[ df['Tariff'].isin(['Default tariff cap level']) & df['Value'].isin(['nan'])].index
 df.drop(indexNames, inplace = True)
@@ -95,37 +85,19 @@ Tariffs available with white label suppliers are included in the calculation of 
 To calculate the average of the cheapest tariffs from the 10 cheapest suppliers we took the cheapest tariff offered by each supplier in the market (i.e. one tariff per supplier) and then ranked the tariffs in order of price. We then took the simple average of the 10 cheapest tariffs in this list. This method is to ensure a cross section of suppliers is included in the calculation.
 The Default tariff cap level only came into effect from 1 October 2020."""
 
-trace.store(title, df)
-#cubes.add_cube(scraper, df, title)
-
-trace.render("spec_v1.html")
-#cubes.output_all()
-
 df.head(20)
 
 
-# In[4]:
+# In[20]:
 
 
+scraper.dataset.family = 'energy'
+
+cubes.add_cube(scraper, df, title)
 
 
-csvName = pathify(title)+'.csv'
-out = Path('out')
-out.mkdir(exist_ok=True)
-df.drop_duplicates().to_csv(out / csvName, index = False)
-df.drop_duplicates().to_csv(out / (csvName + '.gz'), index = False, compression='gzip')
+# In[21]:
 
-scraper.dataset.family = 'edvp'
-dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(dataset_path)
 
-csvw_transform = CSVWMapping()
-csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(json.load(open('info.json')))
-csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
-csvw_transform.write(out / f'{csvName}-metadata.json')
-
-with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-    metadata.write(scraper.generate_trig())
+cubes.output_all()
 
