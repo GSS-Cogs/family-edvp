@@ -25,7 +25,6 @@
                 "value": "http://reference.data.gov.uk/id/{+period}",
                 "codelist": false
             },
-            "Tariff": "Temp",
             "Value": {
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
                 "measure": "http://gss-data.org.uk/def/measure/tariff",
