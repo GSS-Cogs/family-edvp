@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[33]:
+# In[87]:
 
 
 # Electricity generation and supply in Scotland, Wales, Northern Ireland and England, 2016 to 2019
@@ -18,7 +18,7 @@ cubes = Cubes('info.json')
 info = json.load(open('info.json'))
 
 
-# In[34]:
+# In[88]:
 
 
 scraper = Scraper(seed='info.json')
@@ -27,7 +27,11 @@ scraper
 distribution = scraper.distributions[1] #check how to specify the media
 distribution
 
-tabs = distribution.as_databaker()
+
+# In[89]:
+
+
+tabs = distribution.as_databaker(data_only=True)
 
 tab_names = [tab.name for tab in tabs]
 tab_names
@@ -122,11 +126,27 @@ for tab in tabs:
             'Wales' : 'W92000004',
             'Northern Ireland' : 'N92000002',
             'England' : 'K04000001'
-            }})
+            },
+                        'DATAMARKER' : {
+            '=V18-V21' : '252.589996805938',
+            '=W18-W21' : '1785.97420459465',
+            '=X18-X21' : '-791.489438985558',
+            '=Y18-Y21' : '709.979891294564',
+            '=Z18-Z21' : '-1451.87466009782',
+            '=AA18-AA21' : '61.487825404969',
+            '=AB18-AB21' : '3174.28675647638',
+            '=AC18-AC21' : '-699.790915898418',
+            '=AD18-AD21' : '-39.1008607177901',
+            '=AE18-AE21' : '-2373.90715445529'}})
+
+        df['OBS'] = df.apply(lambda x: x['DATAMARKER'] if '.' in str(x['DATAMARKER']) else x['OBS'], axis = 1)
+
+        #Due to an issue with databaker bringing in the formula rather than the value am having to manually re-add the values
+        #bad fix but will be replaced by either a fix on databaker or with the next release
 
         df = df.replace(r'^\s*$', np.nan, regex=True)
 
-        df['OBS'] = df['OBS'].astype(float).round(2)
+        #df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
         tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
@@ -207,7 +227,7 @@ for tab in tabs:
         '''removing footnote caption from fuel type'''
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
-        df['OBS'] = df['OBS'].astype(float).round(2)
+        #df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value', 'Generating Company' : 'Generating Companies'}, inplace=True)
 
         tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
@@ -234,13 +254,13 @@ for tab in tabs:
 tidy
 
 
-# In[35]:
+# In[90]:
 
 
 cubes.output_all()
 
 
-# In[36]:
+# In[91]:
 
 
 
