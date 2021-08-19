@@ -10,7 +10,7 @@
     ],
     "published": "2020-09-28",
     "families": [
-        "EDVP"
+        "Energy"
     ],
     "extract": {
         "source": "CSV",
@@ -24,9 +24,7 @@
                 "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
                 "value": "http://reference.data.gov.uk/id/{+period}"
             },
-            "Tariff": {
-                "description": "Temp"
-            },
+            "Tariff": "Temp",
             "Value": {
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
                 "measure": "http://gss-data.org.uk/def/measure/tariff",
