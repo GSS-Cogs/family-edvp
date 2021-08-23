@@ -32,41 +32,12 @@
                 "measure": "http://gss-data.org.uk/def/measure/gbp",
                 "datatype": "double"
             },
-            "FPEER": "",
-            "SAP12 Band": "",
-            "Rurality": "",
-            "Region": "",
-            "Dwelling Type": "",
-            "Dwelling Age": "",
-            "Floor Area": "",
-            "Gas Grid Connection": "",
-            "Central Heating": "",
-            "Main Fuel Type": "",
-            "Boiler Type": "",
-            "Wall Insulation": "",
-            "Wall Type": "",
-            "Loft Insulation": "",
             "Households in Fuel Poverty": {
                 "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-in-fuel-poverty"
             },
             "Households not in Fuel Poverty": {
                 "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-not-in-fuel-poverty"
-            },
-            "Tenure": "",
-            "Housing Composition": "",
-            "Age of Youngest Person": "",
-            "Age of Oldest Person": "",
-            "People in Household": "",
-            "Ethnicity": "",
-            "Illness or Disability": "",
-            "Under-Occupancy": "",
-            "Vulnerability": "",
-            "Employment Status": "",
-            "Income Decile Group": "",
-            "Fuel Type": "",
-            "Payment Method": "",
-            "Eligibility Type": "",
-            "Eligible": ""
+            }
         },
         "transformStage": [
             {
