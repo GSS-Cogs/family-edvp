@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[35]:
+# In[57]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[36]:
+# In[58]:
 
 
 from gssutils import *
@@ -61,7 +61,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[37]:
+# In[59]:
 
 
 
@@ -78,7 +78,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[38]:
+# In[60]:
 
 
 
@@ -433,7 +433,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[39]:
+# In[61]:
 
 
 
@@ -441,19 +441,21 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[40]:
+# In[62]:
 
 
 scraper.distributions
 
 
-# In[41]:
+# In[63]:
 
 
 
 distro = scraper.distribution(latest=True)
 tabs = distro.as_databaker()
 tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Numnbering of tables by concept changes?
+
+scraper.dataset.family = 'energy'
 
 energy_efficiency_task = {
     "name": "Energy Efficiency",
@@ -707,7 +709,7 @@ eligibility_task = {
 }
 
 
-# In[42]:
+# In[ ]:
 
 
 
@@ -771,7 +773,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[43]:
+# In[ ]:
 
 
 
@@ -782,7 +784,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[44]:
+# In[ ]:
 
 
 
@@ -819,7 +821,7 @@ csvw_value_map = {
 }
 
 
-# In[45]:
+# In[ ]:
 
 
 
@@ -829,7 +831,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[46]:
+# In[ ]:
 
 
 
@@ -1163,7 +1165,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[47]:
+# In[ ]:
 
 
 
@@ -1175,7 +1177,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[48]:
+# In[ ]:
 
 
 
@@ -1202,11 +1204,11 @@ for index, file in enumerate(files):
 """
 
 
-# In[49]:
+# In[ ]:
 
 
-coldef['landingPage'] = "https://www.gov.uk/government/collections/fuel-poverty-statistics"
+"""coldef['landingPage'] = "https://www.gov.uk/government/collections/fuel-poverty-statistics"
 
 with open('info.json', 'w') as outfile:
-    json.dump(info, outfile, indent= 4 )
+    json.dump(info, outfile, indent= 4 )"""
 

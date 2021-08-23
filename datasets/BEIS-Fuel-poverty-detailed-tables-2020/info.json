@@ -3,13 +3,13 @@
     "title": "Fuel poverty detailed tables 2020",
     "publisher": "Department for Business, Energy and Industrial Strategy",
     "description": "Fuel poverty statistics report for 2020",
-    "landingPage": "https://www.gov.uk/government/collections/fuel-poverty-statistics",
+    "landingPage": "https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2021",
     "datasetNotes": [
         "On landing page scroll to heading \"2018 Statistics\" and click on \"Fuel poverty detailed tables 2020\". Scroll to middle of new page where dataset is accessed under heading \"Documents\"."
     ],
     "published": "2020-04-30",
     "families": [
-        "EDVP"
+        "Energy"
     ],
     "extract": {
         "source": "XLS",
