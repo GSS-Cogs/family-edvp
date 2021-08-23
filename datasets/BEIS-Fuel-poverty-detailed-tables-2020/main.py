@@ -390,7 +390,7 @@ def generate_codelist(title, df, col):
 
     # Output the codelist csvw
     url = "{}-{}.csv".format(pathify(title), pathify(col))
-    path_id = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
+    path_id = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020"
     codelist_csvw = generate_codelist_from_template(url, title, col, path_id)
 
     codelist_csvw = codelist_csvw.strip()
@@ -709,7 +709,7 @@ eligibility_task = {
 }
 
 
-# In[ ]:
+# In[64]:
 
 
 
@@ -773,7 +773,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[ ]:
+# In[65]:
 
 
 
@@ -784,7 +784,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[ ]:
+# In[66]:
 
 
 
@@ -821,7 +821,7 @@ csvw_value_map = {
 }
 
 
-# In[ ]:
+# In[67]:
 
 
 
@@ -831,7 +831,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[ ]:
+# In[68]:
 
 
 
@@ -1103,7 +1103,7 @@ for title, info in table_joins.items():
             cols_we_have_a_map_for.append("Value")
 
             # TODO - somewhere else
-            url_title = "beis-fuel-poverty-supplementary-tables-2020"
+            url_title = "beis-fuel-poverty-detailed-tables-2020"
 
             for col in df.columns.values.tolist():
                 if col not in cols_we_have_a_map_for:
@@ -1165,7 +1165,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())
 
 
-# In[ ]:
+# In[69]:
 
 
 
@@ -1177,7 +1177,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[ ]:
+# In[70]:
 
 
 
@@ -1204,7 +1204,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[ ]:
+# In[71]:
 
 
 """coldef['landingPage'] = "https://www.gov.uk/government/collections/fuel-poverty-statistics"

@@ -33,10 +33,10 @@
                 "datatype": "double"
             },
             "Households in Fuel Poverty": {
-                "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-in-fuel-poverty"
+                "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/households-in-fuel-poverty"
             },
             "Households not in Fuel Poverty": {
-                "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/households-not-in-fuel-poverty"
+                "attribute": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/households-not-in-fuel-poverty"
             }
         },
         "transformStage": [
