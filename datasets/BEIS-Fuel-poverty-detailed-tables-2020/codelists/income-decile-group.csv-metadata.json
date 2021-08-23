@@ -84,7 +84,7 @@
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:35:12.558397"
+                "@value": "2021-08-23T15:28:29.885265"
             },
             "rdfs:label": "Income Decile Group",
             "dc:title": "Income Decile Group",
@@ -92,6 +92,25 @@
             "dc:issued": {
                 "@type": "dateTime",
                 "@value": "2021-05-20T11:21:03.057416"
+            },
+            "dc:license": {
+                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            },
+            "dc:creator": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dc:publisher": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dcat:contactPoint": {
+                "@id": "fuelpoverty@beis.gov.uk"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2021"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "Fuel poverty statistics report for 2020"
             }
         },
         {
