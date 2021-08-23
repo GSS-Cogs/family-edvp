@@ -60,7 +60,11 @@
             "Ethnicity": "",
             "Illness or Disability": "",
             "Under-Occupancy": "",
-            "Vulnerability": "",
+            "Vulnerability": {
+                "parent": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/vulnerability",
+                "value": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/vulnerability/{vulnerability}",
+                "description": ""
+            },
             "Employment Status": "",
             "Income Decile Group": "",
             "Fuel Type": "",
