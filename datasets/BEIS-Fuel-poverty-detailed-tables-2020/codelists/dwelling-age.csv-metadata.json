@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age",
     "url": "dwelling-age.csv",
     "tableSchema": {
         "columns": [
@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-age/{+parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/dwelling-age/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -54,14 +54,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-age/{+notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/dwelling-age/{+notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,16 +71,16 @@
     "dc:title": "Dwelling Age",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age"
             },
             "dc:modified": {
                 "@type": "dateTime",
@@ -97,17 +97,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-age"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/dwelling-age"
             },
             "dc:title": "Dwelling Age Catalog Record",
             "rdfs:label": "Dwelling Age Catalog Record",

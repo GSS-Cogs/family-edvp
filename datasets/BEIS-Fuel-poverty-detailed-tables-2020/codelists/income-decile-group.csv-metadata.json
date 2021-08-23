@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group",
     "url": "income-decile-group.csv",
     "tableSchema": {
         "columns": [
@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/income-decile-group/{+parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/income-decile-group/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -54,14 +54,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/income-decile-group/{+notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/income-decile-group/{+notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,16 +71,16 @@
     "dc:title": "Income Decile Group",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group"
             },
             "dc:modified": {
                 "@type": "dateTime",
@@ -97,17 +97,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/income-decile-group"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/income-decile-group"
             },
             "dc:title": "Income Decile Group Catalog Record",
             "rdfs:label": "Income Decile Group Catalog Record",

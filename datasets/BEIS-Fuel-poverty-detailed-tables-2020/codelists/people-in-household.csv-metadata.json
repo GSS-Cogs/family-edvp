@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household",
     "url": "people-in-household.csv",
     "tableSchema": {
         "columns": [
@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/people-in-household/{+parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/people-in-household/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -54,14 +54,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/people-in-household/{+notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/people-in-household/{+notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,16 +71,16 @@
     "dc:title": "People in Household",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household"
             },
             "dc:modified": {
                 "@type": "dateTime",
@@ -97,17 +97,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/people-in-household"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/people-in-household"
             },
             "dc:title": "People in Household Catalog Record",
             "rdfs:label": "People in Household Catalog Record",

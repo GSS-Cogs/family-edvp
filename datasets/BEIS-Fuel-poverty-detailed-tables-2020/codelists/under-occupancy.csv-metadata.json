@@ -1,6 +1,6 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy",
     "url": "under-occupancy.csv",
     "tableSchema": {
         "columns": [
@@ -30,7 +30,7 @@
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/under-occupancy/{+parent_notation}"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/under-occupancy/{+parent_notation}"
             },
             {
                 "titles": "Sort Priority",
@@ -54,14 +54,14 @@
             {
                 "virtual": true,
                 "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy"
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy"
             }
         ],
         "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/under-occupancy/{+notation}"
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/under-occupancy/{+notation}"
     },
     "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy",
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy",
         "@type": [
             "skos:ConceptScheme",
             "http://publishmydata.com/pmdcat#ConceptScheme"
@@ -71,16 +71,16 @@
     "dc:title": "Under-Occupancy",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy"
             },
             "dc:modified": {
                 "@type": "dateTime",
@@ -97,17 +97,17 @@
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/under-occupancy"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/under-occupancy"
             },
             "dc:title": "Under-Occupancy Catalog Record",
             "rdfs:label": "Under-Occupancy Catalog Record",
