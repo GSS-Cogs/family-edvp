@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[29]:
-
-
-#!/usr/bin/env python
-# coding: utf-8
-
-
-# In[30]:
+# In[65]:
 
 
 import datetime
@@ -28,7 +21,7 @@ scraper.distributions[0].title = title
 scraper
 
 
-# In[31]:
+# In[66]:
 
 
 def gregorian_day(date):
@@ -46,7 +39,7 @@ def sanitize_values(value):
          return value
 
 
-# In[32]:
+# In[67]:
 
 
 df = pd.read_csv('cheapest-tariffs-by-paym.csv')
@@ -54,7 +47,7 @@ scraper.distributions[0]
 df
 
 
-# In[33]:
+# In[68]:
 
 
 dimensions = list(df.columns) # list of columns
@@ -66,7 +59,7 @@ df_new_shape = pd.melt(df, id_vars=["\n"])
 df_final = df_new_shape.rename(columns={"\n": "Period", "variable": "Payment Method", "value": "Value"})
 
 
-# In[34]:
+# In[69]:
 
 
 df_final['Period'] = pd.to_datetime(pd.Series(df_final['Period']), format="%Y/%m/%d").astype(str)
@@ -75,19 +68,11 @@ df_final['Period'] = 'day/' + df_final['Period'].astype(str)
 
 df_final["Value"] = df_final["Value"].apply(sanitize_values)
 
-cubes.add_cube(scraper, df, title)
-
 df_final['Payment Method'] = df_final['Payment Method'].apply(pathify)
 
 
-# In[35]:
+# In[70]:
 
-
-csvName = "{}.csv".format(pathify(title))
-df_final.to_csv("./out/{}".format(csvName), index=False)
-
-out = Path('out')
-out.mkdir(exist_ok=True)
 
 scraper.dataset.comment = """
 This data compares the cheapest available tariffs offered by the large legacy suppliers with the cheapest tariff
@@ -118,45 +103,16 @@ electricity using their own brand.
 """
 
 
-# In[36]:
+# In[71]:
 
 
-scraper.dataset.family = 'edvp'
-dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower()
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(dataset_path)
+scraper.dataset.family = 'energy'
 
-csvw_transform = CSVWMapping()
-csvw_transform.set_csv(out / csvName)
-csvw_transform.set_mapping(json.load(open('info.json')))
-csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
-csvw_transform.write(out / f'{csvName}-metadata.json')
-
-with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-    metadata.write(scraper.generate_trig())
+cubes.add_cube(scraper, df_final, title)
 
 
-# In[37]:
+# In[72]:
 
 
-df = df_final[df_final['Payment Method'] == "market-direct-debit"]
-df.head(6)
-
-
-# In[38]:
-
-
-#scraper.dataset.family = 'edvp'
-#codelistcreation = ['Payment Method']
-#df = df_final
-#codeclass = CSVCodelists()
-#for cl in codelistcreation:
-#    if cl in df.columns:
-#        codeclass.create_codelists(pd.DataFrame(df[cl]), 'codelists2', scraper.dataset.family, Path(os.getcwd()).name.lower())
-
-
-# In[38]:
-
-
-
+cubes.output_all()
 
