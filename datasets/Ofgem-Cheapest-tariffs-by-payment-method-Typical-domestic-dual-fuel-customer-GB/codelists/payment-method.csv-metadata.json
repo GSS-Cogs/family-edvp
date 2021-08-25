@@ -1,7 +1,9 @@
 {
     "@context": "http://www.w3.org/ns/csvw",
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method",
     "url": "payment-method.csv",
+    "rdfs:label": "Payment Method",
+    "dc:title": "Payment Method",
     "tableSchema": {
         "columns": [
             {
@@ -16,7 +18,7 @@
                 "name": "notation",
                 "datatype": {
                     "base": "string",
-                    "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+                    "format": "^-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*$"
                 },
                 "required": true,
                 "propertyUrl": "skos:notation"
@@ -26,7 +28,7 @@
                 "name": "parent_notation",
                 "datatype": {
                     "base": "string",
-                    "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+                    "format": "^(-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*|)$"
                 },
                 "required": false,
                 "propertyUrl": "skos:broader",
@@ -34,17 +36,10 @@
             },
             {
                 "titles": "Sort Priority",
-                "name": "sort",
+                "name": "sort_priority",
                 "datatype": "integer",
                 "required": false,
                 "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-            },
-            {
-                "titles": "Description",
-                "name": "description",
-                "datatype": "string",
-                "required": false,
-                "propertyUrl": "rdfs:comment"
             },
             {
                 "virtual": true,
@@ -67,57 +62,71 @@
             "http://publishmydata.com/pmdcat#ConceptScheme"
         ]
     },
-    "rdfs:label": "Payment Method",
-    "dc:title": "Payment Method",
     "rdfs:seeAlso": [
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema/dataset",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method/dataset",
             "@type": [
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
             "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method"
             },
             "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:35:12.516654"
+                "@value": "2021-08-25T15:11:46.624254"
             },
             "rdfs:label": "Payment Method",
             "dc:title": "Payment Method",
             "rdfs:comment": "Dataset representing the 'Payment Method' code list.",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.023272"
+                "@value": "2021-08-25T15:11:46.624254"
+            },
+            "dc:license": {
+                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            },
+            "dc:creator": {
+                "@id": "https://www.ofgem.gov.uk/"
+            },
+            "dc:publisher": {
+                "@id": "https://www.ofgem.gov.uk/"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.ofgem.gov.uk/data-portal/all-charts"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "Interactive chart - This data compares the cheapest available tariffs offered by the six large suppliers with the cheapest tariff available in the market by payment method (direct debit, standard credit and prepayment). Figures are based on a typical domestic dual fuel customer paying by direct debit."
             }
         },
         {
             "@id": "http://gss-data.org.uk/catalog/vocabularies",
             "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema/catalog-record"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method/catalog-record"
             }
         },
         {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema/catalog-record",
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method/catalog-record",
             "@type": "dcat:CatalogRecord",
             "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema/dataset"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method/dataset"
             },
             "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#schema"
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb#scheme/payment-method"
             },
             "dc:title": "Payment Method Catalog Record",
             "rdfs:label": "Payment Method Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.023272"
+                "@value": "2021-08-25T15:11:46.624254"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.023272"
+                "@value": "2021-08-25T15:11:46.624254"
             }
         }
     ]
