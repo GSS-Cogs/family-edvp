@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[40]:
+# In[1]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[41]:
+# In[2]:
 
 
 #Add cubes class
@@ -23,16 +23,16 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[42]:
+# In[3]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
-distribution  = scraper.distribution(latest=True, title = lambda x:"Renewables obligation: certificates and generation (monthly)" in x)
+distribution  = scraper.distribution(latest=True, title = lambda x:"Renewables obligation: certificates and generation (monthly - Excel)" in x)
 datasetTitle = distribution.title
 distribution
 
 
-# In[43]:
+# In[4]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[44]:
+# In[5]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -148,6 +148,7 @@ df = df.replace({'Month' : {'September'  : '09',
                             'February'   : '02',
                             'March'      : '03',
                             'April'      : '04',
+                            'April p'      : '04',
                             'May'        : '05',
                             'June'       : '06',
                             'July'       : '07',
@@ -182,15 +183,15 @@ df.drop(indexNames, inplace = True)
 
 df = df.drop(columns=['Element'])
 
-df['Value'] = df['Value'].astype(float).astype(int)
+#df['Value'] = df['Value'].astype(float).astype(int)
 
-indexNames = df[ (df['Period'] == 'month/2020-11') & (df['Value'] == 0) ].index
-df.drop(indexNames, inplace = True)
+#indexNames = df[ (df['Period'] == 'month/2020-11') & (df['Value'] == 0) ].index
+#df.drop(indexNames, inplace = True)
 
 df
 
 
-# In[45]:
+# In[6]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -202,7 +203,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[46]:
+# In[7]:
 
 
 from IPython.core.display import HTML
