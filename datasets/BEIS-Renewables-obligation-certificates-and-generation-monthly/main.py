@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[23]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[2]:
+# In[24]:
 
 
 #Add cubes class
@@ -23,7 +23,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[3]:
+# In[25]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -32,7 +32,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[4]:
+# In[26]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[5]:
+# In[27]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -183,7 +183,9 @@ df.drop(indexNames, inplace = True)
 
 df = df.drop(columns=['Element'])
 
-#df['Value'] = df['Value'].astype(float).astype(int)
+#df['Value'] = df.apply(lambda x: x['Value'].astype(float).astype(int) if '.' in str(x['Value']) else x['Value'], axis = 1)
+
+df['Value'] = df.apply(lambda x: int(x['Value']) if '.' in str(x['Value']) else x['Value'], axis = 1)
 
 #indexNames = df[ (df['Period'] == 'month/2020-11') & (df['Value'] == 0) ].index
 #df.drop(indexNames, inplace = True)
@@ -191,7 +193,7 @@ df = df.drop(columns=['Element'])
 df
 
 
-# In[6]:
+# In[28]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -203,7 +205,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[7]:
+# In[29]:
 
 
 from IPython.core.display import HTML
