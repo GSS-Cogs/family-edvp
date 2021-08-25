@@ -158,7 +158,7 @@ df = df.replace({'Month' : {'September'  : '09',
 
 df['Period'] = df.apply(lambda x: 'month/' + left(x['Period'], 4) + '-' + x['Month'] if 'NaN' not in x['Month'] else x['Period'], axis =1 )
 
-df['Period'] = df.apply(lambda x: 'financial-year/' + left(x['Period'], 4) if 'NaN' in x['Month'] else x['Period'], axis = 1)
+df['Period'] = df.apply(lambda x: 'government-year/' + left(x['Period'], 4) if 'NaN' in x['Month'] else x['Period'], axis = 1)
 
 df['Roc Per Mwh'] = df.apply(lambda x: round(float(x['Roc Per Mwh']), 2) if 'all' not in x['Roc Per Mwh'] else x['Roc Per Mwh'], axis = 1)
 
