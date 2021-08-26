@@ -24,13 +24,19 @@
                 "value": "http://reference.data.gov.uk/id/{+period}",
                 "codelist": false
             },
-            "Marker": {
-                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}"
+            "Measure Type": {
+                "dimension": "http://purl.org/linked-data/cube#measureType",
+                "value": "http://gss-data.org.uk/def/measure/{measure_type}",
+                "types": [
+                    "Aggregate fuel poverty Gap",
+                    "Average fuel poverty Gap"
+                ]
+            },
+            "Unit": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
             },
             "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/average-fuel-poverty-gap",
-                "measure": "http://gss-data.org.uk/def/measure/gbp",
                 "datatype": "double"
             },
             "FPEER": {

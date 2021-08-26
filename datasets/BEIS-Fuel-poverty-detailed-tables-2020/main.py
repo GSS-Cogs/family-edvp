@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[57]:
+# In[43]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[58]:
+# In[44]:
 
 
 from gssutils import *
@@ -61,7 +61,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[59]:
+# In[45]:
 
 
 
@@ -78,7 +78,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[60]:
+# In[46]:
 
 
 
@@ -433,7 +433,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[61]:
+# In[47]:
 
 
 
@@ -441,13 +441,13 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[62]:
+# In[48]:
 
 
 scraper.distributions
 
 
-# In[63]:
+# In[49]:
 
 
 
@@ -709,7 +709,7 @@ eligibility_task = {
 }
 
 
-# In[64]:
+# In[50]:
 
 
 
@@ -773,7 +773,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[65]:
+# In[51]:
 
 
 
@@ -784,7 +784,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[66]:
+# In[52]:
 
 
 
@@ -821,7 +821,7 @@ csvw_value_map = {
 }
 
 
-# In[67]:
+# In[53]:
 
 
 
@@ -831,7 +831,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[68]:
+# In[54]:
 
 
 
@@ -1084,7 +1084,7 @@ for title, info in table_joins.items():
 
     do_mapping = True
 
-    if do_mapping:
+    """if do_mapping:
         mapping = {}
         with open("info.json") as f:
             info_json = json.load(f)
@@ -1126,11 +1126,11 @@ for title, info in table_joins.items():
         if SHOW_MAPPING:
             print("Mapping for: ", title)
             print(json.dumps(mapping, indent=2))
-            print("\n")
+            print("\n")"""
 
     # FOR NOW - remove measure type
-    df = df.drop("Measure Type", axis=1)
-    df = df.drop("Unit", axis=1)
+    #df = df.drop("Measure Type", axis=1)
+    #df = df.drop("Unit", axis=1)
 
     # FOR NOW - remove the Attributes
     if "Households not in Fuel Poverty" in df.columns:
@@ -1140,32 +1140,32 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    #cubes.add_cube(scraper, df, title)
+    cubes.add_cube(scraper, df, title)
     #cubes
 
-    csvName = "observations-{}.csv".format(pathify(info['datasetid']))
-    out = Path('out')
-    out.mkdir(exist_ok=True)
-    df.drop_duplicates().to_csv(out / (csvName), index = False)
+    #csvName = "observations-{}.csv".format(pathify(info['datasetid']))
+    #out = Path('out')
+    #out.mkdir(exist_ok=True)
+    #df.drop_duplicates().to_csv(out / (csvName), index = False)
 
-    dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
-    scraper.set_base_uri('http://gss-data.org.uk')
-    scraper.set_dataset_id(dataset_path)
+    #dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
+    #scraper.set_base_uri('http://gss-data.org.uk')
+    #scraper.set_dataset_id(dataset_path)
 
-    from urllib.parse import urljoin
+    #from urllib.parse import urljoin
 
-    csvw_transform = CSVWMapping()
-    csvw_transform.set_csv(out / csvName)
-    csvw_transform._mapping = mapping
+    #csvw_transform = CSVWMapping()
+    #csvw_transform.set_csv(out / csvName)
+    #csvw_transform._mapping = mapping
     #csvw_transform.set_mapping(mapping)
-    csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
-    csvw_transform.write(out / f'{csvName}-metadata.json')
+    #csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+    #csvw_transform.write(out / f'{csvName}-metadata.json')
 
-    with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-        metadata.write(scraper.generate_trig())
+    #with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+        #metadata.write(scraper.generate_trig())
 
 
-# In[69]:
+# In[55]:
 
 
 
@@ -1177,38 +1177,12 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[70]:
+# In[56]:
 
 
 
-#cubes.output_all()
+cubes.output_all()
 # cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
 #cubes.cubes[0].multi_trig = scraper.generate_trig()
 #cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
-trace.render("spec_v1.html")
-#
-
-# http://gss-data.org.uk/data/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
-
-
-"""
-import os
-path = os.getcwd() + '/codelists2'
-files = os.listdir(path)
-
-
-for index, file in enumerate(files):
-    print(file)
-    newNme = file.replace("fuel-poverty-supplementary-tables-housing-income-median-floor-area-","")
-    os.rename(os.path.join(path, file), os.path.join(path, newNme))
-"""
-
-
-# In[71]:
-
-
-"""coldef['landingPage'] = "https://www.gov.uk/government/collections/fuel-poverty-statistics"
-
-with open('info.json', 'w') as outfile:
-    json.dump(info, outfile, indent= 4 )"""
 
