@@ -39,6 +39,11 @@
             "Value": {
                 "datatype": "double"
             },
+            "Marker": {
+                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
+                "codelist": false
+            },
             "FPEER": {
                 "parent": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept-scheme/fpeer",
                 "value": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020/concept/fpeer/{fpeer}",
