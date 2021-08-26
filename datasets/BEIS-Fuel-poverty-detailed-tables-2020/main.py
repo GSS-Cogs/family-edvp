@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[43]:
+# In[99]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[44]:
+# In[100]:
 
 
 from gssutils import *
@@ -61,7 +61,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[45]:
+# In[101]:
 
 
 
@@ -78,7 +78,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[46]:
+# In[102]:
 
 
 
@@ -433,7 +433,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[47]:
+# In[103]:
 
 
 
@@ -441,13 +441,13 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[48]:
+# In[104]:
 
 
 scraper.distributions
 
 
-# In[49]:
+# In[105]:
 
 
 
@@ -709,7 +709,7 @@ eligibility_task = {
 }
 
 
-# In[50]:
+# In[106]:
 
 
 
@@ -773,7 +773,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[51]:
+# In[107]:
 
 
 
@@ -784,7 +784,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[52]:
+# In[108]:
 
 
 
@@ -821,7 +821,7 @@ csvw_value_map = {
 }
 
 
-# In[53]:
+# In[109]:
 
 
 
@@ -831,7 +831,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[54]:
+# In[110]:
 
 
 
@@ -1084,7 +1084,7 @@ for title, info in table_joins.items():
 
     do_mapping = True
 
-    """if do_mapping:
+    if do_mapping:
         mapping = {}
         with open("info.json") as f:
             info_json = json.load(f)
@@ -1126,7 +1126,7 @@ for title, info in table_joins.items():
         if SHOW_MAPPING:
             print("Mapping for: ", title)
             print(json.dumps(mapping, indent=2))
-            print("\n")"""
+            print("\n")
 
     # FOR NOW - remove measure type
     #df = df.drop("Measure Type", axis=1)
@@ -1140,32 +1140,32 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    cubes.add_cube(scraper, df, title)
+    #cubes.add_cube(scraper, df, title)
     #cubes
 
-    #csvName = "observations-{}.csv".format(pathify(info['datasetid']))
-    #out = Path('out')
-    #out.mkdir(exist_ok=True)
-    #df.drop_duplicates().to_csv(out / (csvName), index = False)
+    csvName = "observations-{}.csv".format(pathify(info['datasetid']))
+    out = Path('out')
+    out.mkdir(exist_ok=True)
+    df.drop_duplicates().to_csv(out / (csvName), index = False)
 
-    #dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
-    #scraper.set_base_uri('http://gss-data.org.uk')
-    #scraper.set_dataset_id(dataset_path)
+    dataset_path = pathify(os.environ.get('JOB_NAME', f'gss_data/{scraper.dataset.family}/' + Path(os.getcwd()).name)).lower() + '/' + info['datasetid']# differentiating name goes here + pa[i]
+    scraper.set_base_uri('http://gss-data.org.uk')
+    scraper.set_dataset_id(dataset_path)
 
-    #from urllib.parse import urljoin
+    from urllib.parse import urljoin
 
-    #csvw_transform = CSVWMapping()
-    #csvw_transform.set_csv(out / csvName)
-    #csvw_transform._mapping = mapping
-    #csvw_transform.set_mapping(mapping)
-    #csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
-    #csvw_transform.write(out / f'{csvName}-metadata.json')
+    csvw_transform = CSVWMapping()
+    csvw_transform.set_csv(out / csvName)
+    csvw_transform._mapping = mapping
+    csvw_transform.set_mapping(mapping)
+    csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
+    csvw_transform.write(out / f'{csvName}-metadata.json')
 
-    #with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-        #metadata.write(scraper.generate_trig())
+    with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
+        metadata.write(scraper.generate_trig())
 
 
-# In[55]:
+# In[111]:
 
 
 
@@ -1177,12 +1177,11 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[56]:
+# In[112]:
 
 
 
-cubes.output_all()
-# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
-#cubes.cubes[0].multi_trig = scraper.generate_trig()
-#cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
+#cubes.output_all()
+#cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020"
+#ubes.output_all()
 
