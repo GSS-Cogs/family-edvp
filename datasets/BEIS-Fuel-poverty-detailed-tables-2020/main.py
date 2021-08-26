@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[99]:
+# In[113]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[100]:
+# In[114]:
 
 
 from gssutils import *
@@ -61,7 +61,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[101]:
+# In[115]:
 
 
 
@@ -78,7 +78,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[102]:
+# In[116]:
 
 
 
@@ -433,7 +433,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[103]:
+# In[117]:
 
 
 
@@ -441,13 +441,13 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[104]:
+# In[118]:
 
 
 scraper.distributions
 
 
-# In[105]:
+# In[119]:
 
 
 
@@ -709,7 +709,7 @@ eligibility_task = {
 }
 
 
-# In[106]:
+# In[120]:
 
 
 
@@ -773,7 +773,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[107]:
+# In[121]:
 
 
 
@@ -784,7 +784,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[108]:
+# In[122]:
 
 
 
@@ -821,7 +821,7 @@ csvw_value_map = {
 }
 
 
-# In[109]:
+# In[123]:
 
 
 
@@ -831,7 +831,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[110]:
+# In[124]:
 
 
 
@@ -1140,10 +1140,10 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    #cubes.add_cube(scraper, df, title)
+    cubes.add_cube(scraper, df, title)
     #cubes
 
-    csvName = "observations-{}.csv".format(pathify(info['datasetid']))
+    """csvName = "observations-{}.csv".format(pathify(info['datasetid']))
     out = Path('out')
     out.mkdir(exist_ok=True)
     df.drop_duplicates().to_csv(out / (csvName), index = False)
@@ -1162,10 +1162,10 @@ for title, info in table_joins.items():
     csvw_transform.write(out / f'{csvName}-metadata.json')
 
     with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-        metadata.write(scraper.generate_trig())
+        metadata.write(scraper.generate_trig())"""
 
 
-# In[111]:
+# In[125]:
 
 
 
@@ -1177,11 +1177,11 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[112]:
+# In[126]:
 
 
 
-#cubes.output_all()
+cubes.output_all()
 #cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020"
 #ubes.output_all()
 
