@@ -44,7 +44,7 @@
                 "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
                 "codelist": false
             },
-            "FPEER": ",
+            "FPEER": "",
             "SAP12 Band": "",
             "Rurality": "",
             "Region": "",
@@ -56,7 +56,7 @@
             "Main Fuel Type": "",
             "Boiler Type": "",
             "Wall Insulation": "",
-            "Wall Type": ",
+            "Wall Type": "",
             "Loft Insulation": "",
             "Housing Composition": "",
             "Age of Youngest Person": "",
