@@ -1,7 +1,7 @@
 Label,Notation,Parent Notation,Sort Priority
 All,all,,1
-1st decile - lowest income,1st-decile-lowest-income,,2
+"1st decile - lowest income",1st-decile-lowest-income,,2
 2nd decile,2nd-decile,,3
 3rd and 4th deciles,3rd-and-4th-deciles,,4
-5th-10th deciles - highest incomes,5th-10th-deciles-highest-incomes,,5
-1st and 2nd deciles - lowest incomes,1st-and-2nd-deciles-lowest-incomes,,6
+"5th-10th deciles - highest incomes",5th-10th-deciles-highest-incomes,,5
+"1st and 2nd deciles - lowest incomes",1st-and-2nd-deciles-lowest-incomes,,6
