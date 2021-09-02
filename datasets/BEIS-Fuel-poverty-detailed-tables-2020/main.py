@@ -941,7 +941,7 @@ table_joins = {
 
 # Given there are standard column to all datacubes it's easier
 # to define the columns we're NOT going to pathify
-COLUMNS_TO_NOT_PATHIFY = ["Region", "Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period", "Unit", "Measure Type"]
+COLUMNS_TO_NOT_PATHIFY = ["Region", "Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period"]
 
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False

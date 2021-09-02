@@ -28,8 +28,8 @@
                 "dimension": "http://purl.org/linked-data/cube#measureType",
                 "value": "http://gss-data.org.uk/def/measure/{measure_type}",
                 "types": [
-                    "Aggregate fuel poverty Gap",
-                    "Average fuel poverty Gap"
+                    "aggregate-fuel-poverty-gap",
+                    "average-fuel-poverty-gap"
                 ]
             },
             "Unit": {
