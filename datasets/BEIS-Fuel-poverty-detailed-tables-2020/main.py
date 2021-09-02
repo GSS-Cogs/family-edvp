@@ -543,7 +543,7 @@ energy_efficiency_task = {
         "Average fuel poverty gap (£)": "Average fuel poverty Gap"
     },
     "units_map": {
-        "Aggregate fuel poverty gap (£m)": "million-gbp",
+        "Aggregate fuel poverty gap (£m)": "gbp-million",
         "Average fuel poverty gap (£)": "gbp"
     }
 }
@@ -619,7 +619,7 @@ household_characteristics_task = {
         "Average fuel poverty gap (£)": "Average fuel poverty Gap"
     },
     "units_map": {
-        "Aggregate fuel poverty gap (£m)": "million-gbp",
+        "Aggregate fuel poverty gap (£m)": "gbp-million",
         "Average fuel poverty gap (£)": "gbp"
     }
 }
@@ -644,7 +644,7 @@ household_income_task = {
         "Average fuel poverty gap (£)": "Average fuel poverty Gap"
     },
     "units_map": {
-        "Aggregate fuel poverty gap (£m)": "million-gbp",
+        "Aggregate fuel poverty gap (£m)": "gbp-million",
         "Average fuel poverty gap (£)": "gbp"
     }
 }
@@ -669,7 +669,7 @@ fuel_payment_task = {
         "Average fuel poverty gap (£)": "Average fuel poverty Gap"
     },
     "units_map": {
-        "Aggregate fuel poverty gap (£m)": "million-gbp",
+        "Aggregate fuel poverty gap (£m)": "gbp-million",
         "Average fuel poverty gap (£)": "gbp"
     }
 }
@@ -704,7 +704,7 @@ eligibility_task = {
         "Average fuel poverty gap (£)": "Average fuel poverty Gap"
     },
     "units_map": {
-        "Aggregate fuel poverty gap (£m)": "million-gbp",
+        "Aggregate fuel poverty gap (£m)": "gbp-million",
         "Average fuel poverty gap (£)": "gbp"
     }
 }
