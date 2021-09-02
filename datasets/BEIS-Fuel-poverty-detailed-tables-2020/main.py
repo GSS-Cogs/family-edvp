@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[113]:
+# In[13]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[114]:
+# In[14]:
 
 
 from gssutils import *
@@ -42,6 +42,7 @@ import json
 import re
 import csv
 from template import generate_codelist_from_template
+import copy
 
 cubes = Cubes("info.json")
 trace = TransformTrace()
@@ -61,7 +62,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[115]:
+# In[15]:
 
 
 
@@ -78,7 +79,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[116]:
+# In[16]:
 
 
 
@@ -433,7 +434,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[117]:
+# In[17]:
 
 
 
@@ -441,13 +442,13 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[118]:
+# In[18]:
 
 
 scraper.distributions
 
 
-# In[119]:
+# In[19]:
 
 
 
@@ -709,7 +710,7 @@ eligibility_task = {
 }
 
 
-# In[120]:
+# In[20]:
 
 
 
@@ -773,7 +774,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[121]:
+# In[21]:
 
 
 
@@ -784,7 +785,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[122]:
+# In[22]:
 
 
 
@@ -821,7 +822,7 @@ csvw_value_map = {
 }
 
 
-# In[123]:
+# In[23]:
 
 
 
@@ -831,7 +832,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[124]:
+# In[24]:
 
 
 
@@ -1140,7 +1141,7 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    cubes.add_cube(scraper, df, title)
+    cubes.add_cube(copy.deepcopy(scraper), df, title)
     #cubes
 
     """csvName = "observations-{}.csv".format(pathify(info['datasetid']))
@@ -1165,7 +1166,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[125]:
+# In[25]:
 
 
 
@@ -1177,7 +1178,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[126]:
+# In[26]:
 
 
 
