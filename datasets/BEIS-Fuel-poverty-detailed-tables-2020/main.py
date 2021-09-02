@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[13]:
+# In[53]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[14]:
+# In[54]:
 
 
 from gssutils import *
@@ -62,7 +62,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[15]:
+# In[55]:
 
 
 
@@ -79,7 +79,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[16]:
+# In[56]:
 
 
 
@@ -434,7 +434,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[17]:
+# In[57]:
 
 
 
@@ -442,13 +442,13 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[18]:
+# In[58]:
 
 
 scraper.distributions
 
 
-# In[19]:
+# In[59]:
 
 
 
@@ -710,7 +710,7 @@ eligibility_task = {
 }
 
 
-# In[20]:
+# In[60]:
 
 
 
@@ -774,7 +774,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[21]:
+# In[61]:
 
 
 
@@ -785,7 +785,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[22]:
+# In[62]:
 
 
 
@@ -822,7 +822,7 @@ csvw_value_map = {
 }
 
 
-# In[23]:
+# In[63]:
 
 
 
@@ -832,7 +832,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[24]:
+# In[64]:
 
 
 
@@ -941,7 +941,7 @@ table_joins = {
 
 # Given there are standard column to all datacubes it's easier
 # to define the columns we're NOT going to pathify
-COLUMNS_TO_NOT_PATHIFY = ["Region", "Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period"]
+COLUMNS_TO_NOT_PATHIFY = ["Region", "Households in Fuel Poverty", "Households not in Fuel Poverty", "Value", "Period", "Unit", "Measure Type"]
 
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False
@@ -1139,6 +1139,8 @@ for title, info in table_joins.items():
     if "Households in Fuel Poverty" in df.columns:
         df = df.drop("Households in Fuel Poverty", axis=1)
 
+    df['Measure Type'] = df.apply(lambda x: pathify(x['Measure Type']), axis = 1)
+
     df = df.drop_duplicates()
 
     cubes.add_cube(copy.deepcopy(scraper), df, title)
@@ -1166,7 +1168,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[25]:
+# In[65]:
 
 
 
@@ -1178,7 +1180,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[26]:
+# In[66]:
 
 
 
