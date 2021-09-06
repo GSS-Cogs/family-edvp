@@ -1,124 +1,68 @@
 {
-    "@context": "http://www.w3.org/ns/csvw",
+  "@context": "http://www.w3.org/ns/csvw",
+  "@id": "#table",
+  "url": "fuel-type.csv",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "Label",
+        "name": "label",
+        "datatype": "string",
+        "required": true,
+        "propertyUrl": "rdfs:label"
+      },
+      {
+        "titles": "Notation",
+        "name": "notation",
+        "datatype": {
+          "base": "string",
+          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+        },
+        "required": true,
+        "propertyUrl": "skos:notation"
+      },
+      {
+        "titles": "Parent Notation",
+        "name": "parent_notation",
+        "datatype": {
+          "base": "string",
+          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+        },
+        "required": false,
+        "propertyUrl": "skos:broader",
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/fuel-type/{parent_notation}"
+      },
+      {
+        "titles": "Sort Priority",
+        "name": "sort",
+        "datatype": "integer",
+        "required": false,
+        "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+      },
+      {
+        "titles": "Description",
+        "name": "description",
+        "datatype": "string",
+        "required": false,
+        "propertyUrl": "rdfs:comment"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "rdf:type",
+        "valueUrl": "skos:Concept"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "skos:inScheme",
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type"
+      }
+    ],
+    "primaryKey": "notation",
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/fuel-type/{notation}"
+  },
+  "prov:hadDerivation": {
     "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type",
-    "url": "fuel-type.csv",
-    "tableSchema": {
-        "columns": [
-            {
-                "titles": "Label",
-                "name": "label",
-                "datatype": "string",
-                "required": true,
-                "propertyUrl": "rdfs:label"
-            },
-            {
-                "titles": "Notation",
-                "name": "notation",
-                "datatype": {
-                    "base": "string",
-                    "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
-                },
-                "required": true,
-                "propertyUrl": "skos:notation"
-            },
-            {
-                "titles": "Parent Notation",
-                "name": "parent_notation",
-                "datatype": {
-                    "base": "string",
-                    "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
-                },
-                "required": false,
-                "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/fuel-type/{+parent_notation}"
-            },
-            {
-                "titles": "Sort Priority",
-                "name": "sort",
-                "datatype": "integer",
-                "required": false,
-                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-            },
-            {
-                "titles": "Description",
-                "name": "description",
-                "datatype": "string",
-                "required": false,
-                "propertyUrl": "rdfs:comment"
-            },
-            {
-                "virtual": true,
-                "propertyUrl": "rdf:type",
-                "valueUrl": "skos:Concept"
-            },
-            {
-                "virtual": true,
-                "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type"
-            }
-        ],
-        "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/fuel-type/{+notation}"
-    },
-    "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type",
-        "@type": [
-            "skos:ConceptScheme",
-            "http://publishmydata.com/pmdcat#ConceptScheme"
-        ]
-    },
-    "rdfs:label": "Fuel Type",
-    "dc:title": "Fuel Type",
-    "rdfs:seeAlso": [
-        {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type/dataset",
-            "@type": [
-                "dcat:Dataset",
-                "http://publishmydata.com/pmdcat#Dataset"
-            ],
-            "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type"
-            },
-            "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type"
-            },
-            "dc:modified": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:35:12.524029"
-            },
-            "rdfs:label": "Fuel Type",
-            "dc:title": "Fuel Type",
-            "rdfs:comment": "Dataset representing the 'Fuel Type' code list.",
-            "dc:issued": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.029190"
-            }
-        },
-        {
-            "@id": "http://gss-data.org.uk/catalog/vocabularies",
-            "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type/catalog-record"
-            }
-        },
-        {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type/catalog-record",
-            "@type": "dcat:CatalogRecord",
-            "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type/dataset"
-            },
-            "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/fuel-type"
-            },
-            "dc:title": "Fuel Type Catalog Record",
-            "rdfs:label": "Fuel Type Catalog Record",
-            "dc:issued": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.029190"
-            },
-            "dc:modified": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.029190"
-            }
-        }
-    ]
+    "@type": "skos:ConceptScheme",
+    "rdfs:label": "Fuel Type"
+  }
 }

@@ -1,124 +1,68 @@
 {
-    "@context": "http://www.w3.org/ns/csvw",
+  "@context": "http://www.w3.org/ns/csvw",
+  "@id": "#table",
+  "url": "dwelling-type.csv",
+  "tableSchema": {
+    "columns": [
+      {
+        "titles": "Label",
+        "name": "label",
+        "datatype": "string",
+        "required": true,
+        "propertyUrl": "rdfs:label"
+      },
+      {
+        "titles": "Notation",
+        "name": "notation",
+        "datatype": {
+          "base": "string",
+          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+        },
+        "required": true,
+        "propertyUrl": "skos:notation"
+      },
+      {
+        "titles": "Parent Notation",
+        "name": "parent_notation",
+        "datatype": {
+          "base": "string",
+          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+        },
+        "required": false,
+        "propertyUrl": "skos:broader",
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{parent_notation}"
+      },
+      {
+        "titles": "Sort Priority",
+        "name": "sort",
+        "datatype": "integer",
+        "required": false,
+        "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+      },
+      {
+        "titles": "Description",
+        "name": "description",
+        "datatype": "string",
+        "required": false,
+        "propertyUrl": "rdfs:comment"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "rdf:type",
+        "valueUrl": "skos:Concept"
+      },
+      {
+        "virtual": true,
+        "propertyUrl": "skos:inScheme",
+        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
+      }
+    ],
+    "primaryKey": "notation",
+    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{notation}"
+  },
+  "prov:hadDerivation": {
     "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type",
-    "url": "dwelling-type.csv",
-    "tableSchema": {
-        "columns": [
-            {
-                "titles": "Label",
-                "name": "label",
-                "datatype": "string",
-                "required": true,
-                "propertyUrl": "rdfs:label"
-            },
-            {
-                "titles": "Notation",
-                "name": "notation",
-                "datatype": {
-                    "base": "string",
-                    "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
-                },
-                "required": true,
-                "propertyUrl": "skos:notation"
-            },
-            {
-                "titles": "Parent Notation",
-                "name": "parent_notation",
-                "datatype": {
-                    "base": "string",
-                    "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
-                },
-                "required": false,
-                "propertyUrl": "skos:broader",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{+parent_notation}"
-            },
-            {
-                "titles": "Sort Priority",
-                "name": "sort",
-                "datatype": "integer",
-                "required": false,
-                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-            },
-            {
-                "titles": "Description",
-                "name": "description",
-                "datatype": "string",
-                "required": false,
-                "propertyUrl": "rdfs:comment"
-            },
-            {
-                "virtual": true,
-                "propertyUrl": "rdf:type",
-                "valueUrl": "skos:Concept"
-            },
-            {
-                "virtual": true,
-                "propertyUrl": "skos:inScheme",
-                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
-            }
-        ],
-        "primaryKey": "notation",
-        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/dwelling-type/{+notation}"
-    },
-    "prov:hadDerivation": {
-        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type",
-        "@type": [
-            "skos:ConceptScheme",
-            "http://publishmydata.com/pmdcat#ConceptScheme"
-        ]
-    },
-    "rdfs:label": "Dwelling Type",
-    "dc:title": "Dwelling Type",
-    "rdfs:seeAlso": [
-        {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type/dataset",
-            "@type": [
-                "dcat:Dataset",
-                "http://publishmydata.com/pmdcat#Dataset"
-            ],
-            "http://publishmydata.com/pmdcat#datasetContents": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
-            },
-            "http://publishmydata.com/pmdcat#graph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
-            },
-            "dc:modified": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:35:12.525131"
-            },
-            "rdfs:label": "Dwelling Type",
-            "dc:title": "Dwelling Type",
-            "rdfs:comment": "Dataset representing the 'Dwelling Type' code list.",
-            "dc:issued": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.030198"
-            }
-        },
-        {
-            "@id": "http://gss-data.org.uk/catalog/vocabularies",
-            "dcat:record": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type/catalog-record"
-            }
-        },
-        {
-            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type/catalog-record",
-            "@type": "dcat:CatalogRecord",
-            "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type/dataset"
-            },
-            "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/dwelling-type"
-            },
-            "dc:title": "Dwelling Type Catalog Record",
-            "rdfs:label": "Dwelling Type Catalog Record",
-            "dc:issued": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.030198"
-            },
-            "dc:modified": {
-                "@type": "dateTime",
-                "@value": "2021-05-20T11:21:03.030198"
-            }
-        }
-    ]
+    "@type": "skos:ConceptScheme",
+    "rdfs:label": "Dwelling Type"
+  }
 }

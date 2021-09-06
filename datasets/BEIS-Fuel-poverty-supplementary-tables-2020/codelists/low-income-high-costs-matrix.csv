@@ -1,7 +1,6 @@
 Label,Notation,Parent Notation,Sort Priority
-Low Income High Costs,low-income-high-costs,,
-Low Income Low Costs,low-income-low-costs,,
-High Income High Costs,high-income-high-costs,,
-High Income Low Costs,high-income-low-costs,,
-All households,all-households,,
+Low Income Low Energy Efficiency,low-income-low-energy-efficiency,,
+Low Income High Energy Efficiency,low-income-high-energy-efficiency,,
+High Income Low Energy Efficiency,high-income-low-energy-efficiency,,
+High Income High Energy Efficiency,high-income-high-energy-efficiency,,
 all,all,,
