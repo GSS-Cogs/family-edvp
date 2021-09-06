@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[182]:
+# In[200]:
 
 
 from gssutils import *
@@ -15,7 +15,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[183]:
+# In[201]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -172,7 +172,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[184]:
+# In[202]:
 
 
 
@@ -188,7 +188,7 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[185]:
+# In[203]:
 
 
 
@@ -258,7 +258,7 @@ energy_efficiency_task = {
 }
 
 
-# In[186]:
+# In[204]:
 
 
 
@@ -268,7 +268,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[187]:
+# In[205]:
 
 
 
@@ -314,7 +314,7 @@ household_characteristics_task = {
 }
 
 
-# In[188]:
+# In[206]:
 
 
 
@@ -323,7 +323,7 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[189]:
+# In[207]:
 
 
 
@@ -359,7 +359,7 @@ household_income_task = {
 }
 
 
-# In[190]:
+# In[208]:
 
 
 
@@ -368,7 +368,7 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[191]:
+# In[209]:
 
 
 
@@ -409,7 +409,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[192]:
+# In[210]:
 
 
 
@@ -465,7 +465,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[193]:
+# In[211]:
 
 
 # # CSVW Mapping
@@ -475,7 +475,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[194]:
+# In[212]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -521,7 +521,7 @@ csvw_value_map = {
 }
 
 
-# In[195]:
+# In[213]:
 
 
 
@@ -531,11 +531,12 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[196]:
+# In[214]:
 
 
 
 # description we'll add to most joined tables
+scraper.dataset.family = 'Energy'
 
 comment = "Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics	 based on Median Fuel Costs, Income, FPEER Rating and Floor Area"
 description = """Fuel poverty statistics report detailing Energy Efficiency and Dwelling Characteristics based on Median Fuel Costs, Income, FPEER Rating and Floor Area,
@@ -823,7 +824,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[197]:
+# In[215]:
 
 
 
@@ -850,7 +851,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[197]:
+# In[215]:
 
 
 

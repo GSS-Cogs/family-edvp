@@ -1,68 +1,136 @@
 {
-  "@context": "http://www.w3.org/ns/csvw",
-  "@id": "#table",
-  "url": "main-fuel-type.csv",
-  "tableSchema": {
-    "columns": [
-      {
-        "titles": "Label",
-        "name": "label",
-        "datatype": "string",
-        "required": true,
-        "propertyUrl": "rdfs:label"
-      },
-      {
-        "titles": "Notation",
-        "name": "notation",
-        "datatype": {
-          "base": "string",
-          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type",
+    "url": "main-fuel-type.csv",
+    "rdfs:label": "Main Fuel Type",
+    "dc:title": "Main Fuel Type",
+    "tableSchema": {
+        "columns": [
+            {
+                "titles": "Label",
+                "name": "label",
+                "datatype": "string",
+                "required": true,
+                "propertyUrl": "rdfs:label"
+            },
+            {
+                "titles": "Notation",
+                "name": "notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*$"
+                },
+                "required": true,
+                "propertyUrl": "skos:notation"
+            },
+            {
+                "titles": "Parent Notation",
+                "name": "parent_notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^(-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*|)$"
+                },
+                "required": false,
+                "propertyUrl": "skos:broader",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#concept/main-fuel-type/{+parent_notation}"
+            },
+            {
+                "titles": "Sort Priority",
+                "name": "sort_priority",
+                "datatype": "integer",
+                "required": false,
+                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "rdf:type",
+                "valueUrl": "skos:Concept"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "skos:inScheme",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type"
+            }
+        ],
+        "primaryKey": "notation",
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#concept/main-fuel-type/{+notation}"
+    },
+    "prov:hadDerivation": {
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type",
+        "@type": [
+            "skos:ConceptScheme",
+            "http://publishmydata.com/pmdcat#ConceptScheme"
+        ]
+    },
+    "rdfs:seeAlso": [
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type/dataset",
+            "@type": [
+                "dcat:Dataset",
+                "http://publishmydata.com/pmdcat#Dataset"
+            ],
+            "http://publishmydata.com/pmdcat#datasetContents": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type"
+            },
+            "http://publishmydata.com/pmdcat#graph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:48:27.518997"
+            },
+            "rdfs:label": "Main Fuel Type",
+            "dc:title": "Main Fuel Type",
+            "rdfs:comment": "Dataset representing the 'Main Fuel Type' code list.",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:48:27.518997"
+            },
+            "dc:license": {
+                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            },
+            "dc:creator": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dc:publisher": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dcat:contactPoint": {
+                "@id": "fuelpoverty@beis.gov.uk"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.gov.uk/government/statistics/fuel-poverty-supplementary-tables-2021"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "These tables provide supplementary data relating to fuel poverty for various dwelling and household characteristics."
+            }
         },
-        "required": true,
-        "propertyUrl": "skos:notation"
-      },
-      {
-        "titles": "Parent Notation",
-        "name": "parent_notation",
-        "datatype": {
-          "base": "string",
-          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+        {
+            "@id": "http://gss-data.org.uk/catalog/vocabularies",
+            "dcat:record": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type/catalog-record"
+            }
         },
-        "required": false,
-        "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/main-fuel-type/{parent_notation}"
-      },
-      {
-        "titles": "Sort Priority",
-        "name": "sort",
-        "datatype": "integer",
-        "required": false,
-        "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-      },
-      {
-        "titles": "Description",
-        "name": "description",
-        "datatype": "string",
-        "required": false,
-        "propertyUrl": "rdfs:comment"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "rdf:type",
-        "valueUrl": "skos:Concept"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/main-fuel-type"
-      }
-    ],
-    "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/main-fuel-type/{notation}"
-  },
-  "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/main-fuel-type",
-    "@type": "skos:ConceptScheme",
-    "rdfs:label": "Main Fuel Type"
-  }
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type/catalog-record",
+            "@type": "dcat:CatalogRecord",
+            "foaf:primaryTopic": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type/dataset"
+            },
+            "http://publishmydata.com/pmdcat#metadataGraph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/main-fuel-type"
+            },
+            "dc:title": "Main Fuel Type Catalog Record",
+            "rdfs:label": "Main Fuel Type Catalog Record",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:48:27.518997"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:48:27.518997"
+            }
+        }
+    ]
 }

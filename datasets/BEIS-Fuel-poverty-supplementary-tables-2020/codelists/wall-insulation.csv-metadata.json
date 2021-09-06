@@ -1,68 +1,136 @@
 {
-  "@context": "http://www.w3.org/ns/csvw",
-  "@id": "#table",
-  "url": "wall-insulation.csv",
-  "tableSchema": {
-    "columns": [
-      {
-        "titles": "Label",
-        "name": "label",
-        "datatype": "string",
-        "required": true,
-        "propertyUrl": "rdfs:label"
-      },
-      {
-        "titles": "Notation",
-        "name": "notation",
-        "datatype": {
-          "base": "string",
-          "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation",
+    "url": "wall-insulation.csv",
+    "rdfs:label": "Wall Insulation",
+    "dc:title": "Wall Insulation",
+    "tableSchema": {
+        "columns": [
+            {
+                "titles": "Label",
+                "name": "label",
+                "datatype": "string",
+                "required": true,
+                "propertyUrl": "rdfs:label"
+            },
+            {
+                "titles": "Notation",
+                "name": "notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*$"
+                },
+                "required": true,
+                "propertyUrl": "skos:notation"
+            },
+            {
+                "titles": "Parent Notation",
+                "name": "parent_notation",
+                "datatype": {
+                    "base": "string",
+                    "format": "^(-?[\\w\\.\\/\\+]+(-[\\w\\.\\/\\+]+)*|)$"
+                },
+                "required": false,
+                "propertyUrl": "skos:broader",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#concept/wall-insulation/{+parent_notation}"
+            },
+            {
+                "titles": "Sort Priority",
+                "name": "sort_priority",
+                "datatype": "integer",
+                "required": false,
+                "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "rdf:type",
+                "valueUrl": "skos:Concept"
+            },
+            {
+                "virtual": true,
+                "propertyUrl": "skos:inScheme",
+                "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation"
+            }
+        ],
+        "primaryKey": "notation",
+        "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#concept/wall-insulation/{+notation}"
+    },
+    "prov:hadDerivation": {
+        "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation",
+        "@type": [
+            "skos:ConceptScheme",
+            "http://publishmydata.com/pmdcat#ConceptScheme"
+        ]
+    },
+    "rdfs:seeAlso": [
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation/dataset",
+            "@type": [
+                "dcat:Dataset",
+                "http://publishmydata.com/pmdcat#Dataset"
+            ],
+            "http://publishmydata.com/pmdcat#datasetContents": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation"
+            },
+            "http://publishmydata.com/pmdcat#graph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:49:45.848968"
+            },
+            "rdfs:label": "Wall Insulation",
+            "dc:title": "Wall Insulation",
+            "rdfs:comment": "Dataset representing the 'Wall Insulation' code list.",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:49:45.848968"
+            },
+            "dc:license": {
+                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            },
+            "dc:creator": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dc:publisher": {
+                "@id": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy"
+            },
+            "dcat:contactPoint": {
+                "@id": "fuelpoverty@beis.gov.uk"
+            },
+            "dcat:landingPage": {
+                "@id": "https://www.gov.uk/government/statistics/fuel-poverty-supplementary-tables-2021"
+            },
+            "http://publishmydata.com/pmdcat#markdownDescription": {
+                "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                "@value": "These tables provide supplementary data relating to fuel poverty for various dwelling and household characteristics."
+            }
         },
-        "required": true,
-        "propertyUrl": "skos:notation"
-      },
-      {
-        "titles": "Parent Notation",
-        "name": "parent_notation",
-        "datatype": {
-          "base": "string",
-          "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+        {
+            "@id": "http://gss-data.org.uk/catalog/vocabularies",
+            "dcat:record": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation/catalog-record"
+            }
         },
-        "required": false,
-        "propertyUrl": "skos:broader",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/wall-insulation/{parent_notation}"
-      },
-      {
-        "titles": "Sort Priority",
-        "name": "sort",
-        "datatype": "integer",
-        "required": false,
-        "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
-      },
-      {
-        "titles": "Description",
-        "name": "description",
-        "datatype": "string",
-        "required": false,
-        "propertyUrl": "rdfs:comment"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "rdf:type",
-        "valueUrl": "skos:Concept"
-      },
-      {
-        "virtual": true,
-        "propertyUrl": "skos:inScheme",
-        "valueUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/wall-insulation"
-      }
-    ],
-    "primaryKey": "notation",
-    "aboutUrl": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept/wall-insulation/{notation}"
-  },
-  "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/concept-scheme/wall-insulation",
-    "@type": "skos:ConceptScheme",
-    "rdfs:label": "Wall Insulation"
-  }
+        {
+            "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation/catalog-record",
+            "@type": "dcat:CatalogRecord",
+            "foaf:primaryTopic": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation/dataset"
+            },
+            "http://publishmydata.com/pmdcat#metadataGraph": {
+                "@id": "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020#scheme/wall-insulation"
+            },
+            "dc:title": "Wall Insulation Catalog Record",
+            "rdfs:label": "Wall Insulation Catalog Record",
+            "dc:issued": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:49:45.848968"
+            },
+            "dc:modified": {
+                "@type": "dateTime",
+                "@value": "2021-09-06T12:49:45.848968"
+            }
+        }
+    ]
 }
