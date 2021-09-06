@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[91]:
+# In[182]:
 
 
-# -*- coding: utf-8 -*-
-# + {}
 from gssutils import *
 import json
+import copy
 
 from template import generate_codelist_from_template
 
@@ -16,15 +15,7 @@ cubes = Cubes("info.json")
 coldef = json.load(open('info.json'))
 
 
-# In[92]:
-
-
-# # Helpers
-#
-# These are all the same two variations of table repeated, so we're just gonna have a function for each
-
-
-# In[93]:
+# In[183]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -181,12 +172,12 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[94]:
+# In[184]:
+
 
 
 scraper = Scraper(seed="info.json")
 scraper
-
 
 distro = scraper.distribution(latest=True)
 tabs = distro.as_databaker()
@@ -197,7 +188,8 @@ tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Num
 # Tables 1 through 11 (the parameters, the processing will happen later on)
 
 
-# In[95]:
+# In[185]:
+
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -266,7 +258,8 @@ energy_efficiency_task = {
 }
 
 
-# In[96]:
+# In[186]:
+
 
 
 
@@ -275,7 +268,8 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[97]:
+# In[187]:
+
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -320,7 +314,8 @@ household_characteristics_task = {
 }
 
 
-# In[98]:
+# In[188]:
+
 
 
 # # Household income
@@ -328,7 +323,8 @@ household_characteristics_task = {
 # Tables 17 through 18 (the parameters, the processing will happen later on)
 
 
-# In[99]:
+# In[189]:
+
 
 
 # +
@@ -363,7 +359,8 @@ household_income_task = {
 }
 
 
-# In[100]:
+# In[190]:
+
 
 
 # # Fuel payment type
@@ -371,7 +368,8 @@ household_income_task = {
 # Tables 19 through 20 (the parameters, the processing will happen later on)
 
 
-# In[101]:
+# In[191]:
+
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -411,7 +409,8 @@ fuel_payment_type_task = {
 }
 
 
-# In[102]:
+# In[192]:
+
 
 
 trace = TransformTrace()
@@ -464,14 +463,20 @@ for category, dataset_task in {
     except Exception as err:
         raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]),
                                                                                          dataset_task["name"])) from err
-# -
+
+
+# In[193]:
+
+
 # # CSVW Mapping
 #
 # We're gonna need quite a lof of mapping for all these datasets, so we'll do it here and pass it around dynamically.
 #
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
-# +
+
+# In[194]:
+
 
 # csvw mapping for dimensions common to all datasets
 csvw_common_map = {
@@ -516,7 +521,8 @@ csvw_value_map = {
 }
 
 
-# In[103]:
+# In[195]:
+
 
 
 df.head()
@@ -525,7 +531,8 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[104]:
+# In[196]:
+
 
 
 # description we'll add to most joined tables
@@ -654,7 +661,7 @@ table_joins = {
 
 # Given there are standard column to all datacubes it's easier
 # to define the columns we're NOT going to pathify
-COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Unit", "Measure Type", "Region"]
+COLUMNS_TO_NOT_PATHIFY = ["Value", "Period", "Region"]
 
 # Switch for generating codelists (should usually be False)
 GENERATE_CODELISTS = False
@@ -709,12 +716,14 @@ for title, info in table_joins.items():
     if "description" in info.keys():
         scraper.dataset.description = info["description"]
 
-    from IPython.core.display import HTML
+    df = df.replace('All households', 'all')
+
+    """from IPython.core.display import HTML
     for col in df:
         if col not in ['Value']:
             df[col] = df[col].astype('category')
             display(HTML(f"<h2>{col}</h2>"))
-            display(df[col].cat.categories)
+            display(df[col].cat.categories)"""
 
     # Pathify (sometimes generate codelists from) appropriate columns
     for col in df.columns.values.tolist():
@@ -736,7 +745,7 @@ for title, info in table_joins.items():
     # We're gonna change the column mapping on the fly to deal with the large number and
     # variation of datasets
 
-    do_mapping = True
+    """do_mapping = True
 
     if do_mapping:
         mapping = {}
@@ -782,13 +791,15 @@ for title, info in table_joins.items():
         #    print(json.dumps(mapping, indent=2))
         #    print("\n")
 
-    # FOR NOW - remove measure type
-    df = df.drop("Measure Type", axis=1)
-    df = df.drop("Unit", axis=1)
+    # FOR NOW - remove measure type"""
+    #df = df.drop("Measure Type", axis=1)
+    #df = df.drop("Unit", axis=1)
 
     df = df.drop_duplicates()
 
-    #csvName = "{}.csv".format(pathify(title))
+    cubes.add_cube(copy.deepcopy(scraper), df, title)
+
+    """#csvName = "{}.csv".format(pathify(title))
     csvName = "observations{}.csv".format(pathify(info['datasetid']))
     out = Path('out')
     out.mkdir(exist_ok=True)
@@ -803,23 +814,24 @@ for title, info in table_joins.items():
 
     csvw_transform = CSVWMapping()
     csvw_transform.set_csv(out / csvName)
-    csvw_transform._mapping = mapping
+    #csvw_transform._mapping = mapping
     #csvw_transform.set_mapping(coldef)
     csvw_transform.set_dataset_uri(urljoin(scraper._base_uri, f'data/{scraper._dataset_id}'))
     csvw_transform.write(out / f'{csvName}-metadata.json')
 
     with open(out / f'{csvName}-metadata.trig', 'wb') as metadata:
-        metadata.write(scraper.generate_trig())
+        metadata.write(scraper.generate_trig())"""
 
 
-# In[105]:
+# In[197]:
 
 
-#cubes.output_all()
-# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
+
+cubes.output_all()
+"""# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
 #cubes.cubes[0].multi_trig = scraper.generate_trig()
 #cubes.cubes[0].output(Path("./out"), False, cubes.info, False)
-trace.render("spec_v1.html")
+trace.render("spec_v1.html")"""
 #
 
 # http://gss-data.org.uk/data/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020/fuel-poverty-supplementary-tables-energy-efficiency-and-dwelling-characteristics-median-after-housing-costs-ahc-equivalised-income#dimension
@@ -838,7 +850,8 @@ for index, file in enumerate(files):
 """
 
 
-# In[105]:
+# In[197]:
+
 
 
 
