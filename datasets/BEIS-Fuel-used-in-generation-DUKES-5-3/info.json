@@ -9,7 +9,7 @@
     ],
     "published": "2020-07-30",
     "families": [
-        "edvp"
+        "energy"
     ],
     "extract": {
         "source": "XLS",
@@ -37,7 +37,7 @@
             },
             "Generating Companies" :{
                 "parent": "http://gss-data.org.uk/def/energy/property/dimension/generating-companies",
-                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{generating_companies}",
+                "value": "http://gss-data.org.uk/def/energy/concept/generating-companies/{generating_companies}",
                 "codelist": false
             },
       		"Unit": {
