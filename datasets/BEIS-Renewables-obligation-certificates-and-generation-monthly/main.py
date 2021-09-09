@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[30]:
+# In[15]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[31]:
+# In[16]:
 
 
 #Add cubes class
@@ -23,7 +23,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[32]:
+# In[17]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -32,7 +32,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[33]:
+# In[18]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[34]:
+# In[19]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -138,22 +138,20 @@ def right(s, amount):
     return s[-amount:]
 
 #df['Period'] = df.apply(lambda x: 'quarter/' + left(x['Period'], 4) + '-Q' + left(x['Qtr'], 1) if 'NaN' not in x['Qtr'] else x['Period'], axis =1 )
+df['Month'] = df.apply(lambda x : x['Month'][:-2] if x['Month'][-1] == 'p' else x['Month'], axis = 1)
 
 df = df.replace({'Month' : {'September'  : '09',
                             'October'    : '10',
                             'November'   : '11',
-                            'November p' : '11',
                             'December'   : '12',
                             'January'    : '01',
                             'February'   : '02',
                             'March'      : '03',
                             'April'      : '04',
-                            'April p'      : '04',
                             'May'        : '05',
                             'June'       : '06',
                             'July'       : '07',
-                            'August'     : '08',
-                            'October p'  : '10'},
+                            'August'     : '08'},
                  'Technology Group' : {'Total' : 'All'}})
 
 df['Period'] = df.apply(lambda x: 'month/' + left(x['Period'], 4) + '-' + x['Month'] if 'NaN' not in x['Month'] else x['Period'], axis =1 )
@@ -191,7 +189,7 @@ df.drop(indexNames, inplace = True)
 df
 
 
-# In[35]:
+# In[20]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -203,7 +201,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[36]:
+# In[21]:
 
 
 from IPython.core.display import HTML
