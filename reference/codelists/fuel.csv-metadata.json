@@ -2,8 +2,6 @@
     "@context": "http://www.w3.org/ns/csvw",
     "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel",
     "url": "fuel.csv",
-    "rdfs:label": "Fuel",
-    "dc:title": "Fuel",
     "tableSchema": {
         "columns": [
             {
@@ -36,10 +34,17 @@
             },
             {
                 "titles": "Sort Priority",
-                "name": "sort_priority",
+                "name": "sort",
                 "datatype": "integer",
                 "required": false,
                 "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+                "titles": "Description",
+                "name": "description",
+                "datatype": "string",
+                "required": false,
+                "propertyUrl": "rdfs:comment"
             },
             {
                 "virtual": true,
@@ -55,6 +60,8 @@
         "primaryKey": "notation",
         "aboutUrl": "http://gss-data.org.uk/def/energy/concept/fuel/{+notation}"
     },
+    "rdfs:label": "Fuel",
+    "dc:title": "Fuel",
     "prov:hadDerivation": {
         "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel",
         "@type": [
@@ -69,25 +76,22 @@
                 "dcat:Dataset",
                 "http://publishmydata.com/pmdcat#Dataset"
             ],
+            "rdfs:label": "Fuel",
+            "dc:title": "Fuel",
             "http://publishmydata.com/pmdcat#datasetContents": {
                 "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
             },
+            "rdfs:comment": "Dataset representing the 'Fuel' code list.",
             "http://publishmydata.com/pmdcat#graph": {
                 "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-09-07T13:08:41.022307"
+                "@value": "2021-05-20T11:35:12.596839"
             },
-            "rdfs:label": "Fuel",
-            "dc:title": "Fuel",
-            "rdfs:comment": "Dataset representing the 'Fuel' code list.",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-09-07T13:08:41.022307"
-            },
-            "dc:license": {
-                "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+                "@value": "2021-02-03T11:35:22.815540"
             }
         },
         {
@@ -99,21 +103,21 @@
         {
             "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel/catalog-record",
             "@type": "dcat:CatalogRecord",
-            "foaf:primaryTopic": {
-                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel/dataset"
-            },
-            "http://publishmydata.com/pmdcat#metadataGraph": {
-                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
-            },
             "dc:title": "Fuel Catalog Record",
             "rdfs:label": "Fuel Catalog Record",
             "dc:issued": {
                 "@type": "dateTime",
-                "@value": "2021-09-07T13:08:41.022307"
+                "@value": "2020-12-23T11:58:58.120533"
+            },
+            "foaf:primaryTopic": {
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel/dataset"
             },
             "dc:modified": {
                 "@type": "dateTime",
-                "@value": "2021-09-07T13:08:41.022307"
+                "@value": "2020-12-23T11:59:10.942836"
+            },
+            "http://publishmydata.com/pmdcat#metadataGraph": {
+                "@id": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
             }
         }
     ]
