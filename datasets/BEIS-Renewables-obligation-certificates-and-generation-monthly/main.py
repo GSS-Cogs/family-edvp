@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[15]:
+# In[22]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[16]:
+# In[23]:
 
 
 #Add cubes class
@@ -23,7 +23,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[17]:
+# In[24]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -32,7 +32,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[18]:
+# In[ ]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[19]:
+# In[ ]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -186,10 +186,13 @@ df['Value'] = df.apply(lambda x: int(x['Value']) if '.' in str(x['Value']) else 
 indexNames = df[ (df['Period'] == 'month/2021-04') & (df['Value'] == 0) & (df['Technology Group'] == 'all')  ].index
 df.drop(indexNames, inplace = True)
 
+indexNames = df[ (df['Period'] == 'month/2021-05') & (df['Value'] == 0) & (df['Technology Group'] == 'all')  ].index
+df.drop(indexNames, inplace = True)
+
 df
 
 
-# In[20]:
+# In[ ]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -201,7 +204,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[21]:
+# In[ ]:
 
 
 from IPython.core.display import HTML
