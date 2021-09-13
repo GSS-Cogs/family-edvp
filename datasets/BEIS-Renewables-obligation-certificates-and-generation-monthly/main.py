@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[22]:
+# In[26]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[23]:
+# In[27]:
 
 
 #Add cubes class
@@ -23,7 +23,7 @@ cubes = Cubes("info.json")
 trace = TransformTrace()
 
 
-# In[24]:
+# In[28]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -32,7 +32,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[ ]:
+# In[29]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -87,7 +87,7 @@ for tab in tabs:
     technology_group = techno_group - tab.excel_ref("A").filter(contains_string("Summary Technology Group")) - remove
     trace.Technology_Group("Defined from cell A8 which is not blank")
 
-    observations = cell.shift(3, 6).expand(RIGHT).expand(DOWN).is_not_whitespace() - element.expand(RIGHT)
+    observations = cell.shift(3, 6).expand(RIGHT).expand(DOWN).is_not_whitespace() - element.expand(RIGHT) & period.expand(DOWN)
 
     if tab.name == "Quarter":
 
@@ -127,7 +127,7 @@ for tab in tabs:
     trace.store("combined_dataframe", tidy_sheet.topandas())
 
 
-# In[ ]:
+# In[30]:
 
 
 df = trace.combine_and_trace(datasetTitle, "combined_dataframe").fillna("NaN")
@@ -183,16 +183,10 @@ df = df.drop(columns=['Element'])
 
 df['Value'] = df.apply(lambda x: int(x['Value']) if '.' in str(x['Value']) else x['Value'], axis = 1)
 
-indexNames = df[ (df['Period'] == 'month/2021-04') & (df['Value'] == 0) & (df['Technology Group'] == 'all')  ].index
-df.drop(indexNames, inplace = True)
-
-indexNames = df[ (df['Period'] == 'month/2021-05') & (df['Value'] == 0) & (df['Technology Group'] == 'all')  ].index
-df.drop(indexNames, inplace = True)
-
 df
 
 
-# In[ ]:
+# In[31]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -204,7 +198,7 @@ cubes.output_all()
 trace.render("spec_v1.html")
 
 
-# In[ ]:
+# In[32]:
 
 
 from IPython.core.display import HTML
