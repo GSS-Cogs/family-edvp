@@ -1,4 +1,5 @@
 {
+    "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
     "id": "lccc-actual-ilr-income",
     "title": "Actual ILR Income",
     "publisher": "Low Carbon Contracts Company Ltd",
@@ -22,24 +23,23 @@
         ],
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
+                "type": "dimension",
+                "new": {
+                    "subPropertyOf": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                    "codelist": false
+                },
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["actual-eligible-demand",
-                          "actual-eii-excluded-electricity",
-                          "actual-gross-demand",
-                          "actual-ilr",
-                          "actual-income"]
+                "type": "measures",
+        		"value": "http://gss-data.org.uk/def/measure/{measure_type}"
       		},
       		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                "type": "units",
         		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
       		},
       		"Value": {
+                "type": "observations",
         		"datatype": "double"
       		}
         },

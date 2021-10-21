@@ -11,12 +11,9 @@ from datetime import date
 
 infoFileName = 'info.json'
 
-info = json.load(open(infoFileName))
 scraper = Scraper(seed=infoFileName)
 scraper.dataset.issued = '2020-12-08'
 scraper.dataset.modified = date.today() #Dataset is updated daily
-
-cubes   = Cubes(infoFileName)
 
 distro  = scraper.distribution(latest=True, mediaType='text/csv')
 distro
@@ -73,14 +70,5 @@ Actual Income (£) :	Actual Income from electricity suppliers based on Actual El
 Period : The date on which energy is deemed to be used and must be later settled through BSC initial settlement/reconciliation or Scottish Settlements. Also known as the Trading Day
 """
 
-cubes.add_cube(scraper, df, scraper.title)
-
-cubes.output_all()
-df
-
-
-# In[52]:
-
-
-
-
+df.to_csv("observations.csv", index=False)
+scraper.as_csvqb_catalog_metadata().to_json_file("catalog-metadata.json")

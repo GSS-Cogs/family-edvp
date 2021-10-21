@@ -1,0 +1,367 @@
+{
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "actual-ilr-income.csv#dataset",
+    "tables": [
+        {
+            "url": "actual-ilr-income.csv",
+            "tableSchema": {
+                "columns": [
+                    {
+                        "titles": "Period",
+                        "name": "period",
+                        "propertyUrl": "actual-ilr-income.csv#dimension/period",
+                        "valueUrl": "http://reference.data.gov.uk/id/{+period}",
+                        "required": true
+                    },
+                    {
+                        "titles": "Value",
+                        "name": "value",
+                        "propertyUrl": "{+measure_type}",
+                        "datatype": "double",
+                        "required": true
+                    },
+                    {
+                        "titles": "Measure Type",
+                        "name": "measure_type",
+                        "propertyUrl": "http://purl.org/linked-data/cube#measureType",
+                        "valueUrl": "http://gss-data.org.uk/def/measure/{measure_type}",
+                        "required": true
+                    },
+                    {
+                        "titles": "Unit",
+                        "name": "unit",
+                        "propertyUrl": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                        "valueUrl": "http://gss-data.org.uk/def/concept/measurement-units/{unit}",
+                        "required": true
+                    }
+                ],
+                "foreignKeys": [],
+                "primaryKey": [
+                    "period",
+                    "measure_type"
+                ],
+                "aboutUrl": "actual-ilr-income.csv#obs/{+period}/{+measure_type}"
+            }
+        }
+    ],
+    "rdfs:seeAlso": [
+        {
+            "@id": "actual-ilr-income.csv#component/actual-eii-excluded-electricity",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eii-excluded-electricity"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eii-excluded-electricity"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/actual-income",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-income"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-income"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/actual-gross-demand",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-gross-demand"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-gross-demand"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#structure",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DataStructureDefinition"
+            ],
+            "http://purl.org/linked-data/cube#component": [
+                {
+                    "@id": "actual-ilr-income.csv#component/actual-ilr"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/actual-gross-demand"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/actual-eligible-demand"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/actual-income"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/unit"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/measure-type"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/period"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#component/actual-eii-excluded-electricity"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-gross-demand"
+                },
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                },
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-ilr"
+                },
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-income"
+                },
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                },
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eligible-demand"
+                },
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eii-excluded-electricity"
+                },
+                {
+                    "@id": "actual-ilr-income.csv#dimension/period"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#dataset",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DataSet",
+                "http://www.w3.org/ns/dcat#Resource",
+                "http://www.w3.org/ns/dcat#Dataset",
+                "http://purl.org/linked-data/cube#Attachable"
+            ],
+            "http://purl.org/dc/terms/creator": [
+                {
+                    "@id": "https://www.gov.uk/government/organisations/low-carbon-contracts-company-ltd"
+                }
+            ],
+            "http://purl.org/dc/terms/description": [
+                {
+                    "@language": "en",
+                    "@value": "This dataset includes the determined Interim Levy Rates(ILR) and the actual daily Interim Levy Rate payments (ILR Income) received by LCCC from electricity suppliers.\nEnergy Intensive Industries (EII) are those industries that are determined by BEIS as intensive users of electricity. They are exempted from paying CfD levy, up to 85% of Supplier's daily gross demand.\nThis dataset is updated daily."
+                }
+            ],
+            "http://purl.org/dc/terms/identifier": [
+                {
+                    "@value": "Actual ILR Income"
+                }
+            ],
+            "http://purl.org/dc/terms/issued": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2020-12-08T00:00:00"
+                }
+            ],
+            "http://purl.org/dc/terms/modified": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2021-10-21T16:21:16.317488+00:00"
+                }
+            ],
+            "http://purl.org/dc/terms/publisher": [
+                {
+                    "@id": "https://www.gov.uk/government/organisations/low-carbon-contracts-company-ltd"
+                }
+            ],
+            "http://purl.org/dc/terms/title": [
+                {
+                    "@language": "en",
+                    "@value": "Actual ILR Income"
+                }
+            ],
+            "http://purl.org/linked-data/cube#structure": [
+                {
+                    "@id": "actual-ilr-income.csv#structure"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#comment": [
+                {
+                    "@language": "en",
+                    "@value": "\nActual EII_Excluded Electricity (MWh) :\tSupplier's Daily Energy Intensive Industries demand which is being exempted from paying CfD levy\nActual Eligible Demand (MWh) :  Gross Demand less both Energy Intensive Industries demand and Green Excluded Electricity demand\nActual Gross Demand (MWh) :\tThe volume of Active Import (i.e. electrical energy entering premises from the licensed distribution or transmission network), with no adjustment made for any Active Export (i.e. electrical energy generated on the premises and exported onto the licensed distribution or transmission network)\nActual ILR (\u00a3/MWh) : Under the Supplier Obligation Levy, electricity suppliers make pre-payments consisting of a unit cost fixed Interim Levy Rate, charged at a daily \u00a3/MWh rate to fund the cost of CfD generation payments. The Interim Levy Rate is set by LCCC every quarter, one quarter in advance, based on an estimate of the payments that will need to be made in respect of CfD generation in that quarter\nActual Income (\u00a3) :\tActual Income from electricity suppliers based on Actual Eligible Demand multiplied by Interim Levy Rate\nPeriod : The date on which energy is deemed to be used and must be later settled through BSC initial settlement/reconciliation or Scottish Settlements. Also known as the Trading Day\n"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Actual ILR Income"
+                }
+            ],
+            "http://www.w3.org/ns/dcat#landingPage": [
+                {
+                    "@id": "https://www.lowcarboncontracts.uk/data-portal/dataset/actual-ilr-income"
+                }
+            ],
+            "http://www.w3.org/ns/dcat#theme": [
+                {
+                    "@id": "http://gss-data.org.uk/def/gdp#edvp"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/actual-ilr",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-ilr"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-ilr"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#dimension/period",
+            "@type": [
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+                "http://purl.org/linked-data/cube#CodedProperty",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DimensionProperty",
+                "http://purl.org/linked-data/cube#ComponentProperty"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Period"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#range": [
+                {
+                    "@id": "actual-ilr-income.csv#class/period"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/unit",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#attribute": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentRequired": [
+                {
+                    "@value": true
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/period",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "actual-ilr-income.csv#dimension/period"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "actual-ilr-income.csv#dimension/period"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/actual-eligible-demand",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eligible-demand"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "http://gss-data.org.uk/def/measure/actual-eligible-demand"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#component/measure-type",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#ComponentSpecification"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                }
+            ]
+        },
+        {
+            "@id": "actual-ilr-income.csv#class/period",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://www.w3.org/2000/01/rdf-schema#Class"
+            ]
+        }
+    ]
+}

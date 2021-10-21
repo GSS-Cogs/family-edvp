@@ -1,0 +1,18 @@
+{
+    "title": "Actual ILR Income",
+    "identifier": null,
+    "summary": "\nActual EII_Excluded Electricity (MWh) :\tSupplier's Daily Energy Intensive Industries demand which is being exempted from paying CfD levy\nActual Eligible Demand (MWh) :  Gross Demand less both Energy Intensive Industries demand and Green Excluded Electricity demand\nActual Gross Demand (MWh) :\tThe volume of Active Import (i.e. electrical energy entering premises from the licensed distribution or transmission network), with no adjustment made for any Active Export (i.e. electrical energy generated on the premises and exported onto the licensed distribution or transmission network)\nActual ILR (\u00a3/MWh) : Under the Supplier Obligation Levy, electricity suppliers make pre-payments consisting of a unit cost fixed Interim Levy Rate, charged at a daily \u00a3/MWh rate to fund the cost of CfD generation payments. The Interim Levy Rate is set by LCCC every quarter, one quarter in advance, based on an estimate of the payments that will need to be made in respect of CfD generation in that quarter\nActual Income (\u00a3) :\tActual Income from electricity suppliers based on Actual Eligible Demand multiplied by Interim Levy Rate\nPeriod : The date on which energy is deemed to be used and must be later settled through BSC initial settlement/reconciliation or Scottish Settlements. Also known as the Trading Day\n",
+    "description": "This dataset includes the determined Interim Levy Rates(ILR) and the actual daily Interim Levy Rate payments (ILR Income) received by LCCC from electricity suppliers.\nEnergy Intensive Industries (EII) are those industries that are determined by BEIS as intensive users of electricity. They are exempted from paying CfD levy, up to 85% of Supplier's daily gross demand.\nThis dataset is updated daily.",
+    "creator_uri": "https://www.gov.uk/government/organisations/low-carbon-contracts-company-ltd",
+    "publisher_uri": "https://www.gov.uk/government/organisations/low-carbon-contracts-company-ltd",
+    "landing_page_uri": "https://www.lowcarboncontracts.uk/data-portal/dataset/actual-ilr-income",
+    "theme_uris": [
+        "http://gss-data.org.uk/def/gdp#edvp"
+    ],
+    "keywords": [],
+    "dataset_issued": "2020-12-08",
+    "dataset_modified": "2021-10-21T16:21:16.317488+00:00",
+    "license_uri": null,
+    "public_contact_point_uri": null,
+    "uri_safe_identifier_override": null
+}
