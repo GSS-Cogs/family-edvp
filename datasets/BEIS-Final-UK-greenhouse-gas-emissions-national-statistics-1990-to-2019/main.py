@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
+# ## BEIS-Final-UK-greenhouse-gas-emissions-national-statistics-1990-to-2019
+
 import json
 import pandas as pd
 from gssutils import *
 
 
-
 metadata = Scraper(seed="info.json")
-
 
 distribution = metadata.distribution(
     latest=True,
@@ -16,12 +16,10 @@ distribution = metadata.distribution(
     in x,
 )
 
-
 tabs = distribution.as_databaker()
 tabs = [
     tab for tab in tabs if tab.name in ["1_1", "1_2", "1_3", "1_4", "1_5", "1_6", "3_1"]
 ]
-
 
 tidied_sheets = []
 for tab in tabs:
@@ -129,9 +127,7 @@ for tab in tabs:
         tidied_sheets.append(df)
         print(tab.name)
 
-
-df = pd.concat(tidied_sheets).fillna("")
-
+df = pd.concat(tidied_sheets, sort=False).fillna("")
 
 df.rename(
     columns={
@@ -142,17 +138,14 @@ df.rename(
     inplace=True,
 )
 
-
 df["Value"] = pd.to_numeric(df["Value"], errors="raise", downcast="float")
 df["Value"] = df["Value"].astype(float).round(3)
 df["Period"] = df["Period"].astype(float).astype(int)
 
-
 df["NC Sub Sector"] = df.apply(
     lambda x: "All" if x["NC Sub Sector"] == x["NC Sector"] else x["NC Sub Sector"],
-    axis=1
+    axis=1,
 )
-
 
 # +
 badInheritance = [
@@ -163,20 +156,20 @@ badInheritance = [
 
 df["Breakdown"] = df.apply(
     lambda x: "" if x["Geographic Coverage"] in badInheritance else x["Breakdown"],
-    axis=1
+    axis=1,
 )
 df["Breakdown"] = df.apply(
     lambda x: "None"
     if "" in x["Breakdown"] and x["Geographic Coverage"] == "United Kingdom"
     else x["Breakdown"],
-    axis=1
+    axis=1,
 )
 df["Breakdown"] = df.apply(
     lambda x: "None" if x["Geographic Coverage"] in badInheritance else x["Breakdown"],
-    axis=1
+    axis=1,
 )
 
-df["Measure Type"] = "Gas Emissions"
+df["Measure"] = "Gas Emissions"
 df = df.replace(
     {
         "Gas": {"Total": "All"},
@@ -186,18 +179,6 @@ df = df.replace(
 
 indexNames = df[df["Breakdown"] == "Net emissions/removals from LULUCF"].index
 df.drop(indexNames, inplace=True)
-
-df["NC Category"] = df["NC Category"].str.replace("/", "-")
-df["Breakdown"] = df["Breakdown"].str.replace("/", "-")
-
-df = df.replace(
-    {
-        "Breakdown": {
-            "excluding-net-emissions-removals-from-land-use-land-use-change-and-forestry-lulucf": "excluding-net-emissions-removals-from-lulucf"
-        }
-    }
-)
-
 # -
 
 df = df.replace(
@@ -210,9 +191,29 @@ df = df.replace(
     }
 )
 
+# +
+COLUMNS_TO_NOT_PATHIFY = ["Period", "Value"]
 
-df["Measure"] = "Gas Emissions"
+for col in df.columns.values.tolist():
+    if col in COLUMNS_TO_NOT_PATHIFY:
+        continue
+    try:
+        df[col] = df[col].apply(pathify)
+    except Exception as err:
+        raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
+# +
+df["NC Category"] = df["NC Category"].str.replace("/", "-")
+df["Breakdown"] = df["Breakdown"].str.replace("/", "-")
+
+df = df.replace(
+    {
+        "Breakdown": {
+            "excluding-net-emissions-removals-from-land-use-land-use-change-and-forestry-lulucf": "excluding-net-emissions-removals-from-lulucf"
+        }
+    }
+)
+# -
 
 df = df[
     [
@@ -227,8 +228,16 @@ df = df[
     ]
 ]
 
+# +
+# from IPython.core.display import HTML
+
+# for col in df:
+#     if col not in ["Value"]:
+#         df[col] = df[col].astype("category")
+#         display(HTML(f"<h2>{col}</h2>"))
+#         display(df[col].cat.categories)
+# -
 
 df.to_csv("observations.csv", index=False)
 catalog_metadata = metadata.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file("catalog-metadata.json")
-
