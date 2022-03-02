@@ -5,11 +5,11 @@
     "description": "Final estimates of UK territorial greenhouse gas emissions.",
     "landingPage": "https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019",
     "datasetNotes": [
-        "On landing page scroll down to link for dataset under heading \"Documents\"."
+        "On landing page scroll down to link for dataset under heading \"Documents\". Landing page updated to provisional 2020 for Climate change project. Original landing page https://www.gov.uk/government/statistics/final-uk-greenhouse-gas-emissions-national-statistics-1990-to-2019"
     ],
     "published": "2021-02-02",
     "families": [
-        "energy"
+        "EDVP"
     ],
     "extract": {
         "source": "XLS, ODS, CSV",
@@ -49,7 +49,7 @@
             "Breakdown": {
                 "description": "How the value is broken down (inclusions, exclusions)"
             },
-      		"Value": {
+            "Value": {
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/millions-of-tonnes-of-co2-equivalent",
                 "measure": "http://gss-data.org.uk/def/measure/gas-emissions",
                 "datatype": "double"
@@ -64,5 +64,5 @@
         "main_issue": 18
     },
     "sizingNotes": "Multiple tabs, multiple dimensions and multiple footnotes. Simple table structures but various types of tables. CSV available.",
-    "notes": ""
+    "notes": "Dataset also used for Climate Change Platform Project"
 }
