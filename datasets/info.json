@@ -4,7 +4,7 @@
     "project": "https://github.com/orgs/GSS-Cogs/projects/15",
     "githubcogs": "https://gss-cogs.github.io/family-edvp",
     "jenkins": {
-        "base": "https://ci.floop.org.uk",
+        "base": "https://ci.ukstats.dev",
         "path": [
             "GSS_data",
             "EDVP"
