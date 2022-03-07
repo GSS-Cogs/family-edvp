@@ -1,4 +1,5 @@
 {
+    "$schema": "https://gss-cogs.github.io/family-schemas/pipelines-schema.json",
     "family": "EDVP",
     "github": "https://github.com/GSS-Cogs/family-edvp",
     "project": "https://github.com/orgs/GSS-Cogs/projects/15",

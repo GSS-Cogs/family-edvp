@@ -3,13 +3,13 @@
     "title": "Fuel poverty supplementary tables 2020",
     "publisher": "Department for Business, Energy and Industrial Strategy",
     "description": "These tables provide supplementary data relating to fuel poverty for various dwelling and household characteristics.",
-    "landingPage": "https://www.gov.uk/government/statistics/fuel-poverty-supplementary-tables-2021",
+    "landingPage": "https://www.gov.uk/government/collections/fuel-poverty-statistics",
     "datasetNotes": [
         "On landing page scroll to heading \"2018 Statistics\" and click on \"Fuel poverty supplementary tables 2020\". Scroll to middle of new page where dataset is accessed under heading \"Documents\"."
     ],
     "published": "2020-04-30",
     "families": [
-        "Energy"
+        "EDVP"
     ],
     "extract": {
         "source": "XLS",
@@ -46,9 +46,9 @@
                 "value": "http://gss-data.org.uk/def/measure/{measure_type}",
                 "types": [
                     "median-costs",
-					"median-income",
-					"median-rating",
-					"median-floor-area"
+                    "median-income",
+                    "median-rating",
+                    "median-floor-area"
                 ]
             },
             "Low Income High costs Matrix": "",
