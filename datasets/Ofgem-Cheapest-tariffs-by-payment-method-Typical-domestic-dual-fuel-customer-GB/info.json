@@ -28,12 +28,9 @@
                 "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp"
             },
             "Period": {
-                "type": "dimension",
-                "new": {
-                  "subPropertyOf": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                  "codelist": true
-                },
-                "value": "http://reference.data.gov.uk/id/{+period}"
+                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}",
+                "codelist": false
             },
             "Payment Method": {
                 "type": "dimension",
