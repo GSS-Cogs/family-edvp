@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[16]:
+# In[10]:
 
 
 from gssutils import *
@@ -21,10 +21,8 @@ def Time_Formatter(date):
     return 'day/' + str(parse(date).date())
 
 
-# In[17]:
+# In[11]:
 
-
-cubes = Cubes("info.json")
 
 scraper = Scraper(seed="info.json")
 
@@ -39,21 +37,21 @@ dist.title = title
 dist
 
 
-# In[18]:
+# In[12]:
 
 
 df = pd.read_csv('retail-price-comparison.csv')
 df
 
 
-# In[19]:
+# In[13]:
 
 
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions%%list of the dimensions
 
-df = pd.melt(df, id_vars=["\n"])
-df = df.rename(columns={"\n": "Period", "value": "Value", 'variable' : 'Tariff'})
+df = pd.melt(df, id_vars=["\r\n"])
+df = df.rename(columns={"\r\n": "Period", "value": "Value", 'variable' : 'Tariff'})
 
 df['Value'] = df['Value'].apply(Value_To_Number)
 df['Period'] = df['Period'].apply(Time_Formatter)
@@ -88,16 +86,20 @@ The Default tariff cap level only came into effect from 1 October 2020."""
 df.head(20)
 
 
-# In[20]:
+
+# In[14]:
 
 
 scraper.dataset.family = 'energy'
 
-cubes.add_cube(scraper, df, title)
+
+df.to_csv('observations.csv', index=False)
 
 
-# In[21]:
+# In[15]:
 
 
-cubes.output_all()
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
 
