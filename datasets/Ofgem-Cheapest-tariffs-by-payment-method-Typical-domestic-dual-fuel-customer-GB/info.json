@@ -33,7 +33,7 @@
                   "subPropertyOf": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
                   "codelist": true
                 },
-                "value": "http://reference.data.gov.uk/id/year/{+year}"
+                "value": "http://reference.data.gov.uk/id/{+Period}"
             },
             "Payment Method": {
                 "type": "dimension",
