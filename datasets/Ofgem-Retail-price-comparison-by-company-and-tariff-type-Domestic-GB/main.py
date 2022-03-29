@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[16]:
 
 
 from gssutils import *
@@ -21,7 +21,7 @@ def Time_Formatter(date):
     return 'day/' + str(parse(date).date())
 
 
-# In[11]:
+# In[17]:
 
 
 scraper = Scraper(seed="info.json")
@@ -37,21 +37,21 @@ dist.title = title
 dist
 
 
-# In[12]:
+# In[18]:
 
 
 df = pd.read_csv('retail-price-comparison.csv')
 df
 
 
-# In[13]:
+# In[19]:
 
 
 dimensions = list(df.columns) # list of columns
 dimensions = [col for col in dimensions if 'date' not in col.lower()] # list of the dimensions%%list of the dimensions
 
-df = pd.melt(df, id_vars=["\r\n"])
-df = df.rename(columns={"\r\n": "Period", "value": "Value", 'variable' : 'Tariff'})
+df = pd.melt(df, id_vars=["\n"])
+df = df.rename(columns={"\n": "Period", "value": "Value", 'variable' : 'Tariff'})
 
 df['Value'] = df['Value'].apply(Value_To_Number)
 df['Period'] = df['Period'].apply(Time_Formatter)
@@ -87,7 +87,7 @@ df.head(20)
 
 
 
-# In[14]:
+# In[20]:
 
 
 scraper.dataset.family = 'energy'
@@ -96,7 +96,7 @@ scraper.dataset.family = 'energy'
 df.to_csv('observations.csv', index=False)
 
 
-# In[15]:
+# In[21]:
 
 
 
