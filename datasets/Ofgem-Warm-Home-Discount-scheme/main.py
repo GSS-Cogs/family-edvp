@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[23]:
+# In[52]:
 
 
 from gssutils import *
@@ -18,7 +18,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[24]:
+# In[53]:
 
 
 publisher = "The Office of Gas and Electricity Markets"
@@ -33,7 +33,7 @@ scraper = Scraper(seed="distribution-expenditure-info.json")
 scraper
 
 
-# In[ ]:
+# In[54]:
 
 
 
@@ -70,6 +70,16 @@ df['Unit'] = 'percent'
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Value', 'Measure Type', 'Unit']]
 
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
+
+for col in df.columns.values.tolist():
+    if col in COLUMNS_TO_NOT_PATHIFY:
+        continue
+    try:
+        df[col] = df[col].apply(pathify)
+    except Exception as err:
+        raise Exception('Failed to pathify column "{}".'.format(col)) from err
+
 scraper.dataset.title = 'Warm Home Discount Scheme: Distribution of expenditure by year'
 
 scraper.dataset.comment = """
@@ -88,7 +98,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[ ]:
+# In[55]:
 
 
 
@@ -98,7 +108,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('distribution-expenditure-catalog-metadata.json')
 
 
-# In[ ]:
+# In[56]:
 
 
 
@@ -115,7 +125,7 @@ scraper
 
 
 
-# In[ ]:
+# In[57]:
 
 
 
@@ -140,6 +150,17 @@ df['Unit'] = 'gbp'
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value', 'Measure Type', 'Unit']]
 
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
+
+for col in df.columns.values.tolist():
+	if col in COLUMNS_TO_NOT_PATHIFY:
+		continue
+	try:
+		df[col] = df[col].apply(pathify)
+	except Exception as err:
+		raise Exception('Failed to pathify column "{}".'.format(col)) from err
+
+
 scraper.dataset.title = 'Warm Home Discount Scheme: Total expenditure by obligated suppliers'
 
 scraper.dataset.comment = """
@@ -158,7 +179,7 @@ df.head(10)
 
 
 
-# In[ ]:
+# In[58]:
 
 
 
@@ -168,7 +189,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('total-expenditure-catalog-metadata.json')
 
 
-# In[ ]:
+# In[59]:
 
 
 
@@ -185,7 +206,7 @@ scraper
 
 
 
-# In[ ]:
+# In[60]:
 
 
 
@@ -224,7 +245,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[ ]:
+# In[61]:
 
 
 
