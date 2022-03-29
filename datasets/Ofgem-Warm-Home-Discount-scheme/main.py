@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[52]:
+# In[62]:
 
 
 from gssutils import *
@@ -18,7 +18,7 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[53]:
+# In[63]:
 
 
 publisher = "The Office of Gas and Electricity Markets"
@@ -33,7 +33,7 @@ scraper = Scraper(seed="distribution-expenditure-info.json")
 scraper
 
 
-# In[54]:
+# In[64]:
 
 
 
@@ -68,7 +68,7 @@ df['Value'] = df.apply(lambda x: str(x['Value']).replace('%', ''), axis = 1)
 df['Measure Type'] = 'expenditure'
 df['Unit'] = 'percent'
 
-df = df[['Period', 'Scheme Year', 'Support Element', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Scheme Year', 'Support Element', 'Value']]
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
@@ -98,7 +98,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[55]:
+# In[65]:
 
 
 
@@ -108,7 +108,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('distribution-expenditure-catalog-metadata.json')
 
 
-# In[56]:
+# In[66]:
 
 
 
@@ -125,7 +125,7 @@ scraper
 
 
 
-# In[57]:
+# In[67]:
 
 
 
@@ -148,7 +148,7 @@ df['Marker'] = df.apply(lambda x: 'not-applicable' if x['Value'] == '' else '', 
 df['Measure Type'] = 'expenditure'
 df['Unit'] = 'gbp'
 
-df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value']]
 
 COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
 
@@ -179,7 +179,7 @@ df.head(10)
 
 
 
-# In[58]:
+# In[68]:
 
 
 
@@ -189,7 +189,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('total-expenditure-catalog-metadata.json')
 
 
-# In[59]:
+# In[69]:
 
 
 
@@ -206,7 +206,7 @@ scraper
 
 
 
-# In[60]:
+# In[70]:
 
 
 
@@ -226,7 +226,7 @@ df = df.replace({'Nation' : {'England' : 'E92000001',
 df['Measure Type'] = 'expenditure'
 df['Unit'] = 'percent'
 
-df = df[['Period', 'Scheme Year', 'Nation', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Scheme Year', 'Nation', 'Value']]
 
 scraper.dataset.title = 'Warm Home Discount Scheme: Percentage spend by nation'
 
@@ -245,7 +245,7 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[61]:
+# In[71]:
 
 
 
