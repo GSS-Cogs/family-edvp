@@ -28,19 +28,19 @@
       "Scheme Year": {
         "type": "dimension",
         "new": {
-          "codelist": true
+          "codelist": "./codelists/scheme-year.csv-metadata.json"
         }
       },
       "Support Element": {
         "type": "dimension",
         "new": {
-          "codelist": true
+          "codelist": "./codelists/support-element.csv-metadata.json"
         }
       },
       "Supplier": {
         "type": "dimension",
         "new": {
-          "codelist": true
+          "codelist": "./codelists/supplier.csv-metadata.json"
         }
       },
       "Value": {

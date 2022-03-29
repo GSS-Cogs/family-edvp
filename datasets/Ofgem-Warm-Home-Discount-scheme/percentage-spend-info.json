@@ -28,7 +28,7 @@
       "Scheme Year": {
         "type": "dimension",
         "new": {
-          "codelist": true
+          "codelist": "./codelists/scheme-year.csv-metadata.json"
         }
       },
       "Nation": {
