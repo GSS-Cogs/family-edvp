@@ -1,6 +1,6 @@
 {
   "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
-  "id": "ofgem-warm-home-discount-scheme",
+  "id": "ofgem-warm-home-discount-scheme-percentage-spend",
   "title": "Warm Home Discount Scheme: Percentage spend by nation",
   "publisher": "The Office of Gas and Electricity Markets",
   "description": "Data shows a by nation view of the direct support provided to fuel poor customers through energy bill rebates for the \u00e2\u20ac\u02dccore group\u00e2\u20ac\u2122 and \u00e2\u20ac\u02dcbroader group\u00e2\u20ac\u2122 elements of the Warm Home Discount (WHD). It comprises all participating suppliers in year 8 (2018/19) of the scheme.",

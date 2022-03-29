@@ -1,6 +1,6 @@
 {
   "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
-  "id": "ofgem-warm-home-discount-scheme",
+  "id": "ofgem-warm-home-discount-scheme-distribution-expenditure",
   "title": "Warm Home Discount Scheme: Distribution of expenditure by year",
   "publisher": "The Office of Gas and Electricity Markets",
   "description": "Distribution of expenditure for each year so far of the Warm Home Discount (WHD), a government energy scheme which aims to help people who are in fuel poverty or are at risk of it.",
