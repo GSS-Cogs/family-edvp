@@ -1,4 +1,5 @@
 {
+    "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
     "id": "ofgem-cheapest-tariffs-by-payment-method-typical-domestic-dual-fuel-customer-gb",
     "title": "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)",
     "publisher": "The Office of Gas and Electricity Markets",
@@ -21,75 +22,30 @@
         "main_issue": 2,
         "columns": {
             "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp",
+                "type": "observations",
+                "datatype": "double",
                 "measure": "http://gss-data.org.uk/def/measure/tariff",
-                "datatype": "double"
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/gbp"
             },
             "Period": {
-                "dimension": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}"
+                "type": "dimension",
+                "new": {
+                  "subPropertyOf": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                  "codelist": true
+                },
+                "value": "http://reference.data.gov.uk/id/year/{+year}"
+            },
+            "Payment Method": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/payment-method.csv-metadata.json"
+                }
             }
         },
-        "transformStage": [
-            {
-                "source_name": "The Office of Gas and Electricity Markets",
-                "identifier": "The Office of Gas and Electricity Markets||Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)||https://www.ofgem.gov.uk/node/95439/revisions/371615/csv",
-                "source": [
-                    {
-                        "https://www.ofgem.gov.uk/node/95439/revisions/371615/csv": ""
-                    }
-                ],
-                "title": "Cheapest tariffs by payment method: Typical domestic dual fuel customer (GB)",
-                "preview": null,
-                "observation_selection": null,
-                "columns": [
-                    {
-                        "Payment Method": [
-                            "Large legacy suppliers (direct debit)",
-                            "Large legacy suppliers (standard credit)",
-                            "Large legacy suppliers (prepayment)",
-                            "Market (direct debit)",
-                            "Market (standard credit)",
-                            "Market (prepayment)"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Large legacy suppliers (direct debit)",
-                            "Large legacy suppliers (standard credit)",
-                            "Large legacy suppliers (prepayment)",
-                            "Market (direct debit)",
-                            "Market (standard credit)",
-                            "Market (prepayment)"
-                        ]
-                    }
-                ],
-                "postTransformNotes": [
-                    {
-                        "Period": [
-                            "Values taken from 'Date' column",
-                            "Formatted time to 'gregorian-day/dd/mm/yyyy'"
-                        ]
-                    },
-                    {
-                        "Payment_Method": [
-                            "Values one of ['Large legacy suppliers (direct debit)', 'Large legacy suppliers (standard credit)', 'Large legacy suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)']"
-                        ]
-                    },
-                    {
-                        "Value": [
-                            "Values taken from ['Large legacy suppliers (direct debit)', 'Large legacy suppliers (standard credit)', 'Large legacy suppliers (prepayment)', 'Market (direct debit)', 'Market (standard credit)', 'Market (prepayment)'] columns",
-                            "Removed commas and whitespaces from Values"
-                        ]
-                    }
-                ]
-            }
-        ],
         "stage": [
             "To Do"
         ]
     },
     "sizingNotes": "",
-    "notes": "Interactive chart with CSV download option.",
-    "scraper_state": "ok"
+    "notes": "Interactive chart with CSV download option."
 }
