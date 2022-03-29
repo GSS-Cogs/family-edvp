@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[111]:
+# In[23]:
 
 
-import pandas as pd
 from gssutils import *
-import json
 from dateutil.parser import parse
+import json
 
 def left(s, amount):
     return s[:amount]
@@ -19,27 +18,23 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-# In[112]:
+# In[24]:
 
-
-cubes = Cubes("info.json", job_name='')
 
 publisher = "The Office of Gas and Electricity Markets"
-title = str("warm-home-discount-distribution-expenditure-year".replace('-', ' '))
 
-with open('info.json') as f:
+with open('distribution-expenditure-info.json') as f:
   info_file_data = json.load(f)
 info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112635/revisions/374173/csv?fake=.csv"
-with open('info.json', 'w') as f:
+with open('distribution-expenditure-info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
 
-scraper = Scraper(seed="info.json")
-scraper.dataset.family = 'energy'
-title = "ofgem-WarmHomeDiscount-Distributionofexpenditurebyyear".replace('-', ' ')
+scraper = Scraper(seed="distribution-expenditure-info.json")
 scraper
 
 
-# In[113]:
+# In[ ]:
+
 
 
 df = pd.read_csv('distribution-expenditure.csv')
@@ -75,17 +70,6 @@ df['Unit'] = 'percent'
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Value', 'Measure Type', 'Unit']]
 
-COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
-
-for col in df.columns.values.tolist():
-    if col in COLUMNS_TO_NOT_PATHIFY:
-        continue
-    try:
-        df[col] = df[col].apply(pathify)
-    except Exception as err:
-        raise Exception('Failed to pathify column "{}".'.format(col)) from err
-
-
 scraper.dataset.title = 'Warm Home Discount Scheme: Distribution of expenditure by year'
 
 scraper.dataset.comment = """
@@ -104,27 +88,37 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[114]:
+# In[ ]:
 
 
-cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
+
+df.to_csv('distribution-expenditure-observations.csv', index=False)
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('distribution-expenditure-catalog-metadata.json')
 
 
-# In[115]:
+# In[ ]:
 
 
-with open('info.json') as f:
+
+
+
+with open('total-expenditure-info.json') as f:
   info_file_data = json.load(f)
 info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112638/revisions/374171/csv?fake=.csv"
-with open('info.json', 'w') as f:
+with open('total-expenditure-info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
-scraper = Scraper(seed="info.json")
-title = "warm-home-discount-total-expenditure-obligated-suppliers-scheme-year-8-2018-19".replace('-', ' ')
-scraper.distributions[0].title = title
+    
+scraper = Scraper(seed="total-expenditure-info.json")
 scraper
 
 
-# In[116]:
+
+# In[ ]:
+
+
+
 
 
 df = pd.read_csv('total-expenditure.csv')
@@ -146,16 +140,6 @@ df['Unit'] = 'gbp'
 
 df = df[['Period', 'Scheme Year', 'Support Element', 'Supplier', 'Marker', 'Value', 'Measure Type', 'Unit']]
 
-COLUMNS_TO_NOT_PATHIFY = ['Period', 'Value']
-
-for col in df.columns.values.tolist():
-	if col in COLUMNS_TO_NOT_PATHIFY:
-		continue
-	try:
-		df[col] = df[col].apply(pathify)
-	except Exception as err:
-		raise Exception('Failed to pathify column "{}".'.format(col)) from err
-
 scraper.dataset.title = 'Warm Home Discount Scheme: Total expenditure by obligated suppliers'
 
 scraper.dataset.comment = """
@@ -173,27 +157,38 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[117]:
+
+# In[ ]:
 
 
-cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
+
+df.to_csv('total-expenditure-observations.csv', index=False)
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('total-expenditure-catalog-metadata.json')
 
 
-# In[118]:
+# In[ ]:
 
 
-with open('info.json') as f:
+
+
+
+with open('percentage-spend-info.json') as f:
   info_file_data = json.load(f)
 info_file_data["dataURL"] = "https://www.ofgem.gov.uk/node/112641/revisions/374169/csv?fake=.csv"
-with open('info.json', 'w') as f:
+with open('percentage-spend-info.json', 'w') as f:
     json.dump(info_file_data, f, indent=2)
-scraper = Scraper(seed="info.json")
-title = "warm-home-discount-percentage-spend-nation-scheme-year-8-2018-19".replace('-', ' ')
-scraper.distributions[0].title = title
+    
+scraper = Scraper(seed="percentage-spend-info.json")
 scraper
 
 
-# In[119]:
+
+# In[ ]:
+
+
+
 
 
 df = pd.read_csv('percentage-spend.csv')
@@ -229,14 +224,12 @@ We update this chart on an annual basis.
 df.head(10)
 
 
-# In[120]:
+# In[ ]:
 
 
-cubes.add_cube(scraper, df, pathify(scraper.dataset.title))
 
+df.to_csv('percentage-spend-observations.csv', index=False)
 
-# In[121]:
-
-
-cubes.output_all()
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('percentage-spend-catalog-metadata.json')
 
