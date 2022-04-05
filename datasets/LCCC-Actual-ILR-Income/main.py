@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[10]:
 
 
 from gssutils import *
@@ -17,7 +17,7 @@ distro  = scraper.distribution(latest=True, mediaType='text/csv')
 distro
 
 
-# In[2]:
+# In[11]:
 
 
 df = distro.as_pandas()#encoding='cp1252'
@@ -49,7 +49,7 @@ df = df[['Period', 'Value', 'Measure Type', 'Unit']].fillna('NaN')
 indexNames = df[ df['Value'] == 'NaN' ].index
 df.drop(indexNames, inplace = True)
 
-"""COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
+COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -57,7 +57,7 @@ for col in df.columns.values.tolist():
 	try:
 		df[col] = df[col].apply(pathify)
 	except Exception as err:
-		raise Exception('Failed to pathify column "{}".'.format(col)) from err"""
+		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 scraper.dataset.comment = """
 Actual EII_Excluded Electricity (MWh) :	Supplier's Daily Energy Intensive Industries demand which is being exempted from paying CfD levy
@@ -72,7 +72,7 @@ df.to_csv('observations.csv', index=False)
 df
 
 
-# In[3]:
+# In[12]:
 
 
 catalog_metadata = scraper.as_csvqb_catalog_metadata()
