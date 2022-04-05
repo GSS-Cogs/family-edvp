@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[51]:
+# In[1]:
 
 
 from gssutils import *
@@ -9,20 +9,15 @@ import json
 import re
 from datetime import date
 
-infoFileName = 'info.json'
-
-info = json.load(open(infoFileName))
-scraper = Scraper(seed=infoFileName)
+scraper = Scraper(seed="info.json")
 scraper.dataset.issued = '2020-12-08'
 scraper.dataset.modified = date.today() #Dataset is updated daily
-
-cubes   = Cubes(infoFileName)
 
 distro  = scraper.distribution(latest=True, mediaType='text/csv')
 distro
 
 
-# In[52]:
+# In[2]:
 
 
 df = distro.as_pandas()#encoding='cp1252'
@@ -54,7 +49,7 @@ df = df[['Period', 'Value', 'Measure Type', 'Unit']].fillna('NaN')
 indexNames = df[ df['Value'] == 'NaN' ].index
 df.drop(indexNames, inplace = True)
 
-COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
+"""COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -62,7 +57,7 @@ for col in df.columns.values.tolist():
 	try:
 		df[col] = df[col].apply(pathify)
 	except Exception as err:
-		raise Exception('Failed to pathify column "{}".'.format(col)) from err
+		raise Exception('Failed to pathify column "{}".'.format(col)) from err"""
 
 scraper.dataset.comment = """
 Actual EII_Excluded Electricity (MWh) :	Supplier's Daily Energy Intensive Industries demand which is being exempted from paying CfD levy
@@ -72,15 +67,14 @@ Actual ILR (£/MWh) : Under the Supplier Obligation Levy, electricity suppliers 
 Actual Income (£) :	Actual Income from electricity suppliers based on Actual Eligible Demand multiplied by Interim Levy Rate
 Period : The date on which energy is deemed to be used and must be later settled through BSC initial settlement/reconciliation or Scottish Settlements. Also known as the Trading Day
 """
+df.to_csv('observations.csv', index=False)
 
-cubes.add_cube(scraper, df, scraper.title)
-
-cubes.output_all()
 df
 
 
-# In[52]:
+# In[3]:
 
 
-
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
 
