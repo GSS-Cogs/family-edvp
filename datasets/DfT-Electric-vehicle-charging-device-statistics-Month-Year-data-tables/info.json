@@ -1,4 +1,5 @@
 {
+    "$schema" : "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
     "id": "dft-electric-vehicle-charging-device-statistics-month-year-data-tables",
     "title": "Electric vehicle charging device statistics: [Month Year] data tables",
     "publisher": "Department for Transport",
@@ -9,7 +10,7 @@
     ],
     "published": "2020-11-10",
     "families": [
-        "EDVP"
+        "Energy"
     ],
     "extract": {
         "source": "ODS",
@@ -23,32 +24,26 @@
         "main_issue": 11,
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Region": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
-                "description": "",
-                "codelist": false
-            },
-            "Measure Type": {
-                "dimension": "http://purl.org/linked-data/cube#measureType",
-                "value": "http://gss-data.org.uk/def/energy/measure/{measure_type}",
-                "types": [
-                    "total-devices",
-                    "total-devices-per-100-000-population",
-                    "rapid-devices",
-                    "rapid-devices-per-100-000-population"
-                ]
-            },
-            "Unit": {
-                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-                "value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}"
             },
             "Value": {
+                "type": "observations",
                 "datatype": "double"
+            },
+            "Measure Type": {
+                "type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+            },
+            "Unit": {
+                "type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
             }
         }
     },

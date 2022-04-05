@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[329]:
+# In[12]:
+
 
 from IPython.display import display
 
@@ -17,34 +18,27 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-cubes = Cubes("info.json")
-info = json.load(open('info.json'))
-
-
-# In[330]:
-
-
 scraper = Scraper("https://www.gov.uk/government/statistics/electric-vehicle-charging-device-statistics-january-2021")
 #Collections landing page doesnt pick up any distributions, will need to update the scraper to pick up new releases without manual input
 scraper
 
 
-# In[331]:
+
+# In[13]:
+
+
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[332]:
+
+# In[14]:
+
 
 
 tabs = [x for x in scraper.distributions[1].as_databaker() if "Info" not in x.name] #
-tabs
-
-
-# In[333]:
-
 
 tidied_sheets = {}
 
@@ -114,7 +108,8 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[334]:
+# In[ ]:
+
 
 
 df = pd.concat(tidied_sheets.values(), sort = True).fillna('NaN')
@@ -160,7 +155,10 @@ df = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 df
 
 
-# In[335]:
+# In[15]:
+
+
+
 
 
 scraper.dataset.family = 'edvp'
@@ -170,23 +168,14 @@ Charging device location data is sourced from the electric vehicle charging plat
 """
 scraper.dataset.contactPoint = "environment.stats@dft.gov.uk"
 
-csvName = 'observations'
-cubes.add_cube(scraper, df.drop_duplicates(), csvName)
+df.to_csv('observations.csv', index=False)
+
+df
 
 
-# In[336]:
+# In[ ]:
 
 
-cubes.output_all()
-
-
-# In[337]:
-
-
-from IPython.core.display import HTML
-for col in df:
-    if col not in ['Value']:
-        df[col] = df[col].astype('category')
-        display(HTML(f"<h2>{col}</h2>"))
-        display(df[col].cat.categories)
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
 
