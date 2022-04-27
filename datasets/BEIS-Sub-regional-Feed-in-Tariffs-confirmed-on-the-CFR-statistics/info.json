@@ -42,12 +42,7 @@
       		"Value": {
         		"type": "observations",
                 "datatype": "double"
-      		},
-            "Marker": {
-                "type": "attribute",
-                "uri": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{+marker}"
-            }
+      		}
         },
         "airtable": "recO9rtKvu2czrvFG",
         "main_issue": 9
