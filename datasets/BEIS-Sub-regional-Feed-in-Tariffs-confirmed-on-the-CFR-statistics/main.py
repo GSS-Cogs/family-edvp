@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[98]:
+# In[15]:
 
 
 from gssutils import *
@@ -17,48 +17,35 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-#extract spread sheet from landing page
 scraper = Scraper(seed="info.json")
-#scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaType")]
-scraper.dataset.family = 'energy'
 scraper.dataset.title = 'Sub-regional Feed-in Tariffs confirmed on the CFR statistics'
 scraper
 
 
-# In[99]:
-
-
-# Add cubes class
-cubes = Cubes("info.json")
-#Add tracer to transform
-trace = TransformTrace()
-
-
-# In[100]:
+# In[16]:
 
 
 for i in scraper.distributions:
     display(i)
 
 
-# In[101]:
+# In[17]:
 
 
-# extract latest distribution and datasetTitle
 distribution = scraper.distribution(title=lambda t: 'Feed-in Tariffs' in t)
 datasetTitle = distribution.title
 print(distribution.downloadURL)
 print(datasetTitle)
 
 
-# In[102]:
+# In[18]:
 
 
 # Extract all the tabs from the spread sheet
 tabs = {tab.name: tab for tab in distribution.as_databaker()}
 
 
-# In[103]:
+# In[19]:
 
 
 # List out all the tab name to cross verify with the spread sheet
@@ -66,14 +53,14 @@ for tab in tabs:
     print(tab)
 
 
-# In[104]:
+# In[20]:
 
 
 columns = ["Region", "Region Name", "Period", "Technology", "Installation", "Households", "Local Or Parliamentary Code",
            "Local Enterprise Partnerships", "Leps Authority", "Marker", "Unit"]
 
 
-# In[105]:
+# In[21]:
 
 
 tidy_tabs = {}
@@ -130,7 +117,7 @@ for name, tab in tabs.items():
     tidy_tabs[tab.name] = df
 
 
-# In[106]:
+# In[22]:
 
 
 for name, tab in tabs.items():
@@ -177,7 +164,7 @@ for name, tab in tabs.items():
 df
 
 
-# In[107]:
+# In[23]:
 
 
 for name, tab in tabs.items():
@@ -222,7 +209,10 @@ for name, tab in tabs.items():
     tidy_tabs[tab.name] = df
 
 
-# In[108]:
+
+# In[24]:
+
+
 
 
 #All information in these tabs is covered by LA pages, these tabs just have the same data but with another column informing what LEP each LA is a part of
@@ -269,7 +259,7 @@ for name, tab in tabs.items():
     tidy_tabs[tab.name] = df"""
 
 
-# In[109]:
+# In[25]:
 
 
 df = pd.concat(x for x in tidy_tabs.values())
@@ -303,7 +293,7 @@ df = df[['Period', 'Region', 'Technology Type', 'Building Type', 'Value', 'Measu
 indexNames = df[ df['Region'].isin(['Unallocated 4', 'Grand Total']) ].index
 df.drop(indexNames, inplace = True)
 
-COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Value']
+COLUMNS_TO_NOT_PATHIFY = ['Period', 'Region', 'Technology Type', 'Building Type', 'Value']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -321,16 +311,24 @@ df = df.drop_duplicates()
 df
 
 
-# In[110]:
+# In[26]:
 
 
 scraper.dataset.comment = """Quarterly sub-regional statistics show the number of installations and total installed capacity by technology type in England, Scotland and Wales at the end the latest quarter that have been confirmed on the Central Feed-in Tariff Register."""
 
-cubes.add_cube(scraper, df.drop_duplicates(), datasetTitle)
-cubes.output_all()
+df.to_csv('observations.csv', index=False)
+
+df
 
 
-# In[111]:
+# In[27]:
+
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
+
+
+# In[28]:
 
 
 from IPython.core.display import HTML
@@ -339,10 +337,4 @@ for col in df:
         df[col] = df[col].astype('category')
         display(HTML(f"<h2>{col}</h2>"))
         display(df[col].cat.categories)
-
-
-# In[111]:
-
-
-
 

@@ -1,4 +1,5 @@
 {
+    "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
     "id": "beis-sub-regional-feed-in-tariffs-confirmed-on-the-cfr-statistics",
     "title": "Sub-regional Feed-in Tariffs confirmed on the CFR statistics",
     "publisher": "Department for Business, Energy and Industrial Strategy",
@@ -9,7 +10,7 @@
     ],
     "published": "2021-01-30",
     "families": [
-        "energy"
+        "EDVP"
     ],
     "extract": {
         "source": "XLS",
@@ -21,40 +22,31 @@
         ],
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Region": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
-                "description": "",
-                "codelist": false
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}"
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["cumulative-installations",
-                          "installations-per-10000-households",
-                          "cumulative-installed-capacity"]
+        		"type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
       		},
-            "Technology Type": {
-                "description": "Technology involved in energy generation"
-            },
-            "Building Type": {
-                "description": "Domestic/Non Domestic building Type"
-            },
       		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
+        		"type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
       		},
       		"Value": {
-        		"datatype": "double"
+        		"type": "observations",
+                "datatype": "double"
       		},
             "Marker": {
-                "attribute": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
-                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{marker}",
-                "codelist": false
+                "type": "attribute",
+                "uri": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{+marker}"
             }
         },
         "airtable": "recO9rtKvu2czrvFG",
