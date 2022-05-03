@@ -30,6 +30,24 @@
                 "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
                 "value": "http://statistics.data.gov.uk/id/statistical-geography/{geography}"
             },
+            "Technology Type": {
+		        "type": "dimension",
+		        "new": {
+		          "codelist": "./codelists/technology-type.csv-metadata.json"
+		        }
+		    },
+		    "Application Type": {
+		        "type": "dimension",
+		        "new": {
+		          "codelist": "./codelists/application-type.csv-metadata.json"
+		        }
+		    },
+		    "SIC": {
+		        "type": "dimension",
+		        "new": {
+		          "codelist": "./codelists/sic.csv-metadata.json"
+		        }
+		    },
             "Measure Type": {
         		"type": "measures",
                 "value": "http://gss-data.org.uk/def/measure/{+measure_type}"

@@ -1,0 +1,5 @@
+Label,Notation,Parent Notation,Sort Priority
+Total new and legacy installations,total-new-and-legacy-installations,,0
+New installations,new-installations,,1
+Legacy installations,legacy-installations,,2
+Total,total,,3
