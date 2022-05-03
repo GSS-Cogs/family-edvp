@@ -38,9 +38,9 @@
                 "datatype": "double"
             },
             "Measure Type": {
-                "type": "measures",
-                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
-            },
+        		"type": "measures",
+                "value": "http://gss-data.org.uk/def/energy/measure/{measure_type}"
+      		},
             "Unit": {
                 "type": "units",
                 "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
