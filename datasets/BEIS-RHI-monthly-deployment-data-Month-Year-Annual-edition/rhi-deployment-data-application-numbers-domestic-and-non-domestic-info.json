@@ -1,0 +1,57 @@
+{
+    "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
+    "id": "beis-rhi-monthly-deployment-data-month-year-annual-edition",
+    "title": "RHI monthly deployment data: [Month Year] (Annual edition)",
+    "publisher": "Department for Business, Energy and Industrial Strategy",
+    "description": "This statistical series provides deployment data for:\nthe non-domestic Renewable Heat Incentive (RHI) introduced in Great Britain in November 2011 to support the uptake of renewable heat in the non-domestic sector,\nthe domestic RHI introduced in Great Britain in April 2014 to encourage a switch to renewable heating systems in the domestic sector.",
+    "landingPage": "https://www.gov.uk/government/statistics/rhi-monthly-deployment-data-march-2021-quarterly-edition",
+    "datasetNotes": [
+        "On landing page scroll to heading \"Monthly deployment data\" and click on latest annual edition. On new page dataset can be found under heading \"Documents\"."
+    ],
+    "published": "2021-01-21",
+    "families": [
+        "energy"
+    ],
+    "extract": {
+        "source": "XLS, ODS, CSV",
+        "stage": "Documented"
+    },
+    "transform": {
+        "airtable": "recc3QIDDaV8mT4v9",
+        "main_issue": 12,
+        "columns": {
+            "Period": {
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
+            },
+            "Geography": {
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+                "value": "http://statistics.data.gov.uk/id/statistical-geography/{geography}"
+            },
+            "Measure Type": {
+        		"type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      		},
+      		"Unit": {
+        		"type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
+      		},
+      		"Value": {
+        		"type": "observations",
+                "datatype": "double"
+      		},
+            "Marker": {
+		        "type": "attribute",
+		        "uri": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+		        "value": "http://gss-data.org.uk/def/concept/cogs-markers/{+marker}"
+		    }
+        },
+        "stage": [
+            "To Do"
+        ]
+    },
+    "sizingNotes": "Multiple tabs, dimensions and footnotes. Some messy tables. CSV only in zip and multiple small files within zip.",
+    "notes": "Includes CSV but look messy. Requires investigation as to whether to use CSV or XLS format for transformation."
+}

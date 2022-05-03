@@ -1,0 +1,20 @@
+{
+    "title": "RHI deployment data - Application Numbers, domestic and non-domestic",
+    "identifier": null,
+    "summary": "Application statistics for the Renewable Heat Incentive (RHI) programme",
+    "description": "Application statistics for the Renewable Heat Incentive (RHI) programme by technology type, region, local authority & domestic and non-domesticAccredited applications are a subset of full applications i.e. once a system has become accredited, it is counted as both a full application and an accredited installation.New installations refers to applications for systems installed after the launch of the domestic RHI scheme on 9 April 2014.Legacy refers to all applications for systems installed before the launch of the domestic RHI scheme on 9 April 2014, whether they claimed a RHPP voucher or not.",
+    "creator_uri": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy",
+    "publisher_uri": "https://www.gov.uk/government/organisations/department-for-business-energy-and-industrial-strategy",
+    "landing_page_uris": [
+        "https://www.gov.uk/government/statistics/rhi-monthly-deployment-data-march-2021-quarterly-edition"
+    ],
+    "theme_uris": [
+        "http://gss-data.org.uk/def/gdp#energy"
+    ],
+    "keywords": [],
+    "dataset_issued": "2021-04-22T08:30:02+00:00",
+    "dataset_modified": "2022-05-03T14:35:30.751396+01:00",
+    "license_uri": null,
+    "public_contact_point_uri": null,
+    "uri_safe_identifier_override": null
+}

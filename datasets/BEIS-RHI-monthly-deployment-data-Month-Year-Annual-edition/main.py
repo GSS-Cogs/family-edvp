@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[35]:
+# In[67]:
 
 
 from gssutils import *
@@ -27,45 +27,21 @@ def RepresentsInt(s):
         return False
 
 
-# In[36]:
+# In[68]:
 
 
-info = json.load(open('info.json'))
-etl_title = info["title"]
-etl_publisher = info["publisher"]
-print("Publisher: " + etl_publisher)
-print("Title: " + etl_title)
-
-info['landingPage'] = "https://www.gov.uk/government/statistics/rhi-monthly-deployment-data-march-2021-quarterly-edition"
-
-with open('info.json', 'w') as outfile:
-    json.dump(info, outfile, indent= 4 )
-
-# Scraper needs updating as it currently doesn't look into each release of the publication, so it needs to be fed the release itself
-# Needs to be updated to look in each and return distributions for each
-
-
-# In[37]:
-
-
-cubes = Cubes("info.json")
-
-
-# In[38]:
-
-
-scraper = Scraper(seed="info.json")
+scraper = Scraper(seed="rhi-deployment-data-capacity-mw-info.json")
 scraper
 
 
-# In[39]:
+# In[69]:
 
 
 dist = [x for x in scraper.distributions if "Excel" in x.title][0]
 dist
 
 
-# In[40]:
+# In[70]:
 
 
 unneeded_tabs = ['Title', 'Contents', 'Key Statistics', 'Glossary', 'Scheme background',
@@ -78,7 +54,7 @@ for i in tabs:
     print(i.name)
 
 
-# In[41]:
+# In[71]:
 
 
 out = Path('previews')
@@ -582,13 +558,13 @@ for tab in tabs:
 tidied_sheet
 
 
-# In[42]:
+# In[72]:
 
 
 formatted_sheets = {}
 
 
-# In[43]:
+# In[73]:
 
 
 try:
@@ -626,7 +602,7 @@ except Exception as err:
 df
 
 
-# In[44]:
+# In[74]:
 
 
 try:
@@ -668,7 +644,7 @@ except Exception as err:
 df
 
 
-# In[45]:
+# In[75]:
 
 
 try:
@@ -702,7 +678,7 @@ except Exception as err:
 df
 
 
-# In[46]:
+# In[76]:
 
 
 try:
@@ -734,7 +710,7 @@ except Exception as err:
 df
 
 
-# In[47]:
+# In[77]:
 
 
 try:
@@ -760,7 +736,7 @@ except Exception as err:
 df
 
 
-# In[48]:
+# In[78]:
 
 
 try:
@@ -803,7 +779,7 @@ except Exception as err:
 df
 
 
-# In[49]:
+# In[79]:
 
 
 try:
@@ -835,7 +811,7 @@ except Exception as err:
 df
 
 
-# In[50]:
+# In[80]:
 
 
 try:
@@ -867,7 +843,7 @@ except Exception as err:
 df
 
 
-# In[51]:
+# In[81]:
 
 
 try:
@@ -897,7 +873,7 @@ except Exception as err:
 df
 
 
-# In[52]:
+# In[82]:
 
 
 try:
@@ -928,7 +904,7 @@ except Exception as err:
 df
 
 
-# In[53]:
+# In[83]:
 
 
 try:
@@ -957,7 +933,7 @@ except Exception as err:
 df
 
 
-# In[54]:
+# In[84]:
 
 
 try:
@@ -987,7 +963,7 @@ except Exception as err:
 df
 
 
-# In[55]:
+# In[85]:
 
 
 try:
@@ -1017,7 +993,7 @@ except Exception as err:
 df
 
 
-# In[56]:
+# In[86]:
 
 
 try:
@@ -1047,7 +1023,7 @@ except Exception as err:
 df
 
 
-# In[57]:
+# In[87]:
 
 
 try:
@@ -1078,7 +1054,7 @@ except Exception as err:
 df
 
 
-# In[58]:
+# In[88]:
 
 
 try:
@@ -1111,7 +1087,7 @@ except Exception as err:
 df
 
 
-# In[59]:
+# In[89]:
 
 
 try:
@@ -1140,7 +1116,7 @@ except Exception as err:
 df
 
 
-# In[60]:
+# In[90]:
 
 
 try:
@@ -1169,7 +1145,7 @@ except Exception as err:
 df
 
 
-# In[61]:
+# In[91]:
 
 
 try:
@@ -1198,7 +1174,7 @@ except Exception as err:
 df
 
 
-# In[62]:
+# In[92]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['1.1', '1.2', '1.3', '1.4', '1.6', '1.7', 'M1.1', 'M1.2', 'M1.3', 'M1.4', 'Q1.1']], sort = False)
@@ -1239,7 +1215,7 @@ df = df.replace({'Technology Type' : {'Biogas6' : 'Biogas',
 df
 
 
-# In[63]:
+# In[93]:
 
 
 applications = df.loc[df['Measure Type'] == 'applications']
@@ -1249,7 +1225,7 @@ applications['Applicant'] = 'non-domestic'
 applications
 
 
-# In[64]:
+# In[94]:
 
 
 capacity = df.loc[df['Measure Type'] == 'mw']
@@ -1279,12 +1255,15 @@ for col in capacity.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-cubes.add_cube(copy.deepcopy(scraper), capacity, scraper.dataset.title)
+capacity.to_csv('rhi-deployment-data-capacity-mw-observations.csv', index=False)
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('rhi-deployment-data-capacity-mw-catalog-metadata.json')
 
 capacity
 
 
-# In[65]:
+# In[95]:
 
 
 df = pd.concat([v for k,v in formatted_sheets.items() if k in ['2.1', '2.2', '2.3', '2.4', 'M2.1', 'M2.2', 'Q2.1', 'Q2.2']], sort = False)
@@ -1330,7 +1309,14 @@ df['Applicant'] = 'domestic'
 df
 
 
-# In[66]:
+# In[96]:
+
+
+scraper = Scraper(seed="rhi-deployment-data-application-numbers-domestic-and-non-domestic-info.json")
+scraper
+
+
+# In[97]:
 
 
 df = pd.concat([df, applications], sort = False)
@@ -1357,22 +1343,10 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-cubes.add_cube(copy.deepcopy(scraper), df, scraper.dataset.title)
+df.to_csv('rhi-deployment-data-application-numbers-domestic-and-non-domestic-observations.csv', index=False)
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('rhi-deployment-data-application-numbers-domestic-and-non-domestic-catalog-metadata.json')
 
 df
-
-
-# In[67]:
-
-
-info['landingPage'] = "https://www.gov.uk/government/collections/renewable-heat-incentive-statistics"
-
-with open('info.json', 'w') as outfile:
-    json.dump(info, outfile, indent= 4 )
-
-
-# In[68]:
-
-
-cubes.output_all()
 
