@@ -23,25 +23,15 @@
         "main_issue": 13,
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
-            },
-            "Roc Per Mwh" : {
-                "description" : "Mwh generated per Renewables obligation certificate",
-                "value": "http://gss-data.org.uk/def/energy/concept/roc-per-mwh/{roc_per_mwh}",
-                "codelist": "http://gss-data.org.uk/def/energy/concept-scheme/roc-per-mwh"
-            },
-            "Technology Group" : {
-                "description" : ""
-            },
-            "Generation Type" : {
-                "description" : ""
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Value": {
-                "unit": "http://gss-data.org.uk/def/concept/measurement-units/certificates",
+                "type": "observations",
+                "datatype": "integer",
                 "measure": "http://gss-data.org.uk/def/measure/count",
-                "datatype": "integer"
+                "unit": "http://gss-data.org.uk/def/concept/measurement-units/certificates"
             }
         }
     },
