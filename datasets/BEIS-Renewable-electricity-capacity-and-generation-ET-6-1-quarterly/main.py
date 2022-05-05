@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[261]:
+# In[269]:
 
 
 import json
@@ -11,7 +11,7 @@ import pandas as pd
 from gssutils import *
 
 
-# In[262]:
+# In[270]:
 
 
 infoFileName = 'info.json'
@@ -21,7 +21,7 @@ scraper = Scraper(seed=infoFileName)
 distro  = scraper.distribution(latest=True, title=lambda t: 'Renewable electricity capacity and generation (ET 6.1 - quarterly)' in t)
 
 
-# In[263]:
+# In[271]:
 
 
 # Enumerate the tabs
@@ -112,7 +112,7 @@ df = df[df['Category'] != 'Days in quarter']
 df.reset_index(inplace=True, drop=True)
 
 
-# In[264]:
+# In[272]:
 
 
 # Next, strip these values from Head
@@ -133,7 +133,7 @@ df.drop(['Year', 'Quarter'], axis=1, inplace=True)
 df
 
 
-# In[265]:
+# In[273]:
 
 
 indexNames = df[ df['Head'].str.contains('SHARES OF ELECTRICITY GENERATED')].index
@@ -179,7 +179,7 @@ df['OBS'] = df.apply(lambda x: 0 if x['DATAMARKER'] == 'not-available' else x['O
 df
 
 
-# In[266]:
+# In[274]:
 
 
 df = df.rename(columns={'Category' : 'Fuel', 'Head' : 'Measure Type', 'OBS' : 'Value', 'Geography' : 'Region', 'DATAMARKER' : 'Marker'}).fillna('')
@@ -189,7 +189,7 @@ df = df[['Period', 'Region', 'Fuel', 'Value', 'Marker', 'Measure Type', 'Unit']]
 df
 
 
-# In[267]:
+# In[275]:
 
 
 scraper.dataset.title = info['title']
@@ -201,7 +201,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[268]:
+# In[276]:
 
 
 from IPython.core.display import HTML
