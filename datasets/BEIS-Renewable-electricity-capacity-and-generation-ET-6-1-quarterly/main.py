@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[235]:
+# In[261]:
 
 
 import json
@@ -11,7 +11,7 @@ import pandas as pd
 from gssutils import *
 
 
-# In[236]:
+# In[262]:
 
 
 infoFileName = 'info.json'
@@ -21,7 +21,7 @@ scraper = Scraper(seed=infoFileName)
 distro  = scraper.distribution(latest=True, title=lambda t: 'Renewable electricity capacity and generation (ET 6.1 - quarterly)' in t)
 
 
-# In[237]:
+# In[263]:
 
 
 # Enumerate the tabs
@@ -111,20 +111,8 @@ df = df[df['Category'] != 'Days in quarter']
 
 df.reset_index(inplace=True, drop=True)
 
-# Get the datamarkers from the Head column, as well as the units
-extract = df['Head'].str.extract('\((.*?)\) \((.*?)\)')
-# Uncomment to verify that the extract works as described
-# df['Head'].value_counts(), extract[0].value_counts(), extract[1].value_counts()
 
-
-# In[238]:
-
-
-# So we're going to assign as described and verified above
-df['Unit'] = extract[1]
-
-
-# In[239]:
+# In[264]:
 
 
 # Next, strip these values from Head
@@ -145,7 +133,7 @@ df.drop(['Year', 'Quarter'], axis=1, inplace=True)
 df
 
 
-# In[240]:
+# In[265]:
 
 
 indexNames = df[ df['Head'].str.contains('SHARES OF ELECTRICITY GENERATED')].index
@@ -172,33 +160,36 @@ df = df.replace({'Category' : {
             'Solar PV [note 6]' : 'Solar PV', 
             'Solar photovoltaics [note 6]' : 'Solar photovoltaics'},
                 'DATAMARKER' : {'[x]' : 'not-available'},
-                'Unit' : {'12' : 'GWh'},
-                'Head' : {'CUMULATIVE INSTALLED CAPACITY  \n[note 1]' : 'CUMULATIVE INSTALLED CAPACITY',
-                          'CUMULATIVE INSTALLED CAPACITY  [note 1]' : 'CUMULATIVE INSTALLED CAPACITY',
-                          'ELECTRICITY GENERATED  \n[note 5]' : 'ELECTRICITY GENERATED', 
-                          'ELECTRICITY GENERATED  [note 5]' : 'ELECTRICITY GENERATED',
-                          'ELECTRICITY GENERATED  [note 6]' : 'ELECTRICITY GENERATED', 
-                          'LOAD FACTORS  \n[note 10]' : 'LOAD FACTORS',
-                          'LOAD FACTORS  [note 10]' : 'LOAD FACTORS'}})
+                'Head' : {'CUMULATIVE INSTALLED CAPACITY  \n[note 1]' : 'Cumulative Installed Capacity',
+                          'CUMULATIVE INSTALLED CAPACITY  [note 1]' : 'Cumulative Installed Capacity',
+                          'ELECTRICITY GENERATED  \n[note 5]' : 'Electricty Generated', 
+                          'ELECTRICITY GENERATED  [note 5]' : 'Electricty Generated',
+                          'ELECTRICITY GENERATED  [note 6]' : 'Electricty Generated', 
+                          'LOAD FACTORS  \n[note 10]' : 'Load Factors',
+                          'LOAD FACTORS  [note 10]' : 'Load Factors'}})
+
+df['Unit'] = df['Head']
+
+df = df.replace({'Unit' : {'Cumulative Installed Capacity' : 'MW',
+                          'Electricty Generated' : 'GWh',
+                          'Load Factors' : 'percent'}})
 
 df['OBS'] = df.apply(lambda x: 0 if x['DATAMARKER'] == 'not-available' else x['OBS'], axis = 1)
 
 df
 
 
-# In[241]:
+# In[266]:
 
 
 df = df.rename(columns={'Category' : 'Fuel', 'Head' : 'Measure Type', 'OBS' : 'Value', 'Geography' : 'Region', 'DATAMARKER' : 'Marker'}).fillna('')
 
 df = df[['Period', 'Region', 'Fuel', 'Value', 'Marker', 'Measure Type', 'Unit']]
 
-df['Unit'] = df.apply(lambda x: 'percent' if 'load-factors' in x['Measure Type'] else x['Unit'], axis = 1)
-
 df
 
 
-# In[242]:
+# In[267]:
 
 
 scraper.dataset.title = info['title']
@@ -210,7 +201,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[243]:
+# In[268]:
 
 
 from IPython.core.display import HTML
