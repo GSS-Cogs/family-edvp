@@ -163,17 +163,17 @@ df = df.replace({'Category' : {
                 'DATAMARKER' : {'[x]' : 'not-available'},
                 'Head' : {'CUMULATIVE INSTALLED CAPACITY  \n[note 1]' : 'cumulative-installed-capacity',
                           'CUMULATIVE INSTALLED CAPACITY  [note 1]' : 'cumulative-installed-capacity',
-                          'ELECTRICITY GENERATED  \n[note 5]' : 'electricty-generated', 
-                          'ELECTRICITY GENERATED  [note 5]' : 'electricty-generated',
-                          'ELECTRICITY GENERATED  [note 6]' : 'electricty-generated', 
+                          'ELECTRICITY GENERATED  \n[note 5]' : 'electricity-generated', 
+                          'ELECTRICITY GENERATED  [note 5]' : 'electricity-generated',
+                          'ELECTRICITY GENERATED  [note 6]' : 'electricity-generated', 
                           'LOAD FACTORS  \n[note 10]' : 'load-factors',
                           'LOAD FACTORS  [note 10]' : 'load-factors'}})
 
 df['Unit'] = df['Head']
 
-df = df.replace({'Unit' : {'Cumulative Installed Capacity' : 'mw',
-                          'Electricty Generated' : 'gwh',
-                          'Load Factors' : 'percent'}})
+df = df.replace({'Unit' : {'cumulative-installed-capacity' : 'mw',
+                          'electricity-generated' : 'gwh',
+                          'load-factors' : 'percent'}})
 
 df['OBS'] = df.apply(lambda x: 0 if x['DATAMARKER'] == 'not-available' else x['OBS'], axis = 1)
 
