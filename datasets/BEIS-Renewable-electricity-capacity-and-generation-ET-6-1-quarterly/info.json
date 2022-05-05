@@ -32,6 +32,11 @@
                 "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
                 "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}"
             },
+            "Fuel": {
+                "type": "dimension",
+                "uri": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}" 
+            },
             "Value": {
                 "type": "observations",
                 "datatype": "double"
