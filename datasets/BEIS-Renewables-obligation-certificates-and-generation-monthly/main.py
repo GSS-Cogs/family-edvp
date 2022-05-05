@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
+# In[17]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[10]:
+# In[18]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -22,7 +22,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[11]:
+# In[19]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -35,7 +35,7 @@ for tab in tabs:
 columns = ["Technology Group", "Generation Type", "Roc Per Mwh", "Period", "Qtr", "Month", "Element"]
 
 
-# In[12]:
+# In[20]:
 
 
 # Filtering the tabs which are required and start stage-1 transform
@@ -89,7 +89,7 @@ for tab in tabs:
     tidy_tabs.append(tidy_sheet.topandas())
 
 
-# In[13]:
+# In[21]:
 
 
 df = pd.concat(tidy_tabs).fillna("NaN")
@@ -104,7 +104,7 @@ df.to_csv('test.csv', index=False)
 df
 
 
-# In[14]:
+# In[22]:
 
 
 
@@ -132,7 +132,7 @@ df.drop(indexNames, inplace = True)
 
 df['Period'] = df.apply(lambda x: 'month/' + left(x['Period'], 4) + '-' + x['Month'] if 'NaN' not in x['Month'] else x['Period'], axis =1 )
 
-df['Period'] = df.apply(lambda x: 'government-year/' + left(x['Period'], 4) if 'NaN' in x['Month'] else x['Period'], axis = 1)
+df['Period'] = df.apply(lambda x: 'government-year/' + left(x['Period'], 4) + '-20' + right(x['Period'], 2)  if 'NaN' in x['Month'] else x['Period'], axis = 1)
 
 df['Roc Per Mwh'] = df.apply(lambda x: round(float(x['Roc Per Mwh']), 2) if 'all' not in x['Roc Per Mwh'] else x['Roc Per Mwh'], axis = 1)
 
@@ -145,7 +145,7 @@ df['Value'] = df.apply(lambda x: int(x['Value']) if '.' in str(x['Value']) else 
 df
 
 
-# In[15]:
+# In[23]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -157,7 +157,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[16]:
+# In[24]:
 
 
 from IPython.core.display import HTML
