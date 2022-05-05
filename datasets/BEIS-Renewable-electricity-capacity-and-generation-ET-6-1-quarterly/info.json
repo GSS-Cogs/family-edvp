@@ -34,8 +34,8 @@
             },
             "Fuel": {
                 "type": "dimension",
-                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
-                "uri": "http://gss-data.org.uk/def/energy/concept-scheme/fuel"
+                "uri": "http://gss-data.org.uk/def/energy/concept-scheme/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}"
             },
             "Value": {
                 "type": "observations",
