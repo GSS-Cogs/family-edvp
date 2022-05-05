@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[202]:
+# In[235]:
 
 
 import json
@@ -11,7 +11,7 @@ import pandas as pd
 from gssutils import *
 
 
-# In[203]:
+# In[236]:
 
 
 infoFileName = 'info.json'
@@ -21,7 +21,7 @@ scraper = Scraper(seed=infoFileName)
 distro  = scraper.distribution(latest=True, title=lambda t: 'Renewable electricity capacity and generation (ET 6.1 - quarterly)' in t)
 
 
-# In[204]:
+# In[237]:
 
 
 # Enumerate the tabs
@@ -117,14 +117,14 @@ extract = df['Head'].str.extract('\((.*?)\) \((.*?)\)')
 # df['Head'].value_counts(), extract[0].value_counts(), extract[1].value_counts()
 
 
-# In[205]:
+# In[238]:
 
 
 # So we're going to assign as described and verified above
 df['Unit'] = extract[1]
 
 
-# In[206]:
+# In[239]:
 
 
 # Next, strip these values from Head
@@ -145,7 +145,7 @@ df.drop(['Year', 'Quarter'], axis=1, inplace=True)
 df
 
 
-# In[207]:
+# In[240]:
 
 
 indexNames = df[ df['Head'].str.contains('SHARES OF ELECTRICITY GENERATED')].index
@@ -181,10 +181,12 @@ df = df.replace({'Category' : {
                           'LOAD FACTORS  \n[note 10]' : 'LOAD FACTORS',
                           'LOAD FACTORS  [note 10]' : 'LOAD FACTORS'}})
 
+df['OBS'] = df.apply(lambda x: 0 if x['DATAMARKER'] == 'not-available' else x['OBS'], axis = 1)
+
 df
 
 
-# In[208]:
+# In[241]:
 
 
 df = df.rename(columns={'Category' : 'Fuel', 'Head' : 'Measure Type', 'OBS' : 'Value', 'Geography' : 'Region', 'DATAMARKER' : 'Marker'}).fillna('')
@@ -196,7 +198,7 @@ df['Unit'] = df.apply(lambda x: 'percent' if 'load-factors' in x['Measure Type']
 df
 
 
-# In[209]:
+# In[242]:
 
 
 scraper.dataset.title = info['title']
@@ -208,7 +210,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[210]:
+# In[243]:
 
 
 from IPython.core.display import HTML
