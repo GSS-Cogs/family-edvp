@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[60]:
+# In[1]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ scraper.distributions = [x for x in scraper.distributions if hasattr(x, "mediaTy
 scraper
 
 
-# In[61]:
+# In[2]:
 
 
 # Extract latest distribution  of the required dataset and datasetTitle
@@ -22,7 +22,7 @@ datasetTitle = distribution.title
 distribution
 
 
-# In[62]:
+# In[3]:
 
 
 # Extract all the tabs and its content from the spread sheet
@@ -35,7 +35,7 @@ for tab in tabs:
 columns = ["Technology Group", "Generation Type", "Roc Per Mwh", "Period", "Qtr", "Month", "Element"]
 
 
-# In[63]:
+# In[4]:
 
 
 # Filtering the tabs which are required and start stage-1 transform
@@ -63,7 +63,7 @@ for tab in tabs:
 
     technology_group = techno_group - tab.excel_ref("A").filter(contains_string("Summary Technology Group")) - remove
 
-    observations = cell.shift(3, 6).expand(RIGHT).expand(DOWN).is_not_whitespace()
+    observations = cell.shift(3, 6).expand(RIGHT).expand(DOWN).is_not_whitespace() - tab.filter(contains_string("Equivalent generation")).expand(RIGHT).expand(DOWN)
 
     if tab.name == "Month":
 
@@ -89,7 +89,7 @@ for tab in tabs:
     tidy_tabs.append(tidy_sheet.topandas())
 
 
-# In[64]:
+# In[5]:
 
 
 df = pd.concat(tidy_tabs).fillna("NaN")
@@ -104,7 +104,7 @@ df.to_csv('test.csv', index=False)
 df
 
 
-# In[65]:
+# In[6]:
 
 
 
@@ -145,7 +145,7 @@ df['Value'] = df.apply(lambda x: int(x['Value']) if '.' in str(x['Value']) else 
 df
 
 
-# In[66]:
+# In[7]:
 
 
 scraper.dataset.title = 'Renewables obligation: certificates and generation'
@@ -157,7 +157,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[67]:
+# In[8]:
 
 
 from IPython.core.display import HTML
