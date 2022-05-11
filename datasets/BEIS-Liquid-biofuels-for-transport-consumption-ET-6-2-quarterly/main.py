@@ -121,6 +121,7 @@ df = df.rename(columns={'OBS' : 'Value'})
 df = df[['Period', 'Fuel', 'Value', 'Measure Type', 'Unit']]
 
 df['Measure Type'] = df['Measure Type'].apply(pathify)
+df['Fuel'] = df['Fuel'].apply(pathify)
 
 df
 
@@ -133,7 +134,6 @@ scraper.dataset.title = info['title']
 scraper.dataset.comment = """
 Data on UK liquid biofuels for transport consumption. Quarterly data published a quarter in arrears with detailed commentary available in the BEIS statistical publication Energy Trends.
 https://www.uktradeinfo.com/Statistics/Pages/TaxAndDutybulletins.aspx
-Percentage change on Quarter observations is % change on quarter in previous year (-ve value is decrease)
 """
 scraper.dataset.contactPoint = "renewablesstatistics@beis.gov.uk"
 
