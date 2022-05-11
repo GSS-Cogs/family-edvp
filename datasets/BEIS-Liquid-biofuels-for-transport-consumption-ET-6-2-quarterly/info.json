@@ -21,34 +21,27 @@
         ],
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["volume", 
-                          "energy", 
-                          "shares-of-motor-spirit-road-fuels", 
-                          "shares-of-derv-road-fuels", 
-                          "shares-of-road-fuels", 
-                          "percentage-change-in-shares-of-motor-spirit-road-fuels", 
-                          "percentage-change-in-shares-of-derv-road-fuels", 
-                          "percentage-change-in-shares-of-road-fuels"]
-      		},
-            "Fuel" :{
-                "parent": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
-                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
-                "codelist": false
+                "type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
             },
-      		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
-      		},
-      		"Value": {
-        		"datatype": "double"
-      		}
+            "Unit": {
+                "type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
+            },
+            "Fuel": {
+                "type": "dimension",
+                "uri": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}" 
+            },
+            "Value": {
+                "type": "observations",
+                "datatype": "double"
+            }
         },
         "airtable": "recIONsCXYYcFYNM0",
         "main_issue": 8

@@ -1,14 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[626]:
-
-
-
-
-
-# In[627]:
-
+# In[534]:
 
 
 from gssutils import *
@@ -24,11 +17,10 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[628]:
+# In[535]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -36,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[629]:
+# In[536]:
 
 
 dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
@@ -44,170 +36,102 @@ dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
 display(dist)
 
 
-# In[630]:
+# In[537]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents', 'Highlights']] #
-tabs
+#tabs
 
 
-# In[631]:
+# In[538]:
 
 
 tidied_sheets = {}
 
 for tab in tabs:
 
-    if tab.name in ['Annual', 'Quarter']:
+    if tab.name in ['Annual', 'Quarter', 'Main table']:
 
         print(tab.name)
 
-        pivot = tab.filter('6 RENEWABLES')
+        pivot = tab.filter('VOLUME (million litres)')
 
-        if tab.name == 'Annual':
-            remove = tab.filter(contains_string("Source:")).expand(RIGHT).expand(DOWN)
-        elif tab.name == 'Quarter':
-            remove = tab.filter(contains_string("Source:")).expand(RIGHT).expand(DOWN) | tab.filter(contains_string('%')).expand(DOWN)
+        year = pivot.fill(RIGHT).is_not_blank() - tab.filter(contains_string('per cent change'))
+        quarter = year #they joined the cells rather than having year above quarter smh
 
-        fuel = tab.filter('VOLUME (million litres)').fill(DOWN) - tab.filter('ENERGY (thousand toe)') - remove
+        measure = pivot.expand(DOWN).filter(contains_string('VOLUME')) | pivot.expand(DOWN).filter(contains_string('ENERGY')) | pivot.expand(DOWN).filter(contains_string('volume')) 
 
-        if tab.name == 'Annual':
-            period = tab.filter('VOLUME (million litres)').shift(1, -1).expand(RIGHT).is_not_blank()
-        elif tab.name == 'Quarter':
-            year = tab.filter('VOLUME (million litres)').shift(1, -2).expand(RIGHT).is_not_blank()
-            quarter = year.shift(DOWN)
+        fuel = pivot.fill(DOWN).is_not_blank() - measure
 
-        measure = tab.filter('VOLUME (million litres)') | tab.filter('ENERGY (thousand toe)')
-
-        observations = fuel.fill(RIGHT).is_not_blank()
-
-        if tab.name == 'Annual':
-            dimensions = [
-                    HDim(period, "Period", DIRECTLY, ABOVE),
-                    HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                    HDim(measure, 'Measure Type', CLOSEST, ABOVE),
-                    HDim(measure, 'Unit', CLOSEST, ABOVE)
-            ]
-        elif tab.name == 'Quarter':
-            dimensions = [
-                    HDim(year, "Year", DIRECTLY, ABOVE),
-                    HDim(quarter, "Quarter", DIRECTLY, ABOVE),
-                    HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                    HDim(measure, 'Measure Type', CLOSEST, ABOVE),
-                    HDim(measure, 'Unit', CLOSEST, ABOVE)
-            ]
-
-        tidy_sheet = ConversionSegment(tab, dimensions, observations)
-        savepreviewhtml(tidy_sheet, fname="Preview.html")
-
-        tidied_sheets[tab.name] = tidy_sheet.topandas()
-
-    elif tab.name in ['Main table']:
-
-        print(tab.name)
-
-        pivot = tab.filter('6 RENEWABLES')
-
-        remove = tab.filter(contains_string("1.")).expand(RIGHT).expand(DOWN) | tab.filter(contains_string('Total biofuels for transport')).expand(UP) | tab.filter(contains_string('per cent change')).expand(DOWN)
-
-        fuel = tab.filter('Shares of road fuels').fill(DOWN) - remove
-
-        year = tab.filter('VOLUME (million litres)').shift(1, -2).expand(RIGHT).is_not_blank()
-        quarter = year.shift(DOWN)
-        yearAdd = tab.filter('VOLUME (million litres)').shift(1, -1).expand(RIGHT).is_not_blank() - quarter
-        year = (yearAdd | year) - remove
-        quarter = quarter | yearAdd.shift(UP)
-
-        measure = tab.filter('Shares of road fuels') | tab.filter('Percentage change in shares of road fuels (2)')
-
-        unit = 'Percent'
-
-        observations = fuel.fill(RIGHT).is_not_blank() - remove - measure.expand(RIGHT)
+        observations = (fuel.fill(RIGHT).is_not_blank() - measure.expand(RIGHT) - tab.filter(contains_string('per cent change')).fill(DOWN)) - (tab.filter('VOLUME - Per cent changes from same quarter last year (%)').expand(RIGHT).expand(DOWN) - tab.filter('VOLUME - per cent of total biofuels (%)').expand(RIGHT).expand(DOWN)) #this is a terrible way of doing this but finding a better way really isnt worth the time
 
         dimensions = [
                 HDim(year, "Year", DIRECTLY, ABOVE),
                 HDim(quarter, "Quarter", DIRECTLY, ABOVE),
                 HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                HDim(measure, 'Measure Type', CLOSEST, ABOVE),
-                HDimConst('Unit', unit)
+                HDim(measure, 'Measure Type', CLOSEST, ABOVE)
         ]
 
 
         tidy_sheet = ConversionSegment(tab, dimensions, observations)
-        savepreviewhtml(tidy_sheet, fname="Preview.html")
+        savepreviewhtml(tidy_sheet, fname=tab.name + " Preview.html")
 
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
+# In[539]:
 
-# In[632]:
 
+df = pd.concat(tidied_sheets.values()).fillna('NaN')
 
-df = pd.concat([tidied_sheets['Annual'], tidied_sheets['Quarter']]).fillna('NaN')
+df['Year'] = df['Year'].str.lower()
 
-df['Period'] = df.apply(lambda x: 'quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Period'] == 'NaN' else 'year/' + left(x['Period'], 4), axis = 1)
+df['Quarter'] = df.apply(lambda x: x['Year'][-11:] if 'quarter' in x['Year'] else x['Year'], axis = 1)
+df['Year'] = df.apply(lambda x: x['Year'][:4] if 'quarter' in x['Year'] else x['Year'], axis = 1)
 
-df = df.drop(['Quarter', 'Year'], axis=1)
+df['Unit'] = df['Measure Type']
+
+df['Unit'] = df.apply(lambda x: 'percent' if '%' in x['Unit'] else x['Unit'], axis = 1)
+df['Unit'] = df.apply(lambda x: 'million-litres' if 'million litres' in x['Unit'] else x['Unit'], axis = 1)
+df['Unit'] = df.apply(lambda x: 'thousand-toe' if 'ktoe' in x['Unit'] else x['Unit'], axis = 1)
+df['Unit'] = df.apply(lambda x: 'percent' if 'Shares' in x['Unit'] else x['Unit'], axis = 1)
+df['Unit'] = df.apply(lambda x: 'thousand-toe' if 'thousand toe' in x['Unit'] else x['Unit'], axis = 1)
+
+df['Measure Type'] = df['Measure Type'].str.lower()
+
+df = df.replace({'Quarter' : {'1st quarter' : 'Q1',
+                              '2nd quarter' : 'Q2',
+                              '3rd quarter' : 'Q3',
+                              '4th quarter' : 'Q4'}})
+
+                 
+
+df['Period'] = df.apply(lambda x: 'quarter/' + x['Year'][:4] + '-' + x['Quarter'] if 'Q' in x['Quarter'] else 'year/' + x['Year'], axis = 1)
+
+df.drop(['Year', 'Quarter'], axis=1, inplace=True)
 
 df['Measure Type'] = df.apply(lambda x: x['Measure Type'].split('(')[0].strip(), axis = 1)
-df['Unit'] = df.apply(lambda x: left(x['Unit'].split('(')[1], len(x['Unit'].split('(')[1]) - 1).strip(), axis = 1)
 
-df = df.replace({'Fuel' : {'Total biofuels for transport' : 'Total Biofuels'}})
+df['Measure Type'] = df.apply(lambda x: 'volume share of motor spirit' if 'per cent of Motor Spirit' in x['Fuel'] else ('volume share of DERV' if 'as per cent of DERV' in x['Fuel'] else x['Measure Type']), axis = 1)
+
+df = df.replace({'Measure Type' : {'volume - per cent of total biofuels' : 'volume share of total biofuels',
+                                   'volume - all transport fuels consumption' : 'volume fuel consumption',
+                                   'shares of volume of road fuels' : 'volume share of road fuels'},
+                 'Fuel' : {'Biodiesel as per cent of DERV' : 'Biodiesel', 
+                           'Bioethanol as per cent of Motor Spirit' : 'Bioethanol',
+                           'Total biofuels as per cent of road fuels' : 'Total biofuels'}})
 
 df = df.rename(columns={'OBS' : 'Value'})
 
 df = df[['Period', 'Fuel', 'Value', 'Measure Type', 'Unit']]
 
-df
-
-
-# In[633]:
-
-
-dfShares = pd.concat([tidied_sheets['Main table']]).fillna('NaN')
-
-dfShares['Period'] = dfShares.apply(lambda x: 'quarter/' + left(x['Year'], 4) +'-Q'+ left(x['Quarter'], 1) if x['Quarter'] != '' else 'year/' + left(x['Year'], 4), axis = 1)
-
-dfShares = dfShares.drop(['Quarter', 'Year'], axis=1)
-
-dfShares['Measure Type'] = dfShares.apply(lambda x: x['Measure Type'] + 'Motor Spirit' if 'Motor Spirit' in x['Fuel'] else (x['Measure Type'] + 'DERV' if 'DERV' in x['Fuel'] else x['Measure Type']), axis = 1)
-
-dfShares['Fuel'] = dfShares.apply(lambda x: x['Fuel'].split('as')[0].strip(), axis = 1)
-
-dfShares = dfShares.replace({'Measure Type' : {
-    'Percentage change in shares of road fuels (2)Motor Spirit' : 'Percentage change in shares of Motor Spirit road fuels',
-    'Percentage change in shares of road fuels (2)DERV' : 'Percentage change in shares of DERV road fuels',
-    'Shares of road fuelsDERV' : 'Shares of DERV road fuels',
-    'Shares of road fuelsMotor Spirit' : 'Shares of Motor Spirit road fuels',
-    'Percentage change in shares of road fuels (2)' : 'Percentage change in shares of road fuels'
-}})
-
-dfShares = dfShares.rename(columns={'OBS' : 'Value'})
-
-dfShares = dfShares[['Period', 'Fuel', 'Value', 'Measure Type', 'Unit']]
-
-dfShares
-
-
-# In[634]:
-
-
-df = pd.concat([df, dfShares])
-
-COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
-
-for col in df.columns.values.tolist():
-	if col in COLUMNS_TO_NOT_PATHIFY:
-		continue
-	try:
-		df[col] = df[col].apply(pathify)
-	except Exception as err:
-		raise Exception('Failed to pathify column "{}".'.format(col)) from err
+df['Measure Type'] = df['Measure Type'].apply(pathify)
 
 df
 
 
-# In[635]:
+# In[540]:
+
 
 scraper.dataset.title = info['title']
 
@@ -218,12 +142,23 @@ Percentage change on Quarter observations is % change on quarter in previous yea
 """
 scraper.dataset.contactPoint = "renewablesstatistics@beis.gov.uk"
 
-csvName = 'observations'
-cubes.add_cube(scraper, df.drop_duplicates(), csvName)
+
+# In[541]:
 
 
-# In[636]:
+df.to_csv('observations.csv', index=False)
+
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-cubes.output_all()
+# In[542]:
+
+
+from IPython.core.display import HTML
+for col in df:
+    if col not in ['Value']:
+        df[col] = df[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(df[col].cat.categories)
 
