@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[612]:
+# In[664]:
 
 
 from gssutils import *
@@ -20,7 +20,7 @@ def mid(s, offset, amount):
 info = json.load(open('info.json'))
 
 
-# In[613]:
+# In[665]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -28,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[614]:
+# In[666]:
 
 
 dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
@@ -36,14 +36,14 @@ dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
 display(dist)
 
 
-# In[615]:
+# In[667]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents', 'Highlights']] #
 #tabs
 
 
-# In[616]:
+# In[668]:
 
 
 tidied_sheets = {}
@@ -79,15 +79,16 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[617]:
+# In[669]:
 
 
 df = pd.concat(tidied_sheets.values()).fillna('NaN')
 
 df['Year'] = df['Year'].str.lower()
+df['Year'] = df['Quarter'].str.lower()
 
-df['Quarter'] = df.apply(lambda x: x['Year'][-11:] if 'quarter' in x['Year'] else x['Year'], axis = 1)
-df['Year'] = df.apply(lambda x: x['Year'][:4] if 'quarter' in x['Year'] else x['Year'], axis = 1)
+df['Quarter'] = df.apply(lambda x: x['Year'].strip()[-11:] if 'quarter' in x['Quarter'] else x['Year'], axis = 1)
+df['Year'] = df.apply(lambda x: x['Year'][:4] if 'quarter' in x['Quarter'] else x['Year'], axis = 1)
 
 df['Unit'] = df['Measure Type']
 
@@ -124,7 +125,7 @@ df['Measure Type'] = df['Measure Type'].apply(pathify)
 df
 
 
-# In[618]:
+# In[670]:
 
 
 scraper.dataset.title = info['title']
@@ -137,7 +138,7 @@ Percentage change on Quarter observations is % change on quarter in previous yea
 scraper.dataset.contactPoint = "renewablesstatistics@beis.gov.uk"
 
 
-# In[619]:
+# In[671]:
 
 
 df.to_csv('observations.csv', index=False)
@@ -146,7 +147,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[620]:
+# In[672]:
 
 
 from IPython.core.display import HTML
