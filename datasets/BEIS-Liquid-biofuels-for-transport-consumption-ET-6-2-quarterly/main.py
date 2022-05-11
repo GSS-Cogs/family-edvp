@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[534]:
+# In[612]:
 
 
 from gssutils import *
@@ -20,7 +20,7 @@ def mid(s, offset, amount):
 info = json.load(open('info.json'))
 
 
-# In[535]:
+# In[613]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -28,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[536]:
+# In[614]:
 
 
 dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
@@ -36,21 +36,21 @@ dist = [x for x in scraper.distributions if "Liquid biofuels" in x.title][0]
 display(dist)
 
 
-# In[537]:
+# In[615]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents', 'Highlights']] #
 #tabs
 
 
-# In[538]:
+# In[616]:
 
 
 tidied_sheets = {}
 
 for tab in tabs:
 
-    if tab.name in ['Annual', 'Quarter', 'Main table']:
+    if tab.name in ['Annual', 'Quarter']:#, 'Main table']: Main table is just data from annual and quarter
 
         print(tab.name)
 
@@ -79,7 +79,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[539]:
+# In[617]:
 
 
 df = pd.concat(tidied_sheets.values()).fillna('NaN')
@@ -112,14 +112,8 @@ df.drop(['Year', 'Quarter'], axis=1, inplace=True)
 
 df['Measure Type'] = df.apply(lambda x: x['Measure Type'].split('(')[0].strip(), axis = 1)
 
-df['Measure Type'] = df.apply(lambda x: 'volume share of motor spirit' if 'per cent of Motor Spirit' in x['Fuel'] else ('volume share of DERV' if 'as per cent of DERV' in x['Fuel'] else x['Measure Type']), axis = 1)
-
-df = df.replace({'Measure Type' : {'volume - per cent of total biofuels' : 'volume share of total biofuels',
-                                   'volume - all transport fuels consumption' : 'volume fuel consumption',
-                                   'shares of volume of road fuels' : 'volume share of road fuels'},
-                 'Fuel' : {'Biodiesel as per cent of DERV' : 'Biodiesel', 
-                           'Bioethanol as per cent of Motor Spirit' : 'Bioethanol',
-                           'Total biofuels as per cent of road fuels' : 'Total biofuels'}})
+df = df.replace({'Measure Type' : {'volume - all transport fuels consumption' : 'volume',
+                                   'volume - per cent of total biofuels' : 'volume of total biofuels'}})
 
 df = df.rename(columns={'OBS' : 'Value'})
 
@@ -130,7 +124,7 @@ df['Measure Type'] = df['Measure Type'].apply(pathify)
 df
 
 
-# In[540]:
+# In[618]:
 
 
 scraper.dataset.title = info['title']
@@ -143,7 +137,7 @@ Percentage change on Quarter observations is % change on quarter in previous yea
 scraper.dataset.contactPoint = "renewablesstatistics@beis.gov.uk"
 
 
-# In[541]:
+# In[619]:
 
 
 df.to_csv('observations.csv', index=False)
@@ -152,7 +146,7 @@ catalog_metadata = scraper.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file('catalog-metadata.json')
 
 
-# In[542]:
+# In[620]:
 
 
 from IPython.core.display import HTML
