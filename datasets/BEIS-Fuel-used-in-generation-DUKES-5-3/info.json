@@ -1,4 +1,5 @@
 {
+    "$schema": "http://gss-cogs.github.io/family-schemas/dataset-schema-1.1.0.json",
     "id": "beis-fuel-used-in-generation-dukes-5-3",
     "title": "Fuel used in generation (DUKES 5.3)",
     "publisher": "Department for Business, Energy and Industrial Strategy",
@@ -21,32 +22,32 @@
         ],
         "columns": {
             "Period": {
-                "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
-                "value": "http://reference.data.gov.uk/id/{+period}",
-                "codelist": false
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
+            },
+            "Value": {
+                "type": "observations",
+                "datatype": "double"
             },
             "Measure Type": {
-        		"dimension": "http://purl.org/linked-data/cube#measureType",
-        		"value": "http://gss-data.org.uk/def/measure/{measure_type}",
-        		"types": ["fuel-used-in-generation", "fuel-used-in-generation-representative"]
-      		},
-            "Fuel" :{
-                "dimension": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
-                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}",
-                "codelist": false
+                "type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
             },
-            "Generating Companies" :{
-                "dimension": "http://gss-data.org.uk/def/energy/property/dimension/generating-companies",
-                "value": "http://gss-data.org.uk/def/energy/concept/generating-companies/{generating_companies}",
-                "codelist": false
+            "Unit": {
+                "type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
             },
-      		"Unit": {
-        		"attribute": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
-        		"value": "http://gss-data.org.uk/def/concept/measurement-units/{unit}"
-      		},
-      		"Value": {
-        		"datatype": "double"
-      		}
+            "Fuel": {
+                "type": "dimension",
+                "uri": "http://gss-data.org.uk/def/energy/property/dimension/fuel",
+                "value": "http://gss-data.org.uk/def/energy/concept/fuel/{fuel}" 
+            },
+            "Generating Companies": {
+                "type": "dimension",
+                "uri": "http://gss-data.org.uk/def/energy/property/dimension/generating-companies",
+                "value": "http://gss-data.org.uk/def/energy/concept/generating-companies/{generating_companies}" 
+            }
         },
         "airtable": "recIo7ftwf1bJO5Ys",
         "main_issue": 17

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[209]:
-
+# In[33]:
 
 
 from gssutils import *
@@ -18,11 +17,10 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-cubes = Cubes("info.json")
 info = json.load(open('info.json'))
 
 
-# In[210]:
+# In[34]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -30,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[211]:
+# In[35]:
 
 
 dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)" in x.title][0]
@@ -38,7 +36,7 @@ dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)
 display(dist)
 
 
-# In[212]:
+# In[36]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents']]
@@ -78,7 +76,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[213]:
+# In[37]:
 
 
 df = pd.concat([tidied_sheets['5.3']]).fillna('NaN')
@@ -126,7 +124,7 @@ df = df[['Period', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Uni
 df
 
 
-# In[214]:
+# In[38]:
 
 
 from IPython.core.display import HTML
@@ -137,7 +135,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[215]:
+# In[39]:
 
 
 scraper.dataset.title = info['title']
@@ -148,11 +146,12 @@ For Major Power Producers, 'other fuels' only includes non-biodegradable waste. 
 to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable waste, coke oven gas, blast furnace gas, and waste
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
 
-cubes.add_cube(scraper, df.drop_duplicates(), scraper.title)
+
+# In[40]:
 
 
-# In[216]:
+df.to_csv('observations.csv', index=False)
 
-
-cubes.output_all()
+catalog_metadata = scraper.as_csvqb_catalog_metadata()
+catalog_metadata.to_json_file('catalog-metadata.json')
 
