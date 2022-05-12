@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[33]:
+# In[49]:
 
 
 from gssutils import *
@@ -20,7 +20,7 @@ def mid(s, offset, amount):
 info = json.load(open('info.json'))
 
 
-# In[34]:
+# In[50]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -28,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[35]:
+# In[51]:
 
 
 dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)" in x.title][0]
@@ -36,7 +36,7 @@ dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)
 display(dist)
 
 
-# In[36]:
+# In[52]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents']]
@@ -76,7 +76,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[37]:
+# In[53]:
 
 
 df = pd.concat([tidied_sheets['5.3']]).fillna('NaN')
@@ -109,7 +109,7 @@ df = df.rename(columns={'OBS' : 'Value'})
 
 df['Measure Type'] = df.apply(lambda x: 'fuel used in generation - representative' if 'equivalent' in x['Unit'] else 'fuel used in generation', axis = 1)
 
-COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period']
+COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Generating Companies']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -124,7 +124,7 @@ df = df[['Period', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Uni
 df
 
 
-# In[38]:
+# In[54]:
 
 
 from IPython.core.display import HTML
@@ -135,7 +135,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[39]:
+# In[55]:
 
 
 scraper.dataset.title = info['title']
@@ -147,7 +147,7 @@ to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
 
 
-# In[40]:
+# In[56]:
 
 
 df.to_csv('observations.csv', index=False)
