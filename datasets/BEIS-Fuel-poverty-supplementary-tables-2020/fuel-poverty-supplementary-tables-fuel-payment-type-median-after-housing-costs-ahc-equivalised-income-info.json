@@ -36,6 +36,18 @@
       "Measure Type": {
         "type": "measures",
         "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Payment Method": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/payment-method.csv-metadata.json"
+        }
+      },
+      "Fuel Type": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/fuel-type.csv-metadata.json"
+        }
       }
     },
     "stage": [

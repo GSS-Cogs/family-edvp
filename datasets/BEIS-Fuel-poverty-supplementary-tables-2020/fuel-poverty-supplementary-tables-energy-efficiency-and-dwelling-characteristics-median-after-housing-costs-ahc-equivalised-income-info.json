@@ -41,6 +41,66 @@
       "Measure Type": {
         "type": "measures",
         "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Low Income High costs Matrix": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/low-income-high-costs-matrix.csv-metadata.json"
+        }
+      },
+      "FPEER": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/fpeer.csv-metadata.json"
+        }
+      },
+      "SAP BAND": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/sap-band.csv-metadata.json"
+        }
+      },
+      "Rurality": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/rurality.csv-metadata.json"
+        }
+      },
+      "Dwelling Type": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/dwelling-type.csv-metadata.json"
+        }
+      },
+      "Dwelling Age": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/dwelling-age.csv-metadata.json"
+        }
+      },
+      "Floor Area": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/floor-area.csv-metadata.json"
+        }
+      },
+      "Gas Grid Connection": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/gas-grid-connection.csv-metadata.json"
+        }
+      },
+      "Main Fuel Type": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/main-fuel-type.csv-metadata.json"
+        }
+      },
+      "Wall Insulation": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/wall-insulation.csv-metadata.json"
+        }
       }
     },
     "stage": [
