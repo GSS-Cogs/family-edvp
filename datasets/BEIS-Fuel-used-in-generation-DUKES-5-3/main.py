@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[78]:
+# In[1]:
 
 
 from gssutils import *
@@ -20,7 +20,7 @@ def mid(s, offset, amount):
 info = json.load(open('info.json'))
 
 
-# In[79]:
+# In[2]:
 
 
 scraper = Scraper(info['landingPage'])
@@ -28,7 +28,7 @@ scraper.dataset.family = 'energy'
 scraper
 
 
-# In[80]:
+# In[3]:
 
 
 dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)" in x.title][0]
@@ -36,7 +36,7 @@ dist = [x for x in scraper.distributions if "Fuel used in generation (DUKES 5.3)
 display(dist)
 
 
-# In[81]:
+# In[4]:
 
 
 tabs = [x for x in dist.as_databaker() if x.name not in ['Contents']]
@@ -66,7 +66,7 @@ for tab in tabs:
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, ABOVE),
                 HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                HDim(generators, 'Generating Companies', CLOSEST, ABOVE),
+                HDim(generators, 'Generating-Companies', CLOSEST, ABOVE),
                 HDim(unit, 'Unit', CLOSEST, ABOVE, cellvalueoverride={'    "' : 'M tonnes'})
         ]
 
@@ -76,7 +76,7 @@ for tab in tabs:
         tidied_sheets[tab.name] = tidy_sheet.topandas()
 
 
-# In[82]:
+# In[5]:
 
 
 df = pd.concat([tidied_sheets['5.3']]).fillna('NaN')
@@ -98,7 +98,7 @@ df = df.replace({'Fuel' : {
         'Total all generating companies' : 'All',
         'Total major power producers (2)' : 'All',
         'Total other generators (2)' : 'All'},
-                'Generating Companies' : {
+                'Generating-Companies' : {
         'Major power producers (2)' : 'Major power producers',
         'Transport undertakings:' : 'Other generators - Transport Undertakings',
         'Undertakings in industrial and commercial sectors:' : 'Other generators - Undertakings in industrial and commercial sectors'},
@@ -109,7 +109,7 @@ df = df.rename(columns={'OBS' : 'Value'})
 
 df['Measure Type'] = df.apply(lambda x: 'fuel used in generation - representative' if 'equivalent' in x['Unit'] else 'fuel used in generation', axis = 1)
 
-COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Generating Companies']
+COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Generating-Companies']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -119,12 +119,12 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-df = df[['Period', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Generating-Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
 
 df
 
 
-# In[83]:
+# In[6]:
 
 
 from IPython.core.display import HTML
@@ -135,7 +135,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[84]:
+# In[7]:
 
 
 scraper.dataset.title = info['title']
@@ -147,7 +147,7 @@ to 2013. For 'other generators', 'other fuels' includes mainly non-biodegradable
 products from chemical processes. Non-biodegradable waste was included in 'other renewables' prior to 2007."""
 
 
-# In[85]:
+# In[8]:
 
 
 df.to_csv('observations.csv', index=False)
