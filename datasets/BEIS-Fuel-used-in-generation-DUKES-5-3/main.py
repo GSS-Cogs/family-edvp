@@ -66,7 +66,7 @@ for tab in tabs:
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, ABOVE),
                 HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                HDim(generators, 'GeneratingCompanies', CLOSEST, ABOVE),
+                HDim(generators, 'Generating Companies', CLOSEST, ABOVE),
                 HDim(unit, 'Unit', CLOSEST, ABOVE, cellvalueoverride={'    "' : 'M tonnes'})
         ]
 
