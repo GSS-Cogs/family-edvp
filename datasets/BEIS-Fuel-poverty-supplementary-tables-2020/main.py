@@ -770,7 +770,7 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    df.to_csv(pathify(scraper.title) + '.csv', index=False)
+    df.to_csv(pathify(scraper.title) + '-observations.csv', index=False)
 
     catalog_metadata = scraper.as_csvqb_catalog_metadata()
     catalog_metadata.to_json_file(pathify(scraper.title) + '-catalog-metadata.json')
