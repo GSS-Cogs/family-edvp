@@ -1,8 +1,12 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
 Fulltotime work,full-time-work,,
 Parttotime work,part-time-work,,
 Retired,retired,,
 Unemployed,unemployed,,
 Fulltotime education,full-time-education,,
 Other inactive,other-inactive,,
+All households,all-households,,
+all,all,,
+Full-time work,full-time-work,,
+Part-time work,part-time-work,,
+Full-time education,full-time-education,,
