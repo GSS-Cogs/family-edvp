@@ -36,6 +36,36 @@
       "Measure Type": {
         "type": "measures",
         "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Tenure": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/tenure.csv-metadata.json"
+        }
+      },
+      "Household Composition": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/household-composition.csv-metadata.json"
+        }
+      },
+      "Age of Youngest Person": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/age-of-youngest-person.csv-metadata.json"
+        }
+      },
+      "Age of Oldest Person": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/age-of-oldest-person.csv-metadata.json"
+        }
+      },
+      "Ethnicity": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/ethnicity.csv-metadata.json"
+        }
       }
     },
     "stage": [

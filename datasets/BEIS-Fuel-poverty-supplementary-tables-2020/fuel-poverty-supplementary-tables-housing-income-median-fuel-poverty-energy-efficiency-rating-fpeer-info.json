@@ -36,6 +36,18 @@
       "Measure Type": {
         "type": "measures",
         "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Employment Status": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/employment-status.csv-metadata.json"
+        }
+      },
+      "Income Decile Group": {
+        "type": "dimension",
+        "new": {
+          "codelist": "./codelists/income-decile-group.csv-metadata.json"
+        }
       }
     },
     "stage": [
