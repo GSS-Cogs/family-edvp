@@ -25,11 +25,6 @@
         "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
         "value": "http://reference.data.gov.uk/id/{+period}"
       },
-      "Region": {
-        "type": "dimension",
-        "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
-        "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}"
-      },
       "Value": {
         "type": "observations",
         "datatype": "double"
