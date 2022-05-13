@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1104]:
+# In[20]:
 
 
 from gssutils import *
@@ -11,7 +11,7 @@ import copy
 coldef = json.load(open('info.json'))
 
 
-# In[1105]:
+# In[21]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -158,7 +158,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[1106]:
+# In[22]:
 
 
 with open('info.json') as f:
@@ -173,7 +173,7 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[1107]:
+# In[23]:
 
 
 distro = scraper.distributions[0]
@@ -181,7 +181,7 @@ tabs = distro.as_databaker()
 tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Numnbering of tables by concept changes?
 
 
-# In[1108]:
+# In[24]:
 
 
 # # Energy Efficiency and Dwelling Characteristics
@@ -253,7 +253,7 @@ energy_efficiency_task = {
 }
 
 
-# In[1109]:
+# In[25]:
 
 
 # # Household characteristics
@@ -261,7 +261,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[1110]:
+# In[26]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -306,7 +306,7 @@ household_characteristics_task = {
 }
 
 
-# In[1111]:
+# In[27]:
 
 
 # # Household income
@@ -343,7 +343,7 @@ household_income_task = {
 }
 
 
-# In[1112]:
+# In[28]:
 
 
 # # Fuel payment type
@@ -387,7 +387,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[1113]:
+# In[29]:
 
 
 table_dict = {}
@@ -442,7 +442,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[1114]:
+# In[30]:
 
 
 # # CSVW Mapping
@@ -452,7 +452,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[1115]:
+# In[31]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -498,7 +498,7 @@ csvw_value_map = {
 }
 
 
-# In[1116]:
+# In[32]:
 
 
 df.head()
@@ -770,7 +770,7 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    df.to_csv(pathify(scraper.title) + '.csv', index=False)
+    df.to_csv(pathify(scraper.title) + '-observations.csv', index=False)
 
     catalog_metadata = scraper.as_csvqb_catalog_metadata()
     catalog_metadata.to_json_file(pathify(scraper.title) + '-catalog-metadata.json')
@@ -799,7 +799,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[1117]:
+# In[33]:
 
 
 """# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
@@ -824,7 +824,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[1118]:
+# In[34]:
 
 
 # # CSVW Mapping
@@ -834,7 +834,7 @@ for index, file in enumerate(files):
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[1119]:
+# In[35]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -880,7 +880,7 @@ csvw_value_map = {
 }
 
 
-# In[1120]:
+# In[36]:
 
 
 df.head()
@@ -895,7 +895,7 @@ df.head()
 
 
 
-# In[1121]:
+# In[37]:
 
 
 #cubes.output_all()
@@ -921,7 +921,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[1122]:
+# In[38]:
 
 
 with open('info.json') as f:
