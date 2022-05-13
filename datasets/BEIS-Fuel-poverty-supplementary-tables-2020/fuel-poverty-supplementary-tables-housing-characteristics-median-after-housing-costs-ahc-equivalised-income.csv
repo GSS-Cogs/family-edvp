@@ -1,0 +1,27 @@
+Value,Period,Tenure,Unit,Measure Type,Household Composition,Age of Youngest Person,Age of Oldest Person,Ethnicity
+31198.0,year/2020,owner-occupied,gdp,median-income,all,all,all,all
+19260.0,year/2020,private-rented,gdp,median-income,all,all,all,all
+14888.0,year/2020,social-housing,gdp,median-income,all,all,all,all
+25707.0,year/2020,all,gdp,median-income,all,all,all,all
+22089.0,year/2020,all,gdp,median-income,couple-with-dependent-child-ren,all,all,all
+31570.0,year/2020,all,gdp,median-income,couple-no-dependent-child-ren-aged-60-or-over,all,all,all
+34150.0,year/2020,all,gdp,median-income,couple-no-dependent-child-ren-under-60,all,all,all
+14681.0,year/2020,all,gdp,median-income,lone-parent-with-dependent-child-ren,all,all,all
+25110.0,year/2020,all,gdp,median-income,one-person-aged-60-or-over,all,all,all
+23719.0,year/2020,all,gdp,median-income,one-person-under-60,all,all,all
+21983.0,year/2020,all,gdp,median-income,other-multi-person-households,all,all,all
+18280.0,year/2020,all,gdp,median-income,all,0-4,all,all
+19894.0,year/2020,all,gdp,median-income,all,5-10,all,all
+20620.0,year/2020,all,gdp,median-income,all,11-15,all,all
+23539.0,year/2020,all,gdp,median-income,all,16-24,all,all
+29983.0,year/2020,all,gdp,median-income,all,25-59,all,all
+28900.0,year/2020,all,gdp,median-income,all,60-74,all,all
+26550.0,year/2020,all,gdp,median-income,all,75-or-more,all,all
+15195.0,year/2020,all,gdp,median-income,all,all,16-24,all
+26490.0,year/2020,all,gdp,median-income,all,all,25-34,all
+23408.0,year/2020,all,gdp,median-income,all,all,35-49,all
+25057.0,year/2020,all,gdp,median-income,all,all,50-59,all
+28126.0,year/2020,all,gdp,median-income,all,all,60-74,all
+27090.0,year/2020,all,gdp,median-income,all,all,75-or-more,all
+17692.0,year/2020,all,gdp,median-income,all,all,all,ethnic-minority
+26504.0,year/2020,all,gdp,median-income,all,all,all,white

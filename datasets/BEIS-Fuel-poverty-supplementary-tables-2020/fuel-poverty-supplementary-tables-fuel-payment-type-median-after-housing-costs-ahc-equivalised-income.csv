@@ -1,0 +1,11 @@
+Value,Period,Payment Method,Unit,Measure Type,Fuel Type
+6164.0,year/2020,1st-decile-lowest-income,gdp,median-income,gas
+11714.0,year/2020,2nd-decile,gdp,median-income,gas
+17583.0,year/2020,3rd-and-4th-deciles,gdp,median-income,gas
+35101.0,year/2020,5th-10th-deciles-highest-incomes,gdp,median-income,gas
+25707.0,year/2020,all,gdp,median-income,gas
+28171.0,year/2020,direct-debit,gdp,median-income,electricity
+21048.0,year/2020,standard-credit,gdp,median-income,electricity
+13353.0,year/2020,prepayment,gdp,median-income,electricity
+25295.0,year/2020,n/a-no-gas,gdp,median-income,electricity
+25707.0,year/2020,all,gdp,median-income,electricity

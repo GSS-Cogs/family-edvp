@@ -1,0 +1,10 @@
+Value,Period,Employment Status,Unit,Measure Type,Income Decile Group
+1213.0,year/2020,not-vulnerable,gdp,median-costs,all
+1230.0,year/2020,vulnerable,gdp,median-costs,all
+1223.0,year/2020,all,gdp,median-costs,all
+1217.0,year/2020,all,gdp,median-costs,full-time-work
+1218.0,year/2020,all,gdp,median-costs,part-time-work
+1270.0,year/2020,all,gdp,median-costs,retired
+1100.0,year/2020,all,gdp,median-costs,unemployed
+1133.0,year/2020,all,gdp,median-costs,full-time-education
+1151.0,year/2020,all,gdp,median-costs,other-inactive

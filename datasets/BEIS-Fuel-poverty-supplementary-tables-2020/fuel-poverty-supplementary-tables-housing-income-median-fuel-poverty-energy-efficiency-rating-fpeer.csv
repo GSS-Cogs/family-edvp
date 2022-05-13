@@ -1,0 +1,10 @@
+Value,Period,Employment Status,Unit,Measure Type,Income Decile Group
+68.0,year/2020,not-vulnerable,rating,median-rating,all
+68.0,year/2020,vulnerable,rating,median-rating,all
+68.0,year/2020,all,rating,median-rating,all
+68.0,year/2020,all,rating,median-rating,full-time-work
+68.0,year/2020,all,rating,median-rating,part-time-work
+67.0,year/2020,all,rating,median-rating,retired
+70.0,year/2020,all,rating,median-rating,unemployed
+69.0,year/2020,all,rating,median-rating,full-time-education
+70.0,year/2020,all,rating,median-rating,other-inactive

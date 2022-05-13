@@ -1,0 +1,11 @@
+Value,Period,Payment Method,Unit,Measure Type,Fuel Type
+74.0,year/2020,1st-decile-lowest-income,m2,median-floor-area,gas
+74.0,year/2020,2nd-decile,m2,median-floor-area,gas
+78.0,year/2020,3rd-and-4th-deciles,m2,median-floor-area,gas
+89.0,year/2020,5th-10th-deciles-highest-incomes,m2,median-floor-area,gas
+83.0,year/2020,all,m2,median-floor-area,gas
+88.0,year/2020,direct-debit,m2,median-floor-area,electricity
+76.0,year/2020,standard-credit,m2,median-floor-area,electricity
+69.0,year/2020,prepayment,m2,median-floor-area,electricity
+67.0,year/2020,n/a-no-gas,m2,median-floor-area,electricity
+83.0,year/2020,all,m2,median-floor-area,electricity

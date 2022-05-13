@@ -1,0 +1,27 @@
+Value,Period,Tenure,Unit,Measure Type,Household Composition,Age of Youngest Person,Age of Oldest Person,Ethnicity
+94.0,year/2020,owner-occupied,m2,median-floor-area,all,all,all,all
+69.0,year/2020,private-rented,m2,median-floor-area,all,all,all,all
+65.0,year/2020,social-housing,m2,median-floor-area,all,all,all,all
+83.0,year/2020,all,m2,median-floor-area,all,all,all,all
+93.0,year/2020,all,m2,median-floor-area,couple-with-dependent-child-ren,all,all,all
+101.0,year/2020,all,m2,median-floor-area,couple-no-dependent-child-ren-aged-60-or-over,all,all,all
+83.0,year/2020,all,m2,median-floor-area,couple-no-dependent-child-ren-under-60,all,all,all
+78.0,year/2020,all,m2,median-floor-area,lone-parent-with-dependent-child-ren,all,all,all
+75.0,year/2020,all,m2,median-floor-area,one-person-aged-60-or-over,all,all,all
+63.0,year/2020,all,m2,median-floor-area,one-person-under-60,all,all,all
+85.0,year/2020,all,m2,median-floor-area,other-multi-person-households,all,all,all
+83.0,year/2020,all,m2,median-floor-area,all,0-4,all,all
+91.0,year/2020,all,m2,median-floor-area,all,5-10,all,all
+98.0,year/2020,all,m2,median-floor-area,all,11-15,all,all
+86.0,year/2020,all,m2,median-floor-area,all,16-24,all,all
+76.0,year/2020,all,m2,median-floor-area,all,25-59,all,all
+87.0,year/2020,all,m2,median-floor-area,all,60-74,all,all
+83.0,year/2020,all,m2,median-floor-area,all,75-or-more,all,all
+68.0,year/2020,all,m2,median-floor-area,all,all,16-24,all
+70.0,year/2020,all,m2,median-floor-area,all,all,25-34,all
+83.0,year/2020,all,m2,median-floor-area,all,all,35-49,all
+86.0,year/2020,all,m2,median-floor-area,all,all,50-59,all
+88.0,year/2020,all,m2,median-floor-area,all,all,60-74,all
+86.0,year/2020,all,m2,median-floor-area,all,all,75-or-more,all
+76.0,year/2020,all,m2,median-floor-area,all,all,all,ethnic-minority
+84.0,year/2020,all,m2,median-floor-area,all,all,all,white
