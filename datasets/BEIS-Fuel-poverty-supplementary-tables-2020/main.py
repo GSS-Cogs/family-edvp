@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[28]:
+# In[47]:
 
 
 from gssutils import *
@@ -13,7 +13,7 @@ from template import generate_codelist_from_template
 coldef = json.load(open('info.json'))
 
 
-# In[29]:
+# In[48]:
 
 
 LITTLE_TABLE_ANCHOR = "Median equivalised fuel costs (£)"
@@ -160,7 +160,7 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[30]:
+# In[49]:
 
 
 with open('info.json') as f:
@@ -175,7 +175,7 @@ scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[31]:
+# In[50]:
 
 
 distro = scraper.distributions[0]
@@ -183,7 +183,7 @@ tabs = distro.as_databaker()
 tabs = [x for x in tabs if "Table" in x.name] # TODO = typos? Tables change? Numnbering of tables by concept changes?
 
 
-# In[32]:
+# In[51]:
 
 
 # # Energy Efficiency and Dwelling Characteristics
@@ -247,15 +247,15 @@ energy_efficiency_task = {
         "Median floor area (m2)": "Median floor area"
     },
     "units_map": {
-        "Median equivalised fuel costs (£)": "gdp",
-        "Median after housing costs (AHC), equivalised income (£)": "gdp",
+        "Median equivalised fuel costs (£)": "gbp",
+        "Median after housing costs (AHC), equivalised income (£)": "gbp",
         "Median Fuel Poverty Energy Efficiency Rating (FPEER)": "rating",
         "Median floor area (m2)": "m2"
     }
 }
 
 
-# In[33]:
+# In[52]:
 
 
 # # Household characteristics
@@ -263,7 +263,7 @@ energy_efficiency_task = {
 # Tables 12 through 16 (the parameters, the processing will happen later on)
 
 
-# In[34]:
+# In[53]:
 
 
 # We're just gonna loop and use slightly different variables each time.
@@ -308,7 +308,7 @@ household_characteristics_task = {
 }
 
 
-# In[35]:
+# In[54]:
 
 
 # # Household income
@@ -345,7 +345,7 @@ household_income_task = {
 }
 
 
-# In[36]:
+# In[55]:
 
 
 # # Fuel payment type
@@ -389,7 +389,7 @@ fuel_payment_type_task = {
 }
 
 
-# In[37]:
+# In[56]:
 
 
 table_dict = {}
@@ -444,7 +444,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[38]:
+# In[57]:
 
 
 # # CSVW Mapping
@@ -454,7 +454,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[39]:
+# In[58]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -500,7 +500,7 @@ csvw_value_map = {
 }
 
 
-# In[40]:
+# In[59]:
 
 
 df.head()
@@ -804,7 +804,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[41]:
+# In[60]:
 
 
 """# cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-supplementary-tables-2020"
@@ -829,7 +829,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[42]:
+# In[61]:
 
 
 # # CSVW Mapping
@@ -839,7 +839,7 @@ for index, file in enumerate(files):
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[43]:
+# In[62]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -885,7 +885,7 @@ csvw_value_map = {
 }
 
 
-# In[44]:
+# In[63]:
 
 
 df.head()
@@ -900,7 +900,7 @@ df.head()
 
 
 
-# In[45]:
+# In[64]:
 
 
 #cubes.output_all()
@@ -926,7 +926,7 @@ for index, file in enumerate(files):
 """
 
 
-# In[46]:
+# In[65]:
 
 
 with open('info.json') as f:
