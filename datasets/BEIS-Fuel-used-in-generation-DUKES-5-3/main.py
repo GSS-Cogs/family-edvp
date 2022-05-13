@@ -66,7 +66,7 @@ for tab in tabs:
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, ABOVE),
                 HDim(fuel, 'Fuel', DIRECTLY, LEFT),
-                HDim(generators, 'Generating-Companies', CLOSEST, ABOVE),
+                HDim(generators, 'GeneratingCompanies', CLOSEST, ABOVE),
                 HDim(unit, 'Unit', CLOSEST, ABOVE, cellvalueoverride={'    "' : 'M tonnes'})
         ]
 
@@ -98,7 +98,7 @@ df = df.replace({'Fuel' : {
         'Total all generating companies' : 'All',
         'Total major power producers (2)' : 'All',
         'Total other generators (2)' : 'All'},
-                'Generating-Companies' : {
+                'Generating Companies' : {
         'Major power producers (2)' : 'Major power producers',
         'Transport undertakings:' : 'Other generators - Transport Undertakings',
         'Undertakings in industrial and commercial sectors:' : 'Other generators - Undertakings in industrial and commercial sectors'},
@@ -109,7 +109,7 @@ df = df.rename(columns={'OBS' : 'Value'})
 
 df['Measure Type'] = df.apply(lambda x: 'fuel used in generation - representative' if 'equivalent' in x['Unit'] else 'fuel used in generation', axis = 1)
 
-COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Generating-Companies']
+COLUMNS_TO_NOT_PATHIFY = ['Value', 'Period', 'Generating Companies']
 
 for col in df.columns.values.tolist():
 	if col in COLUMNS_TO_NOT_PATHIFY:
@@ -119,7 +119,7 @@ for col in df.columns.values.tolist():
 	except Exception as err:
 		raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-df = df[['Period', 'Generating-Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
+df = df[['Period', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
 
 df
 
