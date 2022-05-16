@@ -300,8 +300,8 @@ household_characteristics_task = {
         "Median floor area (m2)": "Median floor area"
     },
     "units_map": {
-        "Median equivalised fuel costs (£)": "gdp",
-        "Median after housing costs (AHC), equivalised income (£)": "gdp",
+        "Median equivalised fuel costs (£)": "gbp",
+        "Median after housing costs (AHC), equivalised income (£)": "gbp",
         "Median Fuel Poverty Energy Efficiency Rating (FPEER)": "rating",
         "Median floor area (m2)": "m2"
     }
@@ -337,8 +337,8 @@ household_income_task = {
         "Median floor area (m2)": "Median floor area"
     },
     "units_map": {
-        "Median equivalised fuel costs (£)": "gdp",
-        "Median after housing costs (AHC), equivalised income (£)": "gdp",
+        "Median equivalised fuel costs (£)": "gbp",
+        "Median after housing costs (AHC), equivalised income (£)": "gbp",
         "Median Fuel Poverty Energy Efficiency Rating (FPEER)": "rating",
         "Median floor area (m2)": "m2"
     }
@@ -381,8 +381,8 @@ fuel_payment_type_task = {
         "Median floor area (m2)": "Median floor area"
     },
     "units_map": {
-        "Median equivalised fuel costs (£)": "gdp",
-        "Median after housing costs (AHC), equivalised income (£)": "gdp",
+        "Median equivalised fuel costs (£)": "gbp",
+        "Median after housing costs (AHC), equivalised income (£)": "gbp",
         "Median Fuel Poverty Energy Efficiency Rating (FPEER)": "rating",
         "Median floor area (m2)": "m2"
     }
