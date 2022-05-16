@@ -1,7 +1,7 @@
 Label,Notation,Parent Notation,Sort Priority
-all,all,,
+All,all,,
 Cavity uninsulated,cavity-uninsulated,,
 Cavity with insulation,cavity-with-insulation,,
 Solid uninsulated,solid-uninsulated,,
 Solid with insulation,solid-with-insulation,,
-Other [Note B],other-note-b,,
+Other,other-note-b,,

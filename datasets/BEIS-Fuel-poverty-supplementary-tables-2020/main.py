@@ -625,7 +625,7 @@ table_joins = {
         "description": description,
         "datasetid": "fupt-fpeer"
     },
-    "Fuel poverty supplementary tables - HFuel Payment Type - Median floor area": {
+    "Fuel poverty supplementary tables - Fuel Payment Type - Median floor area": {
         "category": "Median floor area (m2)",
         "tables": "19through20",
         "comment": comment,
