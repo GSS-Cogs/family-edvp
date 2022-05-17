@@ -3,7 +3,7 @@
 
 # ## BEIS-Final-UK-greenhouse-gas-emissions-national-statistics-1990-to-2019
 
-# In[99]:
+# In[116]:
 
 
 import json
@@ -11,13 +11,13 @@ import pandas as pd
 from gssutils import *
 
 
-# In[100]:
+# In[117]:
 
 
 metadata = Scraper(seed="info.json")
 
 
-# In[101]:
+# In[118]:
 
 
 distribution = metadata.distribution(
@@ -28,7 +28,7 @@ distribution = metadata.distribution(
 )
 
 
-# In[102]:
+# In[119]:
 
 
 tabs = distribution.as_databaker()
@@ -37,7 +37,7 @@ tabs = [
 ]
 
 
-# In[103]:
+# In[120]:
 
 
 tidied_sheets = []
@@ -147,13 +147,13 @@ for tab in tabs:
         print(tab.name)
 
 
-# In[104]:
+# In[121]:
 
 
 df = pd.concat(tidied_sheets, sort=False).fillna("")
 
 
-# In[105]:
+# In[122]:
 
 
 df.rename(
@@ -166,7 +166,7 @@ df.rename(
 )
 
 
-# In[106]:
+# In[123]:
 
 
 df["Value"] = pd.to_numeric(df["Value"], errors="raise", downcast="float")
@@ -174,7 +174,7 @@ df["Value"] = df["Value"].astype(float).round(3)
 df["Period"] = df["Period"].astype(float).astype(int)
 
 
-# In[107]:
+# In[124]:
 
 
 df["NC Sub Sector"] = df.apply(
@@ -183,7 +183,7 @@ df["NC Sub Sector"] = df.apply(
 )
 
 
-# In[108]:
+# In[125]:
 
 
 badInheritance = [
@@ -219,7 +219,7 @@ indexNames = df[df["Breakdown"] == "Net emissions/removals from LULUCF"].index
 df.drop(indexNames, inplace=True)
 
 
-# In[109]:
+# In[126]:
 
 
 df = df.replace(
@@ -233,7 +233,7 @@ df = df.replace(
 )
 
 
-# In[110]:
+# In[127]:
 
 
 df = df.replace({'Gas' : {'Nitrous Oxide N2O' : 'Nitrous oxide (N2O)',
@@ -245,7 +245,7 @@ df = df.replace({'Gas' : {'Nitrous Oxide N2O' : 'Nitrous oxide (N2O)',
                  'NC Sector' : {'Waste Management' : 'Waste management'}})
 
 
-# In[111]:
+# In[128]:
 
 
 COLUMNS_TO_PATHIFY = ["Measure Type", "Unit"]
@@ -259,7 +259,7 @@ for col in df.columns.values.tolist():
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 
-# In[112]:
+# In[129]:
 
 
 df["NC Category"] = df["NC Category"].str.replace("/", "-")
@@ -269,12 +269,13 @@ df = df.replace(
     {
         "Breakdown": {
             "excluding-net-emissions-removals-from-land-use-land-use-change-and-forestry-lulucf": "excluding-net-emissions-removals-from-lulucf"
-        }
+        },
+        'Unit' : {'million-of-tonnes-of-carbon-dioxide-equivalent-mtco2e' : 'million-of-tonnes-of-carbon-dioxide-equivalent'}
     }
 )
 
 
-# In[113]:
+# In[130]:
 
 
 df = df[
@@ -293,7 +294,7 @@ df = df[
 ]
 
 
-# In[114]:
+# In[131]:
 
 
 df.to_csv("observations.csv", index=False)
@@ -301,7 +302,7 @@ catalog_metadata = metadata.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file("catalog-metadata.json")
 
 
-# In[115]:
+# In[132]:
 
 
 from IPython.core.display import HTML
