@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[557]:
+# In[583]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[558]:
+# In[584]:
 
 
 from gssutils import *
@@ -59,7 +59,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[559]:
+# In[585]:
 
 
 # # Helpers
@@ -75,7 +75,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[560]:
+# In[586]:
 
 
 def left(s, amount):
@@ -397,20 +397,20 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[561]:
+# In[587]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[562]:
+# In[588]:
 
 
 scraper.distributions
 
 
-# In[563]:
+# In[589]:
 
 
 distro = scraper.distribution(latest=True)
@@ -671,7 +671,7 @@ eligibility_task = {
 }
 
 
-# In[564]:
+# In[590]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
@@ -738,7 +738,7 @@ for category, dataset_task in {
                                                                                          dataset_task["name"])) from err
 
 
-# In[565]:
+# In[591]:
 
 
 # # CSVW Mapping
@@ -748,7 +748,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[566]:
+# In[592]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -784,7 +784,7 @@ csvw_value_map = {
 }
 
 
-# In[567]:
+# In[593]:
 
 
 df.head()
@@ -793,7 +793,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[568]:
+# In[594]:
 
 
 table_joins = {
@@ -1103,8 +1103,9 @@ for title, info in table_joins.items():
 
     df['Measure Type'] = df.apply(lambda x: pathify(x['Measure Type']), axis = 1)
 
-    df['Value'] = df.apply(lambda x: '0' if x['Marker'] != '' else x['Value'], axis = 1)
-
+    if 'Marker' in list(df.columns):
+        df['Value'] = df.apply(lambda x: '0.0' if x['Marker'] != '' else x['Value'], axis = 1)
+    
     df = df.drop_duplicates()
 
     df.to_csv(pathify(scraper.title) + '-observations.csv', index=False)
@@ -1137,7 +1138,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[ ]:
+# In[595]:
 
 
 from IPython.core.display import HTML
@@ -1148,7 +1149,7 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[ ]:
+# In[596]:
 
 
 #cubes.output_all()
