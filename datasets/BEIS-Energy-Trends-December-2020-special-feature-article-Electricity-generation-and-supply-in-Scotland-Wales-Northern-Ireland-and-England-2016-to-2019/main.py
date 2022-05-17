@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[87]:
+# In[88]:
 
 
 # Electricity generation and supply in Scotland, Wales, Northern Ireland and England, 2016 to 2019
@@ -10,15 +10,12 @@ import copy
 import json
 import pandas
 from gssutils import *
-from databaker.framework import *
 import numpy as np
-
-cubes = Cubes('info.json')
 
 info = json.load(open('info.json'))
 
 
-# In[88]:
+# In[ ]:
 
 
 scraper = Scraper(seed='info.json')
@@ -28,7 +25,7 @@ distribution = scraper.distributions[1] #check how to specify the media
 distribution
 
 
-# In[89]:
+# In[ ]:
 
 
 tabs = distribution.as_databaker(data_only=True)
@@ -79,7 +76,11 @@ for tab in tabs:
         print(title1)
         print(title2)
 
-# +
+
+# In[ ]:
+
+
+
 trace = TransformTrace()
 
 for tab in tabs:
@@ -89,15 +90,11 @@ for tab in tabs:
         scraper.dataset.comment = title
         scraper.dataset.description = title
 
-        columns = ['Period', 'Region', 'Description of Generation & Supply', 'Measure Type', 'Unit', 'Value']
-        trace.start(title, tab, columns, distribution.downloadURL)
-
         footnote = tab.excel_ref('A23').expand(DOWN)
 
         generation = tab.excel_ref('A5').expand(DOWN).is_not_blank() - footnote
         region = tab.excel_ref('B4').expand(RIGHT).is_not_blank()
 
-        trace.Period("Selected as the given years, with the blank cells filled in with the 'with_year_overrides' function")
         period = region.shift(UP)
 
         observations = tab.excel_ref('B5').expand(DOWN).expand(RIGHT).is_not_blank()
@@ -110,11 +107,10 @@ for tab in tabs:
         ]
         my_lookup_dict = create_xy_lookup(dimensions[0])
 
-        tidy_sheet = ConversionSegment(tab, dimensions, observations, includecellxy=True)
-        trace.store('dataframe1', tidy_sheet.topandas())
+        tidy_sheet = ConversionSegment(tab, dimensions, observations, includecellxy=True)        
         savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
-        df = trace.combine_and_trace(title, 'dataframe1')
+        df = tidy_sheet.topandas()
 
         df["Period"] = df.apply(lambda x: my_lookup_dict.get(x['__x'], x) if '20' not in x['Period'] else x['Period'], axis = 1)
 
@@ -126,27 +122,11 @@ for tab in tabs:
             'Wales' : 'W92000004',
             'Northern Ireland' : 'N92000002',
             'England' : 'K04000001'
-            },
-                        'DATAMARKER' : {
-            '=V18-V21' : '252.589996805938',
-            '=W18-W21' : '1785.97420459465',
-            '=X18-X21' : '-791.489438985558',
-            '=Y18-Y21' : '709.979891294564',
-            '=Z18-Z21' : '-1451.87466009782',
-            '=AA18-AA21' : '61.487825404969',
-            '=AB18-AB21' : '3174.28675647638',
-            '=AC18-AC21' : '-699.790915898418',
-            '=AD18-AD21' : '-39.1008607177901',
-            '=AE18-AE21' : '-2373.90715445529'}})
-
-        df['OBS'] = df.apply(lambda x: x['DATAMARKER'] if '.' in str(x['DATAMARKER']) else x['OBS'], axis = 1)
-
-        #Due to an issue with databaker bringing in the formula rather than the value am having to manually re-add the values
-        #bad fix but will be replaced by either a fix on databaker or with the next release
+            }})
 
         df = df.replace(r'^\s*$', np.nan, regex=True)
 
-        #df['OBS'] = df['OBS'].astype(float).round(2)
+        df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value'}, inplace=True)
         tidy = df[['Period', 'Region', 'Value', 'Measure Type', 'Unit']]
 
@@ -163,16 +143,16 @@ for tab in tabs:
         with open('info.json', 'w') as f:
             json.dump(info, f, indent=4)"""
 
-        cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
+        tidy.to_csv(pathify(tab.name) +  '-observations.csv', index=False)
+
+        catalog_metadata = scraper.as_csvqb_catalog_metadata()
+        catalog_metadata.to_json_file(pathify(tab.name) + '-catalog-metadata.json')
 
     elif tab.name == 'Electricity generation by fuel':
         title = title2
         scraper.dataset.title = title
         scraper.dataset.comment = title
         scraper.dataset.description = title
-
-        columns = ['Period', 'Region', 'Generating Company', 'Fuel Type', 'Measure Type', 'Unit', 'Value']
-        trace.start(title, tab, columns, distribution.downloadURL)
 
         footnote = tab.excel_ref('A53').expand(DOWN).expand(RIGHT).is_not_blank()
 
@@ -182,16 +162,13 @@ for tab in tabs:
 
         total_electricity = tab.excel_ref('B').expand(DOWN).by_index([15, 25, 39])
 
-        trace.Generating_Company('Selected as the electricity generating companies with the totals pulled over         from cell B, and with the share of total generation(%) and the footnote removed')
         generators = tab.excel_ref('A5').expand(DOWN).is_not_blank()|total_electricity
         generators = generators - within_which - share_totalGen - footnote
 
-        trace.Fuel_Type('Selected as the fuel type with the share of total generation(%) and the footnote removed.             The totals cell pulled over to generators are removed below')
         fuel = tab.excel_ref('B5').expand(DOWN).is_not_blank() - share_totalGen - footnote
 
         region = tab.excel_ref('C4').expand(RIGHT).is_not_blank()
 
-        trace.Period("Selected as the given years with the blank cells filled in with the 'with_year_overrides' function")
         period = region.shift(UP)
 
         observations = tab.excel_ref('C5').expand(DOWN).expand(RIGHT).is_not_blank() - share_totalGen - footnote
@@ -207,10 +184,9 @@ for tab in tabs:
         my_lookup_dict = create_xy_lookup(dimensions[0])
 
         tidy_sheet = ConversionSegment(tab, dimensions, observations, includecellxy=True)
-        trace.store('dataframe2', tidy_sheet.topandas())
         savepreviewhtml(tidy_sheet,fname=tab.name + "Preview.html")
 
-        df = trace.combine_and_trace(title, 'dataframe2')
+        df = tidy_sheet.topandas()
 
         df["Period"] = df.apply(lambda x: my_lookup_dict.get(x['__x'], x) if '20' not in x['Period'] else x['Period'], axis = 1)
 
@@ -227,41 +203,38 @@ for tab in tabs:
         '''removing footnote caption from fuel type'''
         df['Fuel'] = df['Fuel'].str.replace(r'\(.*\)', ' ')
 
-        #df['OBS'] = df['OBS'].astype(float).round(2)
+        df['OBS'] = df['OBS'].astype(float).round(2)
         df.rename(columns={'OBS' : 'Value', 'Generating Company' : 'Generating Companies'}, inplace=True)
 
         tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
         for column in tidy:
-            if column in ('Generating Companies', 'Fuel', 'Measure Type', 'Unit'):
+            if column in ('Measure Type', 'Unit'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
-        tidy = tidy.replace({'Fuel' : {'total-mpps' : 'all',
-                                       'total-all-generating-companies' : 'all',
-                                       'total-other-generators' : 'all'},
+        tidy['Fuel'] = tidy['Fuel'].str.strip()
+
+        tidy = tidy.replace({'Fuel' : {'TOTAL ALL GENERATING COMPANIES' : 'Total All Generating Companies', 
+                                       'TOTAL MPPs' : 'Total MPPs',
+                                       'TOTAL OTHER GENERATORS' : 'Total Other Generators'},
                              'Generating Companies' : {
-                                        'total-other-generators' : 'other-generators',
-                                        'total-all-generating-companies' : 'all-generating-companies',
-                                        'major-power-producers-mpps' : 'major-power-producers',
-                                        'total-mpps' : 'major-power-producers'}})
+                                        'TOTAL ALL GENERATING COMPANIES' : 'Total All Generating Companies', 
+                                        'TOTAL MPPs' : 'Total MPPs',
+                                        'TOTAL OTHER GENERATORS' : 'Total Other Generators'}})
 
         """info['transform']['columns']['Measure Type']['types'] = tidy['Measure Type'].unique().tolist()
 
         with open('info.json', 'w') as f:
             json.dump(info, f, indent=4)"""
 
-        cubes.add_cube(copy.deepcopy(scraper), tidy, scraper.dataset.title)
+        tidy.to_csv(pathify(tab.name) + '-observations.csv', index=False)
+
+        catalog_metadata = scraper.as_csvqb_catalog_metadata()
+        catalog_metadata.to_json_file(pathify(tab.name) + '-catalog-metadata.json')
 
 tidy
 
 
-# In[90]:
-
-
-cubes.output_all()
-
-
-# In[91]:
-
+# In[ ]:
 
 
 from IPython.core.display import HTML
