@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[53]:
+# In[543]:
 
 
 # -*- coding: utf-8 -*-
@@ -34,7 +34,7 @@
 #
 
 
-# In[54]:
+# In[544]:
 
 
 from gssutils import *
@@ -43,9 +43,6 @@ import re
 import csv
 from template import generate_codelist_from_template
 import copy
-
-cubes = Cubes("info.json")
-trace = TransformTrace()
 
 coldef = json.load(open('info.json'))
 etl_title = coldef["title"]
@@ -62,8 +59,7 @@ with open('info.json', 'w') as outfile:
 # Needs to be updated to look in each and return distributions for each
 
 
-# In[55]:
-
+# In[545]:
 
 
 # # Helpers
@@ -79,8 +75,7 @@ with open('info.json', 'w') as outfile:
 # There is mess here, it will be a faffy task, but hopefully things will more or less work as intended.
 
 
-# In[56]:
-
+# In[546]:
 
 
 def left(s, amount):
@@ -102,7 +97,7 @@ def colnum_string(n):
 def cellCont(cell):
     return re.findall(r"'([^']*)'", str(cell))[0]
 
-def table_one_transform(anchor, task, trace):
+def table_one_transform(anchor, task):
 
     """
     Table 1 has a different vertical dimension on each of the 2 tables on the Tab which made it a pain in the ass.
@@ -110,12 +105,9 @@ def table_one_transform(anchor, task, trace):
     rather than cater that one. Its horribly hard coded but its only one tab so hey ho
     """
 
-    print(trace.tab_name)
-
-    print("Anchor is:", anchor)
+    #print("Anchor is:", anchor)
 
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1].strip()
-    trace.Year('Get year from cell A1 and add "/year" prefix, gets us:"{}"'.format(year))
 
     # Get the obs, we don't want columns f + G
     # TODO - safety to make sure F & G actually are the columns we don't want for a given table
@@ -130,8 +122,6 @@ def table_one_transform(anchor, task, trace):
     fuel_attributeA = tab.filter("In fuel poverty").shift(1, 0)
     fuel_attributeB = tab.filter("Not in fuel poverty").shift(1, 0)
 
-    trace.add_column("Category")
-    trace.Category('Extract column headers as a temporary "Category" column.')
     horizontal_dimension = anchor.expand(RIGHT).is_not_blank()
 
     horizontal_dimension2 = clean_lower_tables(tab.filter("Vulnerable households only").fill(RIGHT))
@@ -161,36 +151,29 @@ def table_one_transform(anchor, task, trace):
     df = pd.concat([df1, df2])
 
     # Measure and Unit
-    trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
     df["Unit"] = df["Category"].apply(LookupFromDict("unit", task["units_map"]))
 
-    trace.Measure_Type('Set measure type from mapping: "{}".'.format(json.dumps(task["measures_map"])))
     df["Measure Type"] = df["Category"].apply(LookupFromDict("measure", task["measures_map"]))
 
     # Add the constant column
     if "constant_columns" in task["tables"][tab.name].keys():
         for k,v in task["tables"][tab.name]["constant_columns"].items():
-            trace.add_column(k)
-            trace.multi([k.replace(" ", "_")], 'Set as value: "{}".'.format(v))
             df[k] = v
 
     # Tidy up
     df = df.rename(columns={"OBS": "Value"})
 
-    return df, trace
+    return df
 
 
-def process_little_table(anchor, task, trace):
+def process_little_table(anchor, task):
     """
     Given a single anchoring cell, process the smaller style of the tables
     """
 
-    print(trace.tab_name)
-
-    print("Anchor is:", anchor)
+    #print("Anchor is:", anchor)
 
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1].strip()
-    trace.Year('Get year from cell A1 and add "/year" prefix, gets us:"{}"'.format(year))
 
     # Get the obs, we don't want columns f + G
     # TODO - safety to make sure F & G actually are the columns we don't want for a given table
@@ -198,14 +181,10 @@ def process_little_table(anchor, task, trace):
     obs = obs - tab.excel_ref('F:G')
     obs = clean_lower_tables(obs)
 
-    trace.add_column("Category")
-    trace.Category('Extract column headers as a temporary "Category" column.')
     horizontal_dimension = anchor.expand(RIGHT).is_not_blank()
 
     # Use an alias to trace the differentiating dimension, as the name may or may not
     # support being set as an attribute
-    trace.add_column({task["tables"][tab.name]["differentiating_dimension"]:"Diffdim"})
-    trace.Diffdim('Take the left hand column as: "{}".'.format(task["tables"][tab.name]["differentiating_dimension"]))
 
     left_column = anchor.shift(LEFT).fill(DOWN).is_not_blank()
     left_column = clean_lower_tables(left_column)
@@ -219,37 +198,32 @@ def process_little_table(anchor, task, trace):
     ]
 
     cs = ConversionSegment(obs, dimensions)
-    savepreviewhtml(cs, fname="Preview.html")
+    #savepreviewhtml(cs, fname="Preview.html")
     df = cs.topandas()
 
     # Measure and Unit
-    trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
     df["Unit"] = df["Category"].apply(LookupFromDict("unit", task["units_map"]))
 
-    trace.Measure_Type('Set measure type from mapping: "{}".'.format(json.dumps(task["measures_map"])))
     df["Measure Type"] = df["Category"].apply(LookupFromDict("measure", task["measures_map"]))
 
     # Add the constant column
     if "constant_columns" in task["tables"][tab.name].keys():
         for k,v in task["tables"][tab.name]["constant_columns"].items():
-            trace.add_column(k)
-            trace.multi([k.replace(" ", "_")], 'Set as value: "{}".'.format(v))
             df[k] = v
 
     # Tidy up
     df = df.rename(columns={"OBS": "Value"})
 
-    return df, trace
+    return df
 
-def process_big_table(anchor, task, trace):
+def process_big_table(anchor, task):
 
-    print(trace.tab_name)
     """
     Given a single anchoring cell, process the bigger style of the tables
     """
     year = "year/"+tab.excel_ref('A1').value.split(",")[-1].strip()
 
-    print("Anchor is:", anchor)
+    #print("Anchor is:", anchor)
 
     fuel_attributeA = clean_lower_tables(anchor.shift(2, 1).fill(DOWN).filter("Not fuel poor").fill(DOWN))
     fuel_attributeB = clean_lower_tables(anchor.shift(3, 1).fill(DOWN).filter("Fuel poor").fill(DOWN))
@@ -259,14 +233,7 @@ def process_big_table(anchor, task, trace):
 
     horizontal_dimension = anchor.expand(RIGHT).is_not_blank()
 
-    trace.add_column("Category")
-    trace.Category('Extract colum headers as a temporary "Category" column.')
     horizontal_dimension = anchor.expand(RIGHT).is_not_blank()
-
-    # Use an alias to trace the differentiating dimension, as the name may or may not
-    # support being set as an attribute
-    trace.add_column({task["tables"][tab.name]["differentiating_dimension"]:"Diffdim"})
-    trace.Diffdim('Take the left hand column as: "{}".'.format(task["tables"][tab.name]["differentiating_dimension"]))
 
     #Majority of the tables have both a differentiating dimension as well as the FPEER band dimension, this adds this common dimension back in
     #and shifts the differentiating dimension look up one step to the left
@@ -291,7 +258,7 @@ def process_big_table(anchor, task, trace):
             HDim(fuel_attributeA, "Households not in Fuel Poverty", DIRECTLY, LEFT),
             HDim(fuel_attributeB, "Households in Fuel Poverty", DIRECTLY, LEFT)
         ]
-    elif trace.tab_name in ['Table 31', 'Table 32']:
+    elif tab.name in ['Table 31', 'Table 32']:
         dimensions = [
             HDimConst("Year", year),
             HDim(horizontal_dimension, "Category", CLOSEST, LEFT),
@@ -300,7 +267,7 @@ def process_big_table(anchor, task, trace):
             HDim(fuel_attributeA, "Households not in Fuel Poverty", DIRECTLY, LEFT),
             HDim(fuel_attributeB, "Households in Fuel Poverty", DIRECTLY, LEFT)
         ]
-    elif trace.tab_name in ['Table 33', 'Table 34', 'Table 35', 'Table 36']:
+    elif tab.name in ['Table 33', 'Table 34', 'Table 35', 'Table 36']:
         dimensions = [
             HDimConst("Year", year),
             HDim(horizontal_dimension, "Category", CLOSEST, LEFT),
@@ -319,7 +286,7 @@ def process_big_table(anchor, task, trace):
         ]
 
     cs = ConversionSegment(obs, dimensions)
-    savepreviewhtml(cs, fname="Preview.html")
+    #savepreviewhtml(cs, fname="Preview.html")
     df = cs.topandas()
 
     # NOTE - moving pathify to after the joins, so we can generate accurate codelists
@@ -327,23 +294,19 @@ def process_big_table(anchor, task, trace):
     #df[task["tables"][tab.name]["differentiating_dimension"]] = df[task["tables"][tab.name]["differentiating_dimension"]].apply(pathify)
 
     # Measure and Unit
-    trace.Unit('Set unit from mapping: "{}".'.format(json.dumps(task["units_map"])))
     df["Unit"] = df["Category"].apply(LookupFromDict("unit", task["units_map"]))
 
-    trace.Measure_Type('Set measure type from mapping: "{}".'.format(json.dumps(task["measures_map"])))
     df["Measure Type"] = df["Category"].apply(LookupFromDict("measure", task["measures_map"]))
 
     # Add the constant column
     if "constant_columns" in task["tables"][tab.name].keys():
         for k,v in task["tables"][tab.name]["constant_columns"].items():
-            trace.add_column(k)
-            trace.multi([k.replace(" ", "_")], 'Set as value: "{}".'.format(v))
             df[k] = v
 
     # Tidy up
     df = df.rename(columns={"OBS": "Value"})
 
-    return df, trace
+    return df
 
 
 def generate_codelist(title, df, col):
@@ -434,22 +397,20 @@ class LookupFromDict:
             raise ('Measure lookup, couldnt find {} lookup for value: "{}".'.format(self.name, cell_value)) from err
 
 
-# In[57]:
-
+# In[547]:
 
 
 scraper = Scraper(seed="info.json")
 scraper
 
 
-# In[58]:
+# In[548]:
 
 
 scraper.distributions
 
 
-# In[59]:
-
+# In[549]:
 
 
 distro = scraper.distribution(latest=True)
@@ -710,12 +671,13 @@ eligibility_task = {
 }
 
 
-# In[60]:
-
+# In[550]:
 
 
 LITTLE_TABLE_ANCHOR = "Proportion of households that are in this group (%)"
 BIG_TABLE_ANCHOR = "Proportion of households within group (%)" # note we dont want this cell but we're using it to differentiate the styles of table -
+
+table_dict = {}
 
 # do everything
 # for dataset_task in [energy_efficiency_tasks, household_characteristics_tasks, household_income_tasks,fuel_payment_type_tasks]:
@@ -732,11 +694,6 @@ for category, dataset_task in {
 
         for tab in subset_of_tabs:
 
-            # Just specify the common dimensions for now
-            columns = ["Year", "Measure Type", "Unit"]
-
-            trace.start(category, tab.name, columns, distro.downloadURL)
-
             # there can only be one style of anchor per sheet
             is_little_table = False
             anchors = tab.filter(BIG_TABLE_ANCHOR)
@@ -752,30 +709,36 @@ for category, dataset_task in {
 
             for i, anchor in enumerate(anchors):# i.e for each sub table on this sheet
                 if is_little_table:
-                    if trace.tab_name == 'Table 1':
+                    if tab.name == 'Table 1':
                         if i == 1:
                             break
-                        df, trace = table_one_transform(anchor, dataset_task, trace)
+                        df = table_one_transform(anchor, dataset_task)
                         processed_tables.append(df)
                     else:
-                        df, trace = process_little_table(anchor, dataset_task, trace)
+                        df = process_little_table(anchor, dataset_task)
                         processed_tables.append(df)
                 else:
-                    df, trace = process_big_table(anchor, dataset_task, trace)
+                    df = process_big_table(anchor, dataset_task)
                     processed_tables.append(df)
 
             df = pd.concat(processed_tables)
 
             # Store however many tabs we've extracted against the specified identifier
-            trace.store(dataset_task["store_as"], df)
+
+            if dataset_task["store_as"] in table_dict:
+                table_dict[dataset_task["store_as"]] = pd.concat([table_dict[dataset_task["store_as"]], df])
+            else:
+                table_dict[dataset_task["store_as"]] = df
+
+            #table_dict[dataset_task["store_as"]] = df
+            #trace.store(dataset_task["store_as"], df)
 
     except Exception as err:
         raise Exception('Error encountered while processing task "{}" from "{}".'.format(json.dumps(dataset_task["tables"][tab.name]),
                                                                                          dataset_task["name"])) from err
 
 
-# In[61]:
-
+# In[551]:
 
 
 # # CSVW Mapping
@@ -785,8 +748,7 @@ for category, dataset_task in {
 # I've broken it down in the `"csvw_common_map"` (for columns that appear in every dataset) a `"csvw_value_map"` and dataset specific maps where necessary.
 
 
-# In[62]:
-
+# In[552]:
 
 
 # csvw mapping for dimensions common to all datasets
@@ -822,8 +784,7 @@ csvw_value_map = {
 }
 
 
-# In[63]:
-
+# In[553]:
 
 
 df.head()
@@ -832,8 +793,7 @@ df['Category'].unique()
 # # Metadata & Joins
 
 
-# In[64]:
-
+# In[554]:
 
 
 table_joins = {
@@ -954,11 +914,13 @@ count = 0
 # https://staging.gss-data.org.uk/cube/explore?uri=http%3A%2F%2Fgss-data.org.uk%2Fdata%2Fgss_data%2Fedvp%2Fbeis-fuel-poverty-supplementary-tables-2020-catalog-entry
 for title, info in table_joins.items():
 
-    df = trace.combine_and_trace(title, info["tables"])
+    print(title)
+
+    #df = trace.combine_and_trace(title, info["tables"])
+    df = table_dict[info["tables"]]
     # slice just the bit we want using category, then drop the column
     df = df[df["Category"] == info["category"]]
     df = df.drop("Category", axis=1)
-    trace.Measure_Type('Drop all rows not related to: "{}".'.format(info["category"]))
 
     # Fill up the sparsity with alls
     df = df.fillna("all")
@@ -1143,8 +1105,13 @@ for title, info in table_joins.items():
 
     df = df.drop_duplicates()
 
-    cubes.add_cube(copy.deepcopy(scraper), df, title)
-    #cubes
+    df.to_csv(pathify(scraper.title) + '-observations.csv', index=False)
+
+    catalog_metadata = scraper.as_csvqb_catalog_metadata()
+    catalog_metadata.to_json_file(pathify(scraper.title) + '-catalog-metadata.json')
+
+    #with open(pathify(scraper.title) + '-info.json', 'w') as f:
+    #    json.dump(coldef, f, indent=2)
 
     """csvName = "observations-{}.csv".format(pathify(info['datasetid']))
     out = Path('out')
@@ -1168,8 +1135,7 @@ for title, info in table_joins.items():
         metadata.write(scraper.generate_trig())"""
 
 
-# In[65]:
-
+# In[555]:
 
 
 from IPython.core.display import HTML
@@ -1180,11 +1146,10 @@ for col in df:
         display(df[col].cat.categories)
 
 
-# In[66]:
+# In[556]:
 
 
-
-cubes.output_all()
+#cubes.output_all()
 #cubes.base_url = "http://gss-data.org.uk/data/gss_data/energy/beis-fuel-poverty-detailed-tables-2020"
 #ubes.output_all()
 
