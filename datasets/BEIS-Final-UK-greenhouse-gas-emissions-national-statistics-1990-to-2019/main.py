@@ -1,13 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
+
 # ## BEIS-Final-UK-greenhouse-gas-emissions-national-statistics-1990-to-2019
+
+# In[65]:
+
 
 import json
 import pandas as pd
 from gssutils import *
 
 
+# In[66]:
+
+
 metadata = Scraper(seed="info.json")
+
+
+# In[67]:
+
 
 distribution = metadata.distribution(
     latest=True,
@@ -16,10 +27,18 @@ distribution = metadata.distribution(
     in x,
 )
 
+
+# In[68]:
+
+
 tabs = distribution.as_databaker()
 tabs = [
     tab for tab in tabs if tab.name in ["1_1", "1_2", "1_3", "1_4", "1_5", "1_6", "3_1"]
 ]
+
+
+# In[69]:
+
 
 tidied_sheets = []
 for tab in tabs:
@@ -127,7 +146,15 @@ for tab in tabs:
         tidied_sheets.append(df)
         print(tab.name)
 
+
+# In[70]:
+
+
 df = pd.concat(tidied_sheets, sort=False).fillna("")
+
+
+# In[71]:
+
 
 df.rename(
     columns={
@@ -138,16 +165,27 @@ df.rename(
     inplace=True,
 )
 
+
+# In[72]:
+
+
 df["Value"] = pd.to_numeric(df["Value"], errors="raise", downcast="float")
 df["Value"] = df["Value"].astype(float).round(3)
 df["Period"] = df["Period"].astype(float).astype(int)
+
+
+# In[73]:
+
 
 df["NC Sub Sector"] = df.apply(
     lambda x: "All" if x["NC Sub Sector"] == x["NC Sector"] else x["NC Sub Sector"],
     axis=1,
 )
 
-# +
+
+# In[74]:
+
+
 badInheritance = [
     "Aviation between UK and Crown Dependencies",
     "Shipping between UK and Crown Dependencies",
@@ -179,7 +217,10 @@ df = df.replace(
 
 indexNames = df[df["Breakdown"] == "Net emissions/removals from LULUCF"].index
 df.drop(indexNames, inplace=True)
-# -
+
+
+# In[75]:
+
 
 df = df.replace(
     {
@@ -191,18 +232,30 @@ df = df.replace(
     }
 )
 
-# +
-COLUMNS_TO_NOT_PATHIFY = ["Period", "Value"]
+
+# In[ ]:
+
+
+
+
+
+# In[76]:
+
+
+COLUMNS_TO_PATHIFY = ["Measure Type", "Unit"]
 
 for col in df.columns.values.tolist():
-    if col in COLUMNS_TO_NOT_PATHIFY:
+    if col not in COLUMNS_TO_PATHIFY:
         continue
     try:
         df[col] = df[col].apply(pathify)
     except Exception as err:
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
-# +
+
+# In[77]:
+
+
 df["NC Category"] = df["NC Category"].str.replace("/", "-")
 df["Breakdown"] = df["Breakdown"].str.replace("/", "-")
 
@@ -213,7 +266,10 @@ df = df.replace(
         }
     }
 )
-# -
+
+
+# In[78]:
+
 
 df = df[
     [
@@ -225,19 +281,22 @@ df = df[
         "Gas",
         "Breakdown",
         "Value",
+        "Measure",
+        "Unit"
     ]
 ]
 
-# +
-# from IPython.core.display import HTML
 
-# for col in df:
-#     if col not in ["Value"]:
-#         df[col] = df[col].astype("category")
-#         display(HTML(f"<h2>{col}</h2>"))
-#         display(df[col].cat.categories)
-# -
+# In[79]:
+
 
 df.to_csv("observations.csv", index=False)
 catalog_metadata = metadata.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file("catalog-metadata.json")
+
+
+# In[80]:
+
+
+df
+

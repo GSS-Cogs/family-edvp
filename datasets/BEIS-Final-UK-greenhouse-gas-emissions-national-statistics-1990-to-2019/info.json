@@ -24,34 +24,26 @@
         "main_issue": 18,
         "columns": {
             "Period": {
-                "type": "dimension"
-            },
-            "Geographic Coverage": {
-                "type": "dimension"
-            },
-            "NC Sector": {
-                "type": "dimension"
-            },
-            "NC Sub Sector": {
-                "type": "dimension"
-            },
-            "NC Category": {
-                "type": "dimension"
-            },
-            "Gas": {
-               "type": "dimension"
-            },
-            "Breakdown": {
-               "type": "dimension"
+                "type": "dimension",
+                "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+                "value": "http://reference.data.gov.uk/id/{+period}"
             },
             "Value": {
                 "type": "observations",
-                "unit": {
-                    "label": "millions-of-tonnes-of-co2-equivalent"
-                }, 
-                "measure": {
-                    "label": "gas-emissions"
-                }
+                "datatype": "double"
+            },
+            "Measure Type": {
+                "type": "measures",
+                "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+            },
+            "Unit": {
+                "type": "units",
+                "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
+            },
+            "Marker": {
+                "type": "attribute",
+                "uri": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus",
+                "value": "http://gss-data.org.uk/def/concept/cogs-markers/{+marker}"
             }
         }
     },
