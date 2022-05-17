@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[88]:
+# In[89]:
 
 
 # Electricity generation and supply in Scotland, Wales, Northern Ireland and England, 2016 to 2019
@@ -15,7 +15,7 @@ import numpy as np
 info = json.load(open('info.json'))
 
 
-# In[ ]:
+# In[90]:
 
 
 scraper = Scraper(seed='info.json')
@@ -25,7 +25,7 @@ distribution = scraper.distributions[1] #check how to specify the media
 distribution
 
 
-# In[ ]:
+# In[91]:
 
 
 tabs = distribution.as_databaker(data_only=True)
@@ -77,7 +77,7 @@ for tab in tabs:
         print(title2)
 
 
-# In[ ]:
+# In[92]:
 
 
 
@@ -208,7 +208,7 @@ for tab in tabs:
 
         tidy = df[['Period', 'Region', 'Generating Companies', 'Fuel', 'Value', 'Measure Type', 'Unit']]
         for column in tidy:
-            if column in ('Measure Type', 'Unit'):
+            if column in ('Measure Type', 'Unit', 'Fuel'):
                 tidy[column] = tidy[column].map(lambda x: pathify(x))
 
         tidy['Fuel'] = tidy['Fuel'].str.strip()
@@ -234,7 +234,7 @@ for tab in tabs:
 tidy
 
 
-# In[ ]:
+# In[93]:
 
 
 from IPython.core.display import HTML
