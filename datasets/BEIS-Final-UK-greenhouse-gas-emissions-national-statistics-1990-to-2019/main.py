@@ -3,7 +3,7 @@
 
 # ## BEIS-Final-UK-greenhouse-gas-emissions-national-statistics-1990-to-2019
 
-# In[81]:
+# In[99]:
 
 
 import json
@@ -11,13 +11,13 @@ import pandas as pd
 from gssutils import *
 
 
-# In[82]:
+# In[100]:
 
 
 metadata = Scraper(seed="info.json")
 
 
-# In[83]:
+# In[101]:
 
 
 distribution = metadata.distribution(
@@ -28,7 +28,7 @@ distribution = metadata.distribution(
 )
 
 
-# In[84]:
+# In[102]:
 
 
 tabs = distribution.as_databaker()
@@ -37,7 +37,7 @@ tabs = [
 ]
 
 
-# In[85]:
+# In[103]:
 
 
 tidied_sheets = []
@@ -147,13 +147,13 @@ for tab in tabs:
         print(tab.name)
 
 
-# In[86]:
+# In[104]:
 
 
 df = pd.concat(tidied_sheets, sort=False).fillna("")
 
 
-# In[87]:
+# In[105]:
 
 
 df.rename(
@@ -166,7 +166,7 @@ df.rename(
 )
 
 
-# In[88]:
+# In[106]:
 
 
 df["Value"] = pd.to_numeric(df["Value"], errors="raise", downcast="float")
@@ -174,7 +174,7 @@ df["Value"] = df["Value"].astype(float).round(3)
 df["Period"] = df["Period"].astype(float).astype(int)
 
 
-# In[89]:
+# In[107]:
 
 
 df["NC Sub Sector"] = df.apply(
@@ -183,7 +183,7 @@ df["NC Sub Sector"] = df.apply(
 )
 
 
-# In[90]:
+# In[108]:
 
 
 badInheritance = [
@@ -219,7 +219,7 @@ indexNames = df[df["Breakdown"] == "Net emissions/removals from LULUCF"].index
 df.drop(indexNames, inplace=True)
 
 
-# In[ ]:
+# In[109]:
 
 
 df = df.replace(
@@ -233,13 +233,19 @@ df = df.replace(
 )
 
 
-# In[ ]:
+# In[110]:
 
 
+df = df.replace({'Gas' : {'Nitrous Oxide N2O' : 'Nitrous oxide (N2O)',
+                          'Methane CH4' : 'Methane (CH4)',
+                          'Carbon Dioxide CO2' :'Carbon dioxide (CO2)'},
+                 'NC Category' : {'Drainage, rewetting and other management of organic and mineral soils - Wetland' : 'Drainage, rewetting and other management of organic and mineral soils - wetland',
+                                  'Drainage, rewetting and other management of organic and mineral soils - Settlements' : 'Drainage, rewetting and other management of organic and mineral soils - settlements',
+                                  'Drainage, rewetting and other management of organic and mineral soils - Grassland' : 'Drainage, rewetting and other management of organic and mineral soils - grassland'},
+                 'NC Sector' : {'Waste Management' : 'Waste management'}})
 
 
-
-# In[ ]:
+# In[111]:
 
 
 COLUMNS_TO_PATHIFY = ["Measure Type", "Unit"]
@@ -253,7 +259,7 @@ for col in df.columns.values.tolist():
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 
-# In[ ]:
+# In[112]:
 
 
 df["NC Category"] = df["NC Category"].str.replace("/", "-")
@@ -268,7 +274,7 @@ df = df.replace(
 )
 
 
-# In[ ]:
+# In[113]:
 
 
 df = df[
@@ -287,7 +293,7 @@ df = df[
 ]
 
 
-# In[ ]:
+# In[114]:
 
 
 df.to_csv("observations.csv", index=False)
@@ -295,8 +301,13 @@ catalog_metadata = metadata.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file("catalog-metadata.json")
 
 
-# In[ ]:
+# In[115]:
 
 
-df
+from IPython.core.display import HTML
+for col in df:
+    if col not in ['Value']:
+        df[col] = df[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(df[col].cat.categories)
 
