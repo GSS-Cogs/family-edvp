@@ -1,0 +1,58 @@
+{
+  "id": "beis-fuel-poverty-detailed-tables-2020",
+  "title": "Fuel poverty detailed tables 2020",
+  "publisher": "Department for Business, Energy and Industrial Strategy",
+  "description": "Fuel poverty statistics report for 2020",
+  "landingPage": "https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2021",
+  "datasetNotes": [
+    "On landing page scroll to heading \"2018 Statistics\" and click on \"Fuel poverty detailed tables 2020\". Scroll to middle of new page where dataset is accessed under heading \"Documents\"."
+  ],
+  "published": "2020-04-30",
+  "families": [
+    "EDVP"
+  ],
+  "extract": {
+    "source": "XLS",
+    "stage": "Documented"
+  },
+  "transform": {
+    "airtable": "rec6Mvb4G6xmIJw1G",
+    "main_issue": 1,
+    "columns": {
+      "Period": {
+        "type": "dimension",
+        "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+        "value": "http://reference.data.gov.uk/id/{+period}"
+      },
+            "Eligibility Type": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/eligibility-type.csv-metadata.json"
+                }
+            },
+            "Eligible": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/eligible.csv-metadata.json"
+                }
+            },
+      "Value": {
+        "type": "observations",
+        "datatype": "double"
+      },
+      "Measure Type": {
+        "type": "measures",
+        "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Unit": {
+        "type": "units",
+        "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
+      }
+    },
+    "stage": [
+      "To Do"
+    ]
+  },
+  "sizingNotes": "Messy table structures, 36 tabs, mutiple dimensions and footnotes.",
+  "notes": "To be combined with \"Fuel poverty supplementary tables 2020\" and published as 5 datasets on PMD."
+}

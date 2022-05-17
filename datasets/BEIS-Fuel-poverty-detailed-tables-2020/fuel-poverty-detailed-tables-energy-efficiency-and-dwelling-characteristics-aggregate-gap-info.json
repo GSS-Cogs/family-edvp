@@ -1,0 +1,130 @@
+{
+  "id": "beis-fuel-poverty-detailed-tables-2020",
+  "title": "Fuel poverty detailed tables 2020",
+  "publisher": "Department for Business, Energy and Industrial Strategy",
+  "description": "Fuel poverty statistics report for 2020",
+  "landingPage": "https://www.gov.uk/government/statistics/fuel-poverty-detailed-tables-2021",
+  "datasetNotes": [
+    "On landing page scroll to heading \"2018 Statistics\" and click on \"Fuel poverty detailed tables 2020\". Scroll to middle of new page where dataset is accessed under heading \"Documents\"."
+  ],
+  "published": "2020-04-30",
+  "families": [
+    "EDVP"
+  ],
+  "extract": {
+    "source": "XLS",
+    "stage": "Documented"
+  },
+  "transform": {
+    "airtable": "rec6Mvb4G6xmIJw1G",
+    "main_issue": 1,
+    "columns": {
+      "Period": {
+        "type": "dimension",
+        "uri": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod",
+        "value": "http://reference.data.gov.uk/id/{+period}"
+      },
+      "Region": {
+        "type": "dimension",
+        "parent": "http://purl.org/linked-data/sdmx/2009/dimension#refArea",
+        "value": "http://statistics.data.gov.uk/id/statistical-geography/{region}",
+        "codelist": false
+      },
+      "Value": {
+        "type": "observations",
+        "datatype": "double"
+      },
+      "Measure Type": {
+        "type": "measures",
+        "value": "http://gss-data.org.uk/def/measure/{+measure_type}"
+      },
+      "Unit": {
+        "type": "units",
+        "value": "http://gss-data.org.uk/def/concept/measurement-units/{+unit}"
+      },
+      		"FPEER": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/fpeer.csv-metadata.json"
+                }
+            },
+            "SAP12 Band": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/sap12-band.csv-metadata.json"
+                }
+            },
+            "Rurality": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/rurality.csv-metadata.json"
+                }
+            },
+            "Dwelling Type": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/dwelling-type.csv-metadata.json"
+                }
+            },
+            "Dwelling Age": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/dwelling-age.csv-metadata.json"
+                }
+            },
+            "Floor Area": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/floor-area.csv-metadata.json"
+                }
+            },
+            "Gas Grid Connection": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/gas-grid-connection.csv-metadata.json"
+                }
+            },
+            "Central Heating": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/central-heating.csv-metadata.json"
+                }
+            },
+            "Main Fuel Type": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/main-fuel-type.csv-metadata.json"
+                }
+            },
+            "Boiler Type": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/boiler-type.csv-metadata.json"
+                }
+            },
+            "Wall Insulation": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/wall-insulation.csv-metadata.json"
+                }
+            },
+            "Wall Type": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/wall-type.csv-metadata.json"
+                }
+            },
+            "Loft Insulation": {
+                "type": "dimension",
+                "new": {
+                  "codelist": "./codelists/loft-insulation.csv-metadata.json"
+                }
+            }
+    },
+    "stage": [
+      "To Do"
+    ]
+  },
+  "sizingNotes": "Messy table structures, 36 tabs, mutiple dimensions and footnotes.",
+  "notes": "To be combined with \"Fuel poverty supplementary tables 2020\" and published as 5 datasets on PMD."
+}
