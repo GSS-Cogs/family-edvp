@@ -3,7 +3,7 @@
 
 # ## BEIS-Final-UK-greenhouse-gas-emissions-national-statistics-1990-to-2019
 
-# In[65]:
+# In[81]:
 
 
 import json
@@ -11,13 +11,13 @@ import pandas as pd
 from gssutils import *
 
 
-# In[66]:
+# In[82]:
 
 
 metadata = Scraper(seed="info.json")
 
 
-# In[67]:
+# In[83]:
 
 
 distribution = metadata.distribution(
@@ -28,7 +28,7 @@ distribution = metadata.distribution(
 )
 
 
-# In[68]:
+# In[84]:
 
 
 tabs = distribution.as_databaker()
@@ -37,7 +37,7 @@ tabs = [
 ]
 
 
-# In[69]:
+# In[85]:
 
 
 tidied_sheets = []
@@ -147,13 +147,13 @@ for tab in tabs:
         print(tab.name)
 
 
-# In[70]:
+# In[86]:
 
 
 df = pd.concat(tidied_sheets, sort=False).fillna("")
 
 
-# In[71]:
+# In[87]:
 
 
 df.rename(
@@ -166,7 +166,7 @@ df.rename(
 )
 
 
-# In[72]:
+# In[88]:
 
 
 df["Value"] = pd.to_numeric(df["Value"], errors="raise", downcast="float")
@@ -174,7 +174,7 @@ df["Value"] = df["Value"].astype(float).round(3)
 df["Period"] = df["Period"].astype(float).astype(int)
 
 
-# In[73]:
+# In[89]:
 
 
 df["NC Sub Sector"] = df.apply(
@@ -183,7 +183,7 @@ df["NC Sub Sector"] = df.apply(
 )
 
 
-# In[74]:
+# In[90]:
 
 
 badInheritance = [
@@ -207,7 +207,7 @@ df["Breakdown"] = df.apply(
     axis=1,
 )
 
-df["Measure"] = "Gas Emissions"
+df["Measure Type"] = "Gas Emissions"
 df = df.replace(
     {
         "Gas": {"Total": "All"},
@@ -219,7 +219,7 @@ indexNames = df[df["Breakdown"] == "Net emissions/removals from LULUCF"].index
 df.drop(indexNames, inplace=True)
 
 
-# In[75]:
+# In[ ]:
 
 
 df = df.replace(
@@ -239,7 +239,7 @@ df = df.replace(
 
 
 
-# In[76]:
+# In[ ]:
 
 
 COLUMNS_TO_PATHIFY = ["Measure Type", "Unit"]
@@ -253,7 +253,7 @@ for col in df.columns.values.tolist():
         raise Exception('Failed to pathify column "{}".'.format(col)) from err
 
 
-# In[77]:
+# In[ ]:
 
 
 df["NC Category"] = df["NC Category"].str.replace("/", "-")
@@ -268,7 +268,7 @@ df = df.replace(
 )
 
 
-# In[78]:
+# In[ ]:
 
 
 df = df[
@@ -281,13 +281,13 @@ df = df[
         "Gas",
         "Breakdown",
         "Value",
-        "Measure",
+        "Measure Type",
         "Unit"
     ]
 ]
 
 
-# In[79]:
+# In[ ]:
 
 
 df.to_csv("observations.csv", index=False)
@@ -295,7 +295,7 @@ catalog_metadata = metadata.as_csvqb_catalog_metadata()
 catalog_metadata.to_json_file("catalog-metadata.json")
 
 
-# In[80]:
+# In[ ]:
 
 
 df
